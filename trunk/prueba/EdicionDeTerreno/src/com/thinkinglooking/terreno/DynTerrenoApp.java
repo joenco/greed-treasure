@@ -1,10 +1,8 @@
 package com.thinkinglooking.terreno;
 
-import java.awt.Color;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import sun.swing.SwingUtilities2.Section;
+
 import echopoint.ImageMap;
+
 import echopoint.model.RectangleSection;
 import nextapp.echo.app.ApplicationInstance;
 import nextapp.echo.app.Button;
@@ -30,6 +28,10 @@ public class DynTerrenoApp extends ApplicationInstance {
 	  private Label lblSelected;
 	  private ImageMap terrenoSeccionado;
 	  private Column col;
+	  private char armaSeleccionada='0';
+	  private boolean bandera=false;
+	  private String    id ="1"; // Esto se supone que lo conozco desde el login
+	  Terreno terreno=new Terreno(id);// este atributo no lo sea aun pero puede estar en toda la aplicacion para un usuario
 
 	  // --------------------------------------------------------------------------------
 
@@ -43,11 +45,12 @@ public class DynTerrenoApp extends ApplicationInstance {
 		    col = new Column();
 		    col.setCellSpacing(new Extent(5));
 		    contentPane.add(col);
-
-		    terrenoSeccionado= seccionarTerreno(obtenerTerrenoUsuario());
+		    System.out.printf("el caracter %c", armaSeleccionada);
+		    
+		    terrenoSeccionado= seccionarTerreno(obtenerTerrenoUsuario("(-1,-1)"));
 		   
 		    col.add(terrenoSeccionado);
-
+		    bandera=true;
 		    Row row = new Row();
 		    row.setCellSpacing(new Extent(5));
 		    col.add(row);
@@ -59,7 +62,7 @@ public class DynTerrenoApp extends ApplicationInstance {
 		    btnGo.setToolTipText("Este es el tooltip");
 		    btnGo.addActionListener(new ActionListener() {
 		     public void actionPerformed(ActionEvent arg0) {
-		       // btnGoClicked();
+		       btnGoClicked();
 		      }
 		    });
 		    
@@ -75,20 +78,28 @@ public class DynTerrenoApp extends ApplicationInstance {
 	  // --------------------------------------------------------------------------------
 
 
-	  public HttpImageReference obtenerTerrenoUsuario(){
+	  public HttpImageReference obtenerTerrenoUsuario(String coordenadas ){
 		  
-	      return( new  HttpImageReference("terrenodyn?user_id") );
-	     }
+		  String x=coordenadas.substring(1, coordenadas.indexOf(",",0)	);
+		  String y=coordenadas.substring(coordenadas.indexOf(",",1)+1, coordenadas.length()-1);
+		  
+		  if(bandera==false || armaSeleccionada != '0')
+			  return( new  HttpImageReference("terrenodyn?user_id="+id+"&caracter_arma="+armaSeleccionada+"&coordenada_x="+x+"&coordenada_y="+y) );
+		  
+		  return(null);
+	  }
 		    
 	  
 	  public ImageMap  seccionarTerreno( HttpImageReference imagenTerreno)
 	  {    
 		
-		    
-         
+		   
+		   int dimensionImagen=Terreno.getSizeTiles()*terreno.getDimensionmatrizTerreno();
+		   int dimMatriz=terreno.getDimensionmatrizTerreno();
+		   
 		   ImageMap imageMap = new ImageMap(imagenTerreno);
-           imageMap.setWidth (new Extent(640));
-		   imageMap.setHeight(new Extent(640));
+           imageMap.setWidth (new Extent(dimensionImagen));
+		   imageMap.setHeight(new Extent(dimensionImagen));
 
 		    //imageMap.setImage(imagenTerreno.getUri());
 		    imageMap.removeAllSections();
@@ -97,12 +108,18 @@ public class DynTerrenoApp extends ApplicationInstance {
 		  
 			 public void actionPerformed(ActionEvent evt) {
 		      lblSelected.setText(evt.getActionCommand());
+		      if(armaSeleccionada!='0')
+			      { 	
+			    	  	terrenoSeccionado=seccionarTerreno(obtenerTerrenoUsuario(evt.getActionCommand()));
+			    	    col.remove(0);//(terrenoSeccionado);
+			    	    col.add(terrenoSeccionado, 0);
+			      }
 		      }
 		    });
 
 		   
-		    for (int i=0 ; i < 16;i++) {
-		    	for (int j=0; j < 16;j++ ) {
+		    for (int i=0 ; i < dimMatriz;i++) {
+		    	for (int j=0; j < dimMatriz;j++ ) {
 		    		
 		    	 String coordenada= new String("("+String.valueOf(i)+","+String.valueOf(j)+")");
 		    	 imageMap.addSection(new RectangleSection(40*j,40*(i+1),40*(j+1) ,40*i , coordenada));
@@ -112,5 +129,15 @@ public class DynTerrenoApp extends ApplicationInstance {
 		    
 		   return (imageMap);
 		}
+	  
+	  private void btnGoClicked() {
+		  
+		  	char car= txtId.getText().isEmpty() ?'0':txtId.getText().charAt(0);
+		  	if( ( car >= 'a' && car <= 'z')||(car >= 'A' && car <= 'Z')||(car >= '1' && car <= '9'))
+		    		armaSeleccionada=car;
+		  	else
+		  		armaSeleccionada='0';
+
+ 	  }
 
 }
