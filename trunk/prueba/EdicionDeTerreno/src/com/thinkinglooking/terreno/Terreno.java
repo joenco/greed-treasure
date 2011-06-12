@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 
+
 /**
   Clase que representa el tablero esta integrada por coordenadas y cada usuario posee
   Su propio Terreno
@@ -44,7 +45,11 @@ public class Terreno {
 		setDimension(16); //ojo consultar en base de datos cual es la dimension del terreno del usuario correspondiente
 		cargarMatrizTerreno();
 		
-		
+		//cargarMatrizArmas();
+		this.matrizArmas   = new char [getDimensionmatrizTerreno()][getDimensionmatrizTerreno()];
+		 
+		  matrizArmas[1][1]='a';
+	      matrizArmas[1][5]='b';
 	}
 	
 
@@ -132,9 +137,41 @@ public class Terreno {
 		System.out.printf("subio \n");
 		 if(matrizArmas==null)
 				this.matrizArmas   = new char [getDimensionmatrizTerreno()][getDimensionmatrizTerreno()];
-		  matrizArmas[x][y]=arm;
-		  
-	 }
+		 
+		 // matrizArmas[1][1]=arm;
+	     // matrizArmas[1][5]=arm;
+		 
+		  if(matrizArmas[x][y]== 0)
+		  {
+			  //descontar arma de lista de armas disponibles para que no se muestre en tabla
+			  matrizArmas[x][y]=arm;
+		  }
+		  else
+		  {
+			  //regresar arma actual en esa posicion a la lista de armas disponibles
+			  //para actualizar tabla
+			  //luego si añadir a terreno y descontar de tabla
+		  }
+			 
+	}
+	
+	public void sustituirArmaTerreno(int viejaX,int viejaY,int nuevaX,int nuevaY)
+	{
+		
+		if (matrizArmas[viejaX][viejaY]==0)
+				return ;
+		if(matrizArmas[nuevaX][nuevaY]!= 0);
+			// devolver esta arma a la tabla equi a inventario
+			
+		
+			  matrizArmas[nuevaX][nuevaY]= matrizArmas[viejaX][viejaY];
+			  matrizArmas[viejaX][viejaY]=0;
+			  
+			  
+		
+	}
+	
+	
 	public  String obtenerPathTileTerreno (char caracter)
 	{
 		String imagen=new String();

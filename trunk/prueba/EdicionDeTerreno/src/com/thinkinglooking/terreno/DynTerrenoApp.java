@@ -30,6 +30,8 @@ public class DynTerrenoApp extends ApplicationInstance {
 	  private Column col;
 	  private char armaSeleccionada='0';
 	  private boolean bandera=false;
+	  private boolean ultimoClickTerreno=false;
+	  private String ultimaCoodenadaClick;
 	  private String    id ="1"; // Esto se supone que lo conozco desde el login
 	  Terreno terreno=new Terreno(id);// este atributo no lo sea aun pero puede estar en toda la aplicacion para un usuario
 
@@ -45,7 +47,7 @@ public class DynTerrenoApp extends ApplicationInstance {
 		    col = new Column();
 		    col.setCellSpacing(new Extent(5));
 		    contentPane.add(col);
-		    System.out.printf("el caracter %c", armaSeleccionada);
+		  //  System.out.printf("el caracter %c", armaSeleccionada);
 		    
 		    terrenoSeccionado= seccionarTerreno(obtenerTerrenoUsuario("(-1,-1)"));
 		   
@@ -54,6 +56,10 @@ public class DynTerrenoApp extends ApplicationInstance {
 		    Row row = new Row();
 		    row.setCellSpacing(new Extent(5));
 		    col.add(row);
+		    
+		    Row row2 = new Row();
+		    row2.setCellSpacing(new Extent(5));
+		    col.add(row2);
 
 		    txtId = new TextField();
 		    row.add(txtId);
@@ -67,9 +73,21 @@ public class DynTerrenoApp extends ApplicationInstance {
 		    });
 		    
 		    row.add(btnGo);
+		    
+		    Button moverArma= new Button("Mover Arma a (x,y)");
+		    moverArma.setToolTipText("Este boton cambia el arma");
+		    moverArma.addActionListener(new ActionListener() {
+		     public void actionPerformed(ActionEvent arg0) {
+		      lblSelected.setText("selecciona el arma A mover luego la nueva coordenada");
+		       armaSeleccionada='0';
+		      }
+		    });
+		    
+		    row2.add(moverArma);
 
 		    lblSelected = new Label("nothing selected");
 		    col.add(lblSelected);
+		   // ultimaCoodenadaClick=new String("(-1,-1)");
 
 		    return window;
 	    }
@@ -84,8 +102,16 @@ public class DynTerrenoApp extends ApplicationInstance {
 		  String y=coordenadas.substring(coordenadas.indexOf(",",1)+1, coordenadas.length()-1);
 		  
 		  if(bandera==false || armaSeleccionada != '0')
-			  return( new  HttpImageReference("terrenodyn?user_id="+id+"&caracter_arma="+armaSeleccionada+"&coordenada_x="+x+"&coordenada_y="+y) );
+			  return( new  HttpImageReference("terrenodyn?user_id="+id+"&caracter_arma="+armaSeleccionada+"&coordenada_x="+x+
+					  							"&coordenada_y="+y+"&nueva_x=-1&nueva_y= -1") );
 		  
+		else if(ultimoClickTerreno)
+		  {    System.out.printf("POCA COSA \n");
+			  String viejaX=ultimaCoodenadaClick.substring(1,ultimaCoodenadaClick.indexOf(",",0));
+			  String viejaY=ultimaCoodenadaClick.substring(ultimaCoodenadaClick.indexOf(",",1)+1, ultimaCoodenadaClick.length()-1);
+			  return( new  HttpImageReference("terrenodyn?user_id="+id+"&caracter_arma="+armaSeleccionada+"&coordenada_x="+viejaX+
+					  							"&coordenada_y="+viejaY+"&nueva_x="+x+"&nueva_y="+y) );
+		  } 
 		  return(null);
 	  }
 		    
@@ -108,12 +134,21 @@ public class DynTerrenoApp extends ApplicationInstance {
 		  
 			 public void actionPerformed(ActionEvent evt) {
 		      lblSelected.setText(evt.getActionCommand());
-		      if(armaSeleccionada!='0')
+		      if(armaSeleccionada!='0'|| ultimoClickTerreno)
 			      { 	
 			    	  	terrenoSeccionado=seccionarTerreno(obtenerTerrenoUsuario(evt.getActionCommand()));
-			    	    col.remove(0);//(terrenoSeccionado);
+			    	    col.remove(0);
 			    	    col.add(terrenoSeccionado, 0);
+			    	    ultimoClickTerreno=false;
+			    	    
 			      }
+		      else
+		      {
+		    	  lblSelected.setText("cupalo");
+		    	  ultimaCoodenadaClick=new String( evt.getActionCommand());	
+		    	  ultimoClickTerreno=true;
+		      }
+		      
 		      }
 		    });
 
@@ -137,7 +172,8 @@ public class DynTerrenoApp extends ApplicationInstance {
 		    		armaSeleccionada=car;
 		  	else
 		  		armaSeleccionada='0';
-
+		  	
+		  	ultimoClickTerreno=false;
  	  }
-
+	  
 }

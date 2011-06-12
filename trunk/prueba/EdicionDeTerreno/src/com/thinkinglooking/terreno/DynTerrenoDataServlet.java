@@ -21,6 +21,8 @@ public class DynTerrenoDataServlet extends HttpServlet {
 	    String	userIdStr  =req.getParameter("user_id");
 	    String 	coordenadaX=req.getParameter("coordenada_x");
 	    String  coordenadaY=req.getParameter("coordenada_y");
+	    String 	nuevaCoordenadaX=req.getParameter("nueva_x");
+	    String  nuevaCoordenadaY=req.getParameter("nueva_y");
 	    char  	arma=		req.getParameter("caracter_arma").charAt(0);
 	    int userIdInt = -1;
 
@@ -33,10 +35,27 @@ public class DynTerrenoDataServlet extends HttpServlet {
 	    }
 
 	    Terreno terreno= new Terreno(userIdStr); //ojo si retorna nulo entonces es que aun no tiene terreno deberia mandar a elegir uno
-	    System.out.printf("eso es %s %s %c \n",coordenadaX,coordenadaY,arma);
-	    if(arma != '0')
-	    	terreno.addArmaTerreno(Integer.valueOf(coordenadaX),Integer.valueOf(coordenadaY),arma);
-	    res.setContentType("image/png");
-	    res.getOutputStream().write(terreno.pintarTerreno());
+	  
+	    
+	    if (arma == '0' && nuevaCoordenadaX.equals("-1"))
+	    {	res.setContentType("image/png");
+	    	res.getOutputStream().write(terreno.pintarTerreno());
+	    }	
+	    else 
+	    	{
+			     if(!nuevaCoordenadaX.equals("-1") )
+			    {
+			    	System.out.printf("nononononNONOc %s \n",nuevaCoordenadaX);
+			    	terreno.sustituirArmaTerreno(Integer.valueOf(coordenadaX),Integer.valueOf(coordenadaY),
+			    							 Integer.valueOf(nuevaCoordenadaX),Integer.valueOf(nuevaCoordenadaY	));
+			    	
+			     }		
+			     else if(arma != '0')
+				    	terreno.addArmaTerreno(Integer.valueOf(coordenadaX),Integer.valueOf(coordenadaY),arma);
+			   
+				res.setContentType("image/png");
+			    res.getOutputStream().write(terreno.pintarTerreno());
+	    	}   
+	    
 	  }
 }
