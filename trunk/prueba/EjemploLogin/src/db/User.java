@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Proxy;
 
 @Entity
-@Table(name = "usera")
+@Table(name = "user")
 @Proxy(lazy = false)
 public class User {
 
@@ -16,6 +16,8 @@ public class User {
   private String nick;
   private String pass;
   private String name;
+  private String lastname;
+  private String country;
   private String email;
 
   @Id
@@ -51,6 +53,22 @@ public class User {
   public String getName() {
     return name;
   }
+  
+  public void setLastName(String lastname) {
+	    this.lastname = lastname;
+	  }
+
+	  public String getLastName() {
+	    return lastname;
+	  }
+	  
+	  public void setCountry(String country) {
+		    this.country = country;
+		  }
+
+		  public String getCountry() {
+		    return country;
+		  }
 
   public void setEmail(String email) {
     this.email = email;

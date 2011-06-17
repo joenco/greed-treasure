@@ -10,6 +10,7 @@ import nextapp.echo.app.Panel;
 
 /**
  * @author Anna Lezama
+ *  @modificado por: Jorge Ortega
  */
 
 public class Start extends Panel{
@@ -30,7 +31,7 @@ public class Start extends Panel{
 	    
 	    Column col = new Column();
 	    
-	    col.add(new Label("Bienvenido al sistema"));
+	    col.add(new Label("Bienvenido al Juego de GREED TREASURE"));
 	    col.add(new Label(user.getName()));
 	    
 	    add(col);

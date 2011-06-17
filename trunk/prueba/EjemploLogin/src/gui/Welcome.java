@@ -15,6 +15,7 @@ import echopoint.layout.HtmlLayoutData;
 
 /**
  * @author Anna Lezama
+ *  @modificado por: Jorge Ortega
  */
 
 public class Welcome extends ContentPane {
@@ -33,7 +34,7 @@ public class Welcome extends ContentPane {
 		HtmlLayoutData hld;
 
 		hld = new HtmlLayoutData("title");
-		Label lblTitle = new Label("Bienvenido...! Ingrese sus datos!");
+		Label lblTitle = new Label("Bienvenido al Juego de GREED TREASURE!! Ingrese sus datos o registrese para jugar!");
 		lblTitle.setLayoutData(hld);
 		htmlLayout.add(lblTitle);
 

@@ -24,6 +24,7 @@ import nextapp.echo.app.event.EventListenerList;
 
 /**
  * @author Anna Lezama
+ * @modificado por: Jorge Ortega
  */
 
 public class ModifiedAccount extends Panel {
@@ -43,6 +44,8 @@ public class ModifiedAccount extends Panel {
 	private User user;
 
 	private TextField txtName;
+	private TextField txtLastName;
+	private TextField txtCountry;
 	private PasswordField txtPass;
 	private TextField txtEmail;
 
@@ -67,6 +70,18 @@ public class ModifiedAccount extends Panel {
 		Label lblName = new Label("Nombre");
 		grid.add(lblName);
 		grid.add(txtName);
+		
+		txtLastName = new TextField();
+		txtLastName.setText(user.getLastName());
+		Label lblLastName = new Label("Apellido");
+		grid.add(lblLastName);
+		grid.add(txtLastName);
+		
+		txtCountry = new TextField();
+		txtCountry.setText(user.getCountry());
+		Label lblCountry = new Label("País");
+		grid.add(lblCountry);
+		grid.add(txtCountry);
 
 		txtPass = new PasswordField();
 		txtPass.setText(user.getPass());
@@ -148,6 +163,8 @@ public class ModifiedAccount extends Panel {
 		
 		user.setPass(txtPass.getText());
 		user.setName(txtName.getText());
+		user.setLastName(txtLastName.getText());
+		user.setCountry(txtCountry.getText());
 		user.setEmail(txtEmail.getText());
 		session.update(user);
 		
@@ -157,6 +174,12 @@ public class ModifiedAccount extends Panel {
 
 	private boolean validateFields() {
 		if (txtName.getText().equals("")) {
+			return false;
+		}
+		if (txtLastName.getText().equals("")) {
+			return false;
+		}
+		if (txtCountry.getText().equals("")) {
 			return false;
 		}
 		if (txtPass.getText().equals("")) {

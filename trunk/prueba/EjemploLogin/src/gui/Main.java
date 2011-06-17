@@ -6,11 +6,8 @@ import nextapp.echo.app.Color;
 import nextapp.echo.app.Column;
 import nextapp.echo.app.ContentPane;
 import nextapp.echo.app.Extent;
-import nextapp.echo.app.FillImage;
-import nextapp.echo.app.ImageReference;
 import nextapp.echo.app.Label;
 import nextapp.echo.app.Panel;
-import nextapp.echo.app.ResourceImageReference;
 import nextapp.echo.app.Row;
 import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
@@ -40,14 +37,9 @@ public class Main extends ContentPane {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		//ImageReference ir = new ResourceImageReference( //
-        //"gui/BackgroundFlag.jpg");
-		//;
-		
-		//setBackground(new Color(197, 217, 161));
-		setBackground(new Color(23, 11, 161));
-		//setBackgroundImage((nextapp.echo.app.FillImage) ir);
-		
+
+		setBackground(new Color(197, 217, 161));
+
 		HtmlLayoutData hld;
 
 		hld = new HtmlLayoutData("buttons");
@@ -64,16 +56,11 @@ public class Main extends ContentPane {
 		add(htmlLayout);
 	}
 
-	private FillImage FillImage(ImageReference ir) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	private Row initButtons() {
 		Row row = new Row();
 		row.setCellSpacing(new Extent(5));
 
-		Button btnStart = new Button("Inicio");
+		Button btnStart = new Button("Ïnicio");
 		btnStart.setBorder(new Border(new Extent(2), Color.BLACK, 1));
 		btnStart.setBackground(new Color(117, 145, 118));
 		btnStart.addActionListener(new ActionListener() {
@@ -94,17 +81,6 @@ public class Main extends ContentPane {
 		});
 
 		row.add(btnShowAccount);
-		
-		Button btnTerreno = new Button("Editar Castillo");
-		btnTerreno.setBorder(new Border(new Extent(2), Color.BLACK, 1));
-		btnTerreno.setBackground(new Color(117, 145, 118));
-		btnTerreno.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnTerrenoClicked();
-			}
-		});
-
-		row.add(btnTerreno);
 
 		Button btnModifiedAccount = new Button("Modificar Perfil");
 		btnModifiedAccount.setBorder(new Border(new Extent(2), Color.BLACK, 1));
@@ -176,13 +152,7 @@ public class Main extends ContentPane {
 		ShowAccount showAccount = new ShowAccount(user);
 		updatePanel(showAccount);
 	}
-	
-	private void btnTerrenoClicked() {
-		Terreno terreno = new Terreno(user);
-		updatePanel(terreno);
-	}
-	
-	
+
 	private void updatePanel(Panel panel) {
 		panel.setId("panel");
 

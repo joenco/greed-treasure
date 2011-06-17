@@ -18,8 +18,10 @@ public class Main {
     User bean = new User();
     bean.setNick("usuario");
     bean.setPass("123");
-    bean.setName("Anna Lezama");
-    bean.setEmail("annitap4@gmail.com");
+    bean.setName("Jorge Ortega");
+    bean.setLastName("Ortega");
+    bean.setCountry("Venezuela");
+    bean.setEmail("joenco@esdebian.org");
     session.save(bean);
 
     session.getTransaction().commit();

@@ -27,6 +27,7 @@ import nextapp.echo.app.event.ActionListener;
 
 /**
  * @author Anna Lezama
+ * @modificado por: Jorge Ortega
  */
 
 public class CreateAccount extends ContentPane {
@@ -35,6 +36,8 @@ public class CreateAccount extends ContentPane {
 
 	private TextField txtNick;
 	private TextField txtName;
+	private TextField txtLastName;
+	private TextField txtCountry;
 	private PasswordField txtPass;
 	private TextField txtEmail;
 
@@ -57,7 +60,7 @@ public class CreateAccount extends ContentPane {
 		HtmlLayoutData hld;
 
 		hld = new HtmlLayoutData("title");
-		Label lblTitle = new Label("Ingrese sus datos para crear una cuenta!");
+		Label lblTitle = new Label("Ingrese los datos para crear una cuenta en Greed Treasure");
 		lblTitle.setLayoutData(hld);
 		htmlLayout.add(lblTitle);
 
@@ -73,6 +76,16 @@ public class CreateAccount extends ContentPane {
 		Label lblName = new Label("Nombre");
 		grid.add(lblName);
 		grid.add(txtName);
+
+		txtLastName = new TextField();
+		Label lblLastName = new Label("Apellido");
+		grid.add(lblLastName);
+		grid.add(txtLastName);
+		
+		txtCountry = new TextField();
+		Label lblCountry = new Label("País");
+		grid.add(lblCountry);
+		grid.add(txtCountry);
 
 		txtPass = new PasswordField();
 		Label lblPass = new Label("Contraseña");
@@ -176,6 +189,23 @@ public class CreateAccount extends ContentPane {
 			add(windowPane);
 			return;
 		}
+		
+		if (checkEmail(session)) {
+
+			session.getTransaction().commit();
+			session.close();
+
+			windowPane.setTitle("Correo ya registrado!!");
+
+			lbl.setText("Este correo ya esta asociado a una cuenta, por favor coloque otro.");
+
+			col.add(lbl);
+			col.add(btnOK);
+			windowPane.add(col);
+
+			add(windowPane);
+			return;
+		}
 
 		register(session);
 
@@ -206,12 +236,25 @@ public class CreateAccount extends ContentPane {
 		}
 	}
 
+	
+	private boolean checkEmail(Session session) {
+		Criteria criteria = session.createCriteria(User.class).add(
+				Restrictions.eq("email", txtEmail.getText()));
+		if (criteria.list().size() == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	private void register(Session session) {
 		User bean = new User();
 		
 		bean.setNick(txtNick.getText());
 		bean.setPass(txtPass.getText());
 		bean.setName(txtName.getText());
+		bean.setLastName(txtLastName.getText());
+		bean.setCountry(txtCountry.getText());
 		bean.setEmail(txtEmail.getText());
 		
 		session.save(bean);
@@ -227,6 +270,12 @@ public class CreateAccount extends ContentPane {
 			return false;
 		}
 		if (txtName.getText().equals("")) {
+			return false;
+		}
+		if (txtLastName.getText().equals("")) {
+			return false;
+		}
+		if (txtCountry.getText().equals("")) {
 			return false;
 		}
 		if (txtPass.getText().equals("")) {
