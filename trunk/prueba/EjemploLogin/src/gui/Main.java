@@ -18,6 +18,7 @@ import echopoint.layout.HtmlLayoutData;
 
 /**
  * @author Anna Lezama
+ *  @modificado por: Jorge Ortega
  */
 
 public class Main extends ContentPane {
@@ -44,8 +45,11 @@ public class Main extends ContentPane {
 
 		hld = new HtmlLayoutData("buttons");
 		Row row = initButtons();
+		Row row1 = initButtons1();
 		row.setLayoutData(hld);
+		row1.setLayoutData(hld);
 		htmlLayout.add(row);
+		htmlLayout.add(row1);
 
 		hld = new HtmlLayoutData("panel");
 		Start start = new Start(user);
@@ -106,7 +110,74 @@ public class Main extends ContentPane {
 
 		return row;
 	}
+	
+	private Row initButtons1() {
+		Row row1 = new Row();
+		row1.setCellSpacing(new Extent(5));
 
+		Button btnEditionCastillo = new Button("Editar Castillo");
+		btnEditionCastillo.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		btnEditionCastillo.setBackground(new Color(117, 145, 118));
+		btnEditionCastillo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnEditionCastilloClicked();
+			}
+		});
+
+		row1.add(btnEditionCastillo);
+
+		Button btnEditionCaballero = new Button("Editar Caballero");
+		btnEditionCaballero.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		btnEditionCaballero.setBackground(new Color(117, 145, 118));
+		btnEditionCaballero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnEditionCaballeroClicked();
+			}
+		});
+
+		row1.add(btnEditionCaballero);
+
+		Button btnComprarArmas = new Button("Comprar armas");
+		btnComprarArmas.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		btnComprarArmas.setBackground(new Color(117, 145, 118));
+		btnComprarArmas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnComprarArmasClicked();
+			}
+		});
+
+		row1.add(btnComprarArmas);
+
+		Button btnVenderArmas = new Button("Vender armas");
+		btnVenderArmas.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		btnVenderArmas.setBackground(new Color(117, 145, 118));
+		btnVenderArmas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnVenderArmasClicked();
+			}
+		});
+
+		row1.add(btnVenderArmas);
+		
+		Button btnInventarioArmas = new Button("Inventario de armas");
+		btnInventarioArmas.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		btnInventarioArmas.setBackground(new Color(117, 145, 118));
+		btnInventarioArmas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnInventarioArmasClicked();
+			}
+		});
+
+		row1.add(btnInventarioArmas);
+
+		return row1;
+	}
+
+	private void btnEditionCastilloClicked() { }
+	private void btnEditionCaballeroClicked() { }
+	private void btnComprarArmasClicked() { }
+	private void btnVenderArmasClicked() { }
+	private void btnInventarioArmasClicked() { }
 	private void btnStartClicked() {
 		Start star = new Start(user);
 		updatePanel(star);
