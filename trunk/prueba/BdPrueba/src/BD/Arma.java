@@ -19,7 +19,7 @@ import org.hibernate.annotations.LazyCollectionOption; //import org.hibernate.an
 import BD.FondoArma;
 
 @Entity
-@Table(name = "t_Arma")
+@Table(name = "t_arma")
 @Proxy(lazy = false)
 public class Arma {
 	private int id;

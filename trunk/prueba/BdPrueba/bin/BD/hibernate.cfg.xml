@@ -101,6 +101,6 @@
 		<mapping class="BD.FondoArma" />
 		<mapping class="BD.Arma" />
 		<mapping class="BD.Terreno" />
-
+		
 	</session-factory>
 </hibernate-configuration>

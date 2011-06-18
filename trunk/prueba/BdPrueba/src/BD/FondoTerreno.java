@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+
 import org.hibernate.annotations.Proxy;
 
 import BD.PlantillaTerreno;
@@ -46,6 +48,8 @@ public class FondoTerreno {
 	public int getY() {
 		return y;
 	}
+	
+	
 
 	@ManyToOne
 	public PlantillaTerreno getidRef() {

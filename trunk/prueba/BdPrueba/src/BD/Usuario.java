@@ -49,7 +49,7 @@ public class Usuario {
 		return idRef;
 	}
 
-	public void setidRef(PlantillaTerreno idRef) {
+	public void setIdRef(PlantillaTerreno idRef) {
 		this.idRef = idRef;
 	}
 	

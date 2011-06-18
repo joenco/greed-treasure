@@ -10,13 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Proxy;
 
+
 import BD.FondoTerreno;
+
 
 @Entity
 @Table(name = "t_terreno")
@@ -26,9 +29,9 @@ public class Terreno {
 	private int id;
 	private boolean esOcupable;
 	private List<FondoTerreno> fontList = new ArrayList<FondoTerreno>();
+	private String imagen;
 
-	// private imagen;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
@@ -47,12 +50,15 @@ public class Terreno {
 		return esOcupable;
 	}
 
-	/*
-	 * Falta la imagen
-	 * 
-	 * }
-	 */
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 
+	public String getImagen() {
+		return imagen;
+	}
+
+	
 	
 	@OneToMany(mappedBy = "idTerrenoRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
