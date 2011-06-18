@@ -70,9 +70,8 @@ public class Main {
 	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
 	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
 	    	  				  {'a','e','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-
-	    	  				
-	    	  				{'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
+ 	  				
+	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
 	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
 	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
 	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
@@ -163,8 +162,8 @@ public class Main {
 
 				}
 
-public static byte[] obtimg(char a){
-	byte[] img = new byte[3000];
+public static byte[] obtenerimg(char charId){
+	byte[] img = new byte[7000];
 	Cuadrilla cuadrilla = new Cuadrilla();
 	
 	Configuration configuration = new AnnotationConfiguration();
@@ -173,8 +172,8 @@ public static byte[] obtimg(char a){
 	Session session = sessionFactory.openSession();
     session.beginTransaction();
     
-	cuadrilla = (Cuadrilla) session.load(Cuadrilla.class,a);
-	
+	cuadrilla = (Cuadrilla) session.load(Cuadrilla.class,charId);
+	img= cuadrilla.getImg();
 	session.getTransaction().commit();
 	session.close();
 	return img;
