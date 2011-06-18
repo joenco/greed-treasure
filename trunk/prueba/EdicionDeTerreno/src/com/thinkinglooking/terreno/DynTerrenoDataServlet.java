@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 /**
  * @author jonathan Monsalve y Jesus Gaviria <br>
  *         Created on Jun 9, 2011
@@ -17,8 +19,9 @@ public class DynTerrenoDataServlet extends HttpServlet {
 	
 	  protected void doGet(HttpServletRequest req, HttpServletResponse res) //
 	      throws ServletException, IOException {
-
-	    String	userIdStr  =req.getParameter("user_id");
+		  
+		
+		String	userIdStr  =req.getParameter("user_id");
 	    String 	coordenadaX=req.getParameter("coordenada_x");
 	    String  coordenadaY=req.getParameter("coordenada_y");
 	    String 	nuevaCoordenadaX=req.getParameter("nueva_x");
@@ -45,7 +48,7 @@ public class DynTerrenoDataServlet extends HttpServlet {
 	    	{
 			     if(!nuevaCoordenadaX.equals("-1") )
 			    {
-			    	System.out.printf("nononononNONOc %s \n",nuevaCoordenadaX);
+			    	
 			    	terreno.sustituirArmaTerreno(Integer.valueOf(coordenadaX),Integer.valueOf(coordenadaY),
 			    							 Integer.valueOf(nuevaCoordenadaX),Integer.valueOf(nuevaCoordenadaY	));
 			    	

@@ -15,6 +15,7 @@ import nextapp.echo.app.Label;
 import nextapp.echo.app.Row;
 import nextapp.echo.app.TextField;
 import nextapp.echo.app.Window;
+import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
 
@@ -39,10 +40,12 @@ public class DynTerrenoApp extends ApplicationInstance {
 
 	  public Window init() {
 		  	Window window = new Window();
+		  	
 
 		    ContentPane contentPane = new ContentPane();
 		    contentPane.setInsets(new Insets(2, 2, 2, 2));
 		    window.setContent(contentPane);
+		   
 
 		    col = new Column();
 		    col.setCellSpacing(new Extent(5));
