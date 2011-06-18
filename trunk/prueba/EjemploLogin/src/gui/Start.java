@@ -30,10 +30,9 @@ public class Start extends Panel{
 	    user = (User) session.load(User.class, user.getId());
 	    
 	    Column col = new Column();
-	    
-	    col.add(new Label("Bienvenido al Juego de GREED TREASURE"));
-	    col.add(new Label(user.getName()));
-	    
+	    col.add(new Label("Hola "+user.getNick()));
+	    col.add(new Label("Tu Castillo y Caballero estan listos para recibir órdenes!"));
+
 	    add(col);
 	    
 	    session.getTransaction().commit();

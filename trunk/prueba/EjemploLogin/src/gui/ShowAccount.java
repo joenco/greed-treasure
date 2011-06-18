@@ -43,6 +43,7 @@ public class ShowAccount extends Panel {
 	    col.add(new Label("País: " + user.getCountry()));
 
 	    col.add(new Label("Tu nick/Apodo es: " + user.getNick()));
+	    col.add(new Label("Tu tienes "+ user.getCantOro() +" monedas de oro"));
 	    col.add(new Label("Tu email es: " + user.getEmail()));
 	    
 	    add(col);

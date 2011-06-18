@@ -252,6 +252,7 @@ public class CreateAccount extends ContentPane {
 		
 		bean.setNick(txtNick.getText());
 		bean.setPass(txtPass.getText());
+		bean.setCantOro("1000");
 		bean.setName(txtName.getText());
 		bean.setLastName(txtLastName.getText());
 		bean.setCountry(txtCountry.getText());

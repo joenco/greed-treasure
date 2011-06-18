@@ -14,6 +14,7 @@ public class User {
 
   private int id;
   private String nick;
+  private String cantoro;
   private String pass;
   private String name;
   private String lastname;
@@ -37,6 +38,15 @@ public class User {
   public String getNick() {
     return nick;
   }
+  
+  public void setCantOro(String cantoro) {
+	    this.cantoro= cantoro;
+	  }
+
+  public String getCantOro() {
+    return cantoro;
+  }
+
 
   public void setPass(String pass) {
     this.pass = pass;

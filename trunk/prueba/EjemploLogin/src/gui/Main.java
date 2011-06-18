@@ -40,8 +40,8 @@ public class Main extends ContentPane {
 		}
 
 		setBackground(new Color(197, 217, 161));
-
-		HtmlLayoutData hld;
+		
+				HtmlLayoutData hld;
 
 		hld = new HtmlLayoutData("buttons");
 		Row row = initButtons();
@@ -115,6 +115,17 @@ public class Main extends ContentPane {
 		Row row1 = new Row();
 		row1.setCellSpacing(new Extent(5));
 
+		Button btnAtacarCastillo = new Button("Atacar Castillo");
+		btnAtacarCastillo.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		btnAtacarCastillo.setBackground(new Color(117, 145, 118));
+		btnAtacarCastillo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnAtacarCastilloClicked();
+			}
+		});
+
+		row1.add(btnAtacarCastillo);
+		
 		Button btnEditionCastillo = new Button("Editar Castillo");
 		btnEditionCastillo.setBorder(new Border(new Extent(2), Color.BLACK, 1));
 		btnEditionCastillo.setBackground(new Color(117, 145, 118));
@@ -173,6 +184,7 @@ public class Main extends ContentPane {
 		return row1;
 	}
 
+	private void btnAtacarCastilloClicked() { }
 	private void btnEditionCastilloClicked() { }
 	private void btnEditionCaballeroClicked() { }
 	private void btnComprarArmasClicked() { }
