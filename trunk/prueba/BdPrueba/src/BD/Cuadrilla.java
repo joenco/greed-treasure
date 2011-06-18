@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,28 +22,24 @@ import BD.Coordenada;
 
 
 
-
-
-
 @Entity
 @Table(name = "t_cuadrilla")
 @Proxy(lazy = false)
 public class Cuadrilla {
 
-	private int id;
+	private char charId;
 	private boolean esOcupable;
-	private List<Coordenada> fontList = new ArrayList<Coordenada>();
+	private List<Coordenada> coordenadaList = new ArrayList<Coordenada>();
 	private byte[] img;
 
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
-		return id;
+	public char getCharId() {
+		return charId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCharId(char charId) {
+		this.charId = charId;
 	}
 	
 	public void setEsOcupable(boolean ban) {
@@ -62,7 +56,7 @@ public class Cuadrilla {
 	  public byte[] getImg() {
 	    return img;
 	  }
-
+	
 	  public void setImg(byte[] img) {
 	    this.img = img;
 	  }
@@ -71,11 +65,11 @@ public class Cuadrilla {
 	@OneToMany(mappedBy = "idCuadrillaRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
 	@Cascade( { CascadeType.ALL, CascadeType.DELETE_ORPHAN })
-	public List<Coordenada> getfonTList() {
-		return fontList;
+	public List<Coordenada> getCoordenadaList() {
+		return coordenadaList;
 	}
 
-	public void setfonTList(List<Coordenada> fontList) {
-		this.fontList = fontList;
+	public void setCoordenadaList(List<Coordenada> coordenadaList) {
+		this.coordenadaList = coordenadaList;
 	}
 }

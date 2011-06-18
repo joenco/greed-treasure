@@ -28,19 +28,19 @@ public class Usuario {
 	private List<FondoArma> fonAList = new ArrayList<FondoArma>();
 
 	@Id
-	public int getLogin() {
+	public int getPassword() {
 		return password;
 	}
 
-	public void setLogin(int password) {
+	public void setPassword(int password) {
 		this.password = password;
 	}
 
-	public void setName(String login) {
+	public void setLogin(String login) {
 		this.login = login;
 	}
 
-	public String getName() {
+	public String getLogin() {
 		return login;
 	}
 
