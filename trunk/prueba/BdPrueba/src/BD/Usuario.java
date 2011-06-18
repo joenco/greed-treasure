@@ -22,26 +22,26 @@ import BD.FondoArma;
 @Proxy(lazy = false)
 public class Usuario {
 
-	private int login;
-	private String name;
+	private int password;
+	private String login;
 	private PlantillaTerreno idRef;
 	private List<FondoArma> fonAList = new ArrayList<FondoArma>();
 
 	@Id
 	public int getLogin() {
-		return login;
+		return password;
 	}
 
-	public void setLogin(int login) {
+	public void setLogin(int password) {
+		this.password = password;
+	}
+
+	public void setName(String login) {
 		this.login = login;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getName() {
-		return name;
+		return login;
 	}
 
 	@ManyToOne

@@ -18,7 +18,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption; //import org.hibernate.annotations.Proxy;
 
 import BD.Usuario;
-import BD.FondoTerreno;
+import BD.Coordenada;
 
 
 @Entity
@@ -29,7 +29,7 @@ public class PlantillaTerreno {
 	private int id;
 	private String name;
 	private List<Usuario> usuarioList = new ArrayList<Usuario>();
-	private List<FondoTerreno> fonTList = new ArrayList<FondoTerreno>();
+	private List<Coordenada> fonTList = new ArrayList<Coordenada>();
 	
 
 	@Id
@@ -64,15 +64,15 @@ public class PlantillaTerreno {
 		this.usuarioList = usuarioList;
 	}
 
-	// Relacion uno a muchos con FondoTerreno
+	// Relacion uno a muchos con Coordenada
 	@OneToMany(mappedBy = "idRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
 	@Cascade( { CascadeType.ALL, CascadeType.DELETE_ORPHAN })
-	public List<FondoTerreno> getfonTList() {
+	public List<Coordenada> getfonTList() {
 		return fonTList;
 	}
 
-	public void setfonTList(List<FondoTerreno> fonTList) {
+	public void setfonTList(List<Coordenada> fonTList) {
 		this.fonTList = fonTList;
 	}
 

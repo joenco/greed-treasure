@@ -16,20 +16,26 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Proxy;
+import javax.persistence.Column;
+import javax.persistence.Lob;
+
+import BD.Coordenada;
 
 
-import BD.FondoTerreno;
+
+
+
 
 
 @Entity
-@Table(name = "t_terreno")
+@Table(name = "t_cuadrilla")
 @Proxy(lazy = false)
-public class Terreno {
+public class Cuadrilla {
 
 	private int id;
 	private boolean esOcupable;
-	private List<FondoTerreno> fontList = new ArrayList<FondoTerreno>();
-	private String imagen;
+	private List<Coordenada> fontList = new ArrayList<Coordenada>();
+	private byte[] img;
 
 	
 	@Id
@@ -50,24 +56,26 @@ public class Terreno {
 		return esOcupable;
 	}
 
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
 
-	public String getImagen() {
-		return imagen;
-	}
+	@Lob
+	  @Column(length = 70000)
+	  public byte[] getImg() {
+	    return img;
+	  }
 
+	  public void setImg(byte[] img) {
+	    this.img = img;
+	  }
+	  
 	
-	
-	@OneToMany(mappedBy = "idTerrenoRef")
+	@OneToMany(mappedBy = "idCuadrillaRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
 	@Cascade( { CascadeType.ALL, CascadeType.DELETE_ORPHAN })
-	public List<FondoTerreno> getfonTList() {
+	public List<Coordenada> getfonTList() {
 		return fontList;
 	}
 
-	public void setfonTList(List<FondoTerreno> fontList) {
+	public void setfonTList(List<Coordenada> fontList) {
 		this.fontList = fontList;
 	}
 }

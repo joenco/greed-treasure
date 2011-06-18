@@ -13,15 +13,15 @@ import org.hibernate.annotations.Proxy;
 import BD.PlantillaTerreno;
 
 @Entity
-@Table(name = "t_fondoTerreno")
+@Table(name = "t_Coordenada")
 @Proxy(lazy = false)
-public class FondoTerreno {
+public class Coordenada {
 
 	private int id;
 	private int x;
 	private int y;
 	private PlantillaTerreno idRef;
-	private Terreno idTerrenoRef;
+	private Cuadrilla idCuadrillaRef;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,11 +61,11 @@ public class FondoTerreno {
 	}
 	
 	@ManyToOne
-	public Terreno getidTerrenoRef() {
-		return idTerrenoRef;
+	public Cuadrilla getidCuadrillaRef() {
+		return idCuadrillaRef;
 	}
 
-	public void setidTerrenoRef(Terreno idTerrenoRef) {
-		this.idTerrenoRef = idTerrenoRef;
+	public void setidCuadrillaRef(Cuadrilla idCuadrillaRef) {
+		this.idCuadrillaRef = idCuadrillaRef;
 	}
 }
