@@ -19,7 +19,10 @@ public class Main {
     bean.setNick("usuario");
     bean.setPass("123");
     bean.setCantOro("1000");
-    bean.setName("Jorge Ortega");
+    bean.setNivel("1");
+    bean.setVictoria("0");
+    bean.setDerrota("0");
+    bean.setName("Jorge");
     bean.setLastName("Ortega");
     bean.setCountry("Venezuela");
     bean.setEmail("joenco@esdebian.org");

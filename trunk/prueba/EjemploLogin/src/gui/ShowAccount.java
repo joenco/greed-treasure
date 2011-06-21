@@ -41,11 +41,13 @@ public class ShowAccount extends Panel {
 	    col.add(new Label("Nombre: " + user.getName()));
 	    col.add(new Label("Apellido: " + user.getLastName()));
 	    col.add(new Label("País: " + user.getCountry()));
-
+	    col.add(new Label("Tu email es: " + user.getEmail()));
 	    col.add(new Label("Tu nick/Apodo es: " + user.getNick()));
 	    col.add(new Label("Tu tienes "+ user.getCantOro() +" monedas de oro"));
-	    col.add(new Label("Tu email es: " + user.getEmail()));
-	    
+	    col.add(new Label("Tu nivel es: "+ user.getNivel()));
+	    col.add(new Label("Nro de Victorías: "+ user.getVictoria())); 
+	    col.add(new Label("Nro de Derrotas: "+user.getDerrota()));
+
 	    add(col);
 
 		session.getTransaction().commit();

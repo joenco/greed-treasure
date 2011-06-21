@@ -15,6 +15,9 @@ public class User {
   private int id;
   private String nick;
   private String cantoro;
+  private String nivel;
+  private String victoria;
+  private String derrota;
   private String pass;
   private String name;
   private String lastname;
@@ -46,7 +49,30 @@ public class User {
   public String getCantOro() {
     return cantoro;
   }
+  
+  public void setNivel(String nivel) {
+    this.nivel= nivel;
+  }
 
+  public String getNivel() {
+    return nivel;
+  }
+
+  public void setVictoria(String victoria) {
+    this.victoria= victoria;
+  }
+
+  public String getVictoria() {
+    return victoria;
+  }
+
+  public void setDerrota(String derrota) {
+    this.derrota= derrota;
+  }
+
+  public String getDerrota() {
+    return derrota;
+  }
 
   public void setPass(String pass) {
     this.pass = pass;
