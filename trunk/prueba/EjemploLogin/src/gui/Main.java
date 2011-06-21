@@ -6,6 +6,7 @@ import nextapp.echo.app.Color;
 import nextapp.echo.app.Column;
 import nextapp.echo.app.ContentPane;
 import nextapp.echo.app.Extent;
+import nextapp.echo.app.Grid;
 import nextapp.echo.app.Label;
 import nextapp.echo.app.Panel;
 import nextapp.echo.app.Row;
@@ -39,17 +40,18 @@ public class Main extends ContentPane {
 			throw new RuntimeException(e);
 		}
 
-		setBackground(new Color(197, 217, 161));
+		// setBackground(new Color(197, 217, 161));
 		
 				HtmlLayoutData hld;
 
-		hld = new HtmlLayoutData("buttons");
+		hld = new HtmlLayoutData("buttons_top");
 		Row row = initButtons();
-		Row row1 = initButtons1();
 		row.setLayoutData(hld);
-		row1.setLayoutData(hld);
 		htmlLayout.add(row);
-		htmlLayout.add(row1);
+		hld = new HtmlLayoutData("buttons_left");
+		Grid grid = initButtons1();
+		grid.setLayoutData(hld);
+		htmlLayout.add(grid);
 
 		hld = new HtmlLayoutData("panel");
 		Start start = new Start(user);
@@ -111,9 +113,9 @@ public class Main extends ContentPane {
 		return row;
 	}
 	
-	private Row initButtons1() {
-		Row row1 = new Row();
-		row1.setCellSpacing(new Extent(5));
+	private Grid initButtons1() {
+		Grid grid = new Grid(1);
+		// row1.setCellSpacing(new Extent(5));
 
 		Button btnAtacarCastillo = new Button("Atacar Castillo");
 		btnAtacarCastillo.setBorder(new Border(new Extent(2), Color.BLACK, 1));
@@ -124,7 +126,7 @@ public class Main extends ContentPane {
 			}
 		});
 
-		row1.add(btnAtacarCastillo);
+		grid.add(btnAtacarCastillo);
 		
 		Button btnEditionCastillo = new Button("Editar Castillo");
 		btnEditionCastillo.setBorder(new Border(new Extent(2), Color.BLACK, 1));
@@ -135,7 +137,7 @@ public class Main extends ContentPane {
 			}
 		});
 
-		row1.add(btnEditionCastillo);
+		grid.add(btnEditionCastillo);
 
 		Button btnEditionCaballero = new Button("Editar Caballero");
 		btnEditionCaballero.setBorder(new Border(new Extent(2), Color.BLACK, 1));
@@ -146,7 +148,7 @@ public class Main extends ContentPane {
 			}
 		});
 
-		row1.add(btnEditionCaballero);
+		grid.add(btnEditionCaballero);
 
 		Button btnComprarArmas = new Button("Comprar armas");
 		btnComprarArmas.setBorder(new Border(new Extent(2), Color.BLACK, 1));
@@ -157,7 +159,7 @@ public class Main extends ContentPane {
 			}
 		});
 
-		row1.add(btnComprarArmas);
+		grid.add(btnComprarArmas);
 
 		Button btnVenderArmas = new Button("Vender armas");
 		btnVenderArmas.setBorder(new Border(new Extent(2), Color.BLACK, 1));
@@ -168,7 +170,7 @@ public class Main extends ContentPane {
 			}
 		});
 
-		row1.add(btnVenderArmas);
+		grid.add(btnVenderArmas);
 		
 		Button btnInventarioArmas = new Button("Inventario de armas");
 		btnInventarioArmas.setBorder(new Border(new Extent(2), Color.BLACK, 1));
@@ -179,9 +181,9 @@ public class Main extends ContentPane {
 			}
 		});
 
-		row1.add(btnInventarioArmas);
+		grid.add(btnInventarioArmas);
 
-		return row1;
+		return grid;
 	}
 
 	private void btnAtacarCastilloClicked() { }
