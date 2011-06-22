@@ -54,6 +54,10 @@ public class Main extends ContentPane {
 		htmlLayout.add(grid);
 
 		hld = new HtmlLayoutData("panel");
+		ShowRecord showrecord = new ShowRecord(user);
+		showrecord.setId("panel");
+		showrecord.setLayoutData(hld);
+		htmlLayout.add(showrecord);
 		Start start = new Start(user);
 		start.setId("panel");
 		start.setLayoutData(hld);
@@ -194,6 +198,8 @@ public class Main extends ContentPane {
 	private void btnInventarioArmasClicked() { }
 	private void btnStartClicked() {
 		Start star = new Start(user);
+		ShowRecord showrecord = new ShowRecord(user);
+		updatePanel(showrecord);
 		updatePanel(star);
 	}
 
@@ -204,8 +210,10 @@ public class Main extends ContentPane {
 
 	private void btnModifiedAccountClicked() {
 		ModifiedAccount modifiedAccount = new ModifiedAccount(user);
+		ShowRecord showrecord = new ShowRecord(user);
 		modifiedAccount.getActionListenerProxyError().addActionListener(listenerError);
 		modifiedAccount.getActionListenerProxyOk().addActionListener(listenerOk);
+		updatePanel(showrecord);
 		updatePanel(modifiedAccount);
 	}
 	
