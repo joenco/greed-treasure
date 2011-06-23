@@ -103,6 +103,28 @@ public class Main extends ContentPane {
 
 		row.add(btnModifiedAccount);
 
+		Button btnHistorialDiario = new Button("Ataques de hoy");
+		btnHistorialDiario.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		btnHistorialDiario.setBackground(new Color(117, 145, 118));
+		btnHistorialDiario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnHistorialDiarioClicked();
+			}
+		});
+
+		row.add(btnHistorialDiario);
+
+		Button btnHistorialGlobal = new Button("Historial de ataques");
+		btnHistorialGlobal.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		btnHistorialGlobal.setBackground(new Color(117, 145, 118));
+		btnHistorialGlobal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnHistorialGlobalClicked();
+			}
+		});
+
+		row.add(btnHistorialGlobal);
+
 		Button btnLogOut = new Button("Salir");
 		btnLogOut.setBorder(new Border(new Extent(2), Color.BLACK, 1));
 		btnLogOut.setBackground(new Color(117, 145, 118));
@@ -119,7 +141,6 @@ public class Main extends ContentPane {
 	
 	private Grid initButtons1() {
 		Grid grid = new Grid(1);
-		// row1.setCellSpacing(new Extent(5));
 
 		Button btnAtacarCastillo = new Button("Atacar Castillo");
 		btnAtacarCastillo.setBorder(new Border(new Extent(2), Color.BLACK, 1));
@@ -190,12 +211,62 @@ public class Main extends ContentPane {
 		return grid;
 	}
 
-	private void btnAtacarCastilloClicked() { }
-	private void btnEditionCastilloClicked() { }
-	private void btnEditionCaballeroClicked() { }
-	private void btnComprarArmasClicked() { }
-	private void btnVenderArmasClicked() { }
-	private void btnInventarioArmasClicked() { }
+	private void btnHistorialDiarioClicked() {
+		ShowRecord showrecord = new ShowRecord(user);
+		updatePanel(showrecord);
+		Label label = new Label("Aquí debe ir el historial de ataques del día del jugador");
+		updateLabel(label);
+	}
+
+	private void btnHistorialGlobalClicked() {
+		ShowRecord showrecord = new ShowRecord(user);
+		updatePanel(showrecord);
+		Label label = new Label("Aquí debe ir el historial completo de ataques del jugador");
+		updateLabel(label);
+	}
+
+	private void btnAtacarCastilloClicked() {
+		ShowRecord showrecord = new ShowRecord(user);
+		updatePanel(showrecord);
+		Label label = new Label("Se mostrara una lista de todos los jugadores para elejir cual atacar");
+		updateLabel(label);
+	}
+
+	private void btnEditionCastilloClicked() {
+		ShowRecord showrecord = new ShowRecord(user);
+		updatePanel(showrecord);
+		Label label = new Label("Aquí se mostrara el terreno y las armas que se colocaran en el mismo para la defensa del castillo");
+		updateLabel(label);
+	}
+
+	private void btnEditionCaballeroClicked() {
+		ShowRecord showrecord = new ShowRecord(user);
+		updatePanel(showrecord);
+		Label label = new Label("Aquí se mostrara al caballero y las armas que puede utilizar para su ataque y defensa");
+		updateLabel(label);
+	}
+
+	private void btnComprarArmasClicked() {
+		ShowRecord showrecord = new ShowRecord(user);
+		updatePanel(showrecord);
+		Label label = new Label("Se mostrara una tabla con las armas que el jugador puede comprar");
+		updateLabel(label);
+	}
+	
+	private void btnVenderArmasClicked() {
+		ShowRecord showrecord = new ShowRecord(user);
+		updatePanel(showrecord);
+		Label label = new Label("Se mostrara una tabla con las armas que el jugador puede vender");
+		updateLabel(label);
+	}
+
+	private void btnInventarioArmasClicked() {
+		ShowRecord showrecord = new ShowRecord(user);
+		updatePanel(showrecord);
+		Label label = new Label("Aquí se mostrara una tabla con todas las armas que el jugador posee y que ha comprado");
+		updateLabel(label);
+	}
+
 	private void btnStartClicked() {
 		Start star = new Start(user);
 		ShowRecord showrecord = new ShowRecord(user);
@@ -244,6 +315,16 @@ public class Main extends ContentPane {
 	private void btnShowAccountClicked() {
 		ShowAccount showAccount = new ShowAccount(user);
 		updatePanel(showAccount);
+	}
+
+	private void updateLabel(Label label) {
+		HtmlLayoutData hld;
+		hld = new HtmlLayoutData("panel");
+
+		label.setId("panel");
+		label.setLayoutData(hld);
+		htmlLayout.remove(htmlLayout.getComponent("panel"));
+		htmlLayout.add(label);
 	}
 
 	private void updatePanel(Panel panel) {
