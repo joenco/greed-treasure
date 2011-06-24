@@ -313,6 +313,8 @@ public class Main extends ContentPane {
 	}
 	
 	private void btnShowAccountClicked() {
+		ShowRecord showrecord = new ShowRecord(user);
+		updatePanel(showrecord);
 		ShowAccount showAccount = new ShowAccount(user);
 		updatePanel(showAccount);
 	}
