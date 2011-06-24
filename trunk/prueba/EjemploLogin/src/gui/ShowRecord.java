@@ -38,7 +38,7 @@ public class ShowRecord extends Panel {
 	    add(col);
 
 	    col.add(new Label("----------------------------------------"));
-	    col.add(new Label("Usuario: "+user.getNick()+"    Oro: "+user.getCantOro()+"    Nro de Victorias: "+user.getVictoria()+"    Nro de Derrotas: "+user.getDerrota()));
+	    col.add(new Label("| Usuario: "+user.getNick()+"  |  Nivel: "+user.getNivel()+"  |  Oro: "+user.getCantOro()+"  |  Nro de Victorias: "+user.getVictoria()+"  |  Nro de Derrotas: "+user.getDerrota()+"|"));
 	    col.add(new Label("----------------------------------------"));
 
 		add(col);

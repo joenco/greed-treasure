@@ -6,6 +6,7 @@ import db.User;
 import nextapp.echo.app.Border;
 import nextapp.echo.app.Button;
 import nextapp.echo.app.Color;
+import nextapp.echo.app.Column;
 import nextapp.echo.app.ContentPane;
 import nextapp.echo.app.Extent;
 import nextapp.echo.app.Label;
@@ -50,10 +51,12 @@ public class Passwd extends ContentPane {
 		htmlLayout.add(lblTitle);
 
 		hld = new HtmlLayoutData("formLogin");
-		Label label = new Label("Su contraseña es: "+user.getPass());
-		label.setLayoutData(hld);
-
-		htmlLayout.add(label);
+		Column col = new Column();
+		col.add(new Label("Hola "+user.getName()+" "+user.getLastName()));
+		col.add(new Label("Su contraseña es: "+user.getPass()));
+		col.setLayoutData(hld);
+		add(col);
+		htmlLayout.add(col);
 
 		hld = new HtmlLayoutData("createAccount");
 		Button btnStart = new Button("Volver al ínicio");
