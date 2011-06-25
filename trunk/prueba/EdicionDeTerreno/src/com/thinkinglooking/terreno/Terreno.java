@@ -178,26 +178,86 @@ public class Terreno {
 		
 		switch (caracter) {
 			case 'a':
-				imagen="./Images/agua/arrecife.gif";
+				imagen="./Images/terreno/a.gif";
 				break;
 				
 			case 'b':
-				imagen="./Images/scarpado/bosqueotono.gif";
+				imagen="./Images/terreno/b.gif";
 				break;
 				
 			case 'c':
-				imagen="./Images/agua/castilloagua.gif";
+				imagen="./Images/terreno/c.gif";
 				break;
 			case 'd':
-				imagen="./Images/agua/pantanoagua.gif";
+				imagen="./Images/terreno/d.gif";
 				break;
 			case 'e':
-				imagen="./Images/agua/puente.gif";
+				imagen="./Images/terreno/e.gif";
+				break;
+			case 'f':
+				imagen="./Images/terreno/f.gif";
 				break;
 			case 'g':
-				imagen="./Images/agua/grama.gif";
+				imagen="./Images/terreno/f.gif";
 				break;
-	
+			case 'h':
+				imagen="./Images/terreno/h.gif";
+				break;
+			case 'i':
+				imagen="./Images/terreno/i.gif";
+				break;
+			case 'j':
+				imagen="./Images/terreno/j.gif";
+				break;
+			case 'k':
+				imagen="./Images/terreno/k.gif";
+				break;
+			case 'l':
+				imagen="./Images/terreno/l.gif";
+				break;
+			case 'm':
+				imagen="./Images/terreno/m.gif";
+				break;
+			case 'n':
+				imagen="./Images/terreno/n.gif";
+				break;
+			case 'o':
+				imagen="./Images/terreno/o.gif";
+				break;
+			case 'p':
+				imagen="./Images/terreno/p.gif";
+				break;
+			case 'q':
+				imagen="./Images/terreno/q.gif";
+				break;
+			case 'r':
+				imagen="./Images/terreno/r.gif";
+				break;
+			case 's':
+				imagen="./Images/terreno/s.gif";
+				break;
+			case 't':
+				imagen="./Images/terreno/t.gif";
+				break;
+			case 'u':
+				imagen="./Images/terreno/u.gif";
+				break;
+			case 'v':
+				imagen="./Images/terreno/v.gif";
+				break;
+			case 'w':
+				imagen="./Images/terreno/w.gif";
+				break;
+			case 'x':
+				imagen="./Images/terreno/x.gif";
+				break;
+			case 'y':
+				imagen="./Images/terreno/y.gif";
+				break;
+			case 'z':
+				imagen="./Images/terreno/y.gif";
+				break;
+				
 			default:
 				
 				break;
