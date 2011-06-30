@@ -12,7 +12,7 @@ class LogicaAtaque {
   public static void main( String args[] )throws IOException {
 
 	// variables:
-	int a=0, b=0, c=0, A=3, C=1, p=0;
+	int a=0, b=1000, c=0, A=3, C=1, p=0;
 	double vidaA=100, vidaC=100;
 	BufferedReader lectura = new BufferedReader(new InputStreamReader(System.in));
 
@@ -69,7 +69,7 @@ class LogicaAtaque {
 	dac = Integer.parseInt(lectura.readLine());
 
 	// efectividad del caballero
-	C=C+nv/10; // aumenta en 1 cada 10 niveles.
+	C=C+nv/8; // aumenta en 1 cada 8 niveles.
 
 	// Mostramos datos de la simulación
 	System.out.println("Datos de la simulación");
@@ -87,17 +87,14 @@ class LogicaAtaque {
 		A=a-1;
 		C=C+1;
 	}
-	if (hab==nc*8) { C=C+hab/8; }
+	if (hab==nc*6) { C=C+hab/6; } // aumentamos la efectividad del ataque en 1 cada 6 niveles en la hab
 	if ((fc-hab) >= 3) {
 		fc=fc+1;
 	}
-	if (fc==nc*10) { fc=fc+fc/10; }
+	if (fc==nc*8) { fc=fc+fc/8; } // aumentamos la fortaleza en 1 cada 8 niveles de fc
 		vidaA=vidaC=100;
 		a=c=0;
 
-		// cantidad de simulaciones
-		System.out.println("Coloque el número de iteraciones:");
-		b = Integer.parseInt(lectura.readLine());
      for (int i=0; i<b; i++) {
 		int n = (int)Math.round(Math.random()*A); // numero aleatorio entre 0 y 9
 		int n1 = (int)Math.round(Math.random()*C); // numero aleatorio entre 0 y 9
@@ -133,7 +130,7 @@ class LogicaAtaque {
      if (vidaA<1 || vidaC<1) { i=b; }
      }
 		// mostramos información sobre el ataque.
-		System.out.println("Número de iteraciones: "+p);
+		System.out.println("Número de iteraciones antes de la eliminación: "+p);
 		System.out.println("----------");
 		if (vidaC<1) {
 			System.out.println("Tu caballero ha muerto! que descanse en PAZ!");
