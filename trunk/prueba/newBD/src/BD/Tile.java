@@ -27,10 +27,8 @@ public class Tile {
 	private boolean esOcupable;
 	private byte[] img;
 	private int bonusVida;
-	private int defensaFavor;
-	private int defensaContra;
-	private int ataqueFavor;
-	private int ataqueContra;
+	private int defensaAgregada;
+	private int ataqueAgregado;
 
 	private List<Coordenada> coordenadaList = new ArrayList<Coordenada>();
 
@@ -59,36 +57,20 @@ public class Tile {
 		this.bonusVida = bonusVida;
 	}
 
-	public int getDefensaFavor() {
-		return defensaFavor;
+	public int getDefensaAgregada() {
+		return defensaAgregada;
 	}
 
-	public void setDefensaFavor(int defensaFavor) {
-		this.defensaFavor = defensaFavor;
+	public void setDefensaAgregada(int defensaAgregada) {
+		this.defensaAgregada = defensaAgregada;
 	}
 
-	public int getDefensaContra() {
-		return defensaContra;
+	public int getAtaqueAgregado() {
+		return ataqueAgregado;
 	}
 
-	public void setDefensaContra(int defensaContra) {
-		this.defensaContra = defensaContra;
-	}
-
-	public int getAtaqueFavor() {
-		return ataqueFavor;
-	}
-
-	public void setAtaqueFavor(int ataqueFavor) {
-		this.ataqueFavor = ataqueFavor;
-	}
-
-	public int getAtaqueContra() {
-		return ataqueContra;
-	}
-
-	public void setAtaqueContra(int ataqueContra) {
-		this.ataqueContra = ataqueContra;
+	public void setAtaqueAgregado(int ataqueAgregado) {
+		this.ataqueAgregado = ataqueAgregado;
 	}
 
 	@Lob
