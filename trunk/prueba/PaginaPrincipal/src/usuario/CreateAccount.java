@@ -1,6 +1,7 @@
 package usuario;
 
 import org.hibernate.Criteria;
+import java.util.regex.*;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -198,6 +199,57 @@ public class CreateAccount extends ContentPane {
 			windowPane.setTitle("Correo ya registrado!!");
 
 			lbl.setText("Este correo ya esta asociado a una cuenta, por favor coloque otro.");
+
+			col.add(lbl);
+			col.add(btnOK);
+			windowPane.add(col);
+
+			add(windowPane);
+			return;
+		}
+		
+		Pattern pat = Pattern.compile("(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$");
+        Matcher mat = pat.matcher(txtPass.getText());
+
+if (mat.find()) {
+} else {
+			windowPane.setTitle("Contraseña no segura!!!");
+
+			lbl.setText("La contraseña debe tener entre 8 y 10 caracteres, por lo menos un digito, un alfanumérico, y no puede contener caracteres especiales.");
+
+			col.add(lbl);
+			col.add(btnOK);
+			windowPane.add(col);
+
+			add(windowPane);
+			return;
+		}
+
+pat = Pattern.compile("^[a-z0-9A-Z][a-zA-Z0-9_]{3,9}$");
+mat = pat.matcher(txtNick.getText());
+
+if (mat.find()) {
+} else {
+	windowPane.setTitle("Nick/Apodo incorrecto!!!");
+
+	lbl.setText("El Nick debe tener mas de 3 caracteres y ningun caracter especial.");
+
+	col.add(lbl);
+	col.add(btnOK);
+	windowPane.add(col);
+
+	add(windowPane);
+	return;
+}
+		
+		pat = Pattern.compile("^([0-9a-zA-Z]([_.w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-w]*[0-9a-zA-Z].)+([a-zA-Z]{2,9}.)+[a-zA-Z]{2,3})$");
+        mat = pat.matcher(txtEmail.getText());
+
+if (mat.find()) {
+} else {
+			windowPane.setTitle("Correo inválido!!");
+
+			lbl.setText("Por favor escriba un correo válido.");
 
 			col.add(lbl);
 			col.add(btnOK);
