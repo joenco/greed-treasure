@@ -1,5 +1,9 @@
 package BD;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -16,23 +20,38 @@ public class LoadBD {
 		char [][] ret = new char[16][16];
 
 		switch (userIdInt) {
-	      case 1 :
-	    	  char [][] r1 = {{'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','e','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
- 	  						  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-    	  				      {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'},
-	    	  				  {'a','d','e','b','d','d','e','c','b','a','a','a','b','c','a','a'}};
+	      case 1 ://prototipo matriz donde el castillo es "1"
+	    	  char [][] r1 = {{'a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a'},
+	    			  
+	    	  				  {'a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a'},
+	    	  				  
+	    	  				  {'a','a','a','x','a','a','a','a','a','A','A','A','a','a','a','a'},
+	    	  				  
+	    	  				  {'a','a','a','a','a','a','a','a','a','E','E','E','a','a','a','a'},
+	    	  				  
+	    	  				  {'a','a','a','a','a','a','n','a','a','A','A','A','a','a','a','a'},
+	    	  				  
+ 	  						  {'a','a','a','a','a','a','a','a','a','a','a','x','a','a','a','a'},
+ 	  						  
+	    	  				  {'a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a'},
+	    	  				  
+	    	  				  {'a','a','a','a','a','a','a','1','a','a','a','a','a','a','a','a'},
+	    	  				  
+	    	  				  {'a','a','a','a','a','x','a','a','a','a','a','a','a','a','a','a'},
+	    	  				  
+	    	  				  {'a','a','a','a','a','a','a','a','a','a','n','a','a','a','a','a'},
+	    	  				  
+	    	  				  {'a','a','a','a','A','F','A','a','a','a','a','a','A','a','a','a'},
+	    	  				  
+	    	  				  {'a','j','a','a','A','F','A','a','a','a','a','a','E','a','a','a'},
+	    	  				  
+	    	  				  {'a','a','j','a','A','F','A','a','a','A','A','a','A','a','a','a'},
+	    	  				  
+	    	  				  {'a','j','a','j','a','a','a','a','a','E','E','a','a','a','a','a'},
+	    	  				  
+    	  				      {'a','a','j','a','j','a','a','a','a','a','a','a','a','a','a','a'},
+    	  				      
+	    	  				  {'a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a'}};
 
 	    	  ret = r1;
 	        // Etc...
@@ -190,13 +209,100 @@ public class LoadBD {
 		constTerreno(pt);
 
 	}
+	/******************************************************************************
+	 * 
+	 * Crea los Tiles
+	 * 
+	 */
 	
-	/***************************************************************************/
+	public static void crearTile(char charId, boolean esOcupable, int bonusVida, int defensaAgregada, int ataqueAgregado, String ruta) throws Exception {
+		
+
+		Configuration configuration = new AnnotationConfiguration();
+		configuration.configure("/BD/hibernate.cfg.xml");
+		SessionFactory sessionFactory = configuration.buildSessionFactory();
+		
+	    Tile tl = new Tile();
+	    tl.setCharId(charId);
+		tl.setEsOcupable(esOcupable);
+		tl.setBonusVida(bonusVida);
+		tl.setDefensaAgregada(defensaAgregada);
+		tl.setAtaqueAgregado(ataqueAgregado);
+		
+		File file = new File(ruta);
+		FileInputStream fis = new FileInputStream(file);
+	    BufferedInputStream bis = new BufferedInputStream(fis);
+	    byte[] buf = new byte[(int) file.length()];
+	    bis.read(buf);
+	    tl.setImg(buf);
+		
+		
+
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		session.save(tl);
+
+		session.getTransaction().commit();
+		session.close();
+
+	}
+		
+	
+	
+	
+	/**
+	 * @throws Exception *************************************************************************/
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		// Crear todos los tiles
+		
+		crearTile('a', true, 0, 0, 0, "./Imagenes/Terreno/pastoseco.gif");
+		crearTile('b', true, 0, 0, 0, "./Imagenes/Terreno/jardin.gif");
+		crearTile('c', true, 0, 0, 0, "./Imagenes/Terreno/barro.gif");
+		crearTile('d', true, 0, 0, 0, "./Imagenes/Terreno/desierto.gif");
+		crearTile('e', true, 0, 0, 0, "./Imagenes/Terreno/nieve.gif");
+		crearTile('f', true, 0, 0, 0, "./Imagenes/Terreno/monte.gif");
+		crearTile('g', true, 0, 0, 0, "./Imagenes/Terreno/piedras.gif");
+		crearTile('h', true, 0, 0, 0, "./Imagenes/Terreno/rocas.gif");
+		crearTile('i', true, 0, 0, 0, "./Imagenes/Terreno/tierra.gif");
+		crearTile('j', true, 0, 0, 0, "./Imagenes/Terreno/aguabaja.gif");
+		
+		crearTile('k', true, 0, 0, 0, "./Imagenes/Terreno/aguapeidras.gif");
+		crearTile('l', true, 0, 0, 0, "./Imagenes/Terreno/aguaprofunda.gif");
+		crearTile('m', true, 0, 0, 0, "./Imagenes/Terreno/aguarrocas.gif");
+		crearTile('n', false, 10, 0, 0, "./Imagenes/Terreno/aura.gif");//no tiene sentido q suba vida con un entero, esto debe depender del nivel
+		crearTile('o', true, 0, 0, 0, "./Imagenes/Terreno/crater.gif");
+		crearTile('p', true, 0, 0, 0, "./Imagenes/Terreno/lodo.gif");
+		crearTile('q', true, 0, 0, 0, "./Imagenes/Terreno/magma.gif");
+		crearTile('r', true, 0, 0, 0, "./Imagenes/Terreno/molino.gif");
+		crearTile('s', true, 0, 0, 0, "./Imagenes/Terreno/montañaneblina.gif");
+		crearTile('t', true, 0, 0, 0, "./Imagenes/Terreno/montañanieve.gif");
+		
+		crearTile('u', true, 0, 0, 0, "./Imagenes/Terreno/montañanieve2.gif");
+		crearTile('v', true, 0, 0, 0, "./Imagenes/Terreno/montañadesierto.gif");
+		crearTile('w', true, 0, 0, 0, "./Imagenes/Terreno/nieveinclinada.gif");
+		crearTile('x', false, 5, 0, 0, "./Imagenes/Terreno/oasis.gif");
+		crearTile('y', true, 0, 0, 0, "./Imagenes/Terreno/precipicio.gif");
+		crearTile('z', true, 0, 0, 0, "./Imagenes/Terreno/precipiciolava.gif");
+		crearTile('A', false, 0, 0, 0, "./Imagenes/Terreno/obstaculo1.gif");
+		crearTile('B', false, -1, 0, 0, "./Imagenes/Terreno/obstaculo2.gif");
+		crearTile('C', false, -1, 0, 0, "./Imagenes/Terreno/Obstaculo3.gif");// quitar vida, sumar y quitar ataque debe ser formulado
+		crearTile('D', false, -3, 0, 0, "./Imagenes/Terreno/Obstaculo4.gif");
+		
+		crearTile('E', true, 0, 0, 0, "./Imagenes/Terreno/puenteh.gif");
+		crearTile('F', true, 0, 0, 0, "./Imagenes/Terreno/puentev.gif");
+		crearTile('G', true, 0, 0, 0, "./Imagenes/Terreno/rocasgrandes.gif");
+		crearTile('z', true, 0, 0, 0, "./Imagenes/Terreno/siembra.gif");
+		crearTile('z', true, 0, 0, 0, "./Imagenes/Terreno/terrenodisparejo.gif");
+		crearTile('1', false, 0, 0, 0, "./Imagenes/Terreno/castillo1.gif");
+		crearTile('2', false, 0, 0, 0, "./Imagenes/Terreno/castillo2.gif");
+		crearTile('3', false, 0, 0, 0, "./Imagenes/Terreno/castillo3.gif");
+		crearTile('4', false, 0, 0, 0, "./Imagenes/Terreno/castillo4.gif");
+		crearTile('5', false, 0, 0, 0, "./Imagenes/Terreno/castillo5.gif");
+
 		
 		
 		//Creacion de todas las plantillas terreno
@@ -212,6 +318,11 @@ public class LoadBD {
 		// Creacion de los modelos de caballero
 		
 		// Creacion de las destrezas
+		
+		
+		
+		
+		
 		
 		
 		
