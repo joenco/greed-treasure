@@ -85,7 +85,7 @@ public class Tile {
 
 	@OneToMany(mappedBy = "idTileRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
-	@Cascade( { CascadeType.ALL, CascadeType.DELETE_ORPHAN })
+	@Cascade( { CascadeType.ALL })
 	public List<Coordenada> getCoordenadaList() {
 		return coordenadaList;
 	}

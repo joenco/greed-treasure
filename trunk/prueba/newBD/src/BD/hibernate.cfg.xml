@@ -98,7 +98,6 @@
 		<mapping class="BD.Coordenada" />
 		<mapping class="BD.PlantillaTerreno" />
 		<mapping class="BD.Usuario" />
-		<mapping class="BD.Ataque" />
 		<mapping class="BD.Caballero" />
 		<mapping class="BD.CaballeroDestreza" />
 		<mapping class="BD.Destreza" />

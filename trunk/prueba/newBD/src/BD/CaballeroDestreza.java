@@ -1,17 +1,26 @@
 package BD;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Proxy;
 
 import BD.Caballero;
 import BD.Destreza;
 
+@Entity
+@Table(name = "t_caballerodestreza")
+@Proxy(lazy = false)
+
 public class CaballeroDestreza {
+	
 	private int id;
 	private Caballero caballeroRef;
-	private Destreza destresaRef;
+	private Destreza destrezaRef;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,11 +42,11 @@ public class CaballeroDestreza {
 	}
 
 	@ManyToOne
-	public Destreza getDestresaRef() {
-		return destresaRef;
+	public Destreza getDestrezaRef() {
+		return destrezaRef;
 	}
 
-	public void setDestresaRef(Destreza destresaRef) {
-		this.destresaRef = destresaRef;
+	public void setDestrezaRef(Destreza destrezaRef) {
+		this.destrezaRef = destrezaRef;
 	}
 }
