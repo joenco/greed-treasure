@@ -21,6 +21,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Proxy;
 
 import BD.CaballeroDestreza;
+import BD.ModeloCaballero;
 
 @Entity
 @Table(name = "t_caballero")
