@@ -12,10 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.persistence.CascadeType;
+
 
 import org.hibernate.annotations.Cascade;
-//import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Proxy;
@@ -68,8 +68,9 @@ public class Caballero {
 		this.vida = vida;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(orphanRemoval = true)
 	@PrimaryKeyJoinColumn
+	@Cascade({CascadeType.ALL})
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -86,15 +87,16 @@ public class Caballero {
 	public void setIdRef(ModeloCaballero idRef) {
 		this.idRef = idRef;
 	}
-
-	/*@OneToMany(mappedBy = "caballeroRef")
-	@LazyCollection(LazyCollectionOption.TRUE)
-	@Cascade( { CascadeType.ALL, CascadeType.DELETE_ORPHAN })
+	
+	
+	  @OneToMany(mappedBy = "caballeroRef", orphanRemoval = true)
+	  @LazyCollection(LazyCollectionOption.TRUE)
+	  @Cascade({CascadeType.ALL})
 	public List<CaballeroDestreza> getCaballeroDestrezaList() {
 		return caballeroDestrezaList;
 	}
 
 	public void setCaballeroDestrezaList(List<CaballeroDestreza> muchosList) {
 		this.caballeroDestrezaList = muchosList;
-	}*/
+	}
 }
