@@ -270,9 +270,9 @@ public class LoadBD {
 		crearTile('i', true, 0, 0, 0, "./Imagenes/Terreno/tierra.gif");
 		crearTile('j', true, 0, 0, 0, "./Imagenes/Terreno/aguabaja.gif");
 		
-		crearTile('k', true, 0, 0, 0, "./Imagenes/Terreno/aguapeidras.gif");
+		crearTile('k', true, 0, 0, 0, "./Imagenes/Terreno/aguapiedras.gif");
 		crearTile('l', true, 0, 0, 0, "./Imagenes/Terreno/aguaprofunda.gif");
-		crearTile('m', true, 0, 0, 0, "./Imagenes/Terreno/aguarrocas.gif");
+		crearTile('m', true, 0, 0, 0, "./Imagenes/Terreno/aguarocas.gif");
 		crearTile('n', false, 10, 0, 0, "./Imagenes/Terreno/aura.gif");//no tiene sentido q suba vida con un entero, esto debe depender del nivel
 		crearTile('o', true, 0, 0, 0, "./Imagenes/Terreno/crater.gif");
 		crearTile('p', true, 0, 0, 0, "./Imagenes/Terreno/lodo.gif");
@@ -289,8 +289,8 @@ public class LoadBD {
 		crearTile('z', true, 0, 0, 0, "./Imagenes/Terreno/precipiciolava.gif");
 		crearTile('A', false, 0, 0, 0, "./Imagenes/Terreno/obstaculo1.gif");
 		crearTile('B', false, -1, 0, 0, "./Imagenes/Terreno/obstaculo2.gif");
-		crearTile('C', false, -1, 0, 0, "./Imagenes/Terreno/Obstaculo3.gif");// quitar vida, sumar y quitar ataque debe ser formulado
-		crearTile('D', false, -3, 0, 0, "./Imagenes/Terreno/Obstaculo4.gif");
+		crearTile('C', false, -1, 0, 0, "./Imagenes/Terreno/obstaculo3.gif");// quitar vida, sumar y quitar ataque debe ser formulado
+		crearTile('D', false, -3, 0, 0, "./Imagenes/Terreno/obstaculo4.gif");
 		
 		crearTile('E', true, 0, 0, 0, "./Imagenes/Terreno/puenteh.gif");
 		crearTile('F', true, 0, 0, 0, "./Imagenes/Terreno/puentev.gif");

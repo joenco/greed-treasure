@@ -13,6 +13,8 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import BD.Caballero;
+
 public class ModeloCaballero {
 	private int id;
 	private int defensaBase;
@@ -64,9 +66,9 @@ public class ModeloCaballero {
 	}
 	
 	
-	@OneToMany(mappedBy = "idRef")
-	@LazyCollection(LazyCollectionOption.TRUE)
-	@Cascade( { CascadeType.ALL, CascadeType.DELETE_ORPHAN })
+	 @OneToMany(mappedBy = "idRef", orphanRemoval = true)
+     @LazyCollection(LazyCollectionOption.TRUE)
+	 @Cascade({CascadeType.ALL})
 	public List<Caballero> getfonTList() {
 		return caballeroList;
 	}

@@ -104,7 +104,6 @@
 		<mapping class="BD.Destreza" />
 		<mapping class="BD.ModeloCaballero" />
 		<mapping class="BD.Tile" />
-		<mapping class="BD.Castillo" />
 		<mapping class="BD.Perfil" />
 		
 	</session-factory>
