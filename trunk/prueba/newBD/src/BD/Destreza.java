@@ -16,9 +16,12 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Proxy;
 
+import BD.CaballeroDestreza;
+
 @Entity
 @Table(name = "t_destreza")
 @Proxy(lazy = false)
+
 public class Destreza {
 
 	private int id;
@@ -61,9 +64,9 @@ public class Destreza {
 		this.nombre = nombre;
 	}
 
-	@OneToMany(mappedBy = "destrezaRef")
-	@LazyCollection(LazyCollectionOption.TRUE)
-	@Cascade( { CascadeType.ALL, CascadeType.DELETE_ORPHAN })
+	@OneToMany(mappedBy = "destrezaRef", orphanRemoval = true)
+	  @LazyCollection(LazyCollectionOption.TRUE)
+	  @Cascade({CascadeType.ALL})
 	public List<CaballeroDestreza> getCaballeroDestrezaList() {
 		return caballeroDestrezaList;
 	}

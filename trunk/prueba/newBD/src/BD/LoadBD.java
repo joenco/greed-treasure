@@ -259,67 +259,64 @@ public class LoadBD {
 		
 		// Crear todos los tiles
 		
-		crearTile('a', true, 0, 0, 0, "./Imagenes/Terreno/pastoseco.gif");
-		crearTile('b', true, 0, 0, 0, "./Imagenes/Terreno/jardin.gif");
-		crearTile('c', true, 0, 0, 0, "./Imagenes/Terreno/barro.gif");
-		crearTile('d', true, 0, 0, 0, "./Imagenes/Terreno/desierto.gif");
-		crearTile('e', true, 0, 0, 0, "./Imagenes/Terreno/nieve.gif");
-		crearTile('f', true, 0, 0, 0, "./Imagenes/Terreno/monte.gif");
-		crearTile('g', true, 0, 0, 0, "./Imagenes/Terreno/piedras.gif");
-		crearTile('h', true, 0, 0, 0, "./Imagenes/Terreno/rocas.gif");
-		crearTile('i', true, 0, 0, 0, "./Imagenes/Terreno/tierra.gif");
-		crearTile('j', true, 0, 0, 0, "./Imagenes/Terreno/aguabaja.gif");
-		
-		crearTile('k', true, 0, 0, 0, "./Imagenes/Terreno/aguapiedras.gif");
-		crearTile('l', true, 0, 0, 0, "./Imagenes/Terreno/aguaprofunda.gif");
-		crearTile('m', true, 0, 0, 0, "./Imagenes/Terreno/aguarocas.gif");
-		crearTile('n', false, 10, 0, 0, "./Imagenes/Terreno/aura.gif");//no tiene sentido q suba vida con un entero, esto debe depender del nivel
-		crearTile('o', true, 0, 0, 0, "./Imagenes/Terreno/crater.gif");
-		crearTile('p', true, 0, 0, 0, "./Imagenes/Terreno/lodo.gif");
-		crearTile('q', true, 0, 0, 0, "./Imagenes/Terreno/magma.gif");
-		crearTile('r', true, 0, 0, 0, "./Imagenes/Terreno/molino.gif");
-		crearTile('s', true, 0, 0, 0, "./Imagenes/Terreno/montañaneblina.gif");
-		crearTile('t', true, 0, 0, 0, "./Imagenes/Terreno/montañanieve.gif");
-		
-		crearTile('u', true, 0, 0, 0, "./Imagenes/Terreno/montañanieve2.gif");
-		crearTile('v', true, 0, 0, 0, "./Imagenes/Terreno/montañadesierto.gif");
-		crearTile('w', true, 0, 0, 0, "./Imagenes/Terreno/nieveinclinada.gif");
-		crearTile('x', false, 5, 0, 0, "./Imagenes/Terreno/oasis.gif");
-		crearTile('y', true, 0, 0, 0, "./Imagenes/Terreno/precipicio.gif");
-		crearTile('z', true, 0, 0, 0, "./Imagenes/Terreno/precipiciolava.gif");
-		crearTile('A', false, 0, 0, 0, "./Imagenes/Terreno/obstaculo1.gif");
-		crearTile('B', false, -1, 0, 0, "./Imagenes/Terreno/obstaculo2.gif");
-		crearTile('C', false, -1, 0, 0, "./Imagenes/Terreno/obstaculo3.gif");// quitar vida, sumar y quitar ataque debe ser formulado
-		crearTile('D', false, -3, 0, 0, "./Imagenes/Terreno/obstaculo4.gif");
-		
-		crearTile('E', true, 0, 0, 0, "./Imagenes/Terreno/puenteh.gif");
-		crearTile('F', true, 0, 0, 0, "./Imagenes/Terreno/puentev.gif");
-		crearTile('G', true, 0, 0, 0, "./Imagenes/Terreno/rocasgrandes.gif");
-		crearTile('z', true, 0, 0, 0, "./Imagenes/Terreno/siembra.gif");
-		crearTile('z', true, 0, 0, 0, "./Imagenes/Terreno/terrenodisparejo.gif");
-		crearTile('1', false, 0, 0, 0, "./Imagenes/Terreno/castillo1.gif");
-		crearTile('2', false, 0, 0, 0, "./Imagenes/Terreno/castillo2.gif");
-		crearTile('3', false, 0, 0, 0, "./Imagenes/Terreno/castillo3.gif");
-		crearTile('4', false, 0, 0, 0, "./Imagenes/Terreno/castillo4.gif");
-		crearTile('5', false, 0, 0, 0, "./Imagenes/Terreno/castillo5.gif");
-
-		
+		crearTile('a', true, 0, 0, 0, "./../Imagenes/Terreno/pastoseco.gif");
+//		crearTile('b', true, 0, 0, 0, "./Imagenes/Terreno/jardin.gif");
+//		crearTile('c', true, 0, 0, 0, "./Imagenes/Terreno/barro.gif");
+//		crearTile('d', true, 0, 0, 0, "./Imagenes/Terreno/desierto.gif");
+//		crearTile('e', true, 0, 0, 0, "./Imagenes/Terreno/nieve.gif");
+//		crearTile('f', true, 0, 0, 0, "./Imagenes/Terreno/monte.gif");
+//		crearTile('g', true, 0, 0, 0, "./Imagenes/Terreno/piedras.gif");
+//		crearTile('h', true, 0, 0, 0, "./Imagenes/Terreno/rocas.gif");
+//		crearTile('i', true, 0, 0, 0, "./Imagenes/Terreno/tierra.gif");
+//		crearTile('j', true, 0, 0, 0, "./Imagenes/Terreno/aguabaja.gif");
+//		
+//		crearTile('k', true, 0, 0, 0, "./Imagenes/Terreno/aguapiedras.gif");
+//		crearTile('l', true, 0, 0, 0, "./Imagenes/Terreno/aguaprofunda.gif");
+//		crearTile('m', true, 0, 0, 0, "./Imagenes/Terreno/aguarocas.gif");
+//		crearTile('n', false, 10, 0, 0, "./Imagenes/Terreno/aura.gif");//no tiene sentido q suba vida con un entero, esto debe depender del nivel
+//		crearTile('o', true, 0, 0, 0, "./Imagenes/Terreno/crater.gif");
+//		crearTile('p', true, 0, 0, 0, "./Imagenes/Terreno/lodo.gif");
+//		crearTile('q', true, 0, 0, 0, "./Imagenes/Terreno/magma.gif");
+//		crearTile('r', true, 0, 0, 0, "./Imagenes/Terreno/molino.gif");
+//		crearTile('s', true, 0, 0, 0, "./Imagenes/Terreno/montañaneblina.gif");
+//		crearTile('t', true, 0, 0, 0, "./Imagenes/Terreno/montañanieve.gif");
+//		
+//		crearTile('u', true, 0, 0, 0, "./Imagenes/Terreno/montañanieve2.gif");
+//		crearTile('v', true, 0, 0, 0, "./Imagenes/Terreno/montañadesierto.gif");
+//		crearTile('w', true, 0, 0, 0, "./Imagenes/Terreno/nieveinclinada.gif");
+//		crearTile('x', false, 5, 0, 0, "./Imagenes/Terreno/oasis.gif");
+//		crearTile('y', true, 0, 0, 0, "./Imagenes/Terreno/precipicio.gif");
+//		crearTile('z', true, 0, 0, 0, "./Imagenes/Terreno/precipiciolava.gif");
+//		crearTile('A', false, 0, 0, 0, "./Imagenes/Terreno/obstaculo1.gif");
+//		crearTile('B', false, -1, 0, 0, "./Imagenes/Terreno/obstaculo2.gif");
+//		crearTile('C', false, -1, 0, 0, "./Imagenes/Terreno/obstaculo3.gif");// quitar vida, sumar y quitar ataque debe ser formulado
+//		crearTile('D', false, -3, 0, 0, "./Imagenes/Terreno/obstaculo4.gif");
+//		
+//		crearTile('E', true, 0, 0, 0, "./Imagenes/Terreno/puenteh.gif");
+//		crearTile('F', true, 0, 0, 0, "./Imagenes/Terreno/puentev.gif");
+//		crearTile('G', true, 0, 0, 0, "./Imagenes/Terreno/rocasgrandes.gif");
+//		crearTile('z', true, 0, 0, 0, "./Imagenes/Terreno/siembra.gif");
+//		crearTile('z', true, 0, 0, 0, "./Imagenes/Terreno/terrenodisparejo.gif");
+//		crearTile('1', false, 0, 0, 0, "./Imagenes/Terreno/castillo1.gif");
+//		crearTile('2', false, 0, 0, 0, "./Imagenes/Terreno/castillo2.gif");
+//		crearTile('3', false, 0, 0, 0, "./Imagenes/Terreno/castillo3.gif");
+//		crearTile('4', false, 0, 0, 0, "./Imagenes/Terreno/castillo4.gif");
+//		crearTile('5', false, 0, 0, 0, "./Imagenes/Terreno/castillo5.gif");
+//
+//		
 		
 		//Creacion de todas las plantillas terreno
-		crearPlantilla("Nombre1", 1);
-		crearPlantilla("Nombre2", 2);
-		crearPlantilla("Nombre3", 3);
-		crearPlantilla("Nombre4", 4);
-		crearPlantilla("Nombre5", 1);
-		
+//		crearPlantilla("Nombre1", 1);
+//		crearPlantilla("Nombre2", 2);
+//		crearPlantilla("Nombre3", 3);
+//		crearPlantilla("Nombre4", 4);
+//		crearPlantilla("Nombre5", 1);
 		
 		// Creacion de los modelos de armas terreno y caballero
 		
 		// Creacion de los modelos de caballero
 		
 		// Creacion de las destrezas
-		
-		
 		
 		
 		

@@ -48,7 +48,7 @@ public class PlantillaTerreno {
 	// Relacion uno a muchos con usuario
 	@OneToMany(mappedBy = "idRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
-	@Cascade( { CascadeType.ALL, CascadeType.DELETE_ORPHAN })
+	@Cascade( { CascadeType.ALL })
 	public List<Usuario> getUsuarioList() {
 		return usuarioList;
 	}
@@ -60,7 +60,7 @@ public class PlantillaTerreno {
 	// Relacion uno a muchos con Coordenada
 	@OneToMany(mappedBy = "idRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
-	@Cascade( { CascadeType.ALL, CascadeType.DELETE_ORPHAN })
+	@Cascade( { CascadeType.ALL})
 	public List<Coordenada> getFonTList() {
 		return coordList;
 	}
