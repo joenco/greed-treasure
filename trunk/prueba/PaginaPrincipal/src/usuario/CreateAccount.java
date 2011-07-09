@@ -1,6 +1,8 @@
 package usuario;
 
 import org.hibernate.Criteria;
+import nextapp.echo.app.SelectField;
+import nextapp.echo.app.list.DefaultListModel;
 import java.util.regex.*;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -38,7 +40,8 @@ public class CreateAccount extends ContentPane {
 	private TextField txtNick;
 	private TextField txtName;
 	private TextField txtLastName;
-	private TextField txtCountry;
+	private String txtCountry;
+	private SelectField selectCountry;
 	private PasswordField txtPass;
 	private TextField txtEmail;
 
@@ -81,12 +84,18 @@ public class CreateAccount extends ContentPane {
 		txtLastName = new TextField();
 		Label lblLastName = new Label("Apellido");
 		grid.add(lblLastName);
+		
+		
 		grid.add(txtLastName);
 		
-		txtCountry = new TextField();
+		DefaultListModel listModel = new DefaultListModel(new String[] {
+				"Afganistan", "Africa del Sur", "Albania", "Alemania", "Andorra", "Angola", "Antillas Holandesas", "Arabia Saudita", "Argelia", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarusia", "Belgica", "Belice", "Benin", "Bermudas", "Bolivia", "Bosnia", "Brasil", "Bulgaria", "Burundi", "Butan", "Camboya", "Camerún", "Canada", "Chile", "China", "Chipre", "Colombia", "Congo", "Corea del Norte", "Corea del Sur", "Costa de Marfíl", "Costa Rica", "Croasia", "Cuba", "Dinamarca", "Dominica", "Ecuador", "Egipto", "El Salvador", "Emiratos Arabes Unidos", "Eslovenia", "España", "Estados Unidos", "Estonia", "Etiopía", "Filipinas", "Finlandia", "Francia", "Gambia", "Georgia", "Ghana", "Granada", "Grecia", "Groenlandia", "Guatemala", "Guinea", "Haití", "Holanda", "Honduras", "Hong Kong", "Hungría", "India", "Indonesia", "Irak", "Iran", "Irlanda", "Islandia", "Islas Virgenes (U.S.)", "Israel", "Italia", "Jamaica", "Japón", "Jordania", "Kenia", "Kuwait", "Kyrgyzstan", "Libia", "Lituania", "Luxemburgo", "Macedonia", "Madagascar", "Malasia", "Mali", "Malta", "Marruecos", "Martinica", "Mexico", "Mónaco", "Mongolia", "Nicaragua", "Nigeria", "Noruega", "Pakistan", "Palestina", "Panamá", "Paraguay", "Perú", "Polonia", "Portugal", "Puerto Rico", "Qatar", "Reino Unido", "Republica Checa", "Republica Democratica del Congo", "Republica Dominicana", "Republica Eslovaca", "Ruanda", "Rumania", "Rusia", "Sahara", "San Marino", "Santa Lucía", "Santa Sede (Vaticano)", "Senegal", "Singapur", "Siría", "Somalia", "Suecia", "Suiza", "Sur Africa", "Surinam", "Tailandia", "Taiwan", "Tanzania", "Togo", "Trinidad & Tobago", "Turquía", "Ucrania", "Uganda", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yugoslavia", "Zambia", "Zimbabwe" } );
+		
+		selectCountry = new SelectField(listModel);
+		selectCountry.setSelectedItem("Venezuela");
 		Label lblCountry = new Label("País");
 		grid.add(lblCountry);
-		grid.add(txtCountry);
+		grid.add(selectCountry);
 
 		txtPass = new PasswordField();
 		Label lblPass = new Label("Contraseña");
@@ -97,6 +106,9 @@ public class CreateAccount extends ContentPane {
 		Label lblEmail = new Label("Email");
 		grid.add(lblEmail);
 		grid.add(txtEmail);
+		
+		txtCountry = new String();
+		txtCountry = (String) selectCountry.getSelectedItem();
 
 		grid.setLayoutData(hld);
 		htmlLayout.add(grid);
@@ -225,14 +237,14 @@ if (mat.find()) {
 			return;
 		}
 
-pat = Pattern.compile("^[a-z0-9A-Z][a-zA-Z0-9_]{3,9}$");
+pat = Pattern.compile("^[a-z0-9A-Z][a-zA-Z0-9_]{4,10}$");
 mat = pat.matcher(txtNick.getText());
 
 if (mat.find()) {
 } else {
 	windowPane.setTitle("Nick/Apodo incorrecto!!!");
 
-	lbl.setText("El Nick debe tener mas de 3 caracteres y ningun caracter especial.");
+	lbl.setText("El Nick debe tener entre 4 y 10 caracteres y ningun caracter especial.");
 
 	col.add(lbl);
 	col.add(btnOK);
@@ -258,6 +270,9 @@ if (mat.find()) {
 			add(windowPane);
 			return;
 		}
+
+txtCountry = new String();
+txtCountry = (String) selectCountry.getSelectedItem();
 
 		register(session);
 
@@ -297,6 +312,8 @@ if (mat.find()) {
 			return true;
 		}
 	}
+	
+	
 
 	private void register(Session session) {
 		User bean = new User();
@@ -307,11 +324,11 @@ if (mat.find()) {
 		bean.setVictoria("0");
 		bean.setDerrota("0");
 		bean.setNivel("1");
-		bean.setTerreno("");
-		bean.setCaballero("");
+		bean.setTerreno("sin terreno");
+		bean.setCaballero("sin caballero");
 		bean.setName(txtName.getText());
 		bean.setLastName(txtLastName.getText());
-		bean.setCountry(txtCountry.getText());
+		bean.setCountry(txtCountry);
 		bean.setEmail(txtEmail.getText());
 		
 		session.save(bean);
@@ -330,9 +347,6 @@ if (mat.find()) {
 			return false;
 		}
 		if (txtLastName.getText().equals("")) {
-			return false;
-		}
-		if (txtCountry.getText().equals("")) {
 			return false;
 		}
 		if (txtPass.getText().equals("")) {
