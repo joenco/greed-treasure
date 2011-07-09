@@ -1,6 +1,7 @@
 package usuario;
 
 import nextapp.echo.app.Border;
+import tablaEnemigo.TablaEnemigo;
 import nextapp.echo.app.TextField;
 import nextapp.echo.app.Button;
 import nextapp.echo.app.Color;
@@ -240,12 +241,12 @@ public class Main extends ContentPane {
 	}
 
 	private void btnEditionCastilloClicked() {
-		ShowRecord showrecord = new ShowRecord(user);
-		if (txtTerreno.getText().equals("")) {
+		if (txtTerreno.getText().equals("sin terreno")) {
 			removeAll();
 			Terrenos terrenos = new Terrenos(user);
 			add(terrenos);
 		} else {
+			ShowRecord showrecord = new ShowRecord(user);
 			updatePanel(showrecord);
 			Label label = new Label("Aquí se mostrara el terreno y las armas que se colocaran en el mismo para la defensa del castillo, tu terreno es "+user.getTerreno());
 			updateLabel(label);
