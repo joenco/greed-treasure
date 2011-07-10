@@ -1,0 +1,9 @@
+package BDArmas;
+
+public class ArmaTerreno {
+	public int id;
+	public int municiones_actual;
+	public boolean en_uso;
+	public Usuario userRef;
+	public ModeloArma modelRef;
+}
