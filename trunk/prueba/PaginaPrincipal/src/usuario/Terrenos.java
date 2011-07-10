@@ -8,6 +8,8 @@ import db.SessionHibernate;
 import db.User;
 
 import echopoint.HtmlLayout;
+import nextapp.echo.app.SelectField;
+import nextapp.echo.app.list.DefaultListModel;
 import echopoint.layout.HtmlLayoutData;
 import nextapp.echo.app.Alignment;
 import nextapp.echo.app.Border;
@@ -32,22 +34,12 @@ import nextapp.echo.app.event.ActionListener;
 
 public class Terrenos extends ContentPane {
 
-/*	private EventListenerList eventListenerListError = //
-	new EventListenerList();
-
-	private ActionListenerProxy actionListenerProxyError = //
-	new ActionListenerProxy(eventListenerListError);
-
-	private EventListenerList eventListenerListOk = //
-	new EventListenerList();
-
-	private ActionListenerProxy actionListenerProxyOk = //
-	new ActionListenerProxy(eventListenerListOk); */
-
 		User user;
 	HtmlLayout htmlLayout;
 
-//	private String terreno;
+	private String terreno;
+	private SelectField selectTerreno;
+	private DefaultListModel listModel;
 	
 	public Terrenos(User user) {
 		this.user = user;
@@ -79,12 +71,15 @@ public class Terrenos extends ContentPane {
 		htmlLayout.add(lblTitle);
 
 		hld = new HtmlLayoutData("form");
-		Label lblTerreno = new Label("Hola "+user.getNick());
+		Label lblTerreno = new Label("Hola "+user.getNick()+", te hace falta un terreno, elije el que mas te guste.");
 		lblTerreno.setLayoutData(hld);
 		htmlLayout.add(lblTerreno);
-		Label label1 = new Label("El pantanal");
-		label1.setLayoutData(hld);
-		htmlLayout.add(label1);
+		listModel = new DefaultListModel(new String[] {
+				"Playa caribe", "Alpes rocoso", "Antartida arenosa", "Desierto pantanoso"
+		} );
+		selectTerreno = new SelectField(listModel);
+		selectTerreno.setLayoutData(hld);
+		htmlLayout.add(selectTerreno);
 
 		hld = new HtmlLayoutData("buttons");
 		Row row =new Row();
@@ -116,12 +111,15 @@ public class Terrenos extends ContentPane {
 		add(main);
 
 	}
-	
+
+
 	private void modified() {
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
+		terreno = new String();
+		terreno =(String) selectTerreno.getSelectedItem();
 		
-		user.setTerreno("El pantanal.");
+		user.setTerreno(terreno);
 
 		session.update(user);
 		
