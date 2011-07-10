@@ -1,0 +1,21 @@
+package BDArmas;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Proxy;
+
+
+@Entity
+@Table(name ="t_armas")
+@Proxy(lazy = false)
+public class ModeloArma {
+public int id;
+public int defensa;
+public int municiones_base;
+public int alcance;
+public int oro;
+public int nivel;
+public Usuario userRef;
+public byte[] imagen;
+}

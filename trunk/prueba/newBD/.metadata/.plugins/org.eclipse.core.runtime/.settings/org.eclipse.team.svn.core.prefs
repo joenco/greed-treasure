@@ -1,0 +1,7 @@
+#Fri Jul 08 23:30:50 VET 2011
+repositories/20c2bed7fb94001014829be51fc42525=20c2bed7fb94001014829be51fc42525;http\://code.google.com/p/greed-treasure/;http\://code.google.com/p/greed-treasure/;branches;tags;trunk;true;;;;false;;;0
+eclipse.preferences.version=1
+repositories/8040009f42990010199b869091e7c103=8040009f42990010199b869091e7c103;https\://greed-treasure.googlecode.com/svn/trunk/prueba/;https\://greed-treasure.googlecode.com/svn/trunk/prueba/;branches;tags;trunk;true;bfe274d5-1510-5a9a-36aa-4e3d1ba153ce;https\://greed-treasure.googlecode.com/svn;;false;<https\://greed-treasure.googlecode.com\:443> Google Code Subversion Repository;;0
+externalMigrateFromAuthorizationDatabase/isMigrated=true
+migrateFromAuthorizationDatabase/isMigrated=true
+repositories/90d8f6c4ba840010132fbd73f4f7d8e2=90d8f6c4ba840010132fbd73f4f7d8e2;https\://foo-org-ve.googlecode.com/svn/;https\://foo-org-ve.googlecode.com/svn/;branches;tags;trunk;true;1b14608d-9101-1e4f-104e-7cb8ead80972;https\://foo-org-ve.googlecode.com/svn;;false;;;0

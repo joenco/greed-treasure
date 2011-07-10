@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="ArmaBean.Inventario"/>
+<fullyQualifiedTypeName name="ArmaBean.Usuario"/>
+<fullyQualifiedTypeName name="ArmaBean.Arma"/>
+<fullyQualifiedTypeName name="org.hibernate.mapping.Array"/>
+<fullyQualifiedTypeName name="ArmaBean.Main"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="BDArmas.ModeloArma"/>
+</qualifiedTypeNameHistroy>
