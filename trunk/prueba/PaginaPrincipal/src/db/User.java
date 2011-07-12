@@ -8,16 +8,16 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Proxy;
 
 @Entity
-@Table(name = "usera")
+@Table(name = "user")
 @Proxy(lazy = false)
 public class User {
 
   private int id;
   private String nick;
-  private String cantoro;
-  private String nivel;
-  private String victoria;
-  private String derrota;
+  private int cantoro;
+  private int nivel;
+  private int victoria;
+  private int derrota;
   private String pass;
   private String name;
   private String lastname;
@@ -44,35 +44,35 @@ public class User {
     return nick;
   }
   
-  public void setCantOro(String cantoro) {
+  public void setCantOro(int cantoro) {
 	    this.cantoro= cantoro;
 	  }
 
-  public String getCantOro() {
+  public int getCantOro() {
     return cantoro;
   }
   
-  public void setNivel(String nivel) {
+  public void setNivel(int nivel) {
     this.nivel= nivel;
   }
 
-  public String getNivel() {
+  public int getNivel() {
     return nivel;
   }
 
-  public void setVictoria(String victoria) {
+  public void setVictoria(int victoria) {
     this.victoria= victoria;
   }
 
-  public String getVictoria() {
+  public int getVictoria() {
     return victoria;
   }
 
-  public void setDerrota(String derrota) {
+  public void setDerrota(int derrota) {
     this.derrota= derrota;
   }
 
-  public String getDerrota() {
+  public int getDerrota() {
     return derrota;
   }
 

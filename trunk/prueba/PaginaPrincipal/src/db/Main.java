@@ -18,10 +18,10 @@ public class Main {
     User bean = new User();
     bean.setNick("usuario");
     bean.setPass("123");
-    bean.setCantOro("1000");
-    bean.setNivel("1");
-    bean.setVictoria("0");
-    bean.setDerrota("0");
+    bean.setCantOro(1000);
+    bean.setNivel(1);
+    bean.setVictoria(0);
+    bean.setDerrota(0);
     bean.setName("Jorge");
     bean.setLastName("Ortega");
     bean.setCountry("Venezuela");
