@@ -234,10 +234,16 @@ public class Main extends ContentPane {
 	}
 
 	private void btnAtacarCastilloClicked() {
-		ShowRecord showrecord = new ShowRecord(user);
-		updatePanel(showrecord);
-		Label label = new Label("Se mostrara una lista de todos los jugadores para elejir cual atacar");
-		updateLabel(label);
+		if (txtTerreno.getText().equals("sin terreno")) {
+			removeAll();
+			Terrenos terrenos = new Terrenos(user);
+			add(terrenos);
+		} else {
+			ShowRecord showrecord = new ShowRecord(user);
+			updatePanel(showrecord);
+			TablaEnemigo tablaEnemigo = new TablaEnemigo(user);
+			updatePanel(tablaEnemigo);
+		}
 	}
 
 	private void btnEditionCastilloClicked() {

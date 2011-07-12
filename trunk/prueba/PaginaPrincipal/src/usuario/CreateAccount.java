@@ -220,14 +220,14 @@ public class CreateAccount extends ContentPane {
 			return;
 		}
 		
-		Pattern pat = Pattern.compile("(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$");
+		Pattern pat = Pattern.compile("(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{6,10})$");
         Matcher mat = pat.matcher(txtPass.getText());
 
 if (mat.find()) {
 } else {
 			windowPane.setTitle("Contraseña no segura!!!");
 
-			lbl.setText("La contraseña debe tener entre 8 y 10 caracteres, por lo menos un digito, un alfanumérico, y no puede contener caracteres especiales.");
+			lbl.setText("La contraseña debe tener entre 6 y 10 caracteres, por lo menos un digito, un alfanumérico, y no puede contener caracteres especiales.");
 
 			col.add(lbl);
 			col.add(btnOK);
@@ -237,14 +237,14 @@ if (mat.find()) {
 			return;
 		}
 
-pat = Pattern.compile("^[a-z0-9A-Z][a-zA-Z0-9_]{4,10}$");
+pat = Pattern.compile("^[a-z0-9A-Z][a-zA-Z0-9_]{3,15}$");
 mat = pat.matcher(txtNick.getText());
 
 if (mat.find()) {
 } else {
 	windowPane.setTitle("Nick/Apodo incorrecto!!!");
 
-	lbl.setText("El Nick debe tener entre 4 y 10 caracteres y ningun caracter especial.");
+	lbl.setText("El Nick debe tener entre 4 y 15 caracteres y ningun caracter especial.");
 
 	col.add(lbl);
 	col.add(btnOK);
@@ -320,10 +320,10 @@ txtCountry = (String) selectCountry.getSelectedItem();
 		
 		bean.setNick(txtNick.getText());
 		bean.setPass(txtPass.getText());
-		bean.setCantOro("1000");
-		bean.setVictoria("0");
-		bean.setDerrota("0");
-		bean.setNivel("1");
+		bean.setCantOro(1000);
+		bean.setVictoria(0);
+		bean.setDerrota(0);
+		bean.setNivel(1);
 		bean.setTerreno("sin terreno");
 		bean.setCaballero("sin caballero");
 		bean.setName(txtName.getText());
