@@ -33,7 +33,7 @@ import com.minotauro.echo.table.renderer.BaseCellRenderer;
 import com.minotauro.echo.table.renderer.ImageCellRenderer;
 import com.minotauro.echo.table.renderer.LabelCellRenderer;
 import com.minotauro.echo.table.renderer.NestedCellRenderer;
-
+import usuario.AtacarTerreno;
 public class TablaEnemigo extends Panel {
 
 	private TestTableModel tableDtaModel;
@@ -250,7 +250,7 @@ public class TablaEnemigo extends Panel {
 
 				ret.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						btnAtkClicked();
+						btnAtkClicked(table, row);
 					}
 				});
 				return ret;
@@ -263,7 +263,14 @@ public class TablaEnemigo extends Panel {
 
 	// --------------------------------------------------------------------------------
 
-	private void btnAtkClicked() { }
+	private void btnAtkClicked(ETable table, int row) {
+		TableDtaModel model = table.getTableDtaModel();
+		EnemigoBean userBean = (EnemigoBean) model.getElementAt(row);
+		//userBean = userBean.getNick();
+		removeAll();
+		AtacarTerreno atacarEnemigo = new AtacarTerreno(user, userBean);
+		add(atacarEnemigo);
+	}
 
 	// --------------------------------------------------------------------------------
 
