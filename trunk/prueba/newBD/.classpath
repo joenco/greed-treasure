@@ -15,5 +15,11 @@
 	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/postgresql-8.3-603.jdbc4.jar"/>
 	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/slf4j-jcl-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/Hibernate/lib/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/Hibernate/lib/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="/home/susi/Descargas/postgresql-9.0-801.jdbc4.jar"/>
+	<classpathentry kind="lib" path="/home/susi/Descargas/postgresql-9.0-801.jdbc3.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/Hibernate/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="/Hibernate/lib/hibernate3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
