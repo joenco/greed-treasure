@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -19,15 +20,14 @@ public class ArmaTerreno {
 	private int id;
 	private int municiones_actuales;
 	private boolean en_inv;
-	private int x;
-	private int y;
 	private Usuario refUser;
 	private ModeloArma modelRef;
+	private coordenadaArma refCoor;
 
-	public ArmaTerreno (){
-		//**** vacio ****
+	public ArmaTerreno() {
+		// **** vacio ****
 	}
-	
+
 	public ArmaTerreno(ModeloArma a) {
 		this.municiones_actuales = a.getMuniciones_base();
 		this.en_inv = true;
@@ -59,22 +59,6 @@ public class ArmaTerreno {
 		this.en_inv = en_inv;
 	}
 
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
 	@ManyToOne
 	public Usuario getRefUser() {
 		return refUser;
@@ -92,4 +76,14 @@ public class ArmaTerreno {
 	public void setModelRef(ModeloArma modelRef) {
 		this.modelRef = modelRef;
 	}
+	
+	@OneToOne(mappedBy = "refArma")
+	public coordenadaArma getRefCoor() {
+		return refCoor;
+	}
+
+	public void setRefCoor(coordenadaArma refCoor) {
+		this.refCoor = refCoor;
+	}
+
 }

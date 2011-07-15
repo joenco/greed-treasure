@@ -2,24 +2,18 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/c3p0-0.9.1.jar"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/hibernate3.jar"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/hibernate-jpa-2.0-api-1.0.0.Final.jar"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/javassist-3.12.0.GA.jar"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/mysql-connector-java-5.0.3-bin.jar"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/postgresql-8.3-603.jdbc4.jar"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/slf4j-api-1.6.1.jar"/>
-	<classpathentry kind="lib" path="/home/fannia/workspace/BD2/lib/slf4j-jcl-1.6.1.jar"/>
-	<classpathentry kind="lib" path="/home/susi/workspace/Hibernate/lib/ejb3-persistence.jar"/>
-	<classpathentry kind="lib" path="/home/susi/workspace/Hibernate/lib/hibernate-annotations.jar"/>
-	<classpathentry kind="lib" path="/home/susi/Descargas/postgresql-9.0-801.jdbc4.jar"/>
-	<classpathentry kind="lib" path="/home/susi/Descargas/postgresql-9.0-801.jdbc3.jar"/>
-	<classpathentry kind="lib" path="/home/susi/workspace/Hibernate/lib/hibernate3.jar"/>
-	<classpathentry kind="lib" path="/Hibernate/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/slf4j-jcl-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/postgresql-8.3-603.jdbc4.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/mysql-connector-java-5.0.3-bin.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/javassist-3.12.0.GA.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/hibernate-jpa-2.0-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/c3p0-0.9.1.jar"/>
+	<classpathentry kind="lib" path="/home/susi/workspace/BD2/lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
