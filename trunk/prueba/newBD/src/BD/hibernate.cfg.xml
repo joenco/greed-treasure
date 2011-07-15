@@ -33,7 +33,7 @@
         <property name="hibernate.connection.url">jdbc:postgresql://localhost/prueba</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">1234</property>
+        <property name="hibernate.connection.password"></property>
         <property name="hibernate.connection.pool_size">5</property>
 		
 		
