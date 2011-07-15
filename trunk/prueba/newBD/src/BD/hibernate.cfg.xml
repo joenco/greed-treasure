@@ -104,6 +104,9 @@
 		<mapping class="BD.ModeloCaballero" />
 		<mapping class="BD.Tile" />
 		<mapping class="BD.Perfil" />
+		<mapping class="BD.ModeloArma" />
+		<mapping class="BD.ArmaTerreno" />
+		<mapping class="BD.ArmaCaballero" />
 		
 	</session-factory>
 </hibernate-configuration>
