@@ -3,11 +3,15 @@ package BD;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
+
+import BD.Metodos;
 
 public class LoadBD {
 	
@@ -248,9 +252,7 @@ public class LoadBD {
 
 	}
 		
-	
-	
-	
+
 	/**
 	 * @throws Exception *************************************************************************/
 	
@@ -259,7 +261,7 @@ public class LoadBD {
 		
 		// Crear todos los tiles
 		
-		crearTile('a', true, 0, 0, 0, "./../Imagenes/Terreno/pastoseco.gif");
+		//crearTile('a', true, 0, 0, 0, "./../Imagenes/Terreno/pastoseco.gif");
 //		crearTile('b', true, 0, 0, 0, "./Imagenes/Terreno/jardin.gif");
 //		crearTile('c', true, 0, 0, 0, "./Imagenes/Terreno/barro.gif");
 //		crearTile('d', true, 0, 0, 0, "./Imagenes/Terreno/desierto.gif");
@@ -317,11 +319,39 @@ public class LoadBD {
 		// Creacion de los modelos de caballero
 		
 		// Creacion de las destrezas
-		
-		
-		
-		
-		
+//		Configuration configuration = new AnnotationConfiguration();
+//		configuration.configure("/BD/hibernate.cfg.xml");
+//		SessionFactory sessionFactory = configuration.buildSessionFactory();
+//		
+//		Session session = sessionFactory.openSession();
+//		session.beginTransaction();
+//		
+//		Usuario a = new Usuario ();
+//		a.setNombre("arturo rondon");
+//		a.setPassword(123456);
+//		a.setEmail("artur");
+//		a.setOro(120);
+//		a.setLogin("arturo");
+//		a.setPais("Vene");
+//		a.setNivel(5);
+//		ModeloArma modelo = new ModeloArma();
+//		modelo.setNombre("Espada");
+//		modelo.setDefensa(50);
+//		modelo.setAlcanse(3);
+//		modelo.setMuniciones_base(2);
+//		modelo.setOro(10);
+//		ArmaTerreno armaT = new ArmaTerreno();
+//		armaT.setModelRef(modelo);
+//		armaT.setMuniciones_actuales(modelo.getMuniciones_base());
+//		armaT.setRefUser(a);
+//		a.getArmaTerreno().add(armaT);
+//		modelo.getArmaTerreno().add(armaT);
+//		session.save(a);
+//		session.save(modelo);
+//		session.save(armaT);
+//		session.getTransaction().commit();
+//		session.close();
+		Metodos.tablaPrincipal("arturo");
 		
 	}
 	

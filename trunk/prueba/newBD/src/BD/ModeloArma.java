@@ -36,7 +36,7 @@ public class ModeloArma {
 	private List<ArmaTerreno> armaTerreno = new ArrayList<ArmaTerreno>();
 	private List<ArmaCaballero> armaCaballero = new ArrayList<ArmaCaballero>();
 
-	public ModeloArma(String nombre, int defensa, int alcanse,
+	/*public ModeloArma(String nombre, int defensa, int alcanse,
 			int municiones_base, int oro, int nivel) {
 		this.nombre = nombre;
 		this.defensa = defensa;
@@ -44,7 +44,7 @@ public class ModeloArma {
 		this.municiones_base = municiones_base;
 		this.oro = oro;
 		this.nivel = nivel;
-	}
+	}*/
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)

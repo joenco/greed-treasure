@@ -107,6 +107,7 @@
 		<mapping class="BD.ModeloArma" />
 		<mapping class="BD.ArmaTerreno" />
 		<mapping class="BD.ArmaCaballero" />
+		<mapping class="BD.coordenadaArma" />
 		
 	</session-factory>
 </hibernate-configuration>
