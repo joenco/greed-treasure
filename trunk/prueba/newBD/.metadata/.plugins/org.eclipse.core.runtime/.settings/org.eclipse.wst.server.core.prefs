@@ -1,3 +1,0 @@
-#Sun May 22 16:48:33 VET 2011
-runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<runtimes>\n  <runtime id\="Apache Tomcat v7.0" location\="/usr/local/apache-tomcat-7.0.5" name\="Apache Tomcat v7.0" runtime-type-id\="org.eclipse.jst.server.tomcat.runtime.70" timestamp\="0"/>\n</runtimes>\n
-eclipse.preferences.version=1
