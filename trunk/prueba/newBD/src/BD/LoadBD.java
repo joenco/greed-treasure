@@ -326,14 +326,14 @@ public class LoadBD {
 //		Session session = sessionFactory.openSession();
 //		session.beginTransaction();
 //		
-//		Usuario a = new Usuario ();
-//		a.setNombre("arturo rondon");
-//		a.setPassword(123456);
-//		a.setEmail("artur");
-//		a.setOro(120);
-//		a.setLogin("arturo");
-//		a.setPais("Vene");
-//		a.setNivel(5);
+		Usuario a = new Usuario ();
+		a.setNombre("arturo rondon");
+		a.setPassword(123456);
+		a.setEmail("artur");
+		a.setOro(120);
+		a.setLogin("arturo");
+		a.setPais("Vene");
+		a.setNivel(5);
 //		ModeloArma modelo = new ModeloArma();
 //		modelo.setNombre("Espada");
 //		modelo.setDefensa(50);
@@ -351,7 +351,7 @@ public class LoadBD {
 //		session.save(armaT);
 //		session.getTransaction().commit();
 //		session.close();
-		Metodos.tablaPrincipal("arturo");
+		Metodos.tablaPrincipal(a);
 		
 	}
 	
