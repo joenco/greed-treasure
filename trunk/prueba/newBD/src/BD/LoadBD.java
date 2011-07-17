@@ -319,13 +319,13 @@ public class LoadBD {
 		// Creacion de los modelos de caballero
 		
 		// Creacion de las destrezas
-//		Configuration configuration = new AnnotationConfiguration();
-//		configuration.configure("/BD/hibernate.cfg.xml");
-//		SessionFactory sessionFactory = configuration.buildSessionFactory();
-//		
-//		Session session = sessionFactory.openSession();
-//		session.beginTransaction();
-//		
+	/*	Configuration configuration = new AnnotationConfiguration();
+		configuration.configure("/BD/hibernate.cfg.xml");
+		SessionFactory sessionFactory = configuration.buildSessionFactory();
+		
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
 		Usuario a = new Usuario ();
 		a.setNombre("arturo rondon");
 		a.setPassword(123456);
@@ -334,25 +334,96 @@ public class LoadBD {
 		a.setLogin("arturo");
 		a.setPais("Vene");
 		a.setNivel(5);
-//		ModeloArma modelo = new ModeloArma();
-//		modelo.setNombre("Espada");
-//		modelo.setDefensa(50);
-//		modelo.setAlcanse(3);
-//		modelo.setMuniciones_base(2);
-//		modelo.setOro(10);
-//		ArmaTerreno armaT = new ArmaTerreno();
-//		armaT.setModelRef(modelo);
-//		armaT.setMuniciones_actuales(modelo.getMuniciones_base());
-//		armaT.setRefUser(a);
-//		a.getArmaTerreno().add(armaT);
-//		modelo.getArmaTerreno().add(armaT);
-//		session.save(a);
-//		session.save(modelo);
-//		session.save(armaT);
-//		session.getTransaction().commit();
-//		session.close();
-		Metodos.tablaPrincipal(a);
+		ModeloArma bomba = new ModeloArma();
+		bomba.setNombre("Bomba");
+		bomba.setDefensa(50);
+		bomba.setAlcanse(3);
+		bomba.setMuniciones_base(2);
+		bomba.setOro(10);
+		ArmaTerreno armaT = new ArmaTerreno();
+		armaT.setModelRef(bomba);
+		armaT.setMuniciones_actuales(bomba.getMuniciones_base());
+		armaT.setRefUser(a);
+		a.getArmaTerreno().add(armaT);
+		bomba.getArmaTerreno().add(armaT);
+		session.save(a);
+		session.save(bomba);
+		session.save(armaT);
 		
+		ArmaTerreno armaT1 = new ArmaTerreno();
+		armaT1.setModelRef(bomba);
+		armaT1.setRefUser(a);
+		armaT1.setMuniciones_actuales(bomba.getMuniciones_base());
+		a.getArmaTerreno().add(armaT1);
+		bomba.getArmaTerreno().add(armaT1);
+		session.save(a);
+		session.save(bomba);
+		session.save(armaT1);
+		
+		ArmaTerreno armaT2 = new ArmaTerreno();
+		ModeloArma espada = new ModeloArma();
+		espada.setNombre("Espada");
+		espada.setDefensa(50);
+		espada.setAlcanse(3);
+		espada.setMuniciones_base(2);
+		espada.setOro(10);
+		armaT2.setModelRef(espada);
+		armaT2.setRefUser(a);
+		armaT2.setMuniciones_actuales(espada.getMuniciones_base());
+		a.getArmaTerreno().add(armaT2);
+		espada.getArmaTerreno().add(armaT2);
+		session.save(a);
+		session.save(espada);
+		session.save(armaT2);
+		
+
+		ArmaTerreno armaT3 = new ArmaTerreno();
+		Usuario s = new Usuario ();
+		s.setNombre("sujaira moughawiche");
+		s.setPassword(123456);
+		s.setEmail("susi141");
+		s.setOro(120);
+		s.setLogin("susi");
+		s.setPais("Vene");
+		s.setNivel(5);
+		ModeloArma pistola = new ModeloArma();
+		pistola.setNombre("Pistola");
+		pistola.setDefensa(50);
+		pistola.setAlcanse(3);
+		pistola.setMuniciones_base(2);
+		pistola.setOro(10);
+		armaT3.setModelRef(pistola);
+		armaT3.setRefUser(s);
+		armaT3.setMuniciones_actuales(pistola.getMuniciones_base());
+		s.getArmaTerreno().add(armaT3);
+		pistola.getArmaTerreno().add(armaT3);
+		session.save(s);
+		session.save(pistola);
+		session.save(armaT3);
+		
+		ArmaTerreno armaT4 = new ArmaTerreno();
+		armaT4.setModelRef(bomba);
+		armaT4.setRefUser(s);
+		armaT4.setMuniciones_actuales(pistola.getMuniciones_base());
+		s.getArmaTerreno().add(armaT4);
+		bomba.getArmaTerreno().add(armaT4);
+		session.save(s);
+		session.save(pistola);
+		session.save(armaT4);
+		
+		session.getTransaction().commit();
+		session.close();*/
+		Usuario a = new Usuario ();
+		a.setNombre("arturo rondon");
+		a.setPassword(123456);
+		a.setEmail("artur");
+		a.setOro(120);
+		a.setLogin("arturo");
+		a.setPais("Vene");
+		a.setNivel(5);
+		Metodos.tablaPrincipal(a);
+		List <Object> object = new ArrayList<Object>();
+		object = Metodos.tablaPorArma(a, "Espada");
 	}
 	
 }
