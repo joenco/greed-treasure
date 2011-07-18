@@ -1,9 +1,7 @@
 package BD;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.cfg.Configuration;
+
 
 import BD.LoadTerreno;
 
@@ -15,12 +13,8 @@ public class NewUser {
 		user.setLogin(login);
 		user.setPassword(pass);
 
-		Configuration configuration = new AnnotationConfiguration();
-		configuration.configure("/BD/hibernate.cfg.xml");
-		SessionFactory sessionFactory = configuration.buildSessionFactory();
-
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = SessionHibernate.getInstance().openSession();
+        session.beginTransaction();
 
 		pt = (PlantillaTerreno) session.load(PlantillaTerreno.class, tipo);
 		pt.getUsuarioList().add(user);

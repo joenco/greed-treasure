@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.cfg.Configuration;
+
 
 public class LoadTerreno {
 
@@ -17,12 +15,9 @@ public class LoadTerreno {
 		Usuario u = new Usuario();
 		PlantillaTerreno pt = new PlantillaTerreno();
 
-		Configuration configuration = new AnnotationConfiguration();
-		configuration.configure("/BD/hibernate.cfg.xml");
-		SessionFactory sessionFactory = configuration.buildSessionFactory();
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-
+		Session session = SessionHibernate.getInstance().openSession();
+        session.beginTransaction();
+        
 		Query q = session.createQuery("FROM Usuario WHERE login=:att_login");
 		q.setParameter("att_login", login);
 
