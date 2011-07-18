@@ -421,9 +421,10 @@ public class LoadBD {
 		a.setLogin("arturo");
 		a.setPais("Vene");
 		a.setNivel(5);
-		Metodos.tablaPrincipal(a);
+		/*Metodos.tablaPrincipal(a);
 		List <Object> object = new ArrayList<Object>();
-		object = Metodos.tablaPorArma(a, "Espada");
+	    Metodos.tablaPorArma(a, "Bomba");*/
+	    Metodos.usarArmaTerreno(a, 10, 3, 1514);
 	}
 	
 }
