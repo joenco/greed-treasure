@@ -5,20 +5,12 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.mapping.Array;
 
 public class Metodos {
 
 	public static List<ModeloArma> tablaPrincipal(Usuario user) {
-		Configuration configuration = new AnnotationConfiguration();
-		configuration.configure("/BD/hibernate.cfg.xml");
-		SessionFactory sessionFactory = configuration.buildSessionFactory();
-
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = SessionHibernate.getInstance().openSession();
+        session.beginTransaction();
 		// String str =
 		// "SELECT a.modelRef FROM ArmaTerreno AS a WHERE a.refUser.login = '" +
 		// user.getLogin() +"'";
@@ -45,12 +37,8 @@ public class Metodos {
 
 	public static List<Object> tablaPorArma(Usuario user, String nombre) {
 
-		Configuration configuration = new AnnotationConfiguration();
-		configuration.configure("/BD/hibernate.cfg.xml");
-		SessionFactory sessionFactory = configuration.buildSessionFactory();
-
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = SessionHibernate.getInstance().openSession();
+        session.beginTransaction();
 
 		String str = "SELECT a.modelRef.nombre, a.modelRef.defensa, a.modelRef.alcanse, a.modelRef.oro, a.municiones_actuales, a.id FROM ArmaTerreno AS a WHERE a.refUser.login = :login AND a.modelRef.nombre = :nombre";
 		Query query = session.createQuery(str);
@@ -71,12 +59,8 @@ public class Metodos {
 
 	public static ArmaTerreno usarArmaTerreno(Usuario user, int x, int y, int id) {
 
-		Configuration configuration = new AnnotationConfiguration();
-		configuration.configure("/BD/hibernate.cfg.xml");
-		SessionFactory sessionFactory = configuration.buildSessionFactory();
-
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = SessionHibernate.getInstance().openSession();
+        session.beginTransaction();
 		
 		String str = "SELECT a FROM ArmaTerreno AS a WHERE a.id = :id";
 		Query query = session.createQuery(str);
