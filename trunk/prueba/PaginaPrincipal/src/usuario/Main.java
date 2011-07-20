@@ -239,10 +239,9 @@ public class Main extends ContentPane {
 			Terrenos terrenos = new Terrenos(user);
 			add(terrenos);
 		} else {
-			ShowRecord showrecord = new ShowRecord(user);
-			updatePanel(showrecord);
+			removeAll();
 			TablaEnemigo tablaEnemigo = new TablaEnemigo(user);
-			updatePanel(tablaEnemigo);
+			add(tablaEnemigo);
 		}
 	}
 

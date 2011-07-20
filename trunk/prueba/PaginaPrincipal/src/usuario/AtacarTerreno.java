@@ -6,6 +6,7 @@ import db.SessionHibernate;
 import db.User;
 import tablaEnemigo.EnemigoBean;
 import tablaEnemigo.EnemigoBeanLoader;
+import nextapp.echo.app.Panel;
 import echopoint.HtmlLayout;
 import nextapp.echo.app.SelectField;
 import nextapp.echo.app.list.DefaultListModel;
@@ -30,12 +31,10 @@ import nextapp.echo.app.event.ActionListener;
  * @autor: Jorge Ortega
  */
 
-public class AtacarTerreno extends ContentPane {
+public class AtacarTerreno extends Panel {
 
 		User user;
 		EnemigoBean userEnemigo;
-	HtmlLayout htmlLayout;
-
 	private Label terreno;
 	
 	public AtacarTerreno(User user, EnemigoBean userEnemigo) {
@@ -45,39 +44,20 @@ public class AtacarTerreno extends ContentPane {
 	}
 
 	private void initGUI() {
+
 		Session session = SessionHibernate.getInstance().openSession();
-		session.beginTransaction();
+	    session.beginTransaction();
 
-		user = (User) session.load(User.class, user.getId());
+	    user = (User) session.load(User.class, user.getId());
 
-		session.getTransaction().commit();
-		session.close();
+	    Column col = new Column();
+	    add(col);
 
-		try {
-			htmlLayout = new HtmlLayout( //
-					getClass().getResourceAsStream("atacarTerreno.html"), "UTF-8");
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-
-		HtmlLayoutData hld;
-
-		hld = new HtmlLayoutData("title");
-		Label lblTitle = new Label("<---- Atacando a "+userEnemigo.getNick()+"---->");
-		lblTitle.setLayoutData(hld);
-		htmlLayout.add(lblTitle);
-		htmlLayout.add(lblTitle);
-
-		hld = new HtmlLayoutData("terreno");
-		Label lblTerreno = new Label("Hola "+user.getNick());
-		lblTerreno.setLayoutData(hld);
-		htmlLayout.add(lblTerreno);
-		terreno =new Label();
-		terreno.setText(userEnemigo.getNick());
-		terreno.setLayoutData(hld);
-		htmlLayout.add(terreno);
-
-		hld = new HtmlLayoutData("buttons");
+	    col.add(new Label("********************************"));
+	    col.add(new Label("Atacando a "+userEnemigo.getNick()));
+	    col.add(new Label("********************************"));
+	    col.add(new Label("Estas atacando el terreno: "+userEnemigo.getTerreno()));
+	    
 		Row row =new Row();
 
 		Button btnSalir = new Button("Dejar de atacar");
@@ -91,40 +71,18 @@ public class AtacarTerreno extends ContentPane {
 			}
 		});
 		row.add(btnSalir);
+		col.add(row);
+			    add(col);
 
-		row.setLayoutData(hld);
-		htmlLayout.add(row);
+		session.getTransaction().commit();
+		session.close();
 
-		add(htmlLayout);
 	}
-
+	
 	protected void bntSalirClicked() {
 		removeAll();
 		Main main = new Main(user);
 		add(main);
 	}
-
-/*
-	private void modified() {
-		Session session = SessionHibernate.getInstance().openSession();
-		session.beginTransaction();
-		terreno = new String();
-		terreno =(String) selectTerreno.getSelectedItem();
-		
-		user.setTerreno(terreno);
-
-		session.update(user);
-		
-		session.getTransaction().commit();
-		session.close();
-	}
-*/
-	//public ActionListenerProxy getActionListenerProxyError() {
-//		return actionListenerProxyError;
-//	}
 	
-//	public ActionListenerProxy getActionListenerProxyOk() {
-		//return actionListenerProxyOk;
-	//}
-
 }
