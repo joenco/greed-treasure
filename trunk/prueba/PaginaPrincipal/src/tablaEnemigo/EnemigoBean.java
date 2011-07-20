@@ -6,17 +6,19 @@ public class EnemigoBean {
 	protected int inNivel;
 	protected int inVictoria;
 	protected int inDerrota;
+	protected String terreno; 
 
 	public EnemigoBean() {
 		// Empty
 	}
 
-	public EnemigoBean(String nick, int n, int v, int d) {
+	public EnemigoBean(String nick, int n, int v, int d, String terreno) {
 
 		this.txtNick = nick;
 		this.inNivel = n;
 		this.inVictoria = v;
 		this.inDerrota = d;
+		this.terreno = terreno;
 	}
 
 	public String getNick() {
@@ -49,5 +51,13 @@ public class EnemigoBean {
 
 	public void setDerrota(int inDerrota) {
 		this.inDerrota = inDerrota;
+	}
+	
+	public String getTerreno() {
+		return terreno;
+	}
+
+	public void setTerreno(String terreno) {
+		this.terreno = terreno;
 	}
 }

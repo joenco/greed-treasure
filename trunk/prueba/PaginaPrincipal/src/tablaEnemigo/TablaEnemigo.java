@@ -1,7 +1,12 @@
 package tablaEnemigo;
 
 import java.util.List;
+import echopoint.HtmlLayout;
+import echopoint.layout.HtmlLayoutData;
+import nextapp.echo.app.Row;
 import usuario.ActionListenerProxy;
+import usuario.ShowAccount;
+import usuario.Main;
 import usuario.GUIStyles;
 import org.hibernate.Session;
 import db.SessionHibernate;
@@ -34,15 +39,15 @@ import com.minotauro.echo.table.renderer.ImageCellRenderer;
 import com.minotauro.echo.table.renderer.LabelCellRenderer;
 import com.minotauro.echo.table.renderer.NestedCellRenderer;
 import usuario.AtacarTerreno;
-public class TablaEnemigo extends Panel {
+public class TablaEnemigo extends ContentPane {
 
 	private TestTableModel tableDtaModel;
 	private User user;
-	Label label = new Label("Nothing Selected");
-	private TextField txtFrst;
+		private TextField txtFrst;
 	private TextField txtLast;
 	private Button btnCreate;
 	private Button btnUpdate;
+	HtmlLayout htmlLayout;
 
 	private int editingRow;
 
@@ -63,7 +68,23 @@ public class TablaEnemigo extends Panel {
 		session.getTransaction().commit();
 		session.close();
 		setInsets(new Insets(8, 8, 8, 8));
+		
+		try {
+			htmlLayout = new HtmlLayout( //
+					getClass().getResourceAsStream("atacarTerreno.html"), "UTF-8");
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 
+		HtmlLayoutData hld;
+		
+		hld = new HtmlLayoutData("title");
+		Label lblTitle = new Label("LISTA DE ENEMIGOS PARA ATACAR");
+		lblTitle.setLayoutData(hld);
+		htmlLayout.add(lblTitle);
+		htmlLayout.add(lblTitle);
+
+		hld = new HtmlLayoutData("panel");
 		Grid col = new Grid(1);
 		add(col);
 
@@ -76,7 +97,7 @@ public class TablaEnemigo extends Panel {
 
 		tableDtaModel = new TestTableModel();
 		tableDtaModel.setEditable(true);
-		tableDtaModel.setPageSize(6);
+		tableDtaModel.setPageSize(10);
 
 		// ----------------------------------------
 		// La Tabla
@@ -101,11 +122,36 @@ public class TablaEnemigo extends Panel {
 		col.add(tableNavigation);
 		crear_tabla();
 
-		col.add(label);
+		//col.add(label);
+		col.setLayoutData(hld);
+		htmlLayout.add(col);
+		
+		hld = new HtmlLayoutData("buttons");
+		Row row =new Row();
+
+		Button btnVolver = new Button("Volver al ínicio");
+		btnVolver.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		btnVolver.setBackground(new Color(117, 145, 118));
+		btnVolver.setAlignment(new Alignment(Alignment.CENTER,
+				Alignment.CENTER));
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				bntVolverClicked();
+			}
+		});
+		row.add(btnVolver);
+
+		row.setLayoutData(hld);
+		htmlLayout.add(row);
+
+		add(htmlLayout);
 	}
-
-	// --------------------------------------------------------------------------------
-
+	
+	private void bntVolverClicked() {
+		removeAll();
+		Main main = new Main(user);
+		add(main);
+	}
 	// --------------------------------------------------------------------------------
 
 	private TableColModel initTableColModel() {
@@ -266,26 +312,11 @@ public class TablaEnemigo extends Panel {
 	private void btnAtkClicked(ETable table, int row) {
 		TableDtaModel model = table.getTableDtaModel();
 		EnemigoBean userBean = (EnemigoBean) model.getElementAt(row);
-		//userBean = userBean.getNick();
 		removeAll();
 		AtacarTerreno atacarEnemigo = new AtacarTerreno(user, userBean);
 		add(atacarEnemigo);
 	}
-
 	// --------------------------------------------------------------------------------
-
-	private void btnUpdateClicked() {
-		EnemigoBean enemigoBean = (EnemigoBean) tableDtaModel.getElementAt(editingRow);
-		enemigoBean.setNick(txtFrst.getText());
-
-		tableDtaModel.setEditable(true);
-
-		btnCreate.setEnabled(true);
-		btnUpdate.setEnabled(false);
-
-		tableDtaModel.currPageChanged();
-	}
-
 	public void crear_tabla() {
 		 List<EnemigoBean> armasBeanList = EnemigoBeanLoader.loadData();
 		 for (EnemigoBean armasBean : armasBeanList) {
