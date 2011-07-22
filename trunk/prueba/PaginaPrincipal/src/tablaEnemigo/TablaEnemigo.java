@@ -81,7 +81,7 @@ public class TablaEnemigo extends ContentPane {
 		hld = new HtmlLayoutData("title");
 		Label lblTitle = new Label("LISTA DE ENEMIGOS PARA ATACAR");
 		lblTitle.setLayoutData(hld);
-		htmlLayout.add(lblTitle);
+
 		htmlLayout.add(lblTitle);
 
 		hld = new HtmlLayoutData("panel");
@@ -97,7 +97,7 @@ public class TablaEnemigo extends ContentPane {
 
 		tableDtaModel = new TestTableModel();
 		tableDtaModel.setEditable(true);
-		tableDtaModel.setPageSize(10);
+		tableDtaModel.setPageSize(6);
 
 		// ----------------------------------------
 		// La Tabla
@@ -148,9 +148,11 @@ public class TablaEnemigo extends ContentPane {
 	}
 	
 	private void bntVolverClicked() {
-		removeAll();
+		ContentPane parent = (ContentPane) this.getParent();
+		parent.removeAll();
+
 		Main main = new Main(user);
-		add(main);
+		parent.add(main);
 	}
 	// --------------------------------------------------------------------------------
 
@@ -312,9 +314,12 @@ public class TablaEnemigo extends ContentPane {
 	private void btnAtkClicked(ETable table, int row) {
 		TableDtaModel model = table.getTableDtaModel();
 		EnemigoBean userBean = (EnemigoBean) model.getElementAt(row);
-		removeAll();
+		
+		ContentPane parent = (ContentPane) this.getParent();
+		parent.removeAll();
+		
 		AtacarTerreno atacarEnemigo = new AtacarTerreno(user, userBean);
-		add(atacarEnemigo);
+		parent.add(atacarEnemigo);
 	}
 	// --------------------------------------------------------------------------------
 	public void crear_tabla() {
