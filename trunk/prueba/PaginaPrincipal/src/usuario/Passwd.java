@@ -76,8 +76,9 @@ public class Passwd extends ContentPane {
 
 	private void btnStartClicked() {
 
-		removeAll();
-		add(new Welcome());
+		ContentPane parent = (ContentPane) this.getParent();
+		parent.removeAll();
+				parent.add(new Welcome());
 	}
 
 	private void loadHtmlTemplate(String templateName) {

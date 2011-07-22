@@ -31,7 +31,7 @@ import nextapp.echo.app.event.ActionListener;
  * @autor: Jorge Ortega
  */
 
-public class AtacarTerreno extends Panel {
+public class AtacarTerreno extends ContentPane {
 
 		User user;
 		EnemigoBean userEnemigo;
@@ -72,7 +72,8 @@ public class AtacarTerreno extends Panel {
 		});
 		row.add(btnSalir);
 		col.add(row);
-			    add(col);
+
+//		add(col);
 
 		session.getTransaction().commit();
 		session.close();
@@ -80,9 +81,11 @@ public class AtacarTerreno extends Panel {
 	}
 	
 	protected void bntSalirClicked() {
-		removeAll();
+		ContentPane parent = (ContentPane) this.getParent();
+		parent.removeAll();
+		
 		Main main = new Main(user);
-		add(main);
+		parent.add(main);
 	}
 	
 }
