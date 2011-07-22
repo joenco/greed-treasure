@@ -81,14 +81,16 @@ public class RecuperarPaaswd extends ContentPane {
 
 	private void listenerOkPerformed(ActionEvent evt) {
 		User user = (User) evt.getSource();
-		removeAll();
+		ContentPane parent = (ContentPane) this.getParent();
+		parent.removeAll();
 		Passwd passwd = new Passwd(user);
-		add(passwd);
+		parent.add(passwd);
 	}
 
 	private void btnCancellClicked() {
-		removeAll();
-		add(new Welcome());
+		ContentPane parent = (ContentPane) this.getParent();
+		parent.removeAll();
+		parent.add(new Welcome());
 	}
 
 	private void loadHtmlTemplate(String templateName) {

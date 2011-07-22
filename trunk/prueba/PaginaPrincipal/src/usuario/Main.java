@@ -235,13 +235,17 @@ public class Main extends ContentPane {
 
 	private void btnAtacarCastilloClicked() {
 		if (txtTerreno.getText().equals("sin terreno")) {
-			removeAll();
+			ContentPane parent = (ContentPane) this.getParent();
+			parent.removeAll();
+			
 			Terrenos terrenos = new Terrenos(user);
-			add(terrenos);
+			parent.add(terrenos);
 		} else {
-			removeAll();
+			ContentPane parent = (ContentPane) this.getParent();
+			parent.removeAll();
+
 			TablaEnemigo tablaEnemigo = new TablaEnemigo(user);
-			add(tablaEnemigo);
+			parent.add(tablaEnemigo);
 		}
 	}
 
@@ -294,8 +298,10 @@ public class Main extends ContentPane {
 	}
 
 	private void btnLogOutClicked() {
-		removeAll();
-		add(new Welcome());
+		ContentPane parent = (ContentPane) this.getParent();
+		parent.removeAll();
+
+		parent.add(new Welcome());
 	}
 
 	private void btnModifiedAccountClicked() {

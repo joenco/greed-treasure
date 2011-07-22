@@ -103,13 +103,11 @@ public class Terrenos extends ContentPane {
 	}
 
 	protected void bntModifiedAccountClicked() {
-
+		ContentPane parent = (ContentPane) this.getParent();
+		parent.removeAll();
 		modified();
-
-		removeAll();
 		Main main = new Main(user);
-		add(main);
-
+		parent.add(main);
 	}
 
 

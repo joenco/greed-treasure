@@ -93,9 +93,12 @@ public class Welcome extends ContentPane {
 
 	private void listenerOkPerformed(ActionEvent evt) {
 		User user = (User) evt.getSource();
-		removeAll();
+
+		ContentPane parent = (ContentPane) this.getParent();
+		parent.removeAll();
+
 		Main main = new Main(user);
-		add(main);
+		parent.add(main);
 	}
 
 	private void btnCreateAccountClicked() {

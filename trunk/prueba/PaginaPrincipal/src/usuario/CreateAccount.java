@@ -278,8 +278,9 @@ txtCountry = (String) selectCountry.getSelectedItem();
 
 		session.getTransaction().commit();
 		session.close();
-		removeAll();
-		add(new Welcome());
+			ContentPane parent = (ContentPane) this.getParent();
+			parent.removeAll();
+					parent.add(new Welcome());
 
 		windowPane.setTitle("Usuario registrado");
 		lbl.setText("Usteda ha sido registrado satisfactoriamente");
@@ -335,8 +336,9 @@ txtCountry = (String) selectCountry.getSelectedItem();
 	}
 
 	protected void btnCancelClicked() {
-		removeAll();
-		add(new Welcome());
+			ContentPane parent = (ContentPane) this.getParent();
+			parent.removeAll();
+					parent.add(new Welcome());
 	}
 
 	private boolean validateFields() {
