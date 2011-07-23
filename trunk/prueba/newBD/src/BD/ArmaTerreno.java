@@ -24,16 +24,6 @@ public class ArmaTerreno {
 	private ModeloArma modelRef;
 	private coordenadaArma refCoor;
 
-	/*public ArmaTerreno() {
-		// **** vacio ****
-	}
-
-	/*public ArmaTerreno(ModeloArma a) {
-		this.modelRef = a;
-		this.municiones_actuales = a.getMuniciones_base();
-		this.en_inv = true;
-	}*/
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public int getId() {

@@ -35,8 +35,8 @@ public class Usuario {
 	private PlantillaTerreno idRef;
 	private Perfil perfil;
 	private Caballero caballero;
-	// private List<Ataque> ataqueList = new ArrayList<Ataque>();
-	// private List<Ataque> ataqueRecibidoList = new ArrayList<Ataque>();
+//	private List<Ataque> ataqueList = new ArrayList<Ataque>();
+//	private List<Ataque> ataqueRecibidoList = new ArrayList<Ataque>();
 	private List<ArmaTerreno> armaTerreno = new ArrayList<ArmaTerreno>();
 	private List<ArmaCaballero> armaCaballero = new ArrayList<ArmaCaballero>();
 
@@ -128,7 +128,7 @@ public class Usuario {
 
 	@OneToMany(mappedBy = "refUser")
 	@LazyCollection(LazyCollectionOption.TRUE)
-	@Cascade({ CascadeType.ALL, CascadeType.DELETE_ORPHAN })
+	@Cascade({ CascadeType.ALL, })
 	public List<ArmaTerreno> getArmaTerreno() {
 		return armaTerreno;
 	}
@@ -139,7 +139,7 @@ public class Usuario {
 
 	@OneToMany(mappedBy = "idUser")
 	@LazyCollection(LazyCollectionOption.TRUE)
-	@Cascade({ CascadeType.ALL, CascadeType.DELETE_ORPHAN })
+	@Cascade({ CascadeType.ALL })
 	public List<ArmaCaballero> getArmaCaballero() {
 		return armaCaballero;
 	}
@@ -148,38 +148,26 @@ public class Usuario {
 		this.armaCaballero = armaCaballero;
 	}
 
-	// @OneToMany(mappedBy = "usuario1Ref")
-	// @LazyCollection(LazyCollectionOption.TRUE)
-	// @Cascade({ CascadeType.ALL})
-	// public List<Ataque> getAtaqueList() {
-	// return ataqueList;
-	// }
-	//
-	// public void setAtaqueList(List<Ataque> ataqueList) {
-	// this.ataqueList = ataqueList;
-	// }
-	//
-	//
-	// @OneToMany(mappedBy = "usuario2Ref")
-	// @LazyCollection(LazyCollectionOption.TRUE)
-	// @Cascade( {CascadeType.ALL})
-	// public List<Ataque> getAtaqueRecibidoList() {
-	// return ataqueRecibidoList;
-	// }
-	//
-	// public void setAtaqueRecibidoList(List<Ataque> ataqueRecibidoList) {
-	// this.ataqueRecibidoList = ataqueRecibidoList;
-	// }
+//	@OneToMany(mappedBy = "usuario1Ref")
+//	@LazyCollection(LazyCollectionOption.TRUE)
+//	@Cascade( { CascadeType.ALL })
+//	public List<Ataque> getAtaqueList() {
+//		return ataqueList;
+//	}
+//
+//	public void setAtaqueList(List<Ataque> ataqueList) {
+//		this.ataqueList = ataqueList;
+//	}
+//
+//	@OneToMany(mappedBy = "usuario2Ref")
+//	@LazyCollection(LazyCollectionOption.TRUE)
+//	@Cascade( { CascadeType.ALL })
+//	public List<Ataque> getAtaqueRecibidoList() {
+//		return ataqueRecibidoList;
+//	}
+//
+//	public void setAtaqueRecibidoList(List<Ataque> ataqueRecibidoList) {
+//		this.ataqueRecibidoList = ataqueRecibidoList;
+//	}
 
-	/*
-	 * @OneToMany(mappedBy = "loginRef")
-	 * 
-	 * @LazyCollection(LazyCollectionOption.TRUE)
-	 * 
-	 * @Cascade( { CascadeType.ALL, CascadeType.DELETE_ORPHAN }) public
-	 * List<FondoArma> getfonAList() { return fonAList; }
-	 * 
-	 * public void setfonAList(List<FondoArma> fonAList) { this.fonAList =
-	 * fonAList; }
-	 */
 }

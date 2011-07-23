@@ -36,16 +36,6 @@ public class ModeloArma {
 	private List<ArmaTerreno> armaTerreno = new ArrayList<ArmaTerreno>();
 	private List<ArmaCaballero> armaCaballero = new ArrayList<ArmaCaballero>();
 
-	/*public ModeloArma(String nombre, int defensa, int alcanse,
-			int municiones_base, int oro, int nivel) {
-		this.nombre = nombre;
-		this.defensa = defensa;
-		this.alcanse = alcanse;
-		this.municiones_base = municiones_base;
-		this.oro = oro;
-		this.nivel = nivel;
-	}*/
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public int getId() {
@@ -116,7 +106,7 @@ public class ModeloArma {
 
 	@OneToMany(mappedBy = "modelRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
-	@Cascade({ CascadeType.ALL, CascadeType.DELETE_ORPHAN })
+	@Cascade({ CascadeType.ALL })
 	public List<ArmaTerreno> getArmaTerreno() {
 		return armaTerreno;
 	}
@@ -127,7 +117,7 @@ public class ModeloArma {
 
 	@OneToMany(mappedBy = "refModel")
 	@LazyCollection(LazyCollectionOption.TRUE)
-	@Cascade({ CascadeType.ALL, CascadeType.DELETE_ORPHAN })
+	@Cascade({ CascadeType.ALL, })
 	public List<ArmaCaballero> getArmaCaballero() {
 		return armaCaballero;
 	}

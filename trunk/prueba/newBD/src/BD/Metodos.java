@@ -11,22 +11,13 @@ public class Metodos {
 	public static List<ModeloArma> tablaPrincipal(Usuario user) {
 		Session session = SessionHibernate.getInstance().openSession();
         session.beginTransaction();
-		// String str =
-		// "SELECT a.modelRef FROM ArmaTerreno AS a WHERE a.refUser.login = '" +
-		// user.getLogin() +"'";
 		String str = "SELECT DISTINCT a.modelRef AS c FROM ArmaTerreno AS a WHERE a.refUser.login = :login";
-
-		// String str =
-		// "SELECT m.imagen, m.nombre, m.defensa, m.alcanse, m.oro, m.nivel FROM ModeloArma AS m, ArmaTerreno AS a WHERE m.id = a.refModel AND a.refUser.login = "+
-		// user + " GROUP BY m.nombre";
 		Query query = session.createQuery(str);
 		query.setString("login", user.getLogin());
 		List<ModeloArma> list = new ArrayList<ModeloArma>();
 		for (Object obj : query.list()) {
-			// Object[] objArray = (Object[]) obj;
 			ModeloArma ma = (ModeloArma) obj;
 			list.add(ma);
-			// System.out.println(objArray[0] + ";" + objArray[1]);
 			System.err.println(ma.getId() + "; " + ma.getNombre());
 		}
 		session.getTransaction().commit();
@@ -57,28 +48,25 @@ public class Metodos {
 		return list;
 	}
 
-	public static ArmaTerreno usarArmaTerreno(Usuario user, int x, int y, int id) {
+	public static ArmaTerreno usarArmaTerreno(int x, int y, int id) {
 
 		Session session = SessionHibernate.getInstance().openSession();
         session.beginTransaction();
 		
 		String str = "SELECT a FROM ArmaTerreno AS a WHERE a.id = :id";
 		Query query = session.createQuery(str);
-		String idstring = " ";
-		idstring = Integer.toString(id);
-		query.setString("id", idstring);
-		List<ArmaTerreno> list = new ArrayList<ArmaTerreno>();
-		for (Object obj : query.list()) {
-			ArmaTerreno at = (ArmaTerreno) obj;
-			list.add(at);
-			System.out.println(at.getId() + " - " + at.getMuniciones_actuales());
-		}
-		/*
-		 * coordenadaArma cArma = new coordenadaArma(); cArma.setX(x)
-		 * cArma.setX(x);
-		 */
+		query.setInteger("id", id);
+		
+		ArmaTerreno armaT = new ArmaTerreno();
+		armaT = (ArmaTerreno) query.uniqueResult();
+		
+		coordenadaArma coor = new coordenadaArma();
+		coor.setRefArma(armaT);
+		coor.setX(x);
+		coor.setY(y);
+
 		session.getTransaction().commit();
 		session.close();
-		return list.get(0);
+		return armaT;
 	}
 }
