@@ -393,24 +393,28 @@ public class LoadBD {
               crearPlantilla("Nombre4", 4);
               crearPlantilla("Nombre5", 5);
 
-                             
-                // Creacion de los modelos de armas terreno y caballero
                 
-                // Creacion de los modelos de caballero
+              // Creacion de los modelos de caballero
+              
+              // Creacion de modelos armas
+              
+              // Creacion de los modelos de armas terreno
+                         
+              // Creacion de las destrezas
+              
+              
+	            Session session = SessionHibernate.getInstance().openSession();
+	            session.beginTransaction();
+	      		
+                ArmaTerreno a = new ArmaTerreno();
+                a.setMuniciones_actuales(0);
                 
-                // Creacion de las destrezas
-                Usuario a = new Usuario ();
-                a.setNombre("arturo rondon");
-                a.setPassword(123456);
-                a.setEmail("artur");
-                a.setOro(120);
-                a.setLogin("arturo");
-                a.setPais("Vene");
-                a.setNivel(5);
-                /*Metodos.tablaPrincipal(a);
-                List <Object> object = new ArrayList<Object>();
-            Metodos.tablaPorArma(a, "Bomba");*/
-            //Metodos.usarArmaTerreno(a, 10, 3, 1514);
+                session.save(a);
+                session.getTransaction().commit();
+        		session.close();
+        		    
+                
+        		Metodos.usarArmaTerreno(10, 3, a.getId());
         }
         
 }

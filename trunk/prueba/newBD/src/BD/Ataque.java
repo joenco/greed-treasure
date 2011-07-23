@@ -12,7 +12,6 @@
 //@Entity
 //@Table(name = "t_ataque")
 //@Proxy(lazy = false)
-//
 //public class Ataque {
 //	private int id;
 //	private Usuario usuario1Ref;
@@ -45,7 +44,5 @@
 //	public void setUsuario2(Usuario usuario2Ref) {
 //		this.usuario2Ref = usuario2Ref;
 //	}
-//	
-//	
 //
 //}
