@@ -36,22 +36,30 @@ class Main {
         cab = enemigo.loadData();
         
 	CaballeroBean enemigo2 = new CaballeroBean();
-	enemigo2 = cab.get(PILAR);
+	enemigo2 = cab.get(TERESA);
 
-	Ataque d = new Ataque();
-	int D = d.DañoArma(arma1, enemigo2); 
-	if (D<=0) {
-		System.out.println("El Arma ha fallado");
-	} else {
-		System.out.println("El Arma ha acertado, te ha hecho: "+D+" de daño");
-	}
+	for (int i= 0; i<5; i++) {
+		Ataque d = new Ataque();
+		Vida v = new Vida();
+		int D = d.DañoArma(arma1, enemigo2);
+		int D1 = d.DañoCaballero(arma1, enemigo2);
+		int V = v.VidaArma(D1, arma1);
+		int V1 = v.VidaCaballero(D, enemigo2);
 
-	D = d.DañoCaballero(arma1, enemigo2); 
+		if (D<=0) {
+			System.out.println("El Arma ha fallado");
+		} else {
+			System.out.println("El Arma ha acertado, te ha hecho: "+D+" de daño");
+		}
 
-	if (D<=0) {
-		System.out.println("El Caballero ha fallado");
-	} else {
-		System.out.println("El Caballero ha acertado, el Arma ha recibido: "+D+" de daño");
+	if (D1<=0) {
+			System.out.println("El Caballero ha fallado");
+		} else {
+			System.out.println("El Caballero ha acertado, el Arma ha recibido: "+D1+" de daño");
+		}
+
+		System.out.println("La Vida del arma es: "+V);
+		System.out.println("La Vida del caballero es: "+V1);
 	}
   }
 }

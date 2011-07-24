@@ -9,7 +9,7 @@ public class ArmaBean {
 	protected int alcance;
 	protected int resistencia;
 	protected int municiones;
-	protected int oro;
+	protected int vida;
 
 	public ArmaBean() {
 		// Empty
@@ -24,7 +24,7 @@ public class ArmaBean {
 		this.resistencia = d;
 		this.municiones = e;
 		this.nivel = nv;
-		this.oro = f;
+		this.vida = f;
 	}
 
 	public String getName() {
@@ -55,8 +55,8 @@ public class ArmaBean {
 		return municiones;
 	}
 
-	public int getOro() {
-		return oro;
+	public int getVida() {
+		return vida;
 	}
 
 	public void setAtaque(int ataque) {
@@ -79,8 +79,8 @@ public class ArmaBean {
 		this.resistencia = resistencia;
 	}
 
-	public void setOro(int oro) {
-		this.oro = oro;
+	public void setVida(int vida) {
+		this.vida = vida;
 	}
 
 	public int getNivel() {
