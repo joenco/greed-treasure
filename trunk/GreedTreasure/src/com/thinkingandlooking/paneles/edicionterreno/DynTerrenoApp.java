@@ -155,7 +155,8 @@ public class DynTerrenoApp extends Panel {
 		    	for (int j=0; j < dimMatriz;j++ ) {
 		    		
 		    	 String coordenada= new String("("+String.valueOf(i)+","+String.valueOf(j)+")");
-		    	 imageMap.addSection(new RectangleSection(40*j,40*(i+1),40*(j+1) ,40*i , coordenada));
+		    	 imageMap.addSection(new RectangleSection(Terreno.getSizeTiles()*j,Terreno.getSizeTiles()
+		    			 *(i+1),Terreno.getSizeTiles()*(j+1) ,Terreno.getSizeTiles()*i , coordenada));
 		    	 
 		    	}
 		    }
