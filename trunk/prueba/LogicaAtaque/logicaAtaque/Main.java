@@ -40,11 +40,11 @@ class Main {
 
 	for (int i= 0; i<5; i++) {
 		Ataque d = new Ataque();
-		Vida v = new Vida();
+		Atributos e = new Atributos();
 		int D = d.DañoArma(arma1, enemigo2);
 		int D1 = d.DañoCaballero(arma1, enemigo2);
-		int V = v.VidaArma(D1, arma1);
-		int V1 = v.VidaCaballero(D, enemigo2);
+		e.VidaArma(D1, arma1);
+		e.VidaCaballero(D, enemigo2);
 
 		if (D<=0) {
 			System.out.println("El Arma ha fallado");
@@ -56,10 +56,15 @@ class Main {
 			System.out.println("El Caballero ha fallado");
 		} else {
 			System.out.println("El Caballero ha acertado, el Arma ha recibido: "+D1+" de daño");
+			e.ExpCaballero(enemigo2);
 		}
 
-		System.out.println("La Vida del arma es: "+V);
-		System.out.println("La Vida del caballero es: "+V1);
+		e.ActualizarAtributos(enemigo2);
+
+		System.out.println("La Vida del arma es: "+arma1.getVida());
+		System.out.println("La Vida del caballero es: "+enemigo2.getVida());
+		System.out.println("La Experiencia  del caballero es: "+enemigo2.getExp());
+		System.out.println("El Nivel del caballero es: "+enemigo2.getNivel());
 	}
   }
 }

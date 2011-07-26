@@ -18,19 +18,7 @@ public class Ataque {
 		int dc = user.getDefensa();
 		int sd = user.getSD();
 		int hab = user.getHab();
-		int fc = user.getFc();
 		int nc = user.getNivel();
-
-	// comprobamos que atributos ayudan al caballero (habilidad o fuerza) cuando es atacado)
-	if ((hab-fc) >= 3) {
-		A=A-1;
-	}
-	if (hab==nc*2) { C=C+hab/2; } // aumentamos la efectividad del ataque en 1 cada 2 niveles en la hab
-	if ((fc-hab) >= 3) {
-		fc=fc+1;
-	}
-	if (fc==nc*4) { fc=fc+fc/4; } // aumentamos la fortaleza en 1 cada 4 niveles de fc
-
 		int n = (int)Math.round(Math.random()*A); // numero aleatorio entre 0 y 9
 		int n2 = (int)Math.round(Math.random()*4)+6; // respuesta de las armas defensivas del caballero.
 		int d=0;
@@ -39,7 +27,7 @@ public class Ataque {
 			d = 0;
 		} else {
 			int atk = aa+alc+nv;
-			d = (int) (atk-(n2/10.0)*(dc+sd)-0.7*fc);
+			d = (int) (atk-(n2/10.0)*(dc+sd));
 			if (d<=0) {
 			  d=1; }
 		}
