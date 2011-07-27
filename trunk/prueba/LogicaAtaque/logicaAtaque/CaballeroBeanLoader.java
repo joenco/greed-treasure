@@ -13,11 +13,11 @@ public class CaballeroBeanLoader {
 //			String imageName) {
 
     
-        ret.add(new CaballeroBean("Joenco", 2, 4, 2, 4, 4, 2, 100, 145, 5));
-        ret.add(new CaballeroBean("Gladiador", 1, 2, 1, 2, 1, 1, 100, 0, 1));
-        ret.add(new CaballeroBean("Carlos", 3, 6, 3, 6, 6, 1, 100, 12, 2));
-        ret.add(new CaballeroBean("Pilar", 8, 16, 8, 16, 10, 1, 100, 1, 4));
-        ret.add(new CaballeroBean("Teresa", 1, 4, 1, 4, 1, 1, 100, 145, 1));
+        ret.add(new CaballeroBean("Joenco", 10, 5, 20, 5, 20, 29625, 100, 100, 1500, 100));
+        ret.add(new CaballeroBean("Gladiador", 8, 4, 15, 4, 12, 13765, 100, 100, 550, 120));
+        ret.add(new CaballeroBean("Carlos", 1, 1, 4, 1, 4, 0, 100, 100, 3, 2));
+        ret.add(new CaballeroBean("Pilar", 3, 1, 8, 1, 8, 750, 100, 100, 2, 5));
+        ret.add(new CaballeroBean("Teresa", 5, 2, 10, 2, 10, 2200, 100, 100, 50, 11));
 
         return ret;
 	}

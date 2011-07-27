@@ -12,23 +12,25 @@ public class CaballeroBean {
 	protected int vida;
 	protected int exp;
 	protected int victoria;
+	protected int derrota;
 
 	public CaballeroBean() {
 		// Empty
 	}
 
-	public CaballeroBean(String nick, int a, int sa, int d, int sd, int nv, int hab, int v, int e, int x) {
+	public CaballeroBean(String nick, int nc, int a, int sa, int d, int sd, int e, int hab, int v, int vc, int dc) {
 
 		this.nick = nick;
 		this.ataque = a;
 		this.sa = sa;
 		this.defensa = d;
 		this.sd = sd;
-		this.nivel = nv;
+		this.nivel = nc;
 		this.habilidad = hab;
 		this.vida = v;
-		this.exp = e;	
-		this.victoria = x;
+		this.exp = e;
+		this.victoria = vc;
+		this.derrota = dc;
 	}
 
 	public String getNick() {
@@ -109,5 +111,13 @@ public class CaballeroBean {
 
 	public void setVictoria(int victoria) {
 		this.victoria = victoria;
+	}
+
+	public int getDerrota() {
+		return derrota;
+	}
+
+	public void setDerrota(int derrota) {
+		this.derrota = derrota;
 	}
 }

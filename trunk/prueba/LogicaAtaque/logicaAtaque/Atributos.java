@@ -1,3 +1,9 @@
+/*
+ * Logica de ataque en las Armas del castillo y el Caballero.
+ * Compañia: Thinking&looking
+ * Juego: Greed Treasure.
+ * Realizado por: Jorge Ortega.
+*/
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -6,29 +12,31 @@ import javax.swing.*;
 
 public class Atributos {
 	private CaballeroBean user;
+	private CaballeroBean user1;
 	private ArmaBean arma;
 	private int d;
 
 // experiencia que se obtiene cuando el caballero ataca y es efectivo.
 	public void ExpCaballero(CaballeroBean user) {
-		user.setExp(user.getExp()+2);
+		user.setExp(user.getExp()+5*user.getNivel());
 	}
 
 // experiencia que se obtiene cuando es atacado el castillo y la defensa es efectiva.
 	public void ExpCastillo(CaballeroBean user) {
-		user.setExp(user.getExp()+2);
+		user.setExp(user.getExp()+2*user.getNivel());
 	}
 
 // experiencia que se obtiene por la victoria(ya sea porque vencio al caballero o al castillo).
 	public void ExpVictoria(CaballeroBean user) {
-		user.setExp(user.getExp()+20);
+		user.setExp(user.getExp()+25*user.getNivel());
 	}
 
 // actualizando los atributos del usuario según su nivel.
 	public void ActualizarAtributos(CaballeroBean user) {
 
 	// actualizando nivel
-		user.setNivel(user.getNivel()+(user.getExp()/(150*user.getNivel()+100*(user.getNivel()-1))));
+	int n = (int) (150*(Math.pow(user.getNivel(), (1.3+user.getNivel()/10.0))));
+		user.setNivel(user.getNivel()+(user.getExp()/n));
 
 	// actualizando ataque y defensa predeterminada.
 		user.setDefensa(user.getDefensa()+user.getNivel()/(user.getNivel()*2));
@@ -51,5 +59,11 @@ public void VidaArma(int d, ArmaBean arma) {
 		if (user.getVida()<=0) {
 			user.setVida(0);
 		}
+	}
+
+// actualizamos el record de los usuarios.
+	public void Records(CaballeroBean user, CaballeroBean user1) {
+		user.setVictoria(user.getVictoria()+1);
+		user.setDerrota(user.getDerrota()+1);
 	}
 }
