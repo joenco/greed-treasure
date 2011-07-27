@@ -1,7 +1,6 @@
 
 public class ArmaBean {
 
-	protected String frstName;
 	protected String name;
 	protected int nivel;
 	protected int ataque;
@@ -15,16 +14,16 @@ public class ArmaBean {
 		// Empty
 	}
 
-	public ArmaBean(String name, int a, int b, int c, int d, int e, int f, int nv) {
+	public ArmaBean(String name, int nv, int a, int d, int alc, int m, int ra, int v) {
 
 		this.name = name;
 		this.ataque = a;
-		this.defensa = b;
-		this.alcance = c;
-		this.resistencia = d;
-		this.municiones = e;
+		this.defensa = d;
+		this.alcance = alc;
+		this.resistencia = ra;
+		this.municiones = m;
 		this.nivel = nv;
-		this.vida = f;
+		this.vida = v;
 	}
 
 	public String getName() {

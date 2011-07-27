@@ -36,7 +36,7 @@ class Main {
         cab = enemigo.loadData();
         
 	CaballeroBean enemigo2 = new CaballeroBean();
-	enemigo2 = cab.get(TERESA);
+	enemigo2 = cab.get(CARLOS);
 
 	for (int i= 0; i<5; i++) {
 		Ataque d = new Ataque();
