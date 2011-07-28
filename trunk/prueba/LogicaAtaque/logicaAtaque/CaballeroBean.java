@@ -8,7 +8,7 @@ public class CaballeroBean {
 	protected int sa;
 	protected int defensa;
 	protected int sd;
-	protected int habilidad;
+	protected int oro;
 	protected int vida;
 	protected int exp;
 	protected int victoria;
@@ -18,7 +18,7 @@ public class CaballeroBean {
 		// Empty
 	}
 
-	public CaballeroBean(String nick, int nc, int a, int sa, int d, int sd, int e, int hab, int v, int vc, int dc) {
+	public CaballeroBean(String nick, int nc, int a, int sa, int d, int sd, int e, int o, int v, int vc, int dc) {
 
 		this.nick = nick;
 		this.ataque = a;
@@ -26,7 +26,7 @@ public class CaballeroBean {
 		this.defensa = d;
 		this.sd = sd;
 		this.nivel = nc;
-		this.habilidad = hab;
+		this.oro = o;
 		this.vida = v;
 		this.exp = e;
 		this.victoria = vc;
@@ -81,12 +81,12 @@ public class CaballeroBean {
 		this.nivel = nivel;
 	}
 
-	public int getHab() {
-		return habilidad;
+	public int getCantOro() {
+		return oro;
 	}
 
-	public void setHab(int habilidad) {
-		this.habilidad = habilidad;
+	public void setCantOro(int oro) {
+		this.oro = oro;
 }
 
 	public int getVida() {
