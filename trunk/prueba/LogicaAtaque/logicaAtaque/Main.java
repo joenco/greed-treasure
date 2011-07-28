@@ -60,8 +60,12 @@ class Main {
 		}
 
 		e.ActualizarAtributos(enemigo2);
+		//e.Records();
 
+		System.out.println("------ atributos del arma ------");
 		System.out.println("La Vida del arma es: "+arma1.getVida());
+		System.out.println("Al Arma le quedan: "+arma1.getMuniciones()+" municiones");
+		System.out.println("------ atributos del caballero ------");
 		System.out.println("La Vida del caballero es: "+enemigo2.getVida());
 		System.out.println("La Experiencia  del caballero es: "+enemigo2.getExp());
 		System.out.println("El Nivel del caballero es: "+enemigo2.getNivel());

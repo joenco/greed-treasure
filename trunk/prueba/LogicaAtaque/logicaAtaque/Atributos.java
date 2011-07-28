@@ -64,6 +64,8 @@ public void VidaArma(int d, ArmaBean arma) {
 // actualizamos el record de los usuarios.
 	public void Records(CaballeroBean user, CaballeroBean user1) {
 		user.setVictoria(user.getVictoria()+1);
-		user.setDerrota(user.getDerrota()+1);
+		user.setCantOro((int) (user.getCantOro()+user.getCantOro()*0.1));
+		user1.setDerrota(user1.getDerrota()+1);
+		user1.setCantOro((int) (user1.getCantOro()-user1.getCantOro()*0.1));
 	}
 }

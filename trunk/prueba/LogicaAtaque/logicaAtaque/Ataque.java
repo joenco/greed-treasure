@@ -19,6 +19,7 @@ public class Ataque {
 		int aa = arma.getAtaque();
 		int alc = arma.getAlcance();
 		int nv = arma.getNivel();
+		int m = arma.getMuniciones();
 
 		// elementos de defensa del caballero
 		int dc = user.getDefensa();
@@ -35,7 +36,15 @@ public class Ataque {
 			int atk =aa+alc+nv;
 			d = (int)(atk-(e/3+n2/10.0)*(dc+sd));
 			if (d<=0) {
-			  d=1; }
+			    d=1;
+			}
+			if (m<=0) {
+			    d=0;
+			} else {
+			    if (m<0  || m<=1000) {
+				arma.setMuniciones(arma.getMuniciones()-1);
+			   }
+			}
 		}
 
 		return d;
