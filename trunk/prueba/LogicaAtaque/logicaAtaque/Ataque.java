@@ -34,7 +34,7 @@ public class Ataque {
 			d = 0;
 		} else {
 			int atk =aa+alc+nv;
-			d = (int)(atk-(e/3+n2/10.0)*(dc+sd));
+			d = (int)(atk-(e/2+n2/10.0)*(dc+sd));
 			if (d<=0) {
 			    d=1;
 			}

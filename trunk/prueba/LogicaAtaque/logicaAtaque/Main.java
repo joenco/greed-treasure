@@ -30,13 +30,13 @@ class Main {
         ArmaBeanLoader arma =new ArmaBeanLoader() ;
         cab1 = arma.loadData();
 	ArmaBean arma1 = new ArmaBean();
-	arma1 = cab1.get(DRAGON);
+	arma1 = cab1.get(LOBO);
 
         CaballeroBeanLoader enemigo =new  CaballeroBeanLoader() ;
         cab = enemigo.loadData();
         
 	CaballeroBean enemigo2 = new CaballeroBean();
-	enemigo2 = cab.get(CARLOS);
+	enemigo2 = cab.get(GLADIADOR);
 
 	for (int i= 0; i<5; i++) {
 		Ataque d = new Ataque();

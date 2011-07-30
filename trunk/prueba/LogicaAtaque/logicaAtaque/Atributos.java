@@ -35,7 +35,7 @@ public class Atributos {
 	public void ActualizarAtributos(CaballeroBean user) {
 
 	// actualizando nivel
-	int n = (int) (150*(Math.pow(user.getNivel(), (1.3+user.getNivel()/10.0))));
+	int n = (int) (150*(Math.pow(user.getNivel(), (1.1+user.getNivel()/10.0))));
 		user.setNivel(user.getNivel()+(user.getExp()/n));
 
 	// actualizando ataque y defensa predeterminada.
