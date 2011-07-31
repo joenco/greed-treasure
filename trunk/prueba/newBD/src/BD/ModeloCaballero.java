@@ -71,7 +71,7 @@ public class ModeloCaballero {
 		this.imgTerreno = imgTerreno;
 	}
 
-	@OneToMany(mappedBy = "modeloCaballeroRef", orphanRemoval = true)
+	@OneToMany(mappedBy = "modeloCaballeroRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
 	@Cascade( { CascadeType.ALL })
 	public List<Caballero> getfonTList() {

@@ -73,7 +73,7 @@ public class Destreza {
 		this.nombre = nombre;
 	}
 
-	@OneToMany(mappedBy = "destrezaRef", orphanRemoval = true)
+	@OneToMany(mappedBy = "destrezaRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
 	@Cascade( { CascadeType.ALL })
 	public List<CaballeroDestreza> getCaballeroDestrezaList() {
@@ -84,7 +84,7 @@ public class Destreza {
 		this.caballeroDestrezaList = muchosList;
 	}
 
-	@OneToMany(mappedBy = "destrezaMRef", orphanRemoval = true)
+	@OneToMany(mappedBy = "destrezaMRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
 	@Cascade( { CascadeType.ALL })
 	public List<DestrezaModelArmaT> getDestrezaModelArmaTList() {

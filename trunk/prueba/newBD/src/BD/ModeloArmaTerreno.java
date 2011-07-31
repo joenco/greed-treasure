@@ -112,7 +112,7 @@ public class ModeloArmaTerreno {
 		this.armaTerrenoList = armaTerrenoList;
 	}
 
-	@OneToMany(mappedBy = "modelArmaTRef", orphanRemoval = true)
+	@OneToMany(mappedBy = "modelArmaTRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
 	@Cascade( { CascadeType.ALL })
 	public List<DestrezaModelArmaT> getDestrezaModelArmaTList() {
