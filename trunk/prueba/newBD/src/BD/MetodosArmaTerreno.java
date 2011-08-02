@@ -187,5 +187,44 @@ public class MetodosArmaTerreno {
 		tablaPrincipal(user);
 		aux = tablaPorArma(user, "Bomba");
 		usarArmaTerreno(1, 5, 12330);
+		/*Usuario user = new Usuario ();
+		user.setNombre("sujaira");
+		user.setEmail("susi141");
+		user.setLogin("susi");
+		user.setPais("Vene");
+		user.setPassword(123);
+		
+		Caballero cab = new Caballero ();
+		cab.setAtaque(10);
+		cab.setNivel(10);
+		cab.setUsuario(user);
+		
+		ModeloArmaTerreno model = new ModeloArmaTerreno();
+		model.setNombre("Bomba");
+		model.setDefensa(10);
+		model.setAlcance(2);
+		model.setMuniciones_base(2);
+		model.setNivel(1);
+		model.setOro(100);
+		
+		ArmaTerreno armaT = new ArmaTerreno();
+		armaT.setCaballeroRef(cab);
+		armaT.setModelRef(model);
+		armaT.setMuniciones_actuales(model.getMuniciones_base());
+		
+		CoordenadaArma coor = new CoordenadaArma();
+		coor.setX(10);
+		coor.setY(2);
+		coor.setArmaTerrenoRef(armaT);
+		armaT.setCoorArmaRef(coor);
+		
+		Session session = SessionHibernate.getInstance().openSession();
+		session.beginTransaction();
+		session.save(user);
+		session.save(armaT);
+		session.save(coor);
+		
+		session.getTransaction().commit();
+		session.close();*/
 	} 
 }
