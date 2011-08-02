@@ -5,12 +5,12 @@ import BD.Usuario;
 public class pruebaLlenado {
 
 	public static Usuario insertarUsuario(String nombre, String login,
-			String email, String pasi, int pass) {
+			String email, String pais, int pass) {
 		Usuario user = new Usuario();
-		user.setNombre(nombre);
+	    user.setNombre(nombre);
 		user.setEmail(email);
 		user.setLogin(login);
-		user.setPais(pasi);
+		user.setPais(pais);
 		user.setPassword(pass);
 
 		Session session = SessionHibernate.getInstance().openSession();
@@ -81,8 +81,8 @@ public class pruebaLlenado {
 		session.close();
 	}
 public static void main(String[] args) {
-	Usuario user = insertarUsuario("Sujaira", "susi", "susi141", "vene", 1234);
-	Usuario user2 = insertarUsuario("Fannia", "hermi", "fanni", "vene", 1234);
+	Usuario user = insertarUsuario("Sujaira", "susi3", "susi141", "vene", 1234);
+	Usuario user2 = insertarUsuario("Fannia", "hermi3", "fanni", "vene", 1234);
 	Caballero caball = insertarCaballero(10, 5, 100, 5, 100, user);
 	Caballero caball1 = insertarCaballero(10, 5, 100, 5, 100, user2);
 	ModeloArmaTerreno bomba = insertarModeloArmaTerreno("Bomba", 10, 2, 2, 15, 1);
