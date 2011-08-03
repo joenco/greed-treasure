@@ -386,7 +386,33 @@ public class loadBD {
 
 		// Creacion de los modelos de armas terreno
 
-		// Creacion de las destrezas
+		//PROFE... Esta es la parte en la que estamos teniendo problemas, esto ocurre con
+		//armaterreo y coordenada arma que tienen una relacion uno a uno que es lo mismo
+		//que pasa con usuario y caballero aqui esta lo que fannia coloco en el foro
+		//al final para que  vea el error... Gracias  XD
+		
+		Session session = SessionHibernate.getInstance().openSession();
+       session.beginTransaction();
+		
+		ArmaTerreno a = new ArmaTerreno();
+        CoordenadaArma c = new CoordenadaArma();
+        c.setX(0);
+        c.setY(0);
+
+        a.setCoorArmaRef(c);
+
+        session.save(a);
+       
+        c.setArmaTerrenoRef(a);
+        session.save(c);
+        session.getTransaction().commit();
+        session.close();
+	
+        
+        
+        
+        
+        // Creacion de las destrezas
 //		Usuario user;
 //		Session session = SessionHibernate.getInstance().openSession();
 //        session.beginTransaction();
