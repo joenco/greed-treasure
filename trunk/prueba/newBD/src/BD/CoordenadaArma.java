@@ -21,7 +21,7 @@ public class CoordenadaArma {
 	private ArmaTerreno armaTerrenoRef;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public int getId() {
 		return id;
 	}

@@ -4,7 +4,12 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+
 import BD.SessionHibernate;
 
 public class loadBD {
@@ -232,7 +237,6 @@ public class loadBD {
 
 				coor.setY(j);
 				coor.setX(i);
-				coor.setId(i);
 				tile = (Tile) session.load(Tile.class, t[i][j]);
 				coor.setIdTileRef(tile);
 				planT.getFonTList().add(coor);
@@ -383,6 +387,71 @@ public class loadBD {
 		// Creacion de los modelos de armas terreno
 
 		// Creacion de las destrezas
-
+//		Usuario user;
+//		Session session = SessionHibernate.getInstance().openSession();
+//        session.beginTransaction();
+//        
+//        Caballero cab= new Caballero();
+//        cab.setDefensa(0);
+//        cab.setNivel(0);
+//        
+//        String login ="faaa";
+//        Query q = session.createQuery("FROM Usuario WHERE login=:att_login");
+//        q.setParameter("att_login", login);
+//
+//        user = (Usuario) q.uniqueResult();
+//        cab.setUsuario(user);
+//        session.save(cab);
+//        
+//        session.getTransaction().commit();
+//        session.close();
+//
+//		CoordenadaArma c = new CoordenadaArma();
+//		c.setX(0);
+//		c.setY(0);
+//
+//		ArmaTerreno a = new ArmaTerreno();
+//		a.setMuniciones_actuales(0);
+//		
+//
+//		Session session = SessionHibernate.getInstance().openSession();
+//        session.beginTransaction();
+//        int id =240;
+//     
+////        a = (ArmaTerreno) session.load(ArmaTerreno.class, id);
+//        a.setCoorArmaRef(c);
+//        c.setArmaTerrenoRef(a);
+//        session.save(c);
+//        session.save(a);      
+//      session.getTransaction().commit();
+//      session.close();
+//      
+//      
+//      
+//		Session session = SessionHibernate.getInstance().openSession();
+//        session.beginTransaction();
+//  
+//      ArmaTerreno a = new ArmaTerreno();
+//      CoordenadaArma c = new CoordenadaArma();
+//      c.setX(0);
+//      c.setY(0);
+//
+//      a.setCoorArmaRef(c);
+//     
+//      session.save(a);
+//      c.setArmaTerrenoRef(a);
+//      
+//     
+//
+//   //   a = (ArmaTerreno) session.load(ArmaTerreno.class, 1);
+//    
+//      session.getTransaction().commit();
+//      session.close();
+//      
+//		Session session2 = SessionHibernate.getInstance().openSession();
+//        session2.beginTransaction();
+//        session2.save(c);
+//        session2.getTransaction().commit();
+//        session2.close();
 	}
 }
