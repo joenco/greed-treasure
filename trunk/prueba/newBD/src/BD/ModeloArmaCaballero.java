@@ -58,11 +58,11 @@ public class ModeloArmaCaballero {
 		this.defensa = defensa;
 	}
 
-	public int getAlcanse() {
+	public int getAlcance() {
 		return alcance;
 	}
 
-	public void setAlcanse(int alcance) {
+	public void setAlcance(int alcance) {
 		this.alcance = alcance;
 	}
 

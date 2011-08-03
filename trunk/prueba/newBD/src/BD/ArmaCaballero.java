@@ -25,10 +25,6 @@ public class ArmaCaballero {
 	private ModeloArmaCaballero modelRef;
 	private Caballero armaCaballeroRef;
 
-	public ArmaCaballero(ModeloArmaCaballero a) {
-		this.municiones_actuales = a.getMuniciones_base();
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public int getId() {

@@ -171,22 +171,22 @@ public class MetodosArmaTerreno {
 	}
 	
 	public static void main(String[] args) {
-		Usuario user = new Usuario();
-		Caballero cab = new Caballero();
-
-		Session session = SessionHibernate.getInstance().openSession();
-		session.beginTransaction();
-
-		user = (Usuario) session.load(Usuario.class, 12290);
-		cab = (Caballero) session.load(Caballero.class, 1230);
-
-		session.getTransaction().commit();
-		session.close();
-		Object aux;
-
-		tablaPrincipal(user);
-		aux = tablaPorArma(user, "Bomba");
-		usarArmaTerreno(1, 5, 12330);
+//		Usuario user = new Usuario();
+//		Caballero cab = new Caballero();
+//
+//		Session session = SessionHibernate.getInstance().openSession();
+//		session.beginTransaction();
+//
+//		user = (Usuario) session.load(Usuario.class, 12290);
+//		cab = (Caballero) session.load(Caballero.class, 1230);
+//
+//		session.getTransaction().commit();
+//		session.close();
+//		Object aux;
+//
+//		tablaPrincipal(user);
+//		aux = tablaPorArma(user, "Bomba");
+//		usarArmaTerreno(1, 5, 12330);
 		/*Usuario user = new Usuario ();
 		user.setNombre("sujaira");
 		user.setEmail("susi141");
