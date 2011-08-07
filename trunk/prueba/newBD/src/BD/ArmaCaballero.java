@@ -20,7 +20,7 @@ import BD.ModeloArmaCaballero;
 public class ArmaCaballero {
 	private int id;
 	private int municiones_actuales;
-	private String extremidad;
+	private int extremidad;
 	private Usuario idUser;
 	private ModeloArmaCaballero modelRef;
 	private Caballero armaCaballeroRef;
@@ -43,11 +43,11 @@ public class ArmaCaballero {
 		this.municiones_actuales = municiones_actuales;
 	}
 
-	public String getExtremidad() {
+	public int getExtremidad() {
 		return extremidad;
 	}
 
-	public void setExtremidad(String extremidad) {
+	public void setExtremidad(int extremidad) {
 		this.extremidad = extremidad;
 	}
 
