@@ -40,7 +40,7 @@ public class MetodosArmaTerreno {
 			Object[] objArray = (Object[]) obj;
 			list.add(obj);
 			System.out.println(objArray[0] + " - " + objArray[1] + " - "
-					+ objArray[2] + " - " + objArray[3] + " - " + objArray[4]);
+					+ objArray[2] + " - " + objArray[3] + " - " + objArray[4] + " - " + objArray[5] );
 		}
 		session.getTransaction().commit();
 		session.close();
@@ -65,19 +65,6 @@ public class MetodosArmaTerreno {
 		session.close();
 		System.err.println(armaT.getMuniciones_actuales() + " ; "
 				+ armaT.getId() + " ; " + coor.getId());
-
-		/*
-		 * Session session1 = SessionHibernate.getInstance().openSession();
-		 * session1.beginTransaction(); armaT.setCoorArmaRef(coor); String
-		 * queryStr =
-		 * "UPDATE ArmaTerreno SET ArmaTerreno = armaT WHERE id = :id"; Query
-		 * query1 = session1.createSQLQuery(queryStr); query1.setInteger("id",
-		 * armaT.getId()); // query1.setInteger("coor", coor.getId());
-		 * query1.executeUpdate();
-		 * 
-		 * session1.save (coor); session1.getTransaction().commit();
-		 * session1.close();
-		 */
 		return armaT;
 	}
 
@@ -86,37 +73,70 @@ public class MetodosArmaTerreno {
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 
-		String queryStr = "DELETE FROM CoordenadaArma WHERE id = :id";
+		String queryStr = "DELETE FROM t_coordenada_arma WHERE id = :id";
 		Query query = session.createSQLQuery(queryStr);
 		query.setInteger("id", armaT.getId());
 		query.executeUpdate();
-
-		session.getTransaction().commit();
-		session.close();
+	
 		
 		if (municiones_restantes > 0) {
-			//acutlizar
+
+			String queryStr_1 = "UPDATE t_arma_terreno SET municiones_actuales=:muni WHERE id = :id";
+			Query query_1 = session.createSQLQuery(queryStr_1);
+			query_1.setInteger("id", armaT.getId());
+			query_1.setInteger("muni", municiones_restantes);
+			query_1.executeUpdate();
+
 		}
 		else {
-			//eliminar
+			String queryStr_2 = "DELETE FROM t_arma_terreno WHERE id = :id";
+			Query query_2 = session.createSQLQuery(queryStr_2);
+			query_2.setInteger("id", armaT.getId());
+			query_2.executeUpdate();
 		}
+		session.getTransaction().commit();
+		session.close();
 	}
 
-	public static void venderArmaTerreno(Caballero Vendedor,
-			Caballero Comprador, ArmaTerreno ArmaVender) {
-		Vendedor.getArmaTerrenoList().remove(ArmaVender);
-		Comprador.getArmaTerrenoList().add(ArmaVender);
+	public static void venderArmaTerreno(Caballero Vendedor, Caballero Comprador, ArmaTerreno ArmaVender) {
+		Session session = SessionHibernate.getInstance().openSession();
+		session.beginTransaction();
 		ArmaVender.setCaballeroRef(Comprador);
+		
+		String queryStr = "UPDATE t_arma_terreno SET caballeroref_id=:idcaballero WHERE id = :id";
+		Query query = session.createSQLQuery(queryStr);
+		query.setInteger("id", ArmaVender.getId());
+		query.setInteger("idcaballero", Comprador.getId());
+		query.executeUpdate();
+		
+		session.getTransaction().commit();
+		session.close();
 		int oroComprador;
 		oroComprador = Comprador.getOro() - ArmaVender.getModelRef().getOro();
 		Comprador.setOro(oroComprador);
 		int oroVendedor;
 		oroVendedor = Vendedor.getOro() + ArmaVender.getModelRef().getOro();
 		Vendedor.setOro(oroVendedor);
-
-		// realizar el update
+		
+		updateCaballero(Vendedor);
+		updateCaballero(Comprador);
+		
 	}
 
+	public static void updateCaballero (Caballero cab){
+		
+		Session session = SessionHibernate.getInstance().openSession();
+		session.beginTransaction();
+
+		String queryStr = "UPDATE t_caballero SET oro=:oro WHERE id=:id";
+		Query query = session.createSQLQuery(queryStr);
+		query.setInteger("id", cab.getId());
+		query.setInteger("oro", cab.getOro());
+		query.executeUpdate();
+
+		session.getTransaction().commit();
+		session.close();
+	}
 	public static List<ModeloArmaTerreno> mostrarArmasInventario() {
 
 		Session session = SessionHibernate.getInstance().openSession();
@@ -134,36 +154,40 @@ public class MetodosArmaTerreno {
 		return list;
 	}
 
-	public static void comprarDelInventario(Caballero Comprador,
+	public static void comprarDeLaTienda(Caballero Comprador,
 			ModeloArmaTerreno modeloArmaT) {
 		ArmaTerreno armaT = new ArmaTerreno();
 		armaT.setCaballeroRef(Comprador);
 		armaT.setModelRef(modeloArmaT);
 		armaT.setMuniciones_actuales(modeloArmaT.getMuniciones_base());
-		Comprador.getArmaTerrenoList().add(armaT);
-		modeloArmaT.getArmaTerrenoList().add(armaT);
+		Session session = SessionHibernate.getInstance().openSession();
+		session.beginTransaction();
+		
+		session.save(armaT);
+		
+		session.getTransaction().commit();
+		session.close();
 		int oroComprador;
 		oroComprador = Comprador.getOro() - modeloArmaT.getOro();
 		Comprador.setOro(oroComprador);
-		Session session = SessionHibernate.getInstance().openSession();
-		session.beginTransaction();
-		// update
-		session.save(armaT);
-		session.getTransaction().commit();
-		session.close();
+		updateCaballero(Comprador);
 	}
 
-	public static void venderAlInventario(Caballero Vendedor,
+	public static void venderAlaTienda(Caballero Vendedor,
 			ArmaTerreno ArmaVender) {
 
-		Vendedor.getArmaTerrenoList().remove(ArmaVender);
 		int oroVendedor;
 		oroVendedor = Vendedor.getOro() + ArmaVender.getModelRef().getOro();
 		Vendedor.setOro(oroVendedor);
+		updateCaballero(Vendedor);
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
-		// update caballero
-		// borrar la arma vendida
+		
+		String queryStr_2 = "DELETE FROM t_arma_terreno WHERE id = :id";
+		Query query_2 = session.createSQLQuery(queryStr_2);
+		query_2.setInteger("id", ArmaVender.getId());
+		query_2.executeUpdate();
+		
 		session.getTransaction().commit();
 		session.close();
 	}
@@ -171,46 +195,27 @@ public class MetodosArmaTerreno {
 	public static void main(String[] args) {
 		Usuario user = new Usuario();
 		Caballero cab = new Caballero();
+		Caballero cab2 = new Caballero();
 		ArmaTerreno armaT = new ArmaTerreno();
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 
-		user = (Usuario) session.load(Usuario.class, 12780);
-		cab = (Caballero) session.load(Caballero.class, 12780);
-		armaT = (ArmaTerreno) session.load(ArmaTerreno.class, 12803);
+		user = (Usuario) session.load(Usuario.class, 12831);
+		cab = (Caballero) session.load(Caballero.class, 12830);
+		cab2 = (Caballero) session.load(Caballero.class, 12831);
+		//armaT = (ArmaTerreno) session.load(ArmaTerreno.class, 12854);
 		session.getTransaction().commit();
 		session.close();
 		Object aux;
 
-		// tablaPrincipal(user);
+		 //tablaPrincipal(user);
 		// aux = tablaPorArma(user, "Bomba");
 		// usarArmaTerreno(1, 5, 12805);
-		devolverArmaTerreno(armaT,1);
-		/*
-		 * Usuario user = new Usuario (); user.setNombre("sujaira");
-		 * user.setEmail("susi141"); user.setLogin("susi");
-		 * user.setPais("Vene"); user.setPassword(123);
-		 * 
-		 * Caballero cab = new Caballero (); cab.setAtaque(10);
-		 * cab.setNivel(10); cab.setUsuario(user);
-		 * 
-		 * ModeloArmaTerreno model = new ModeloArmaTerreno();
-		 * model.setNombre("Bomba"); model.setDefensa(10); model.setAlcance(2);
-		 * model.setMuniciones_base(2); model.setNivel(1); model.setOro(100);
-		 * 
-		 * ArmaTerreno armaT = new ArmaTerreno(); armaT.setCaballeroRef(cab);
-		 * armaT.setModelRef(model);
-		 * armaT.setMuniciones_actuales(model.getMuniciones_base());
-		 * 
-		 * CoordenadaArma coor = new CoordenadaArma(); coor.setX(10);
-		 * coor.setY(2); coor.setArmaTerrenoRef(armaT);
-		 * armaT.setCoorArmaRef(coor);
-		 * 
-		 * Session session = SessionHibernate.getInstance().openSession();
-		 * session.beginTransaction(); session.save(user); session.save(armaT);
-		 * session.save(coor);
-		 * 
-		 * session.getTransaction().commit(); session.close();
-		 */
+		//devolverArmaTerreno(armaT,0);
+		//venderArmaTerreno(cab, cab2, armaT);
+		//List <ModeloArmaTerreno> lista = new ArrayList<ModeloArmaTerreno>();
+		//lista=mostrarArmasInventario();
+		//comprarDeLaTienda(cab, lista.get(1));
+		//venderAlaTienda(cab, armaT);
 	}
 }
