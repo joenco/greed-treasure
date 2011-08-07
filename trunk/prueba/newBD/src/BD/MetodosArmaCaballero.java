@@ -113,6 +113,7 @@ public class MetodosArmaCaballero {
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 		
+
 		Query q = session.createQuery("FROM Usuario WHERE login=:att_login");
 		q.setParameter("att_login", login);
 
@@ -129,26 +130,22 @@ public class MetodosArmaCaballero {
 	// Despues que se lista las armas sin usar
 	// si el usuario desea usar una 
 	// el metodo actualiza en que extremidad 
-	// sera usada
+	// que sera usada
 	
 	public static void usarArma(ArmaCaballero a, int c) {
-	
 			
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 		
-		String str  = "UPDATE ArmaCaballero SET extremidad=:ex WHERE id =:id";
+		String str  ="UPDATE ArmaCaballero SET extremidad=:ex WHERE id=:id";
 		Query query = session.createQuery(str);
 		query.setInteger("ex", c);
-		query.setInteger("id", a.getId());		
+		query.setInteger("id", a.getId());
+		query.executeUpdate();
 		session.getTransaction().commit();
 		session.close();
 		
 		}
 	
-	public static void main(String[] args) {
 	
-	} 
-	
-
 }
