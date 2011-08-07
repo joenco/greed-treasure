@@ -15,7 +15,7 @@ public class MetodosArmaCaballero {
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 		
-		String str = "SELECT * FROM ModeloArmaCaballero";
+		String str = "FROM ModeloArmaCaballero";
 		Query query = session.createQuery(str);
 
 		List<ModeloArmaCaballero> list = new ArrayList<ModeloArmaCaballero>();
@@ -32,23 +32,33 @@ public class MetodosArmaCaballero {
 	}
 
 	// Listar todas las armas de un caballero que no estan siendo usadas
+	// en este caso pregunto por todas las armas que tengan extremidad= NO_USADA
+	// si quieres saber los datos de su modelo asosiado como hay navegabilidad eso
+	// no es problema solo preguntas por su modelRef y los atributos que desees del 
+	// modelo
 	
-	public static List<Object> armasSinUsar(String login) {
+	public static List<ArmaCaballero> armasSinUsar(String login) {
+		Usuario u = new Usuario();
 		
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 		
-		String str = "SELECT a.modelRef, municiones_actuales, extremidad  FROM ArmaCaballero AS a WHERE extremidad = : sin_usar AND a.armacaballeroRef.usuario.login = :login";
+		Query q = session.createQuery("FROM Usuario WHERE login=:att_login");
+		q.setParameter("att_login", login);
+		u = (Usuario) q.uniqueResult();
+		
+		String str = "FROM ArmaCaballero  WHERE extremidad =:sin_usar AND armaCaballeroRef=:id";
 		Query query = session.createQuery(str);
-		query.setInteger("sin_usar", 0);
-		query.setString("login", login);
-		List<Object> list = new ArrayList<Object>();
+		query.setInteger("sin_usar", ConstantesExtremidades.NO_USADA);
+		query.setInteger("id", u.getCaballero().getId());
+		List<ArmaCaballero> list = new ArrayList<ArmaCaballero>();
 		
 		for (Object obj : query.list()) {
-			//Object o = () obj;
-			list.add(obj);
-			
-		}
+			ArmaCaballero ma = (ArmaCaballero) obj;
+			list.add(ma);
+			System.err.println(ma.getRefModel().getId() + "; " + ma.getRefModel().getNombre());
+		
+    	}
 		
 		session.getTransaction().commit();
 		session.close();
@@ -58,24 +68,31 @@ public class MetodosArmaCaballero {
 		}
 	
 // Listar todas las armas de un caballero que estan siendo usadas
+// Es igual al caso anterior solo que la extremidad es distinta de NO_USADA
 	
-	public static List<Object> armasEnUso(String login) {
-		
+	public static List<ArmaCaballero> armasEnUso(String login) {
+		Usuario u = new Usuario();
+
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
-		
-		String str = "SELECT a.modelRef, municiones_actuales, extremidad  FROM ArmaCaballero AS a WHERE extremidad > : sin_usar AND a.armacaballeroRef.usuario.login = :login";
+		Query q = session.createQuery("FROM Usuario WHERE login=:att_login");
+		q.setParameter("att_login", login);
+		u = (Usuario) q.uniqueResult();
+
+		String str = "FROM ArmaCaballero  WHERE extremidad >:sin_usar AND armaCaballeroRef=:id";
 		Query query = session.createQuery(str);
-		query.setInteger("sin_usar", 0);
-		query.setString("login", login);
-		List<Object> list = new ArrayList<Object>();
-		
+		query.setInteger("sin_usar", ConstantesExtremidades.NO_USADA);
+		query.setInteger("id", u.getCaballero().getId());
+		List<ArmaCaballero> list = new ArrayList<ArmaCaballero>();
+
 		for (Object obj : query.list()) {
-			//Object o = () obj;
-			list.add(obj);
-			
+			ArmaCaballero ma = (ArmaCaballero) obj;
+			list.add(ma);
+			System.err.println(ma.getRefModel().getId() + "; "
+					+ ma.getRefModel().getNombre());
+
 		}
-		
+
 		session.getTransaction().commit();
 		session.close();
 
@@ -90,7 +107,6 @@ public class MetodosArmaCaballero {
 	public static void comprarArma(ModeloArmaCaballero m, String login) {
 		
 		Usuario u = new Usuario();
-		//ArmaCaballero ac = new ArmaCaballero();
 		ArmaCaballero a = new ArmaCaballero();
 		a.setMuniciones_actuales(m.getMuniciones_base());
 		
@@ -110,41 +126,28 @@ public class MetodosArmaCaballero {
 		
 		}
 	
+	// Despues que se lista las armas sin usar
+	// si el usuario desea usar una 
+	// el metodo actualiza en que extremidad 
+	// sera usada
+	
+	public static void usarArma(ArmaCaballero a, int c) {
+	
+			
+		Session session = SessionHibernate.getInstance().openSession();
+		session.beginTransaction();
+		
+		String str  = "UPDATE ArmaCaballero SET extremidad=:ex WHERE id =:id";
+		Query query = session.createQuery(str);
+		query.setInteger("ex", c);
+		query.setInteger("id", a.getId());		
+		session.getTransaction().commit();
+		session.close();
+		
+		}
+	
 	public static void main(String[] args) {
-
-//		Usuario user = new Usuario ();
-//		user.setNombre("sujaira");
-//		user.setEmail("susi141");
-//		user.setLogin("susi");
-//		user.setPais("Vene");
-//		user.setPassword(123);
-//		
-//		Caballero cab = new Caballero ();
-//		cab.setAtaque(10);
-//		cab.setNivel(10);
-//		cab.setUsuario(user);
-//		
-//		user.setCaballero(cab);
-//		ModeloArmaCaballero model = new ModeloArmaCaballero();
-//		model.setNombre("Bomba");
-//		model.setDefensa(10);
-//		model.setAlcance(2);
-//		model.setMuniciones_base(2);
-//		model.setNivel(1);
-//		model.setOro(100);
-//		
-//		ArmaCaballero armaT = new ArmaCaballero();
-//		armaT.setArmaCaballeroRef(cab);
-//		armaT.setMuniciones_actuales(model.getMuniciones_base());
-//		
-//		
-//		Session session = SessionHibernate.getInstance().openSession();
-//		session.beginTransaction();
-//		session.save(user);
-//		session.save(armaT);
-//		
-//		session.getTransaction().commit();
-//		session.close();
+	
 	} 
 	
 
