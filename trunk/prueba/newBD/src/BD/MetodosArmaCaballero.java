@@ -120,6 +120,16 @@ public class MetodosArmaCaballero {
 		u = (Usuario) q.uniqueResult();
 		u.getCaballero().getArmaCaballeroList().add(a);
 		m.getArmaCaballero().add(a);
+		
+		// Actualizar el oro que gasto el caballero comprado el arma
+		int oro = u.getCaballero().getOro() - m.getOro();
+		
+		String str  ="UPDATE Caballero SET oro=:oro WHERE id=:id";
+		Query query = session.createQuery(str);
+		query.setInteger("oro", oro);
+		query.setInteger("id", u.getCaballero().getId());
+		query.executeUpdate();
+		
 				
 		session.getTransaction().commit();
 		session.close();
