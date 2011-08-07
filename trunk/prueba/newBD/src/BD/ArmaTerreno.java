@@ -1,13 +1,13 @@
 package BD;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -23,6 +23,7 @@ public class ArmaTerreno {
 	private Caballero caballeroRef;
 
 	@Id
+	@Column(name= "id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public int getId() {
 		return id;
@@ -40,7 +41,9 @@ public class ArmaTerreno {
 		this.municiones_actuales = municiones_actuales;
 	}
 
-	@OneToOne(mappedBy = "armaTerrenoRef")
+	
+	
+	 @OneToOne(cascade = CascadeType.ALL, mappedBy = "armaTerrenoRef")
 	public CoordenadaArma getCoorArmaRef() {
 		return coorArmaRef;
 	}

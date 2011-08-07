@@ -112,39 +112,39 @@ public class MetodosArmaCaballero {
 	
 	public static void main(String[] args) {
 
-		Usuario user = new Usuario ();
-		user.setNombre("sujaira");
-		user.setEmail("susi141");
-		user.setLogin("susi");
-		user.setPais("Vene");
-		user.setPassword(123);
-		
-		Caballero cab = new Caballero ();
-		cab.setAtaque(10);
-		cab.setNivel(10);
-		cab.setUsuario(user);
-		
-		user.setCaballero(cab);
-		ModeloArmaCaballero model = new ModeloArmaCaballero();
-		model.setNombre("Bomba");
-		model.setDefensa(10);
-		model.setAlcance(2);
-		model.setMuniciones_base(2);
-		model.setNivel(1);
-		model.setOro(100);
-		
-		ArmaCaballero armaT = new ArmaCaballero();
-		armaT.setArmaCaballeroRef(cab);
-		armaT.setMuniciones_actuales(model.getMuniciones_base());
-		
-		
-		Session session = SessionHibernate.getInstance().openSession();
-		session.beginTransaction();
-		session.save(user);
-		session.save(armaT);
-		
-		session.getTransaction().commit();
-		session.close();
+//		Usuario user = new Usuario ();
+//		user.setNombre("sujaira");
+//		user.setEmail("susi141");
+//		user.setLogin("susi");
+//		user.setPais("Vene");
+//		user.setPassword(123);
+//		
+//		Caballero cab = new Caballero ();
+//		cab.setAtaque(10);
+//		cab.setNivel(10);
+//		cab.setUsuario(user);
+//		
+//		user.setCaballero(cab);
+//		ModeloArmaCaballero model = new ModeloArmaCaballero();
+//		model.setNombre("Bomba");
+//		model.setDefensa(10);
+//		model.setAlcance(2);
+//		model.setMuniciones_base(2);
+//		model.setNivel(1);
+//		model.setOro(100);
+//		
+//		ArmaCaballero armaT = new ArmaCaballero();
+//		armaT.setArmaCaballeroRef(cab);
+//		armaT.setMuniciones_actuales(model.getMuniciones_base());
+//		
+//		
+//		Session session = SessionHibernate.getInstance().openSession();
+//		session.beginTransaction();
+//		session.save(user);
+//		session.save(armaT);
+//		
+//		session.getTransaction().commit();
+//		session.close();
 	} 
 	
 
