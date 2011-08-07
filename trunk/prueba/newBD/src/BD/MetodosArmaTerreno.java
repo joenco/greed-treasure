@@ -35,10 +35,10 @@ public class MetodosArmaTerreno {
 		query.setString("login", user.getLogin());
 		query.setString("nombre", nombre);
 		List<Object> list = new ArrayList<Object>();
+		System.err.println("Nombre Defensa Alcance Oro Municiones");
 		for (Object obj : query.list()) {
 			Object[] objArray = (Object[]) obj;
 			list.add(obj);
-			System.err.println("Nombre Defensa Alcance Oro Municiones");
 			System.out.println(objArray[0] + " - " + objArray[1] + " - "
 					+ objArray[2] + " - " + objArray[3] + " - " + objArray[4]);
 		}
@@ -63,15 +63,8 @@ public class MetodosArmaTerreno {
 		session.save(coor);
 		session.getTransaction().commit();
 		session.close();
-		// lee esto porfa
-		// Es esta parte que esta comentada, porq intento actualizar el arma
-		// para que tenga el id
-		// de la entidad coordenada pero no funciona. me parece q el problema
-		// esta en la realcion
-		// armaterreno coordenadaarma, lo intente de varias formas y nada
-		// para llenar la base de datos rapidito corre pruebaLlenada
-		// luego corres MetodosArmaTerreno, pero tienes q colocar los id de
-		// usuario, caballero y armaterreno
+		System.err.println(armaT.getMuniciones_actuales() + " ; "
+				+ armaT.getId() + " ; " + coor.getId());
 
 		/*
 		 * Session session1 = SessionHibernate.getInstance().openSession();
@@ -88,21 +81,25 @@ public class MetodosArmaTerreno {
 		return armaT;
 	}
 
-	public static void devolverArmaTerreno(ArmaTerreno armaT) {
-		CoordenadaArma coor = new CoordenadaArma();
-		coor = armaT.getCoorArmaRef();
-
+	public static void devolverArmaTerreno(ArmaTerreno armaT,
+			int municiones_restantes) {
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 
-		String queryStr = "UPDATE CoordenadaArma SET armaTerrenoRef IS null WHERE id = :id";
+		String queryStr = "DELETE FROM CoordenadaArma WHERE id = :id";
 		Query query = session.createSQLQuery(queryStr);
-		query.setInteger("id", coor.getId());
+		query.setInteger("id", armaT.getId());
 		query.executeUpdate();
 
 		session.getTransaction().commit();
 		session.close();
-
+		
+		if (municiones_restantes > 0) {
+			//acutlizar
+		}
+		else {
+			//eliminar
+		}
 	}
 
 	public static void venderArmaTerreno(Caballero Vendedor,
@@ -155,9 +152,10 @@ public class MetodosArmaTerreno {
 		session.getTransaction().commit();
 		session.close();
 	}
+
 	public static void venderAlInventario(Caballero Vendedor,
 			ArmaTerreno ArmaVender) {
-		
+
 		Vendedor.getArmaTerrenoList().remove(ArmaVender);
 		int oroVendedor;
 		oroVendedor = Vendedor.getOro() + ArmaVender.getModelRef().getOro();
@@ -169,62 +167,50 @@ public class MetodosArmaTerreno {
 		session.getTransaction().commit();
 		session.close();
 	}
-	
+
 	public static void main(String[] args) {
-//		Usuario user = new Usuario();
-//		Caballero cab = new Caballero();
-//
-//		Session session = SessionHibernate.getInstance().openSession();
-//		session.beginTransaction();
-//
-//		user = (Usuario) session.load(Usuario.class, 12290);
-//		cab = (Caballero) session.load(Caballero.class, 1230);
-//
-//		session.getTransaction().commit();
-//		session.close();
-//		Object aux;
-//
-//		tablaPrincipal(user);
-//		aux = tablaPorArma(user, "Bomba");
-//		usarArmaTerreno(1, 5, 12330);
-		/*Usuario user = new Usuario ();
-		user.setNombre("sujaira");
-		user.setEmail("susi141");
-		user.setLogin("susi");
-		user.setPais("Vene");
-		user.setPassword(123);
-		
-		Caballero cab = new Caballero ();
-		cab.setAtaque(10);
-		cab.setNivel(10);
-		cab.setUsuario(user);
-		
-		ModeloArmaTerreno model = new ModeloArmaTerreno();
-		model.setNombre("Bomba");
-		model.setDefensa(10);
-		model.setAlcance(2);
-		model.setMuniciones_base(2);
-		model.setNivel(1);
-		model.setOro(100);
-		
+		Usuario user = new Usuario();
+		Caballero cab = new Caballero();
 		ArmaTerreno armaT = new ArmaTerreno();
-		armaT.setCaballeroRef(cab);
-		armaT.setModelRef(model);
-		armaT.setMuniciones_actuales(model.getMuniciones_base());
-		
-		CoordenadaArma coor = new CoordenadaArma();
-		coor.setX(10);
-		coor.setY(2);
-		coor.setArmaTerrenoRef(armaT);
-		armaT.setCoorArmaRef(coor);
-		
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
-		session.save(user);
-		session.save(armaT);
-		session.save(coor);
-		
+
+		user = (Usuario) session.load(Usuario.class, 12780);
+		cab = (Caballero) session.load(Caballero.class, 12780);
+		armaT = (ArmaTerreno) session.load(ArmaTerreno.class, 12803);
 		session.getTransaction().commit();
-		session.close();*/
-	} 
+		session.close();
+		Object aux;
+
+		// tablaPrincipal(user);
+		// aux = tablaPorArma(user, "Bomba");
+		// usarArmaTerreno(1, 5, 12805);
+		devolverArmaTerreno(armaT,1);
+		/*
+		 * Usuario user = new Usuario (); user.setNombre("sujaira");
+		 * user.setEmail("susi141"); user.setLogin("susi");
+		 * user.setPais("Vene"); user.setPassword(123);
+		 * 
+		 * Caballero cab = new Caballero (); cab.setAtaque(10);
+		 * cab.setNivel(10); cab.setUsuario(user);
+		 * 
+		 * ModeloArmaTerreno model = new ModeloArmaTerreno();
+		 * model.setNombre("Bomba"); model.setDefensa(10); model.setAlcance(2);
+		 * model.setMuniciones_base(2); model.setNivel(1); model.setOro(100);
+		 * 
+		 * ArmaTerreno armaT = new ArmaTerreno(); armaT.setCaballeroRef(cab);
+		 * armaT.setModelRef(model);
+		 * armaT.setMuniciones_actuales(model.getMuniciones_base());
+		 * 
+		 * CoordenadaArma coor = new CoordenadaArma(); coor.setX(10);
+		 * coor.setY(2); coor.setArmaTerrenoRef(armaT);
+		 * armaT.setCoorArmaRef(coor);
+		 * 
+		 * Session session = SessionHibernate.getInstance().openSession();
+		 * session.beginTransaction(); session.save(user); session.save(armaT);
+		 * session.save(coor);
+		 * 
+		 * session.getTransaction().commit(); session.close();
+		 */
+	}
 }
