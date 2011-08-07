@@ -81,20 +81,20 @@ public class pruebaLlenado {
 		session.close();
 	}
 public static void main(String[] args) {
-//	Usuario user = insertarUsuario("Sujaira", "susi3", "susi141", "vene", 1234);
-//	Usuario user2 = insertarUsuario("Fannia", "hermi3", "fanni", "vene", 1234);
-//	Caballero caball = insertarCaballero(10, 5, 100, 5, 100, user);
-//	Caballero caball1 = insertarCaballero(10, 5, 100, 5, 100, user2);
-//	ModeloArmaTerreno bomba = insertarModeloArmaTerreno("Bomba", 10, 2, 2, 15, 1);
-//	ModeloArmaTerreno flecha = insertarModeloArmaTerreno("Flecha", 10, 20, 1, 20, 1);
-//	ModeloArmaTerreno espada = insertarModeloArmaTerreno("Espada", 50, 5, 1000, 90, 6);
-//	insertarArmaTerreno(caball, bomba);
-//	insertarArmaTerreno(caball, flecha);
-//	insertarArmaTerreno(caball, bomba);
-//	insertarArmaTerreno(caball, flecha);
-//	insertarArmaTerreno(caball, bomba);
-//	insertarArmaTerreno(caball1, bomba);
-//	insertarArmaTerreno(caball1, bomba);
-//	insertarArmaTerreno(caball1, espada);
+	Usuario user = insertarUsuario("Sujaira", "susi3", "susi141", "vene", 1234);
+	Usuario user2 = insertarUsuario("Fannia", "hermi3", "fanni", "vene", 1234);
+	Caballero caball = insertarCaballero(10, 5, 100, 5, 100, user);
+	Caballero caball1 = insertarCaballero(10, 5, 100, 5, 100, user2);
+	ModeloArmaTerreno bomba = insertarModeloArmaTerreno("Bomba", 10, 2, 2, 15, 1);
+	ModeloArmaTerreno flecha = insertarModeloArmaTerreno("Flecha", 10, 20, 1, 20, 1);
+	ModeloArmaTerreno espada = insertarModeloArmaTerreno("Espada", 50, 5, 1000, 90, 6);
+	insertarArmaTerreno(caball, bomba);
+	insertarArmaTerreno(caball, flecha);
+	insertarArmaTerreno(caball, bomba);
+	insertarArmaTerreno(caball, flecha);
+	insertarArmaTerreno(caball, bomba);
+	insertarArmaTerreno(caball1, bomba);
+	insertarArmaTerreno(caball1, bomba);
+	insertarArmaTerreno(caball1, espada);
 }
 }
