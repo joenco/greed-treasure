@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -76,8 +75,7 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	 @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
 	public Caballero getCaballero() {
 		return caballero;
 	}

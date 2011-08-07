@@ -1,14 +1,14 @@
 package BD;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Proxy;
 
 @Entity
@@ -21,8 +21,15 @@ public class CoordenadaArma {
 	private ArmaTerreno armaTerrenoRef;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	public int getId() {
+	  // @GeneratedValue(strategy = GenerationType.AUTO) // We can't do this
+	  @GeneratedValue(generator = "take-from-foreign")
+
+	  // Generates the ID based in persona's id
+	  @GenericGenerator( //
+	  /*      */name = "take-from-foreign", //
+	  /*  */strategy = "foreign", //
+	  /**/parameters = {@Parameter(name = "property", value = "armaTerrenoRef")})
+	  public int getId() {
 		return id;
 	}
 
@@ -46,8 +53,8 @@ public class CoordenadaArma {
 		this.y = y;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@OneToOne
+    @PrimaryKeyJoinColumn
 	public ArmaTerreno getArmaTerrenoRef() {
 		return armaTerrenoRef;
 	}

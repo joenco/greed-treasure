@@ -5,17 +5,19 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Proxy;
 
 @Entity
@@ -38,7 +40,14 @@ public class Caballero {
 	private List<ArmaTerreno> armaTerrenoList = new ArrayList<ArmaTerreno>();
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	  // @GeneratedValue(strategy = GenerationType.AUTO) // We can't do this
+	  @GeneratedValue(generator = "take-from-foreign")
+
+	  // Generates the ID based in persona's id
+	  @GenericGenerator( //
+	  /*      */name = "take-from-foreign", //
+	  /*  */strategy = "foreign", //
+	  /**/parameters = {@Parameter(name = "property", value = "usuario")})
 	public int getId() {
 		return id;
 	}
@@ -127,7 +136,8 @@ public class Caballero {
 		this.ataqueRecibidosList = ataqueRecibidosList;
 	}
 
-	@OneToOne(mappedBy = "caballero")
+	@OneToOne
+	@PrimaryKeyJoinColumn
 	public Usuario getUsuario() {
 		return usuario;
 	}
