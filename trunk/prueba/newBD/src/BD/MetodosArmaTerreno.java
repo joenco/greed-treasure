@@ -34,7 +34,8 @@ public class MetodosArmaTerreno {
 	}
 	
 	//Recibiendo el usuario y el nombre del modelo, este metodo retorna una lista con todas las
-	//armas terreno que el usuario posee es su inventario para ese modelo ...
+	//armas terreno que el usuario posee es su inventario para ese modelo que no se encuentre
+	// en uso actualmente ...
 	public static List<ArmaTerreno> tablaPorArma(Usuario user, String nombre) {
 
 		Session session = SessionHibernate.getInstance().openSession();
@@ -48,8 +49,10 @@ public class MetodosArmaTerreno {
 		System.err.println("Nombre id");
 		for (Object obj : query.list()) {
 			ArmaTerreno arma = (ArmaTerreno) obj;
-			list.add(arma);
-			System.out.println(arma.getModelRef().getNombre() + " - " + arma.getId());
+			if (!armaEnUso(arma)){
+				list.add(arma);
+			    System.out.println(arma.getModelRef().getNombre() + " - " + arma.getId());
+			}
 		}
 		session.getTransaction().commit();
 		session.close();
@@ -212,5 +215,27 @@ public class MetodosArmaTerreno {
 		
 		session.getTransaction().commit();
 		session.close();
+	}
+	/// retorna true si el arma esta siendo usada actualemte
+	public static boolean armaEnUso(ArmaTerreno armaT){
+
+		Session session = SessionHibernate.getInstance().openSession();
+		session.beginTransaction();
+		//ArmaTerreno armaT = (ArmaTerreno) session.load(ArmaTerreno.class, 12860);
+		String str = "SELECT c FROM CoordenadaArma AS c WHERE c.id = :id";
+		Query query = session.createQuery(str);
+		query.setInteger("id", armaT.getId());
+		
+		CoordenadaArma coor = new CoordenadaArma();
+		coor = (CoordenadaArma) query.uniqueResult();
+		session.getTransaction().commit();
+		session.close();
+		
+		if (coor == null){
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 }
