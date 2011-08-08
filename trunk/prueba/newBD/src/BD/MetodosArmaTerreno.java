@@ -58,6 +58,28 @@ public class MetodosArmaTerreno {
 		session.close();
 		return list;
 	}
+	//retorna la lista de armas que estan en el terreno actualmente
+	public static List<ArmaTerreno> tablaArmaEnUso(Usuario user, String nombre){
+		Session session = SessionHibernate.getInstance().openSession();
+		session.beginTransaction();
+
+		String str = "SELECT a FROM ArmaTerreno AS a WHERE a.caballeroRef.usuario.login = :login AND a.modelRef.nombre = :nombre";
+		Query query = session.createQuery(str);
+		query.setString("login", user.getLogin());
+		query.setString("nombre", nombre);
+		List<ArmaTerreno> list = new ArrayList<ArmaTerreno>();
+		System.err.println("Nombre id");
+		for (Object obj : query.list()) {
+			ArmaTerreno arma = (ArmaTerreno) obj;
+			if (armaEnUso(arma)){
+				list.add(arma);
+			    System.out.println(arma.getModelRef().getNombre() + " - " + arma.getId());
+			}
+		}
+		session.getTransaction().commit();
+		session.close();
+		return list;
+	}
 	
 	//Cada ves que se utiliza un armaTerreno se le asigna una coordenada
 	//y se guarda la base de datos del juego
