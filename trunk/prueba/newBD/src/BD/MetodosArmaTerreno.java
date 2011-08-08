@@ -7,6 +7,14 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 public class MetodosArmaTerreno {
+	
+	/*****************************************************
+	 * Desde aqui estan los metodos para cumplir con los *
+	 * requerimientos de IS....                          *   
+	******************************************************/
+	
+	//Recibiendo el usuario, este metodo retorna una lista con todos los
+	//modelos de armas que el usuario posee es su inventario...
 	public static List<ModeloArmaTerreno> tablaPrincipal(Usuario user) {
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
@@ -24,34 +32,37 @@ public class MetodosArmaTerreno {
 		return list;
 
 	}
-
-	public static List<Object> tablaPorArma(Usuario user, String nombre) {
+	
+	//Recibiendo el usuario y el nombre del modelo, este metodo retorna una lista con todas las
+	//armas terreno que el usuario posee es su inventario para ese modelo ...
+	public static List<ArmaTerreno> tablaPorArma(Usuario user, String nombre) {
 
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 
-		String str = "SELECT a.modelRef.nombre, a.modelRef.defensa, a.modelRef.alcance, a.modelRef.oro, a.municiones_actuales, a.id FROM ArmaTerreno AS a WHERE a.caballeroRef.usuario.login = :login AND a.modelRef.nombre = :nombre";
+		String str = "SELECT a FROM ArmaTerreno AS a WHERE a.caballeroRef.usuario.login = :login AND a.modelRef.nombre = :nombre";
 		Query query = session.createQuery(str);
 		query.setString("login", user.getLogin());
 		query.setString("nombre", nombre);
-		List<Object> list = new ArrayList<Object>();
-		System.err.println("Nombre Defensa Alcance Oro Municiones");
+		List<ArmaTerreno> list = new ArrayList<ArmaTerreno>();
+		System.err.println("Nombre id");
 		for (Object obj : query.list()) {
-			Object[] objArray = (Object[]) obj;
-			list.add(obj);
-			System.out.println(objArray[0] + " - " + objArray[1] + " - "
-					+ objArray[2] + " - " + objArray[3] + " - " + objArray[4] + " - " + objArray[5] );
+			ArmaTerreno arma = (ArmaTerreno) obj;
+			list.add(arma);
+			System.out.println(arma.getModelRef().getNombre() + " - " + arma.getId());
 		}
 		session.getTransaction().commit();
 		session.close();
 		return list;
 	}
-
+	
+	//Cada ves que se utiliza un armaTerreno se le asigna una coordenada
+	//y se guarda la base de datos del juego
 	public static ArmaTerreno usarArmaTerreno(int x, int y, int id) {
 		ArmaTerreno armaT = new ArmaTerreno();
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
-
+		
 		String str = "SELECT a FROM ArmaTerreno AS a WHERE a.id = :id";
 		Query query = session.createQuery(str);
 		query.setInteger("id", id);
@@ -67,7 +78,9 @@ public class MetodosArmaTerreno {
 				+ armaT.getId() + " ; " + coor.getId());
 		return armaT;
 	}
-
+	//Este metodo recive el arma y las municiones restantes
+	//con lo cual se eliminara las coordenadas y
+	// se actulizaran o eliminara el arma de acuerdo a las mucniones restantes
 	public static void devolverArmaTerreno(ArmaTerreno armaT,
 			int municiones_restantes) {
 		Session session = SessionHibernate.getInstance().openSession();
@@ -98,6 +111,8 @@ public class MetodosArmaTerreno {
 		session.close();
 	}
 
+	//Este metodo realiza el intercambio de armas entre dos Caballeros
+	//con su respectiva actulizacion en el oro de cada uno.
 	public static void venderArmaTerreno(Caballero Vendedor, Caballero Comprador, ArmaTerreno ArmaVender) {
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
@@ -122,7 +137,9 @@ public class MetodosArmaTerreno {
 		updateCaballero(Comprador);
 		
 	}
-
+	//Actulizar el oro de un caballero se lleva a cabo en repetidas ocasiones
+	// por lo q este metodo sirve para no copiar este pedazo de codigo en cada metodos
+	// de compra o venta de armas
 	public static void updateCaballero (Caballero cab){
 		
 		Session session = SessionHibernate.getInstance().openSession();
@@ -137,6 +154,9 @@ public class MetodosArmaTerreno {
 		session.getTransaction().commit();
 		session.close();
 	}
+	//Con este metodo se le puede mostrar al usuario la lista de armas q
+	// la tienda posee, de esta forma puede seleccionar cual arma comprar
+	// considerando que a la tienda nunca se le agotaran las armas
 	public static List<ModeloArmaTerreno> mostrarArmasInventario() {
 
 		Session session = SessionHibernate.getInstance().openSession();
@@ -154,6 +174,7 @@ public class MetodosArmaTerreno {
 		return list;
 	}
 
+	//Con este metodo un caballero compra un arma de la tienda
 	public static void comprarDeLaTienda(Caballero Comprador,
 			ModeloArmaTerreno modeloArmaT) {
 		ArmaTerreno armaT = new ArmaTerreno();
@@ -172,7 +193,8 @@ public class MetodosArmaTerreno {
 		Comprador.setOro(oroComprador);
 		updateCaballero(Comprador);
 	}
-
+	
+	//Con este metodo un caballero vende un arma a la tienda
 	public static void venderAlaTienda(Caballero Vendedor,
 			ArmaTerreno ArmaVender) {
 
@@ -190,32 +212,5 @@ public class MetodosArmaTerreno {
 		
 		session.getTransaction().commit();
 		session.close();
-	}
-
-	public static void main(String[] args) {
-		Usuario user = new Usuario();
-		Caballero cab = new Caballero();
-		Caballero cab2 = new Caballero();
-		ArmaTerreno armaT = new ArmaTerreno();
-		Session session = SessionHibernate.getInstance().openSession();
-		session.beginTransaction();
-
-		user = (Usuario) session.load(Usuario.class, 12831);
-		cab = (Caballero) session.load(Caballero.class, 12830);
-		cab2 = (Caballero) session.load(Caballero.class, 12831);
-		//armaT = (ArmaTerreno) session.load(ArmaTerreno.class, 12854);
-		session.getTransaction().commit();
-		session.close();
-		Object aux;
-
-		 //tablaPrincipal(user);
-		// aux = tablaPorArma(user, "Bomba");
-		// usarArmaTerreno(1, 5, 12805);
-		//devolverArmaTerreno(armaT,0);
-		//venderArmaTerreno(cab, cab2, armaT);
-		//List <ModeloArmaTerreno> lista = new ArrayList<ModeloArmaTerreno>();
-		//lista=mostrarArmasInventario();
-		//comprarDeLaTienda(cab, lista.get(1));
-		//venderAlaTienda(cab, armaT);
 	}
 }
