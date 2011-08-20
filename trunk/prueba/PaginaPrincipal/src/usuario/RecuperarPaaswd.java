@@ -81,6 +81,14 @@ public class RecuperarPaaswd extends ContentPane {
 
 	private void listenerOkPerformed(ActionEvent evt) {
 		User user = (User) evt.getSource();
+		String correo = user.getEmail();
+		String asunto = Solicitud de contraseña";
+		String nombre = user.getName()+" "+user.getLastName();
+		String pass = user.getPass();
+		String nick = user.getNick();
+		
+		EnviarMail usuario = new EnviarMail();
+		usuario.Email(correo, asunto, nombre, nick, pass);
 		ContentPane parent = (ContentPane) this.getParent();
 		parent.removeAll();
 		Passwd passwd = new Passwd(user);

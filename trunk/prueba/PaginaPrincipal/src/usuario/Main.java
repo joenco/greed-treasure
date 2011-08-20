@@ -241,11 +241,11 @@ public class Main extends ContentPane {
 			Terrenos terrenos = new Terrenos(user);
 			parent.add(terrenos);
 		} else {
-			ContentPane parent = (ContentPane) this.getParent();
-			parent.removeAll();
-
+			removeAll();
+			ShowRecord showRecord = new ShowRecord(user);
+			updatePanel(showRecord);
 			TablaEnemigo tablaEnemigo = new TablaEnemigo(user);
-			parent.add(tablaEnemigo);
+			add(tablaEnemigo);
 		}
 	}
 
