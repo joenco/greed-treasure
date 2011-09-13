@@ -90,19 +90,19 @@ public class FormPasswd extends Panel {
 		Session session = null;
 
 		try {
-			session = SessionHibernate.getInstance().getSession();
+			session = SessionHibernate.getInstance().openSession();
 			session.beginTransaction();
 			
-			Criteria criteria = session.createCriteria(User.class).add(
+			Criteria criteria = session.createCriteria(Usuario.class).add(
 					Restrictions.eq("nick", txtNick.getText()));
 			
-			User user = (User) criteria.uniqueResult();
+			Usuario usuario = (Usuario) criteria.uniqueResult();
 
-			if (user == null) {
+			if (usuario == null) {
 				nonexistentAccount();
 			} else {
-				if (user.getEmail().equals(txtEmail.getText())) {
-					actionListenerProxyOk.fireActionEvent(new ActionEvent(user, null));
+				if (usuario.getEmail().equals(txtEmail.getText())) {
+					actionListenerProxyOk.fireActionEvent(new ActionEvent(usuario, null));
 				    
 				} else {
 					invalidFields();

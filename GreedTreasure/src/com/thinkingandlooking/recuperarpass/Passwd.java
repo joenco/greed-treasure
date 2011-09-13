@@ -21,11 +21,11 @@ import echopoint.layout.HtmlLayoutData;
 
 public class Passwd extends ContentPane {
 
-	private User user; 
+	private Usuario usuario; 
 	private HtmlLayout htmlLayout;
 
-	public Passwd(User user) {
-		this.user = user;
+	public Passwd(Usuario usuario) {
+		this.usuario = usuario;
 		initGUI();
 	}
 
@@ -45,8 +45,8 @@ public class Passwd extends ContentPane {
 
 		hld = new HtmlLayoutData("elemento1");
 		Column col = new Column();
-		col.add(new Label("Hola "+user.getName()+" "+user.getLastName()));
-		col.add(new Label("Su contraseña es: "+user.getPass()));
+		col.add(new Label("Hola "+usuario.getNombre()+" "+usuario.getApellido()));
+		col.add(new Label("Su contraseña es: "+usuario.getPassword()));
 		col.setLayoutData(hld);
 		add(col);
 		htmlLayout.add(col);

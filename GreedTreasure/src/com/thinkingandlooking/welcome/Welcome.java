@@ -93,9 +93,16 @@ public class Welcome extends ContentPane {
 	};
 
 	private void listenerOkPerformed(ActionEvent evt) {
-		User user = (User) evt.getSource();
-		((MainApp) ApplicationInstance.getActive()).startPerfil(user);
+		Usuario usuario = (Usuario) evt.getSource();
 		
+		if(usuario.getCaballero()== null)
+			((MainApp) ApplicationInstance.getActive()).startElegirCaballero(usuario);
+		
+		else if (usuario.getCaballero().getIdRef() == null)
+			((MainApp) ApplicationInstance.getActive()).startElegirTerreno(usuario);
+		
+		((MainApp) ApplicationInstance.getActive()).startPerfil(usuario);
+			
 	}
 
 	private void btnCreateAccountClicked() {

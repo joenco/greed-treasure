@@ -3,7 +3,6 @@ package com.thinkingandlooking.perfil;
 
 import nextapp.echo.app.Column;
 import nextapp.echo.app.ContentPane;
-import nextapp.echo.app.Label;
 import nextapp.echo.app.Panel;
 import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
@@ -17,12 +16,12 @@ import echopoint.layout.HtmlLayoutData;
 
 public class Perfil extends ContentPane {
 
-	private User user;
+	private Usuario usuario;
 	private HtmlLayout htmlLayout;
 	
 
-	public Perfil(User user) {
-		this.user = user;
+	public Perfil(Usuario usuario) {
+		this.usuario = usuario;
 		initGUI();
 	}
 
@@ -39,18 +38,18 @@ public class Perfil extends ContentPane {
 		HtmlLayoutData hld;
 
 		hld = new HtmlLayoutData("buttons_top");
-		ButtonTop buttonTop= new ButtonTop(user, this);
+		ButtonTop buttonTop= new ButtonTop(usuario, this);
 		buttonTop.setLayoutData(hld);
 		htmlLayout.add(buttonTop);
-		
+			
 		hld = new HtmlLayoutData("buttons_left");
-		ButtonLeft buttonLeft = new ButtonLeft(user, this);
+		ButtonLeft buttonLeft = new ButtonLeft(usuario, this);
 		buttonLeft.setLayoutData(hld);
 		htmlLayout.add(buttonLeft);
 		
 		
-		ShowRecord showrecord = new ShowRecord(user);
-		Start start = new Start(user);
+		ShowRecord showrecord = new ShowRecord(usuario);
+		Start start = new Start(usuario);
 		
 		ambos(showrecord,start);
 
@@ -79,7 +78,7 @@ public class Perfil extends ContentPane {
 	};
 
 	private void listenerOkPerformed(ActionEvent evt) {
-		ShowAccount showAccount = new ShowAccount(user);
+		ShowAccount showAccount = new ShowAccount(usuario);
 		updatePanel(showAccount);
 		WindowPane win = (WindowPane) evt.getSource();
 		add(win);
