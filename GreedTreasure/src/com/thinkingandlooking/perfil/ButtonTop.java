@@ -19,12 +19,12 @@ import com.thinkingandlooking.paneles.mostrarusuario.*;
 
 public class ButtonTop extends Row {
 
-	private User user;
+	private Usuario usuario;
 	private Perfil perfil;
 	
-	public ButtonTop(User user, Perfil perfil) {
+	public ButtonTop(Usuario usuario, Perfil perfil) {
 		
-		this.user=user;
+		this.usuario=usuario;
 		this.perfil=perfil;
 		
 		setCellSpacing(new Extent(5));
@@ -99,8 +99,8 @@ public class ButtonTop extends Row {
 	}
 	
 	private void btnStartClicked() {
-		Start start = new Start(user);
-		ShowRecord showrecord = new ShowRecord(user);
+		Start start = new Start(usuario);
+		ShowRecord showrecord = new ShowRecord(usuario);
 		
 		perfil.ambos(showrecord,start);
 	}
@@ -112,8 +112,8 @@ public class ButtonTop extends Row {
 	
 
 	private void btnModifiedAccountClicked() {
-		ModifiedAccount modifiedAccount = new ModifiedAccount(user);
-		ShowRecord showrecord = new ShowRecord(user);
+		ModifiedAccount modifiedAccount = new ModifiedAccount(usuario);
+		ShowRecord showrecord = new ShowRecord(usuario);
 		modifiedAccount.getActionListenerProxyError().addActionListener(perfil.getListenerError());
 		modifiedAccount.getActionListenerProxyOk().addActionListener(perfil.getListenerOk());
 		
@@ -122,20 +122,20 @@ public class ButtonTop extends Row {
 	
 	private void btnShowAccountClicked() {
 		
-		ShowRecord showRecord = new ShowRecord(user);
-		ShowAccount showAccount = new ShowAccount(user);
+		ShowRecord showRecord = new ShowRecord(usuario);
+		ShowAccount showAccount = new ShowAccount(usuario);
 		perfil.ambos(showAccount,showRecord);
 		
 	}
 	
 	private void btnHistorialDiarioClicked() {
-		ShowRecord showrecord = new ShowRecord(user);
+		ShowRecord showrecord = new ShowRecord(usuario);
 		perfil.updatePanel(showrecord);
 		
 	}
 
 	private void btnHistorialGlobalClicked() {
-		ShowRecord showrecord = new ShowRecord(user);
+		ShowRecord showrecord = new ShowRecord(usuario);
 		perfil.updatePanel(showrecord);
 		
 	}

@@ -1,6 +1,6 @@
 package com.thinkingandlooking.perfil;
 
-import com.thinkingandlooking.database.User;
+import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.paneles.edicioncaballero.EditarCaballeroApp;
 import com.thinkingandlooking.paneles.edicionterreno.DynTerrenoApp;
 import com.thinkingandlooking.paneles.elegirterreno.Terrenos;
@@ -17,13 +17,13 @@ import nextapp.echo.app.event.ActionListener;
 
 public class ButtonLeft  extends Column{
 
-	   User user;
+	   Usuario usuario;
 	   Perfil perfil;
 
-	   public ButtonLeft(User user, Perfil perfil)  {
+	   public ButtonLeft(Usuario usuario, Perfil perfil)  {
 		
 		   
-		this.user=user;
+		this.usuario=usuario;
 		this.perfil=perfil;
 		Button btnAtacarCastillo = new Button("Atacar Castillo");
 		btnAtacarCastillo.setBorder(new Border(new Extent(2), Color.BLACK, 1));
@@ -96,30 +96,15 @@ public class ButtonLeft  extends Column{
 
 
 		private void btnAtacarCastilloClicked() {
-			
-			if (user.getTerreno().equals("sin terreno")) {
-				
-				Terrenos terrenos = new Terrenos(user);
-				perfil.updatePanel(terrenos);
-				
-			} else {
-				
-				TablaEnemigo tablaEnemigo = new TablaEnemigo(user,perfil);
+						
+				TablaEnemigo tablaEnemigo = new TablaEnemigo(usuario,perfil);
 				perfil.updatePanel(tablaEnemigo);
-				
-			}
 		}
 
 		private void btnEditionCastilloClicked() {
-			if (user.getTerreno().equals("sin terreno")) {
-				
-				Terrenos terrenos = new Terrenos(user);
-				perfil.updatePanel(terrenos);
-			} else {
+			
 				DynTerrenoApp terreno= new DynTerrenoApp();
 				perfil.updatePanel(terreno);
-				
-			}
 		}
 
 		private void btnEditionCaballeroClicked() {
@@ -129,19 +114,19 @@ public class ButtonLeft  extends Column{
 		}
 
 		private void btnComprarArmasClicked() {
-			ShowRecord showrecord = new ShowRecord(user);
+			ShowRecord showrecord = new ShowRecord(usuario);
 			perfil.updatePanel(showrecord);
 			
 		}
 		
 		private void btnVenderArmasClicked() {
-			ShowRecord showrecord = new ShowRecord(user);
+			ShowRecord showrecord = new ShowRecord(usuario);
 			perfil.updatePanel(showrecord);
 			
 		}
 
 		private void btnInventarioArmasClicked() {
-			ShowRecord showrecord = new ShowRecord(user);
+			ShowRecord showrecord = new ShowRecord(usuario);
 			perfil.updatePanel(showrecord);
 			
 		}

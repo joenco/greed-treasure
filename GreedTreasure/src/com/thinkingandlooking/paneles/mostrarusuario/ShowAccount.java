@@ -10,32 +10,32 @@ import nextapp.echo.app.Panel;
 
 public class ShowAccount extends Panel {
 
-	private User user;
+	private Usuario usuario;
 
-	public ShowAccount(User user) {
-		this.user = user;
+	public ShowAccount(Usuario usuario) {
+		this.usuario = usuario;
 		initGUI();
 	}
 
 	private void initGUI() {
 		
-		Session session = SessionHibernate.getInstance().getSession();
+		Session session = SessionHibernate.getInstance().openSession();
 	    session.beginTransaction();
 
-	    user = (User) session.load(User.class, user.getId());
+	    usuario = (Usuario) session.load(Usuario.class, usuario.getId());
 
 	    Column col = new Column();
 	    add(col);
 
-	    col.add(new Label("Nombre: " + user.getName()));
-	    col.add(new Label("Apellido: " + user.getLastName()));
-	    col.add(new Label("País: " + user.getCountry()));
-	    col.add(new Label("Tu email es: " + user.getEmail()));
-	    col.add(new Label("Tu nick/Apodo es: " + user.getNick()));
-	    col.add(new Label("Tu tienes "+ user.getCantOro() +" monedas de oro"));
-	    col.add(new Label("Tu nivel es: "+ user.getNivel()));
-	    col.add(new Label("Nro de Victorías: "+ user.getVictoria())); 
-	    col.add(new Label("Nro de Derrotas: "+user.getDerrota()));
+	    col.add(new Label("Nombre: " + usuario.getNombre()));
+	    col.add(new Label("Apellido: " + usuario.getApellido()));
+	    col.add(new Label("País: " + usuario.getPais()));
+	    col.add(new Label("Tu email es: " + usuario.getEmail()));
+	    col.add(new Label("Tu nick/Apodo es: " + usuario.getLogin()));
+	    col.add(new Label("Tu tienes "+ usuario.getCaballero().getOro() +" monedas de oro"));
+	    col.add(new Label("Tu nivel es: "+ usuario.getCaballero().getNivel()));
+	  //  col.add(new Label("Nro de Victorías: "+ usuario.getVictoria())); 
+	  // col.add(new Label("Nro de Derrotas: "+usuario.getDerrota()));
 
 	    add(col);
 

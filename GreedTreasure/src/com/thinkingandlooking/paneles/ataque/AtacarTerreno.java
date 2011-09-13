@@ -9,8 +9,8 @@ import nextapp.echo.app.Label;
 
 public class AtacarTerreno extends Panel {
 
-		private User atacante;
-		private User atacado;
+		private Usuario atacante;
+		private Usuario atacado;
 	    private Session session;
 	
 	public AtacarTerreno(int idAtacante , int idAtacado) {
@@ -28,7 +28,7 @@ public class AtacarTerreno extends Panel {
 	}
 
 	private void iniciarSesion() {
-		session = SessionHibernate.getInstance().getSession();
+		session = SessionHibernate.getInstance().openSession();
 	    session.beginTransaction();
 	}
 	
@@ -37,8 +37,8 @@ public class AtacarTerreno extends Panel {
 	private void cargarUsuarios(int idAtacante, int idAtacado) {
 		
 
-	    atacante = (User) session.load(User.class, idAtacante);
-	    atacado  = (User) session.load(User.class, idAtacado);
+	    atacante = (Usuario) session.load(Usuario.class, idAtacante);
+	    atacado  = (Usuario) session.load(Usuario.class, idAtacado);
 	}
 
 	private void initGUI() {
@@ -46,9 +46,9 @@ public class AtacarTerreno extends Panel {
 		Column col = new Column();
 	    add(col);
 	    col.add(new Label("********************************"));
-	    col.add(new Label("Atacando a "+atacado.getNick()));
+	    col.add(new Label("Atacando a "+atacado.getLogin()));
 	    col.add(new Label("********************************"));
-	    col.add(new Label("Estas atacando el terreno: "+atacado.getTerreno()));
+	//    col.add(new Label("Estas atacando el terreno: "+atacado.getTerreno()));
 	    add(col);
 
 		}

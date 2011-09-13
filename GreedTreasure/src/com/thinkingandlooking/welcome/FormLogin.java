@@ -61,7 +61,7 @@ public class FormLogin extends Panel {
 		
 		Column col = new Column();
 		
-		Label lblNick = new Label("Nick");
+		Label lblNick = new Label("Login");
 		col.add(lblNick);
 		
 		txtNick = new TextField();
@@ -99,22 +99,23 @@ public class FormLogin extends Panel {
 		Session session = null;
 			
 		try {
-			session = SessionHibernate.getInstance().getSession();
+			session = SessionHibernate.getInstance().openSession();
 			session.beginTransaction();
 
-			Criteria criteria = session.createCriteria(User.class).add(
-				 Restrictions.eq("nick", txtNick.getText()));
+			Criteria criteria = session.createCriteria(Usuario.class).add(
+				 Restrictions.eq("login", txtNick.getText()));
 
 			
-			User user = (User) criteria.uniqueResult();
+			Usuario usuario = (Usuario) criteria.uniqueResult();
 			
-			if (user == null) {
+			if (usuario == null) {
 				
 				nonexistentAccount();
 			} else {
 				
-				if (user.getPass().equals(txtPass.getText())) {
-					actionListenerProxyOk.fireActionEvent(new ActionEvent(user, null));
+				if (usuario.getPassword().equals(txtPass.getText())) {
+					actionListenerProxyOk.fireActionEvent(new ActionEvent(usuario, null));
+			
 				} else {
 					invalidFields();
 				}

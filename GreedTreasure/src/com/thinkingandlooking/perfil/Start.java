@@ -10,25 +10,31 @@ import nextapp.echo.app.Panel;
 
 public class Start extends Panel{
 	
-	private User user;
+	private Usuario usuario;
 
-	public Start(User user) {
-		this.user = user;
+	public Start(Usuario usuario) {
+		this.usuario = usuario;
 		initGUI();
 	}
 
 	private void initGUI() {
 		
-		Session session = SessionHibernate.getInstance().getSession();
+		Session session = SessionHibernate.getInstance().openSession();
 	    session.beginTransaction();
 	    
-	    user = (User) session.load(User.class, user.getId());
+	    usuario = (Usuario) session.load(Usuario.class, usuario.getId());
 	    
 	    Column col = new Column();
-	    col.add(new Label("Hola "+user.getNick()));
-	    col.add(new Label("Tu Castillo y Caballero estan listos para recibir órdenes!"));
-	    col.add(new Label("Tu terreno es: "+user.getTerreno()));
-
+	    col.add(new Label("Hola "+usuario.getLogin()));
+	    if (usuario.getCaballero()!= null)
+	    {	
+		    col.add(new Label("Tu Castillo y Caballero estan listos para recibir órdenes!"));
+		    col.add(new Label("Tu terreno es: "+usuario.getCaballero().getIdRef().getName()));
+	    }
+	    
+	    else
+	    	col.add(new Label("Escoge un caballero!!"));
+	    	
 	    add(col);
 	    
 	    session.getTransaction().commit();

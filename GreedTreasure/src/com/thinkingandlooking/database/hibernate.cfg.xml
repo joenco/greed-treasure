@@ -15,28 +15,32 @@
 			<property name="hibernate.connection.driver_class">com.p6spy.engine.spy.P6SpyDriver</property>
 		-->
 
+<!--		 **************************************** -->
+<!--		 MySQL                                    -->
+<!--		 **************************************** -->
+<!---->
+<!--		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>-->
+<!--		<property name="hibernate.connection.url">jdbc:mysql://localhost/holamundo</property>-->
+<!--		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>-->
+<!--		<property name="hibernate.connection.username">root</property>-->
+<!--		<property name="hibernate.connection.password">123</property>-->
+<!--		<property name="hibernate.connection.pool_size">5</property>-->
+
 		<!-- **************************************** -->
-		<!-- MySQL                                    -->
+		<!-- Postgres                                   -->
 		<!-- **************************************** -->
-<!--  
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost/login</property>
-		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">1234</property>
-		<property name="hibernate.connection.pool_size">5</property>
--->
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost/greed_treasure</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost/bd</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">a</property>
         <property name="hibernate.connection.pool_size">5</property>
-
-
-
-
-
+		
+		
+		
+		
+		
+		
 		<!-- **************************************** -->
 		<!-- ORACLE                                   -->
 		<!-- **************************************** -->
@@ -90,7 +94,22 @@
 
 		<!-- The mapping files -->
 
-		<mapping class="com.thinkingandlooking.database.User" />
-
+		<mapping class="com.thinkingandlooking.database.ArmaCaballero" />
+		<mapping class="com.thinkingandlooking.database.ArmaTerreno" />
+	    <mapping class="com.thinkingandlooking.database.Ataque" />
+	    <mapping class="com.thinkingandlooking.database.Caballero" />
+		<mapping class="com.thinkingandlooking.database.CaballeroDestreza" />
+		<mapping class="com.thinkingandlooking.database.Coordenada" />
+		<mapping class="com.thinkingandlooking.database.CoordenadaArma" />
+		<mapping class="com.thinkingandlooking.database.Destreza" />
+		<mapping class="com.thinkingandlooking.database.DestrezaModelArmaT" />
+		<mapping class="com.thinkingandlooking.database.ModeloArmaCaballero" />
+		<mapping class="com.thinkingandlooking.database.ModeloArmaTerreno" />
+		<mapping class="com.thinkingandlooking.database.ModeloCaballero" />	
+		<mapping class="com.thinkingandlooking.database.PlantillaTerreno" />
+		<mapping class="com.thinkingandlooking.database.Tile" />
+		<mapping class="com.thinkingandlooking.database.TileRecorrido" />
+		<mapping class="com.thinkingandlooking.database.Usuario" />
+		
 	</session-factory>
 </hibernate-configuration>

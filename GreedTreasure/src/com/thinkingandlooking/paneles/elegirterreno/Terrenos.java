@@ -1,5 +1,6 @@
 package com.thinkingandlooking.paneles.elegirterreno;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 
@@ -16,6 +17,7 @@ import nextapp.echo.app.ApplicationInstance;
 import nextapp.echo.app.Border;
 import nextapp.echo.app.Button;
 import nextapp.echo.app.Color;
+import nextapp.echo.app.ContentPane;
 import nextapp.echo.app.Extent;
 import nextapp.echo.app.Label;
 import nextapp.echo.app.Panel;
@@ -23,17 +25,17 @@ import nextapp.echo.app.Row;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
 
-public class Terrenos extends Panel {
+public class Terrenos extends ContentPane {
 
-	User user;
+	Usuario usuario;
 	HtmlLayout htmlLayout;
 
 	
 	private SelectField selectTerreno;
 	private DefaultListModel listModel;
 	
-	public Terrenos(User user) {
-		this.user = user;
+	public Terrenos(Usuario usuario) {
+		this.usuario = usuario;
 		initGUI();
 	}
 
@@ -55,12 +57,10 @@ public class Terrenos extends Panel {
 		htmlLayout.add(lblTitle);
 
 		hld = new HtmlLayoutData("terreno");
-		Label lblTerreno = new Label("Hola "+user.getNick()+", te hace falta un terreno, elije el que mas te guste.");
+		Label lblTerreno = new Label("Hola "+usuario.getLogin()+", te hace falta un terreno, elije el que mas te guste.");
 		lblTerreno.setLayoutData(hld);
 		htmlLayout.add(lblTerreno);
-		listModel = new DefaultListModel(new String[] {
-				"Playa caribe", "Alpes rocoso", "Antartida arenosa", "Desierto pantanoso"
-		} );
+		listModel = new DefaultListModel(ConsultasModeloTerreno.ConsultasModeloTerrenoprovicional() );
 		selectTerreno = new SelectField(listModel);
 		selectTerreno.setLayoutData(hld);
 		htmlLayout.add(selectTerreno);
@@ -87,18 +87,25 @@ public class Terrenos extends Panel {
 	}
 
 	protected void bntModifiedAccountClicked() {
-		Session session = SessionHibernate.getInstance().getSession();
+		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
-		String terreno = new String();
-		terreno =(String) selectTerreno.getSelectedItem();
+		String nombreTerreno = new String();
+		nombreTerreno =(String) selectTerreno.getSelectedItem();
 		
-		user.setTerreno(terreno);
+		String str = "FROM PlantillaTerreno WHERE name=:nombrePlantilla";
+		Query query = session.createQuery(str);
+		query.setString("nombrePlantilla",nombreTerreno);
+		
+		PlantillaTerreno plantillaTerreno=(PlantillaTerreno)query.uniqueResult();
+       
+		
+		usuario.getCaballero().setIdRef(plantillaTerreno);
 
-		session.update(user);
+		session.update(usuario);
 		
 		session.getTransaction().commit();
 		session.close();
-		((MainApp)ApplicationInstance.getActive()).startPerfil(user);
+		((MainApp)ApplicationInstance.getActive()).startPerfil(usuario);
 		
 	}
 

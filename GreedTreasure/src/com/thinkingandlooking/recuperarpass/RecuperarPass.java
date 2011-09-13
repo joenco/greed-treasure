@@ -79,8 +79,8 @@ public class RecuperarPass extends ContentPane {
 
 	private void listenerOkPerformed(ActionEvent evt) {
 		
-		User user = (User) evt.getSource();
-		((MainApp)ApplicationInstance.getActive()).mostrarInfoPass(user);
+		Usuario usuario = (Usuario) evt.getSource();
+		((MainApp)ApplicationInstance.getActive()).mostrarInfoPass(usuario);
 	}
 
 	private void btnCreateAccountClicked() {

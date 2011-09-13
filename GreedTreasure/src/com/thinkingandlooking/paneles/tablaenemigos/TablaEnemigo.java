@@ -42,15 +42,15 @@ import com.thinkingandlooking.perfil.Perfil;
 public class TablaEnemigo extends Panel {
 
 	private TestTableModel tableDtaModel;
-	private User user;
+	private Usuario usuario;
 	HtmlLayout htmlLayout;
 	Perfil perfil;
 	
 
 	// --------------------------------------------------------------------------------
 
-	public TablaEnemigo(User user, Perfil perfil) {
-		this.user = user;
+	public TablaEnemigo(Usuario usuario, Perfil perfil) {
+		this.usuario = usuario;
 		this.perfil=perfil;
 		initGUI();
 	}
@@ -59,9 +59,9 @@ public class TablaEnemigo extends Panel {
 
 	private void initGUI() {
 		
-		Session session = SessionHibernate.getInstance().getSession();
+		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
-		user = (User) session.load(User.class, user.getId());
+		usuario = (Usuario) session.load(Usuario.class, usuario.getId());
 		session.getTransaction().commit();
 		session.close();
 		setInsets(new Insets(8, 8, 8, 8));
@@ -285,8 +285,8 @@ public class TablaEnemigo extends Panel {
 
 	private void btnAtkClicked(ETable table, int row) {
 		TableDtaModel model = table.getTableDtaModel();
-		EnemigoBean userBean = (EnemigoBean) model.getElementAt(row);
-		AtacarTerreno atacarEnemigo = new AtacarTerreno(user.getId(),1 );//userBean);
+		EnemigoBean usuarioBean = (EnemigoBean) model.getElementAt(row);
+		AtacarTerreno atacarEnemigo = new AtacarTerreno(usuario.getId(),1 );//usuarioBean);
 		perfil.updatePanel(atacarEnemigo);
 	
 	}
@@ -294,7 +294,7 @@ public class TablaEnemigo extends Panel {
 	public void crearTabla() {
 		 List<EnemigoBean> enemigosBeanList = EnemigoBeanLoader.loadData();
 		 for (EnemigoBean enemigoBean : enemigosBeanList) {
-			 if ((enemigoBean.getNivel()-user.getNivel()) > -3) {
+			 if ((enemigoBean.getNivel()-usuario.getCaballero().getNivel()) > -3) {
 				 tableDtaModel.add(enemigoBean);
 			 }
 	}

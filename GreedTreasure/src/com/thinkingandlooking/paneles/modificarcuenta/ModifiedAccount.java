@@ -35,56 +35,49 @@ public class ModifiedAccount extends Panel {
 	private ActionListenerProxy actionListenerProxyOk = //
 	new ActionListenerProxy(eventListenerListOk);
 
-	private User user;
+	private Usuario usuario;
 
-	private TextField txtName;
-	private TextField txtLastName;
-	private TextField txtCountry;
+	private TextField txtNombre;
+	private TextField txtApellido;
+	private TextField txtPais;
 	private PasswordField txtPass;
 	private TextField txtEmail;
 
-	public ModifiedAccount(User user) {
-		this.user = user;
+	public ModifiedAccount(Usuario usuario) {
+		this.usuario = usuario;
 		initGUI();
 	}
 
 	private void initGUI() {
-		Session session = SessionHibernate.getInstance().getSession();
-		session.beginTransaction();
-
-		user = (User) session.load(User.class, user.getId());
-
-		session.getTransaction().commit();
-		session.close();
 
 		Grid grid = new Grid(2);
 
-		txtName = new TextField();
-		txtName.setText(user.getName());
+		txtNombre = new TextField();
+		txtNombre.setText(usuario.getNombre());
 		Label lblName = new Label("Nombre");
 		grid.add(lblName);
-		grid.add(txtName);
+		grid.add(txtNombre);
 		
-		txtLastName = new TextField();
-		txtLastName.setText(user.getLastName());
+		txtApellido = new TextField();
+		txtApellido.setText(usuario.getApellido());
 		Label lblLastName = new Label("Apellido");
 		grid.add(lblLastName);
-		grid.add(txtLastName);
+		grid.add(txtApellido);
 		
-		txtCountry = new TextField();
-		txtCountry.setText(user.getCountry());
+		txtPais = new TextField();
+		txtPais.setText(usuario.getPais());
 		Label lblCountry = new Label("País");
 		grid.add(lblCountry);
-		grid.add(txtCountry);
+		grid.add(txtPais);
 
 		txtPass = new PasswordField();
-		txtPass.setText(user.getPass());
+		txtPass.setText(usuario.getPassword());
 		Label lblPass = new Label("Contraseña");
 		grid.add(lblPass);
 		grid.add(txtPass);
 
 		txtEmail = new TextField();
-		txtEmail.setText(user.getEmail());
+		txtEmail.setText(usuario.getEmail());
 		Label lblEmail = new Label("Email");
 		grid.add(lblEmail);
 		grid.add(txtEmail);
@@ -152,28 +145,28 @@ public class ModifiedAccount extends Panel {
 	}
 	
 	private void modified() {
-		Session session = SessionHibernate.getInstance().getSession();
+		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 		
-		user.setPass(txtPass.getText());
-		user.setName(txtName.getText());
-		user.setLastName(txtLastName.getText());
-		user.setCountry(txtCountry.getText());
-		user.setEmail(txtEmail.getText());
-		session.update(user);
+		usuario.setPassword(txtPass.getText());
+		usuario.setNombre(txtNombre.getText());
+		usuario.setApellido(txtApellido.getText());
+		usuario.setPais(txtPais.getText());
+		usuario.setEmail(txtEmail.getText());
+		session.update(usuario);
 		
 		session.getTransaction().commit();
 		session.close();
 	}
 
 	private boolean validateFields() {
-		if (txtName.getText().equals("")) {
+		if (txtNombre.getText().equals("")) {
 			return false;
 		}
-		if (txtLastName.getText().equals("")) {
+		if (txtApellido.getText().equals("")) {
 			return false;
 		}
-		if (txtCountry.getText().equals("")) {
+		if (txtPais.getText().equals("")) {
 			return false;
 		}
 		if (txtPass.getText().equals("")) {

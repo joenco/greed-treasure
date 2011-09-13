@@ -15,27 +15,31 @@ import nextapp.echo.app.Panel;
 
 public class ShowRecord extends Panel {
 
-	private User user;
+	private Usuario usuario;
 
-	public ShowRecord(User user) {
-		this.user = user;
+	public ShowRecord(Usuario usuario) {
+		this.usuario = usuario;
 		initGUI();
 	}
 
 	private void initGUI() {
 		
-		Session session = SessionHibernate.getInstance().getSession();
+		Session session = SessionHibernate.getInstance().openSession();
 	    session.beginTransaction();
 
-	    user = (User) session.load(User.class, user.getId());
+	    usuario = (Usuario) session.load(Usuario.class, usuario.getId());
 
 	    Column col = new Column();
 	    add(col);
 
 	    col.add(new Label("----------------------------------------"));
-	    col.add(new Label("| Usuario: "+user.getNick()+"  |  Nivel: "+user.getNivel()+"  |  Oro: "+user.getCantOro()+"  |  Nro de Victorias: "+user.getVictoria()+"  |  Nro de Derrotas: "+user.getDerrota()+"|"));
+	    if(usuario.getCaballero() != null)
+	    	col.add(new Label("| Usuario: "+usuario.getLogin()+"  |  Nivel: "+usuario.getCaballero().getNivel()+"  |  Oro: "+usuario.getCaballero().getOro()));
+	    else
+	    	col.add(new Label("| Usuario: "+usuario.getLogin()));
 	    col.add(new Label("----------------------------------------"));
-
+	   
+	    //+"  |  Nro de Victorias: "+usuario.getVictoria()+"  |  Nro de Derrotas: "+usuario.getDerrota()+"|"
 		add(col);
 
 		session.getTransaction().commit();

@@ -36,15 +36,15 @@ import nextapp.echo.app.event.ActionListener;
 public class CreateAccount extends ContentPane {
 
 	private HtmlLayout htmlLayout;
-	private TextField txtNick;
-	private TextField txtName;
-	private TextField txtLastName;
-	private String txtCountry;
-	private SelectField selectCountry;
+	private TextField txtLogin;
+	private TextField txtNombre;
+	private TextField txtApellido;
+	private String txtPais;
+	private SelectField selectPais;
 	private PasswordField txtPass;
 	private TextField txtEmail;
 	private boolean registroExitoso;
-	private User user;
+	private Usuario usuario;
 
 	public CreateAccount() {
 		initGUI();
@@ -73,31 +73,31 @@ public class CreateAccount extends ContentPane {
 		hld = new HtmlLayoutData("form");
 		Grid grid = new Grid(2);
 
-		txtNick = new TextField();
+		txtLogin = new TextField();
 		Label lblNick = new Label("Nick/Apodo");
 		grid.add(lblNick);
-		grid.add(txtNick);
+		grid.add(txtLogin);
 
-		txtName = new TextField();
+		txtNombre = new TextField();
 		Label lblName = new Label("Nombre");
 		grid.add(lblName);
-		grid.add(txtName);
+		grid.add(txtNombre);
 
-		txtLastName = new TextField();
+		txtApellido = new TextField();
 		Label lblLastName = new Label("Apellido");
 		grid.add(lblLastName);
 		
 		
-		grid.add(txtLastName);
+		grid.add(txtApellido);
 		
 		DefaultListModel listModel = new DefaultListModel(new String[] {
 				"Afganistan", "Africa del Sur", "Albania", "Alemania", "Andorra", "Angola", "Antillas Holandesas", "Arabia Saudita", "Argelia", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarusia", "Belgica", "Belice", "Benin", "Bermudas", "Bolivia", "Bosnia", "Brasil", "Bulgaria", "Burundi", "Butan", "Camboya", "Camerún", "Canada", "Chile", "China", "Chipre", "Colombia", "Congo", "Corea del Norte", "Corea del Sur", "Costa de Marfíl", "Costa Rica", "Croasia", "Cuba", "Dinamarca", "Dominica", "Ecuador", "Egipto", "El Salvador", "Emiratos Arabes Unidos", "Eslovenia", "España", "Estados Unidos", "Estonia", "Etiopía", "Filipinas", "Finlandia", "Francia", "Gambia", "Georgia", "Ghana", "Granada", "Grecia", "Groenlandia", "Guatemala", "Guinea", "Haití", "Holanda", "Honduras", "Hong Kong", "Hungría", "India", "Indonesia", "Irak", "Iran", "Irlanda", "Islandia", "Islas Virgenes (U.S.)", "Israel", "Italia", "Jamaica", "Japón", "Jordania", "Kenia", "Kuwait", "Kyrgyzstan", "Libia", "Lituania", "Luxemburgo", "Macedonia", "Madagascar", "Malasia", "Mali", "Malta", "Marruecos", "Martinica", "Mexico", "Mónaco", "Mongolia", "Nicaragua", "Nigeria", "Noruega", "Pakistan", "Palestina", "Panamá", "Paraguay", "Perú", "Polonia", "Portugal", "Puerto Rico", "Qatar", "Reino Unido", "Republica Checa", "Republica Democratica del Congo", "Republica Dominicana", "Republica Eslovaca", "Ruanda", "Rumania", "Rusia", "Sahara", "San Marino", "Santa Lucía", "Santa Sede (Vaticano)", "Senegal", "Singapur", "Siría", "Somalia", "Suecia", "Suiza", "Sur Africa", "Surinam", "Tailandia", "Taiwan", "Tanzania", "Togo", "Trinidad & Tobago", "Turquía", "Ucrania", "Uganda", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yugoslavia", "Zambia", "Zimbabwe" } );
 		
-		selectCountry = new SelectField(listModel);
-		selectCountry.setSelectedItem("Venezuela");
+		selectPais = new SelectField(listModel);
+		selectPais.setSelectedItem("Venezuela");
 		Label lblCountry = new Label("País");
 		grid.add(lblCountry);
-		grid.add(selectCountry);
+		grid.add(selectPais);
 
 		txtPass = new PasswordField();
 		Label lblPass = new Label("Contraseña");
@@ -109,8 +109,8 @@ public class CreateAccount extends ContentPane {
 		grid.add(lblEmail);
 		grid.add(txtEmail);
 		
-		txtCountry = new String();
-		txtCountry = (String) selectCountry.getSelectedItem();
+		txtPais = new String();
+		txtPais = (String) selectPais.getSelectedItem();
 
 		grid.setLayoutData(hld);
 		htmlLayout.add(grid);
@@ -167,7 +167,7 @@ public class CreateAccount extends ContentPane {
 			public void actionPerformed(ActionEvent arg0) {
 				windowPane.userClose();
 				if(registroExitoso)
-					((MainApp)ApplicationInstance.getActive()).startPerfil(user);
+					((MainApp)ApplicationInstance.getActive()).startElegirCaballero(usuario);
 					
 			}
 		});
@@ -188,10 +188,10 @@ public class CreateAccount extends ContentPane {
 			return;
 		}
 
-		Session session = SessionHibernate.getInstance().getSession();
+		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 
-		if (checkUser(session)) {
+		if (checkUsuario(session)) {
 
 			session.getTransaction().commit();
 			session.close();
@@ -243,7 +243,7 @@ public class CreateAccount extends ContentPane {
         }
 
         pat = Pattern.compile("^[a-z0-9A-Z][a-zA-Z0-9_]{3,15}$");
-        mat = pat.matcher(txtNick.getText());
+        mat = pat.matcher(txtLogin.getText());
 
         if (!mat.find()) {
         
@@ -275,8 +275,8 @@ public class CreateAccount extends ContentPane {
         	return;
         }
 
-        txtCountry = new String();
-        txtCountry = (String) selectCountry.getSelectedItem();
+        txtPais = new String();
+        txtPais = (String) selectPais.getSelectedItem();
 
 		register(session);
 
@@ -297,9 +297,9 @@ public class CreateAccount extends ContentPane {
 		
 	}
 
-	private boolean checkUser(Session session) {
-		Criteria criteria = session.createCriteria(User.class).add(
-				Restrictions.eq("nick", txtNick.getText()));
+	private boolean checkUsuario(Session session) {
+		Criteria criteria = session.createCriteria(Usuario.class).add(
+				Restrictions.eq("login", txtLogin.getText()));
 		if (criteria.list().size() == 0) {
 			return false;
 		} else {
@@ -309,7 +309,7 @@ public class CreateAccount extends ContentPane {
 
 	
 	private boolean checkEmail(Session session) {
-		Criteria criteria = session.createCriteria(User.class).add(
+		Criteria criteria = session.createCriteria(Usuario.class).add(
 				Restrictions.eq("email", txtEmail.getText()));
 		if (criteria.list().size() == 0) {
 			return false;
@@ -321,22 +321,19 @@ public class CreateAccount extends ContentPane {
 	
 
 	private void register(Session session) {
-		user = new User();
+		usuario = new Usuario();
 		
-		user.setNick(txtNick.getText());
-		user.setPass(txtPass.getText());
-		user.setCantOro(1000);
-		user.setVictoria(0);
-		user.setDerrota(0);
-		user.setNivel(1);
-		user.setTerreno("sin terreno");
-		user.setCaballero("sin caballero");
-		user.setName(txtName.getText());
-		user.setLastName(txtLastName.getText());
-		user.setCountry(txtCountry);
-		user.setEmail(txtEmail.getText());
+		usuario.setLogin(txtLogin.getText());
+		usuario.setPassword(txtPass.getText());
+		usuario.setPais(txtPais);
+		usuario.setEmail(txtEmail.getText());
+		usuario.setCaballero(null);
+		usuario.setNombre(txtNombre.getText());
+		usuario.setApellido(txtApellido.getText());
+
 		
-		session.save(user);
+		
+		session.save(usuario);
 	}
 
 	protected void btnCancelClicked() {
@@ -345,13 +342,13 @@ public class CreateAccount extends ContentPane {
 	}
 
 	private boolean validateFields() {
-		if (txtNick.getText().equals("")) {
+		if (txtLogin.getText().equals("")) {
 			return false;
 		}
-		if (txtName.getText().equals("")) {
+		if (txtNombre.getText().equals("")) {
 			return false;
 		}
-		if (txtLastName.getText().equals("")) {
+		if (txtApellido.getText().equals("")) {
 			return false;
 		}
 		if (txtPass.getText().equals("")) {
