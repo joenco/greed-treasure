@@ -141,18 +141,18 @@ public class TablaEnemigo extends Panel {
 		tableColumn.setHeadValue("Enemigo");
 
 		lcr = new LabelCellRenderer();
-    	lcr.setAlignment(new Alignment( //
-				Alignment.CENTER, Alignment.DEFAULT));
+		lcr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT) );
 
 		lcr.setBackground(Color.BLUE);
 		lcr.setForeground(Color.WHITE);
 		lcr.setAlignment(new Alignment( //
-				Alignment.CENTER, Alignment.DEFAULT));
+				Alignment.CENTER, Alignment.DEFAULT) );
 		tableColumn.setHeadCellRenderer(lcr);
 
 		lcr = new LabelCellRenderer();
 		lcr.setAlignment(new Alignment( //
-			Alignment.CENTER, Alignment.DEFAULT));
+				Alignment.CENTER, Alignment.DEFAULT) );
 		tableColumn.setDataCellRenderer(lcr);
 		tableColModel.getTableColumnList().add(tableColumn);
 		// **********************************************************************************
@@ -171,12 +171,12 @@ public class TablaEnemigo extends Panel {
 		lcr.setBackground(Color.BLUE);
 		lcr.setForeground(Color.WHITE);
 		lcr.setAlignment(new Alignment( //
-				Alignment.CENTER, Alignment.DEFAULT));
+				Alignment.CENTER, Alignment.DEFAULT) );
 		tableColumn.setHeadCellRenderer(lcr);
 
 		lcr = new LabelCellRenderer();
-    	lcr.setAlignment(new Alignment( //
-				Alignment.CENTER, Alignment.DEFAULT));
+		lcr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT) );
 		tableColumn.setDataCellRenderer(lcr);
 		tableColModel.getTableColumnList().add(tableColumn);
 		// *******************************************************************
@@ -213,12 +213,12 @@ public class TablaEnemigo extends Panel {
 		lcr.setBackground(Color.BLUE);
 		lcr.setForeground(Color.WHITE);
 		lcr.setAlignment(new Alignment( //
-			Alignment.CENTER, Alignment.DEFAULT));
+				Alignment.CENTER, Alignment.DEFAULT) );
 		tableColumn.setHeadCellRenderer(lcr);
 
 		lcr = new LabelCellRenderer();
 		lcr.setAlignment(new Alignment( //
-				Alignment.CENTER, Alignment.DEFAULT));
+				Alignment.CENTER, Alignment.DEFAULT) );
 		tableColumn.setDataCellRenderer(lcr);
 		tableColModel.getTableColumnList().add(tableColumn);
 		// *******************************************************************
@@ -256,12 +256,12 @@ public class TablaEnemigo extends Panel {
 		lcr.setBackground(Color.BLUE);
 		lcr.setForeground(Color.WHITE);
 		lcr.setAlignment(new Alignment( //
-				Alignment.CENTER, Alignment.DEFAULT));
+				Alignment.CENTER, Alignment.DEFAULT) );
 		tableColumn.setHeadCellRenderer(lcr);
 
 		lcr = new LabelCellRenderer();
 		lcr.setAlignment(new Alignment( //
-				Alignment.CENTER, Alignment.DEFAULT));
+				Alignment.CENTER, Alignment.DEFAULT) );
 		tableColumn.setDataCellRenderer(lcr);
 		tableColModel.getTableColumnList().add(tableColumn);
 		// *******************************************************************
