@@ -1,29 +1,29 @@
 package com.thinkingandlooking.paneles.tablaenemigos;
 
-import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 import echopoint.HtmlLayout;
 import echopoint.layout.HtmlLayoutData;
-import nextapp.echo.app.Row;
 import com.thinkingandlooking.utils.GUIStyles;
+import com.thinkingandlooking.main.MainApp;
 import com.thinkingandlooking.paneles.ataque.AtacarTerreno;
-import com.thinkingandlooking.paneles.mostrarusuario.ShowAccount;
 import com.thinkingandlooking.perfil.Perfil;
-import org.hibernate.Session;
 import com.thinkingandlooking.database.*;
-import org.hibernate.criterion.Restrictions;
+
 import nextapp.echo.app.Alignment;
+import nextapp.echo.app.ApplicationInstance;
 import nextapp.echo.app.Border;
 import nextapp.echo.app.Button;
 import nextapp.echo.app.Color;
 import nextapp.echo.app.Column;
 import nextapp.echo.app.Component;
-import nextapp.echo.app.ContentPane;
 import nextapp.echo.app.Panel;
 import nextapp.echo.app.Extent;
-import nextapp.echo.app.Grid;
 import nextapp.echo.app.Insets;
 import nextapp.echo.app.Label;
-import nextapp.echo.app.TextField;
+import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
 
@@ -33,11 +33,9 @@ import com.minotauro.echo.table.base.TableColModel;
 import com.minotauro.echo.table.base.TableColumn;
 import com.minotauro.echo.table.base.TableDtaModel;
 import com.minotauro.echo.table.base.TableSelModel;
-import com.minotauro.echo.table.event.TableDtaModelEvent;
 import com.minotauro.echo.table.renderer.BaseCellRenderer;
 import com.minotauro.echo.table.renderer.LabelCellRenderer;
 import com.minotauro.echo.table.renderer.NestedCellRenderer;
-import com.thinkingandlooking.perfil.Perfil;
 
 public class TablaEnemigo extends Panel {
 
@@ -59,15 +57,11 @@ public class TablaEnemigo extends Panel {
 
 	private void initGUI() {
 		
-		Session session = SessionHibernate.getInstance().openSession();
-		session.beginTransaction();
-		usuario = (Usuario) session.load(Usuario.class, usuario.getId());
-		session.getTransaction().commit();
-		session.close();
+		
 		setInsets(new Insets(8, 8, 8, 8));
 		
 		try {
-			htmlLayout = new HtmlLayout( //
+			htmlLayout = new HtmlLayout( 
 					getClass().getResourceAsStream("atacarTerreno.html"), "UTF-8");
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -138,34 +132,36 @@ public class TablaEnemigo extends Panel {
 		tableColumn = new TableColumn() {
 			@Override
 			public Object getValue(ETable table, Object element) {
-				EnemigoBean enemigoBean = (EnemigoBean) element;
-				return enemigoBean.getNick();
+				
+				Caballero caballero= (Caballero) element;
+				return caballero.getUsuario().getLogin();
 			}
 		};
 		tableColumn.setWidth(new Extent(150));
 		tableColumn.setHeadValue("Enemigo");
 
 		lcr = new LabelCellRenderer();
-//		lcr.setAlignment(new Alignment( //
-//				Alignment.CENTER, Alignment.DEFAULT));
+    	lcr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT));
 
 		lcr.setBackground(Color.BLUE);
 		lcr.setForeground(Color.WHITE);
-//		lcr.setAlignment(new Alignment( //
-//				Alignment.CENTER, Alignment.DEFAULT));
+		lcr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT));
 		tableColumn.setHeadCellRenderer(lcr);
 
 		lcr = new LabelCellRenderer();
-//		lcr.setAlignment(new Alignment( //
-//				Alignment.CENTER, Alignment.DEFAULT));
+		lcr.setAlignment(new Alignment( //
+			Alignment.CENTER, Alignment.DEFAULT));
 		tableColumn.setDataCellRenderer(lcr);
 		tableColModel.getTableColumnList().add(tableColumn);
 		// **********************************************************************************
 		tableColumn = new TableColumn() {
 			@Override
 			public Object getValue(ETable table, Object element) {
-				EnemigoBean armasBean = (EnemigoBean) element;
-				return armasBean.getNivel();
+				
+				Caballero caballero= (Caballero) element;
+				return caballero.getNivel();
 			}
 		};
 		tableColumn.setWidth(new Extent(150));
@@ -174,45 +170,83 @@ public class TablaEnemigo extends Panel {
 		lcr = new LabelCellRenderer();
 		lcr.setBackground(Color.BLUE);
 		lcr.setForeground(Color.WHITE);
-		//lcr.setAlignment(new Alignment( //
-			//	Alignment.CENTER, Alignment.DEFAULT));
+		lcr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT));
 		tableColumn.setHeadCellRenderer(lcr);
 
 		lcr = new LabelCellRenderer();
-//		lcr.setAlignment(new Alignment( //
-	//			Alignment.CENTER, Alignment.DEFAULT));
+    	lcr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT));
 		tableColumn.setDataCellRenderer(lcr);
 		tableColModel.getTableColumnList().add(tableColumn);
 		// *******************************************************************
 		tableColumn = new TableColumn() {
 			@Override
 			public Object getValue(ETable table, Object element) {
-				EnemigoBean armasBean = (EnemigoBean) element;
-				return armasBean.getVictoria();
+				
+				Caballero caballero= (Caballero) element;
+				int victorias=0;
+				Session session = SessionHibernate.getInstance().openSession();
+				session.beginTransaction();
+				String str = "FROM Ataque WHERE atacanteRef=:att_id OR atacadoRef=:att_id";
+				Query query = session.createQuery(str);
+				query.setInteger("att_id", caballero.getId());
+				
+				
+				for (Object obj : query.list()) {
+					Ataque ataque = (Ataque) obj;
+					if((ataque.getAtacanteRef().getId()== caballero.getId()) && ataque.isGanador())
+						victorias++;
+					else if ((ataque.getAtacadoRef().getId()== caballero.getId()) && !ataque.isGanador())
+						victorias++;
+				}
+				session.getTransaction().commit();
+			    session.close();
+				return victorias ;
 			}
 		};
 		tableColumn.setWidth(new Extent(150));
 		tableColumn.setHeadValue("Victorias");
-//Las columnas 
+
 		lcr = new LabelCellRenderer();
 	
 		lcr.setBackground(Color.BLUE);
 		lcr.setForeground(Color.WHITE);
-		//lcr.setAlignment(new Alignment( //
-			//	Alignment.CENTER, Alignment.DEFAULT));
+		lcr.setAlignment(new Alignment( //
+			Alignment.CENTER, Alignment.DEFAULT));
 		tableColumn.setHeadCellRenderer(lcr);
 
 		lcr = new LabelCellRenderer();
-		//lcr.setAlignment(new Alignment( //
-			//	Alignment.CENTER, Alignment.DEFAULT));
+		lcr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT));
 		tableColumn.setDataCellRenderer(lcr);
 		tableColModel.getTableColumnList().add(tableColumn);
 		// *******************************************************************
 		tableColumn = new TableColumn() {
 			@Override
 			public Object getValue(ETable table, Object element) {
-				EnemigoBean armasBean = (EnemigoBean) element;
-				return armasBean.getDerrota();
+				
+				Caballero caballero= (Caballero) element;
+				int derrota=0;
+				Session session = SessionHibernate.getInstance().openSession();
+				session.beginTransaction();
+				String str = "FROM Ataque WHERE atacanteRef=:att_id OR atacadoRef=:att_id";
+				Query query = session.createQuery(str);
+				query.setInteger("att_id", caballero.getId());
+				
+				
+				for (Object obj : query.list()) {
+					Ataque ataque = (Ataque) obj;
+					if((ataque.getAtacanteRef().getId()== caballero.getId()) && !ataque.isGanador())
+						derrota++;
+					
+					else if ((ataque.getAtacadoRef().getId()== caballero.getId()) && ataque.isGanador())
+						derrota++;
+				}
+				session.getTransaction().commit();
+			    session.close();
+		
+				return derrota;
 			}
 		};
 		tableColumn.setWidth(new Extent(150));
@@ -221,13 +255,13 @@ public class TablaEnemigo extends Panel {
 		lcr = new LabelCellRenderer();
 		lcr.setBackground(Color.BLUE);
 		lcr.setForeground(Color.WHITE);
-//		lcr.setAlignment(new Alignment( //
-	//			Alignment.CENTER, Alignment.DEFAULT));
+		lcr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT));
 		tableColumn.setHeadCellRenderer(lcr);
 
 		lcr = new LabelCellRenderer();
-//		lcr.setAlignment(new Alignment( //
-//				Alignment.CENTER, Alignment.DEFAULT));
+		lcr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT));
 		tableColumn.setDataCellRenderer(lcr);
 		tableColModel.getTableColumnList().add(tableColumn);
 		// *******************************************************************
@@ -285,19 +319,66 @@ public class TablaEnemigo extends Panel {
 
 	private void btnAtkClicked(ETable table, int row) {
 		TableDtaModel model = table.getTableDtaModel();
-		EnemigoBean usuarioBean = (EnemigoBean) model.getElementAt(row);
-		AtacarTerreno atacarEnemigo = new AtacarTerreno(usuario.getId(),1 );//usuarioBean);
+		Caballero usuarioContrincante = (Caballero) model.getElementAt(row);
+		AtacarTerreno atacarEnemigo = new AtacarTerreno(usuario.getId(),usuarioContrincante.getId() );
 		perfil.updatePanel(atacarEnemigo);
 	
 	}
 	// --------------------------------------------------------------------------------
 	public void crearTabla() {
-		 List<EnemigoBean> enemigosBeanList = EnemigoBeanLoader.loadData();
-		 for (EnemigoBean enemigoBean : enemigosBeanList) {
-			 if ((enemigoBean.getNivel()-usuario.getCaballero().getNivel()) > -3) {
-				 tableDtaModel.add(enemigoBean);
+		
+		Session session = SessionHibernate.getInstance().openSession();
+		session.beginTransaction();
+		Caballero caballero;
+		String str = "FROM Caballero WHERE id<>:att_id";
+		Query query = session.createQuery(str);
+		query.setParameter("att_id", usuario.getCaballero().getId());
+		
+		
+		 for (Object obj : query.list()) {
+			 
+			 caballero=(Caballero)obj;
+			
+			 if ((caballero.getNivel() >=usuario.getCaballero().getNivel()) ) {
+			
+				 tableDtaModel.add(caballero);
 			 }
-	}
+			 
+			
+	     }
+		 System.out.println("bien");
+		 System.out.println(tableDtaModel.getTotalRows());
+		 if(tableDtaModel.getTotalRows()==0)
+		 {	
+			 final WindowPane windowPane=new WindowPane();
+			 windowPane.setTitle("Sin Contrincantes!!");
+			 windowPane.setClosable(false);
+			 windowPane.setMovable(false);
+			 Label lbl=new Label();
+			 lbl.setText("Usted no tiene contricantes de su mismo nivel o superior");
+			 
+			 Column col=new Column();
+			 col.add(lbl);
+
+			 Button btnOK = new Button("Aceptar");
+			 btnOK.setAlignment(new Alignment(Alignment.CENTER, Alignment.CENTER));
+			 btnOK.addActionListener(new ActionListener() {
+		     
+				 public void actionPerformed(ActionEvent arg0) {
+					windowPane.userClose();
+					((MainApp)ApplicationInstance.getActive()).startPerfil(usuario);
+							
+					}
+				});
+			 col.add(btnOK);
+			 windowPane.add(col);
+			perfil.add(windowPane);
+			 
+		 }
 	
+	session.getTransaction().commit();
+    session.close();
   }
 }
+
+
