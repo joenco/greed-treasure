@@ -46,9 +46,9 @@ public class AtacarTerreno extends Panel {
 		Column col = new Column();
 	    add(col);
 	    col.add(new Label("********************************"));
-	    col.add(new Label("Atacando a "+atacado.getLogin()));
+	    col.add(new Label("Atacando a "+atacado.getLogin()+" Por usted:"+atacante.getLogin()));
 	    col.add(new Label("********************************"));
-	//    col.add(new Label("Estas atacando el terreno: "+atacado.getTerreno()));
+	
 	    add(col);
 
 		}

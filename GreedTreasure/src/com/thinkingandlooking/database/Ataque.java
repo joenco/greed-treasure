@@ -25,6 +25,8 @@ public class Ataque {
 	private Caballero atacanteRef;
 	private Caballero atacadoRef;
 	private boolean activo;
+	private boolean ganador; //true gano atacante
+	
 	private List<TileRecorrido> ataqueTileRecorridoList = new ArrayList<TileRecorrido>();
 
 	@Id
@@ -74,5 +76,14 @@ public class Ataque {
 			List<TileRecorrido> ataqueTileRecorridoList) {
 		this.ataqueTileRecorridoList = ataqueTileRecorridoList;
 	}
+	
+	public boolean isGanador() {
+		return ganador;
+	}
+
+	public void setGanador(boolean ganador) {
+		this.ganador = ganador;
+	}
+
 
 }
