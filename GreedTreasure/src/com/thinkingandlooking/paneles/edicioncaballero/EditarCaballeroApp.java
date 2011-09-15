@@ -18,7 +18,6 @@ public class EditarCaballeroApp extends Panel {
 	private Usuario usuario;
 	ImageReference ir;
 	
-	
 	public EditarCaballeroApp(Usuario usuario){
 		this.usuario=usuario;
 		initGUI();
@@ -72,25 +71,8 @@ private Column CrearColumna(){
 		label = new Label("Oro: "+ Integer.toString(oro));
 		col.add(label);
 		
-		Row row = new Row();
-		label = new Label("Cabeza: ");
-		row.add(label);
-		col.add(row);
-		
-		row = new Row();
-		label = new Label("Mano Izq: ");
-		row.add(label);
-		col.add(row);
-	
-		row = new Row();
-		label = new Label("Mano Der: ");
-		row.add(label);
-		col.add(row);
-		
-		row = new Row();
-		label = new Label("Torso: ");
-		row.add(label);
-		col.add(row);
+		 TablaExtremidades tabla = new TablaExtremidades(usuario);
+		col.add(tabla);
 		
 		return col;
 	}
