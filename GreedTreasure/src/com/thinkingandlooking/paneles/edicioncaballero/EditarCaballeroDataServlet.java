@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-
 public class EditarCaballeroDataServlet extends HttpServlet{
 	String	IdLogin;
 	
@@ -27,17 +26,14 @@ public class EditarCaballeroDataServlet extends HttpServlet{
 	    res.getOutputStream().write(data);
 	}
 	
-	
 	private byte[] pintarArma() throws IOException {
 		
 		
     	BufferedImage caballero = ImageCacheCaballero.getInstance().getBufferedImage(IdLogin);
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	
 		ImageIO.write(caballero, "png", baos);
-	
-	
+      
 		return baos.toByteArray();
 	}
 }
