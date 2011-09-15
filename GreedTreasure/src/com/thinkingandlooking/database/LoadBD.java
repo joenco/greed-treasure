@@ -347,7 +347,6 @@ public class LoadBD {
 		session.getTransaction().commit();
 		session.close();
 		
-		//return  model;
 	}
 	
 	/******************************************************************************
