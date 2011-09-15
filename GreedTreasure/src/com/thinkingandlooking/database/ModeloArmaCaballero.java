@@ -24,6 +24,7 @@ import org.hibernate.annotations.Proxy;
 public class ModeloArmaCaballero {
 	private int id;
 	private String nombre;
+	private int ataque;
 	private int defensa;
 	private int alcance;
 	private int municiones_base;
@@ -50,6 +51,16 @@ public class ModeloArmaCaballero {
 		this.nombre = nombre;
 	}
 
+	public int getAtaque() {
+		return ataque;
+	}
+
+	public void setAtaque(int ataque) {
+		this.ataque = ataque;
+	}
+	
+	
+	
 	public int getDefensa() {
 		return defensa;
 	}

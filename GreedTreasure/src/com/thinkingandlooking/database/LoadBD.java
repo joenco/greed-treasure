@@ -302,6 +302,8 @@ public class LoadBD {
 		bis.read(buf);
 		tl.setImg(buf);
 
+		
+		
 		session.save(tl);
 
 		session.getTransaction().commit();
@@ -315,26 +317,79 @@ public class LoadBD {
 	 * 
 	 */
 	
-	public static ModeloArmaCaballero insertarModeloArmaCaballero(String nombre, int defensa,
-			int alcance, int municiones, int oro, int nivel) {
+	public static void insertarModeloArmaCaballero(String nombre, int ataque, int defensa,
+			int alcance, int municiones, int oro, int nivel, String ruta)
+					throws Exception{
+		
+		Session session = SessionHibernate.getInstance().openSession();
+		session.beginTransaction();
+				
 		ModeloArmaCaballero model = new ModeloArmaCaballero();
+		
 		model.setNombre(nombre);
+		model.setAtaque(ataque);
 		model.setDefensa(defensa);
 		model.setAlcance(alcance);
 		model.setMuniciones_base(municiones);
-		model.setNivel(nivel);
 		model.setOro(oro);
+		model.setNivel(nivel);
 
-		Session session = SessionHibernate.getInstance().openSession();
-		session.beginTransaction();
+		File file = new File(ruta);
+		FileInputStream fis = new FileInputStream(file);
+		BufferedInputStream bis = new BufferedInputStream(fis);
+		byte[] buf = new byte[(int) file.length()];
+		bis.read(buf);
+		model.setImagen(buf);
+		
 
 		session.save(model);
 
 		session.getTransaction().commit();
 		session.close();
 		
-		return  model;
+		//return  model;
 	}
+	
+	/******************************************************************************
+	 * 
+	 * Crea los Modelos Arma Terreno
+	 * 
+	 */
+	
+	public static void insertarModeloArmaTerreno(String nombre, int ataque, int defensa,
+			int alcance, int municiones, int oro, int nivel, String ruta) 
+					throws Exception{
+					
+					Session session = SessionHibernate.getInstance().openSession();
+					session.beginTransaction();			
+					
+					
+		ModeloArmaTerreno model = new ModeloArmaTerreno();
+		
+		model.setNombre(nombre);
+		model.setAtaque(ataque);
+		model.setDefensa(defensa);
+		model.setAlcance(alcance);
+		model.setMuniciones_base(municiones);
+		model.setNivel(nivel);
+		model.setOro(oro);
+
+		File file = new File(ruta);
+		FileInputStream fis = new FileInputStream(file);
+		BufferedInputStream bis = new BufferedInputStream(fis);
+		byte[] buf = new byte[(int) file.length()];
+		bis.read(buf);
+		model.setImagen(buf);
+
+		session.save(model);
+
+		session.getTransaction().commit();
+		session.close();
+		
+	}
+		
+	
+	
 	
 	/******************************************************************************
 	 * 
@@ -372,31 +427,7 @@ public class LoadBD {
 		
 	}
 	
-	/******************************************************************************
-	 * 
-	 * Crea los Modelos Arma Terreno
-	 * 
-	 */
-	
-	public static void insertarModeloArmaTerreno(String nombre, int defensa,
-			int alcance, int municiones, int oro, int nivel) {
-		ModeloArmaTerreno model = new ModeloArmaTerreno();
-		model.setNombre(nombre);
-		model.setDefensa(defensa);
-		model.setAlcance(alcance);
-		model.setMuniciones_base(municiones);
-		model.setNivel(nivel);
-		model.setOro(oro);
 
-		Session session = SessionHibernate.getInstance().openSession();
-		session.beginTransaction();
-
-		session.save(model);
-
-		session.getTransaction().commit();
-		session.close();
-		
-	}
 	
 
 	/**
@@ -470,10 +501,22 @@ public class LoadBD {
 		modeloCaballero(2, 1, "Shena","src/com/thinkingandlooking/Imagenes/Caballero/Shena.jpg",  "src/com/thinkingandlooking/Imagenes/Caballero/Shena.jpg");
 		modeloCaballero(3, 0, "Sheldon","src/com/thinkingandlooking/Imagenes/Caballero/Sheldon.jpg",  "src/com/thinkingandlooking/Imagenes/Caballero/Sheldon.jpg");
 		
-		// Creacion de modelos armas
+		// Creacion de modelos armas caballero
 
+	insertarModeloArmaCaballero("Espada del Olvido", 2, 2, 1, 1000	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadelolvido.gif");
+	insertarModeloArmaCaballero("Hacha Infinita", 3, 1, 2, 1000	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachainfinita.gif");
+	insertarModeloArmaCaballero("Lanza de la Oscuridad", 3, 0, 3, 1000	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachainfinita.gif");
+	insertarModeloArmaCaballero("Martillo de la Luz", 4, 2, 2, 1000	, 30, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachainfinita.gif");
+	insertarModeloArmaCaballero("Mazo del Dolor", 3, 3, 3, 1000	, 35, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachainfinita.gif");
+		
 		// Creacion de los modelos de armas terreno
-
+		
+		insertarModeloArmaTerreno("Barril Explosivo", 5, 1, 3, 1, 8, 2, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/barrilexplosivo.gif");
+		insertarModeloArmaTerreno("Lagarto Hambriento", 3, 3, 1, 10, 4, 1, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/barrilexplosivo.gif");
+		insertarModeloArmaTerreno("Molotov Medieval", 4, 1, 2, 1, 3, 1, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/barrilexplosivo.gif");
+		insertarModeloArmaTerreno("Planta Venenosa", 3, 3, 2, 10, 6, 1, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/barrilexplosivo.gif");
+		insertarModeloArmaTerreno("Roedores Asesinos", 1, 5, 1, 20, 4, 1, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/barrilexplosivo.gif");
+		
 		// Creacion de las destrezas
 
 		
