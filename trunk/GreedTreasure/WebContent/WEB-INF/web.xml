@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>GreedTreasure</display-name>
+  <servlet>
+    <servlet-name>MainServlet</servlet-name>
+    <servlet-class>com.thinkingandlooking.main.MainServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>MainServlet</servlet-name>
+    <url-pattern>/main.echo</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+		<servlet-name>DynTerrenoDataServlet</servlet-name>
+		<servlet-class>com.thinkingandlooking.paneles.edicionterreno.DynTerrenoDataServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>DynTerrenoDataServlet</servlet-name>
+		<url-pattern>/terrenodyn</url-pattern>
+	</servlet-mapping>
+  
+  <servlet>
+		<servlet-name>EditarCaballeroDataServlet</servlet-name>
+		<servlet-class>com.thinkingandlooking.paneles.edicioncaballero.EditarCaballeroDataServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>EditarCaballeroDataServlet</servlet-name>
+		<url-pattern>/caballerodyn</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ServletImagenes</servlet-name>
+		<servlet-class>com.thinkingandlooking.paneles.ServletImagenes</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ServletImagenes</servlet-name>
+		<url-pattern>/imagenes_tabla</url-pattern>
+	</servlet-mapping>
+</web-app>
