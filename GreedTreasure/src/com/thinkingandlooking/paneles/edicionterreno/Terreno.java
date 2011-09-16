@@ -13,11 +13,8 @@ import javax.imageio.ImageIO;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.thinkingandlooking.database.Caballero;
-import com.thinkingandlooking.database.ModeloCaballero;
-import com.thinkingandlooking.database.SessionHibernate;
-import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.database.*;
+import com.thinkingandlooking.utils.BufferedImageCache;
 
 
 

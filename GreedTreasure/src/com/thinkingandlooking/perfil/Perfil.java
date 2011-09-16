@@ -3,10 +3,16 @@ package com.thinkingandlooking.perfil;
 
 import nextapp.echo.app.Column;
 import nextapp.echo.app.ContentPane;
+import nextapp.echo.app.Grid;
+import nextapp.echo.app.Label;
 import nextapp.echo.app.Panel;
+import nextapp.echo.app.Row;
+import nextapp.echo.app.Window;
 import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
+import nextapp.echo.extras.app.TabPane;
+
 import com.thinkingandlooking.database.*;
 import com.thinkingandlooking.paneles.mostrarusuario.ShowAccount;
 import echopoint.HtmlLayout;
@@ -44,8 +50,10 @@ public class Perfil extends ContentPane {
 			
 		hld = new HtmlLayoutData("buttons_left");
 		ButtonLeft buttonLeft = new ButtonLeft(usuario, this);
+		buttonLeft.setCellSpacing(getHorizontalScroll());
 		buttonLeft.setLayoutData(hld);
 		htmlLayout.add(buttonLeft);
+		
 		
 		
 		ShowRecord showrecord = new ShowRecord(usuario);
@@ -118,5 +126,14 @@ public class Perfil extends ContentPane {
 		htmlLayout.add(panel);
 		
 	}
+	
+	public void updatePanel( ContentPane contentpane) {
+	
+		Panel panel=new Panel();
+		panel.add(contentpane);
+		updatePanel(panel);
+		
+	}
+
 
 }
