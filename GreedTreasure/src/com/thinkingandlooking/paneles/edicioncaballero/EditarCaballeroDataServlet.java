@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.thinkingandlooking.utils.BufferedImageCache;
+import com.thinkingandlooking.utils.EnumConsultas;
+
 
 
 public class EditarCaballeroDataServlet extends HttpServlet{
@@ -29,7 +32,7 @@ public class EditarCaballeroDataServlet extends HttpServlet{
 	private byte[] pintarArma() throws IOException {
 		
 		
-    	BufferedImage caballero = ImageCacheCaballero.getInstance().getBufferedImage(IdLogin);
+    	BufferedImage caballero = BufferedImageCache.getInstance().getBufferedImage(IdLogin,EnumConsultas.CONSULTA_EDICION_IMAGEN_CABALLERO);
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ImageIO.write(caballero, "png", baos);

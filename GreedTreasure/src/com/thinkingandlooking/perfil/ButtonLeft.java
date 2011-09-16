@@ -5,6 +5,8 @@ import com.thinkingandlooking.paneles.edicioncaballero.EditarCaballeroApp;
 import com.thinkingandlooking.paneles.edicionterreno.DynTerrenoApp;
 import com.thinkingandlooking.paneles.elegirterreno.Terrenos;
 import com.thinkingandlooking.paneles.tablaenemigos.TablaEnemigo;
+import com.thinkingandlooking.paneles.tablas.Tienda;
+import com.thinkingandlooking.utils.GUIStyles;
 
 import nextapp.echo.app.Border;
 import nextapp.echo.app.Button;
@@ -114,8 +116,8 @@ public class ButtonLeft  extends Column{
 		}
 
 		private void btnComprarArmasClicked() {
-			ShowRecord showrecord = new ShowRecord(usuario);
-			perfil.updatePanel(showrecord);
+			Tienda tienda= new Tienda(usuario);
+			perfil.updatePanel(tienda);
 			
 		}
 		

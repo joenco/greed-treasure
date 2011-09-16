@@ -7,7 +7,8 @@ import java.util.List;
 import com.thinkingandlooking.database.MetodosArmaTerreno;
 import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.main.MainApp;
-import com.thinkingandlooking.tablas.tablaModeloArmaTerreno;
+import com.thinkingandlooking.tablas.TablaBaseModeloArmaTerreno;
+import com.thinkingandlooking.tablas.TablaModeloArmaTerreno;
 
 import nextapp.echo.app.Panel;
 
@@ -101,13 +102,13 @@ public class DynTerrenoApp extends Panel {
 		    col.add(lblSelected);
 		   // ultimaCoodenadaClick=new String("(-1,-1)");
 		    List<Object> listaArmas = MetodosArmaTerreno.tablaPrincipal(usuario);
-		    
+		    col.add(mostrar(listaArmas));
 		    if(listaArmas.size()>0)
 		    	col.add(mostrar(listaArmas));
 		    
 		    else
 		    {
-		    	WindowPane aviso=new WindowPane();
+		    	final WindowPane aviso=new WindowPane();
 		    	aviso.setTitle("No Posee Armas");//,new Extent(400),new Extent(400));
 		    	
 		    	Column col=new Column();
@@ -119,6 +120,13 @@ public class DynTerrenoApp extends Panel {
 		    	col.add(fila); 	
 		    	
 		    	Button ok=new Button("ok");
+		    	ok.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						aviso.userClose();
+					}
+
+				});
+		    	
 		    	fila.add(ok);
 		    	
 		    	Button comprar=new Button("Comprar Armas");
@@ -136,8 +144,8 @@ public class DynTerrenoApp extends Panel {
 	    }
 
 
-	  private tablaModeloArmaTerreno mostrar(List<Object> listaArmas) {
-		tablaModeloArmaTerreno tabla=new tablaModeloArmaTerreno();
+	  private TablaModeloArmaTerreno mostrar(List<Object> listaArmas) {
+		TablaModeloArmaTerreno tabla=new TablaModeloArmaTerreno();
 		tabla.crearTabla(listaArmas);
 		return tabla;
 	}
@@ -226,5 +234,7 @@ public class DynTerrenoApp extends Panel {
 		  	
 		  	
  	  }
+	  
+	
 	  
 }

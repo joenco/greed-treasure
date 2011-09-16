@@ -10,12 +10,12 @@ import com.minotauro.echo.table.base.TableColModel;
 import com.minotauro.echo.table.base.TableSelModel;
 import com.thinkingandlooking.paneles.tablaenemigos.TestTableModel;
 
-public abstract class tabla  extends ETable{
+public abstract class Tabla  extends ETable{
 
 	protected TestTableModel tableDtaModel;
 	
 
-	public tabla() {
+	public Tabla() {
 		
 		initGUI();
 	}
