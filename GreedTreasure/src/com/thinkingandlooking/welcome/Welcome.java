@@ -10,6 +10,7 @@ import nextapp.echo.app.Button;
 import nextapp.echo.app.Color;
 import nextapp.echo.app.ContentPane;
 import nextapp.echo.app.Extent;
+import nextapp.echo.app.Font;
 import nextapp.echo.app.Label;
 import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
@@ -28,7 +29,7 @@ public class Welcome extends ContentPane {
 	}
 
 	private void initGUI() {
-		// setBackground(new Color(197, 217, 161));
+		 //setForeground(new Color(197, 217, 161));
 
 		loadHtmlTemplate("/com/thinkingandlooking/utils/template.html");
 
@@ -36,6 +37,7 @@ public class Welcome extends ContentPane {
 
 		hld = new HtmlLayoutData("title");
 		Label lblTitle = new Label("Bienvenido al Juego de GREED TREASURE!! Ingrese sus datos o registrese para jugar!");
+		
 		lblTitle.setLayoutData(hld);
 		htmlLayout.add(lblTitle);
 
@@ -49,9 +51,10 @@ public class Welcome extends ContentPane {
 
 		hld = new HtmlLayoutData("elemento2");
 		Button btn = new Button("Registrarse");
-		btn.setBorder(new Border(new Extent(2), Color.BLACK, 1));
-		btn.setBackground(new Color(117, 145, 118));
+		btn.setForeground(Color.WHITE);
+		btn.setBorder(new Border(new Extent(2), Color.RED, 1));
 		btn.setWidth(new Extent(70));
+		btn.setBackground(Color.BLACK);
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnCreateAccountClicked();
@@ -61,8 +64,10 @@ public class Welcome extends ContentPane {
 		htmlLayout.add(btn);
 
 		Button btn1 = new Button("Recuperar contraseña");
-		btn1.setBorder(new Border(new Extent(2), Color.BLACK, 1));
-		btn1.setBackground(new Color(117, 145, 118));
+		btn1.setBorder(new Border(new Extent(2), Color.RED, 1));
+		btn1.setForeground(Color.WHITE);
+
+		btn1.setBackground(Color.BLACK);
 		btn1.setWidth(new Extent(70));
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
