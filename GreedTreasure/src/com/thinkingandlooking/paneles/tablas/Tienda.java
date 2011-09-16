@@ -2,8 +2,10 @@ package com.thinkingandlooking.paneles.tablas;
 
 
 import com.thinkingandlooking.database.MetodosArmaTerreno;
+import com.thinkingandlooking.database.ModeloArmaTerreno;
 import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.main.MainApp;
+import com.thinkingandlooking.tablas.TablaArmasTerreno;
 import com.thinkingandlooking.tablas.TablaBaseModeloArmaTerreno;
 
 import nextapp.echo.app.ApplicationInstance;
@@ -16,9 +18,11 @@ public class Tienda extends ContentPane {
 	
 //	TabPane tab;
 	WindowPane ventana;
+	Usuario usuario;
 	
 	public Tienda(Usuario usuario) {
 		ventana=new WindowPane();
+		this.usuario=usuario;
 		initGui();
 	}
 
@@ -27,30 +31,18 @@ public class Tienda extends ContentPane {
 		//tab=new TabPane();
 		//ventana.add(tab);
 		
-		TablaBaseModeloArmaTerreno tabla=new TablaBaseModeloArmaTerreno();
-		Usuario user=new Usuario();
-		user.setLogin("tico");
-		tabla.crearTabla(MetodosArmaTerreno.tablaPrincipal(user));
+		//TablaArmasTerreno tabla=new TablaArmasTerreno("Comprar");
+		TablaBaseModeloArmaTerreno tabla= new TablaBaseModeloArmaTerreno();
+		if(MetodosArmaTerreno.mostrarArmasInventario().size()==0)
+			System.err.println("LISTA VACIA");
+		
+		tabla.crearTabla(MetodosArmaTerreno.mostrarArmasInventario());
 		ventana.add(tabla);
 		((MainApp)ApplicationInstance.getActive()).getDefaultWindow().getContent().add(ventana);
-		
+		//add(ventana);
 
 	
 
 	}
 }
 
-/*	
-	
-//    List<Object> listaArmas = MetodosArmaTerreno.tablaPrincipal(usuario);
-//  col.add(mostrar(listaArmas));
-	
-	nextapp.echo.app.Column col=new nextapp.echo.app.Column();
-	col.add(tabla);
-	//tab.add(tabla);
-	
-	tab.add(col);
-	
-	add(tab);	
-
-	}*/
