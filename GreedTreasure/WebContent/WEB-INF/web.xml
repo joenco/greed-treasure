@@ -34,7 +34,7 @@
 	
 	<servlet>
 		<servlet-name>ServletImagenes</servlet-name>
-		<servlet-class>com.thinkingandlooking.paneles.ServletImagenes</servlet-class>
+		<servlet-class>com.thinkingandlooking.tablas.ServletImagenes</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>

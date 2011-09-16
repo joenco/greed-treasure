@@ -15,16 +15,18 @@ public class ServletImagenes extends HttpServlet{
 	
 	String	nombreArma;
 	EnumConsultas tipoDeConsulta;
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) //
     throws ServletException, IOException {
 		
 	    nombreArma     = req.getParameter("nombreArma");
 	    tipoDeConsulta =
-	    		(req.getParameter("tipoDeConsulta")=="CONSULTA_MODELO_ARMA_TERRENO")? 
+	    		(req.getParameter("tipoDeConsulta").equals("CONSULTA_MODELO_ARMA_TERRENO"))? 
 	    				EnumConsultas.CONSULTA_MODELO_ARMA_TERRENO:
 	    				EnumConsultas.CONSULTA_MODELO_ARMA_CABALLERO; 
-		
+	    
 	    byte[] data = pintarArma();
+		
 		
 		res.setContentType("image/png");
 	    res.getOutputStream().write(data);
@@ -33,6 +35,12 @@ public class ServletImagenes extends HttpServlet{
 	
 	private byte[] pintarArma() throws IOException {
 		
+		if(tipoDeConsulta==EnumConsultas.CONSULTA_MODELO_ARMA_TERRENO)
+		{
+		System.out.println("ENVIO");
+		System.out.println( tipoDeConsulta );
+		System.out.println( nombreArma);
+		}
 		
     	BufferedImage caballero =BufferedImageCache.getInstance().getBufferedImage(nombreArma,tipoDeConsulta);
 

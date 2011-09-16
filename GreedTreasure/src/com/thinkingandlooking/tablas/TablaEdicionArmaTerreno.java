@@ -16,9 +16,9 @@ import com.minotauro.echo.table.renderer.NestedCellRenderer;
 import com.thinkingandlooking.paneles.tablaenemigos.TestTableModel;
 import com.thinkingandlooking.utils.GUIStyles;
 
-public class TablaModeloArmaTerreno extends TablaBaseModeloArmaTerreno {
+public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {
 
-	public TablaModeloArmaTerreno() {
+	public TablaEdicionArmaTerreno() {
 		super();
 		}
 

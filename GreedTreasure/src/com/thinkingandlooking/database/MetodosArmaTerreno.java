@@ -186,18 +186,18 @@ public class MetodosArmaTerreno {
 	//Con este metodo se le puede mostrar al usuario la lista de armas q
 	// la tienda posee, de esta forma puede seleccionar cual arma comprar
 	// considerando que a la tienda nunca se le agotaran las armas
-	public static List<ModeloArmaTerreno> mostrarArmasInventario() {
+	public static List<Object> mostrarArmasInventario() {
 
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 		String str = "SELECT DISTINCT m FROM ModeloArmaTerreno AS m";
 		Query query = session.createQuery(str);
-		List<ModeloArmaTerreno> list = new ArrayList<ModeloArmaTerreno>();
+		List<Object> list = new ArrayList<Object>();
+		
 		for (Object obj : query.list()) {
-			ModeloArmaTerreno ma = (ModeloArmaTerreno) obj;
-			list.add(ma);
-			System.err.println(ma.getId() + "; " + ma.getNombre());
+			list.add(obj);
 		}
+    
 		session.getTransaction().commit();
 		session.close();
 		return list;

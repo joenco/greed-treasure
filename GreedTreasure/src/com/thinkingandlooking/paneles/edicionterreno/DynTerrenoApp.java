@@ -8,7 +8,7 @@ import com.thinkingandlooking.database.MetodosArmaTerreno;
 import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.main.MainApp;
 import com.thinkingandlooking.tablas.TablaBaseModeloArmaTerreno;
-import com.thinkingandlooking.tablas.TablaModeloArmaTerreno;
+import com.thinkingandlooking.tablas.TablaEdicionArmaTerreno;
 
 import nextapp.echo.app.Panel;
 
@@ -60,13 +60,17 @@ public class DynTerrenoApp extends Panel {
 		    col = new Column();
 		    col.setCellSpacing(new Extent(5));
 		    add(col);
-		  //  System.out.printf("el caracter %c", armaSeleccionada);
-		    
-		    terrenoSeccionado= seccionarTerreno(obtenerTerrenoUsuario("(-1,-1)"));
+	
 		   
+		    
+		    terrenoSeccionado= seccionarTerreno(obtenerTerrenoUsuario("(-1,-1)"));		    	
 		    col.add(terrenoSeccionado);
 		    bandera=true;
+		    
 		    Row row = new Row();
+		    row.setCellSpacing(new Extent(5));
+		    
+		    row = new Row();
 		    row.setCellSpacing(new Extent(5));
 		    col.add(row);
 		    
@@ -100,52 +104,57 @@ public class DynTerrenoApp extends Panel {
 
 		    lblSelected = new Label("nothing selected");
 		    col.add(lblSelected);
-		   // ultimaCoodenadaClick=new String("(-1,-1)");
+
 		    List<Object> listaArmas = MetodosArmaTerreno.tablaPrincipal(usuario);
-		    col.add(mostrar(listaArmas));
+		  
+		    
 		    if(listaArmas.size()>0)
 		    	col.add(mostrar(listaArmas));
 		    
 		    else
-		    {
-		    	final WindowPane aviso=new WindowPane();
-		    	aviso.setTitle("No Posee Armas");//,new Extent(400),new Extent(400));
-		    	
-		    	Column col=new Column();
-		    	
-		    	Label mensaje=new Label("Debe Adquirir Armas para Editar Su Terreno");
-		    	col.add(mensaje);
-		    	
-		    	Row fila =new Row();
-		    	col.add(fila); 	
-		    	
-		    	Button ok=new Button("ok");
-		    	ok.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						aviso.userClose();
-					}
-
-				});
-		    	
-		    	fila.add(ok);
-		    	
-		    	Button comprar=new Button("Comprar Armas");
-		    	fila.add(comprar);
-		    	
-		    	aviso.add(col);
-		    	aviso.setMovable(false);
-		    	aviso.setResizable(false);
-		    	aviso.setClosable(false);
-		    	aviso.setModal(true);
-		    	((MainApp)ApplicationInstance.getActive()).getDefaultWindow().getContent().add(aviso);
-		    	
-		    }
+		    	crearAviso();
+		   // ultimaCoodenadaClick=new String("(-1,-1)");
+		   
 
 	    }
 
 
-	  private TablaModeloArmaTerreno mostrar(List<Object> listaArmas) {
-		TablaModeloArmaTerreno tabla=new TablaModeloArmaTerreno();
+	  private void crearAviso() {
+		  final WindowPane aviso=new WindowPane();
+	    	aviso.setTitle("No Posee Armas");//,new Extent(400),new Extent(400));
+	    	
+	    	Column col=new Column();
+	    	
+	    	Label mensaje=new Label("Debe Adquirir Armas para Editar Su Terreno");
+	    	col.add(mensaje);
+	    	
+	    	Row fila =new Row();
+	    	col.add(fila); 	
+	    	
+	    	Button ok=new Button("ok");
+	    	ok.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					aviso.userClose();
+				}
+
+			});
+	    	
+	    	fila.add(ok);
+	    	
+	    	Button comprar=new Button("Comprar Armas");
+	    	fila.add(comprar);
+	    	
+	    	aviso.add(col);
+	    	aviso.setMovable(false);
+	    	aviso.setResizable(false);
+	    	aviso.setClosable(false);
+	    	aviso.setModal(true);
+	    	((MainApp)ApplicationInstance.getActive()).getDefaultWindow().getContent().add(aviso);
+	    	
+		
+	}
+	private TablaEdicionArmaTerreno mostrar(List<Object> listaArmas) {
+		TablaEdicionArmaTerreno tabla=new TablaEdicionArmaTerreno();
 		tabla.crearTabla(listaArmas);
 		return tabla;
 	}

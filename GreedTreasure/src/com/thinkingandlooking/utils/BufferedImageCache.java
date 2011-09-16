@@ -70,7 +70,9 @@ public class BufferedImageCache {
  public BufferedImage getBufferedImage(String nombreBuscado,EnumConsultas tipoConsulta)throws IOException  {
 	  
 	 if(nombreBuscado.isEmpty())
-			return null;
+	 {	System.out.println( "retornndo puro nulo" );
+		 return null;
+	 }
 		
 		Session session= SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
@@ -80,6 +82,12 @@ public class BufferedImageCache {
 		Criteria criteria;
 		String key=null;
 		
+		if(tipoConsulta==EnumConsultas.CONSULTA_MODELO_ARMA_TERRENO)
+		{
+    	System.out.println( "RECIVE");
+		System.out.println( tipoConsulta );
+		System.out.println( nombreBuscado);
+		}
 			switch (tipoConsulta) {
 				case CONSULTA_MODELO_ARMA_TERRENO:
 					criteria = session.createCriteria(ModeloArmaTerreno.class).add(
@@ -91,7 +99,7 @@ public class BufferedImageCache {
 					key = BufferedImage.class.getName() + ":" +modeloArmaTerreno.getNombre();
 					ret= BufferedImageMap.get(key);
 					if (ret != null) 
-						break;
+						return ret;
 					
 					imagenByte = modeloArmaTerreno.getImagen();
 					break;
@@ -110,8 +118,9 @@ public class BufferedImageCache {
 					ModeloCaballero modeloCaballero=usuario.getCaballero().getModeloCaballeroRef();
 					key = BufferedImage.class.getName() + ":" +modeloCaballero.getNombreModelo();
 					ret= BufferedImageMap.get(key);
+					
 					if (ret != null) 
-						break;
+						return ret;
 					
 					imagenByte = modeloCaballero.getImgEdicion();
 					break;
@@ -126,12 +135,10 @@ public class BufferedImageCache {
 			
 			InputStream in = new ByteArrayInputStream(imagenByte);
 			ret = ImageIO.read(in);
+            BufferedImageMap.put(key, ret);
+            return ret;
 
-			
-			BufferedImageMap.put(key, ret);
-		
-
-		return ret;
+	
   }
   
 }
