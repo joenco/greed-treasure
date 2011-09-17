@@ -38,8 +38,8 @@ public class Tienda extends ContentPane {
 		
 		tabla.crearTabla(MetodosArmaTerreno.mostrarArmasInventario());
 		ventana.add(tabla);
-		((MainApp)ApplicationInstance.getActive()).getDefaultWindow().getContent().add(ventana);
-		//add(ventana);
+		//((MainApp)ApplicationInstance.getActive()).getDefaultWindow().getContent().add(ventana);
+		add(ventana);
 
 	
 

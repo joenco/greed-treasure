@@ -82,14 +82,10 @@ public class BufferedImageCache {
 		Criteria criteria;
 		String key=null;
 		
-		if(tipoConsulta==EnumConsultas.CONSULTA_MODELO_ARMA_TERRENO)
-		{
-    	System.out.println( "RECIVE");
-		System.out.println( tipoConsulta );
-		System.out.println( nombreBuscado);
-		}
+		
 			switch (tipoConsulta) {
 				case CONSULTA_MODELO_ARMA_TERRENO:
+
 					criteria = session.createCriteria(ModeloArmaTerreno.class).add(
 							Restrictions.eq("nombre", nombreBuscado));
 					ModeloArmaTerreno modeloArmaTerreno = (ModeloArmaTerreno) criteria.uniqueResult();
@@ -99,7 +95,9 @@ public class BufferedImageCache {
 					key = BufferedImage.class.getName() + ":" +modeloArmaTerreno.getNombre();
 					ret= BufferedImageMap.get(key);
 					if (ret != null) 
+					{		System.out.println( "no debe entrar");
 						return ret;
+					}
 					
 					imagenByte = modeloArmaTerreno.getImagen();
 					break;
