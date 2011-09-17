@@ -24,7 +24,7 @@ public class ServletImagenes extends HttpServlet{
 	    		(req.getParameter("tipoDeConsulta").equals("CONSULTA_MODELO_ARMA_TERRENO"))? 
 	    				EnumConsultas.CONSULTA_MODELO_ARMA_TERRENO:
 	    				EnumConsultas.CONSULTA_MODELO_ARMA_CABALLERO; 
-	    
+	   
 	    byte[] data = pintarArma();
 		
 		
@@ -35,18 +35,12 @@ public class ServletImagenes extends HttpServlet{
 	
 	private byte[] pintarArma() throws IOException {
 		
-		if(tipoDeConsulta==EnumConsultas.CONSULTA_MODELO_ARMA_TERRENO)
-		{
-		System.out.println("ENVIO");
-		System.out.println( tipoDeConsulta );
-		System.out.println( nombreArma);
-		}
 		
-    	BufferedImage caballero =BufferedImageCache.getInstance().getBufferedImage(nombreArma,tipoDeConsulta);
+    	BufferedImage	byteArma =BufferedImageCache.getInstance().getBufferedImage(nombreArma,tipoDeConsulta);
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 	
-		ImageIO.write(caballero, "png", baos);
+		ImageIO.write(byteArma, "png", baos);
 	
 	
 		return baos.toByteArray();

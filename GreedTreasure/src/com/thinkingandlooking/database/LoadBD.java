@@ -511,10 +511,10 @@ public class LoadBD {
 		// Creacion de los modelos de armas terreno
 		
 		insertarModeloArmaTerreno("Barril Explosivo", 5, 1, 3, 1, 8, 2, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/barrilexplosivo.gif");
-		insertarModeloArmaTerreno("Lagarto Hambriento", 3, 3, 1, 10, 4, 1, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/barrilexplosivo.gif");
-		insertarModeloArmaTerreno("Molotov Medieval", 4, 1, 2, 1, 3, 1, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/barrilexplosivo.gif");
-		insertarModeloArmaTerreno("Planta Venenosa", 3, 3, 2, 10, 6, 1, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/barrilexplosivo.gif");
-		insertarModeloArmaTerreno("Roedores Asesinos", 1, 5, 1, 20, 4, 1, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/barrilexplosivo.gif");
+		insertarModeloArmaTerreno("Lagarto Hambriento", 3, 3, 1, 10, 4, 1, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/lagartohambriento.gif");
+		insertarModeloArmaTerreno("Molotov Medieval", 4, 1, 2, 1, 3, 1, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/molotovmedieval.gif");
+		insertarModeloArmaTerreno("Planta Venenosa", 3, 3, 2, 10, 6, 1, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/plantavenenosa.gif");
+		insertarModeloArmaTerreno("Roedores Asesinos", 1, 5, 1, 20, 4, 1, "src/com/thinkingandlooking/Imagenes/ArmaTerreno/roedoresasesinos.gif");
 		
 		// Creacion de las destrezas
 

@@ -3,6 +3,8 @@ package com.thinkingandlooking.paneles.edicioncaballero;
 
 
 import com.thinkingandlooking.database.Usuario;
+
+import nextapp.echo.app.Color;
 import nextapp.echo.app.Column;
 import nextapp.echo.app.Extent;
 import nextapp.echo.app.HttpImageReference;
@@ -10,6 +12,7 @@ import nextapp.echo.app.ImageReference;
 import nextapp.echo.app.Label;
 import nextapp.echo.app.Panel;
 import nextapp.echo.app.Row;
+import nextapp.echo.extras.app.ToolTipContainer;
 
 public class EditarCaballeroApp extends Panel {
 
@@ -32,8 +35,19 @@ public class EditarCaballeroApp extends Panel {
 		ir = new HttpImageReference("caballerodyn?login="+usuario.getLogin());
 		Label label = new Label(ir);
 		
+		//ToolTipContainer ttc = new ToolTipContainer();
+		/*Column col = new Column();
+		col.add(new Label("AA"));
+		col.add(new Label("BB"));
+		col.setBackground(Color.RED);
+		ttc.add(col);
+		*/
+	  //  ttc.add(label);
+		
+		
 		Row row = new Row();
 		row.setCellSpacing(new Extent(10, Extent.PX));
+		//row.add(ttc);
 		row.add(label);
 		row.add(CrearColumna());
 		col.add(row);
