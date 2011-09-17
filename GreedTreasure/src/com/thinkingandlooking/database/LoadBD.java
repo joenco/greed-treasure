@@ -504,9 +504,9 @@ public class LoadBD {
 
 	insertarModeloArmaCaballero("Espada del Olvido", 2, 2, 1, 1000	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadelolvido.gif");
 	insertarModeloArmaCaballero("Hacha Infinita", 3, 1, 2, 1000	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachainfinita.gif");
-	insertarModeloArmaCaballero("Lanza de la Oscuridad", 3, 0, 3, 1000	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachainfinita.gif");
-	insertarModeloArmaCaballero("Martillo de la Luz", 4, 2, 2, 1000	, 30, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachainfinita.gif");
-	insertarModeloArmaCaballero("Mazo del Dolor", 3, 3, 3, 1000	, 35, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachainfinita.gif");
+	insertarModeloArmaCaballero("Lanza de la Oscuridad", 3, 0, 3, 1000	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/lanzadelaoscuridad.gif");
+	insertarModeloArmaCaballero("Martillo de la Luz", 4, 2, 2, 1000	, 30, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/martillodelaluz.gif");
+	insertarModeloArmaCaballero("Mazo del Dolor", 3, 3, 3, 1000	, 35, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodeldolor.gif");
 		
 		// Creacion de los modelos de armas terreno
 		

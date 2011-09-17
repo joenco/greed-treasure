@@ -63,8 +63,16 @@ public class DynTerrenoApp extends Panel {
 	
 		   
 		    
-		    terrenoSeccionado= seccionarTerreno(obtenerTerrenoUsuario("(-1,-1)"));		    	
-		    col.add(terrenoSeccionado);
+		    terrenoSeccionado= seccionarTerreno(obtenerTerrenoUsuario("(-1,-1)"));	
+		    
+		    Row row3=new Row();
+		    row3.add(terrenoSeccionado);
+		 
+		    
+		    List<Object> listaArmas = MetodosArmaTerreno.tablaPrincipal(usuario);
+		    row3.add(mostrar(listaArmas));
+		    
+		    col.add(row3);
 		    bandera=true;
 		    
 		    Row row = new Row();
@@ -105,7 +113,7 @@ public class DynTerrenoApp extends Panel {
 		    lblSelected = new Label("nothing selected");
 		    col.add(lblSelected);
 
-		    List<Object> listaArmas = MetodosArmaTerreno.tablaPrincipal(usuario);
+	
 		  
 		    
 		    if(listaArmas.size()>0)

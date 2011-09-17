@@ -15,7 +15,9 @@ import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
 
+import com.thinkingandlooking.database.ArmaCaballero;
 import com.thinkingandlooking.database.MetodosTerreno;
+import com.thinkingandlooking.database.ModeloArmaCaballero;
 import com.thinkingandlooking.database.ModeloArmaTerreno;
 import com.thinkingandlooking.database.ModeloCaballero;
 import com.thinkingandlooking.database.SessionHibernate;
@@ -69,8 +71,7 @@ public class BufferedImageCache {
   
  public BufferedImage getBufferedImage(String nombreBuscado,EnumConsultas tipoConsulta)throws IOException  {
 	  
-	 if(nombreBuscado.isEmpty())
-	 {	System.out.println( "retornndo puro nulo" );
+	 if(nombreBuscado.isEmpty()){
 		 return null;
 	 }
 		
@@ -108,7 +109,20 @@ public class BufferedImageCache {
 					
 					
 				case CONSULTA_MODELO_ARMA_CABALLERO:
+						
 					
+					criteria = session.createCriteria(ModeloArmaTerreno.class).add(
+							Restrictions.eq("nombre", nombreBuscado));
+					ModeloArmaCaballero modeloArmaCaballero = (ModeloArmaCaballero) criteria.uniqueResult();
+					session.close();
+				
+					key = BufferedImage.class.getName() + ":" +modeloArmaCaballero.getNombre();
+					ret= BufferedImageMap.get(key);
+					if (ret != null) {		
+						return ret;
+					}
+					
+					imagenByte = modeloArmaCaballero.getImagen();
 					break;
 					
 				case CONSULTA_EDICION_IMAGEN_CABALLERO:
@@ -133,14 +147,10 @@ public class BufferedImageCache {
 				
 			}
 			
-			
-			
 			InputStream in = new ByteArrayInputStream(imagenByte);
 			ret = ImageIO.read(in);
             BufferedImageMap.put(key, ret);
             return ret;
-
-	
   }
   
 }

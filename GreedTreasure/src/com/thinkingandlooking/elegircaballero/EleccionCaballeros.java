@@ -2,12 +2,8 @@ package com.thinkingandlooking.elegircaballero;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-
-
-
 import com.thinkingandlooking.database.*;
 import com.thinkingandlooking.main.MainApp;
-
 import echopoint.HtmlLayout;
 import nextapp.echo.app.SelectField;
 import nextapp.echo.app.list.DefaultListModel;
@@ -46,7 +42,6 @@ public class EleccionCaballeros extends ContentPane  {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-
 		HtmlLayoutData hld;
 
 		hld = new HtmlLayoutData("title");
