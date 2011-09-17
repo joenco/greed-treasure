@@ -47,7 +47,7 @@ public abstract class Tabla  extends ETable{
 
 		setEasyview(true);
 
-		setBorder(new Border(5, Color.BLACK, Border.STYLE_GROOVE	));
+		//setBorder(new Border(5, Color.BLACK, Border.STYLE_GROOVE	));
 		setCellSpacing(new Extent(10));
 		
 }
