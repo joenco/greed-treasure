@@ -5,16 +5,12 @@ import nextapp.echo.app.Alignment;
 import nextapp.echo.app.Color;
 import nextapp.echo.app.Extent;
 import nextapp.echo.app.HttpImageReference;
-import nextapp.echo.app.ImageReference;
-
 import com.minotauro.echo.table.base.ETable;
 import com.minotauro.echo.table.base.TableColModel;
 import com.minotauro.echo.table.base.TableColumn;
 import com.minotauro.echo.table.renderer.ImageCellRenderer;
 import com.minotauro.echo.table.renderer.LabelCellRenderer;
-import com.thinkingandlooking.database.MetodosArmaTerreno;
 import com.thinkingandlooking.database.ModeloArmaTerreno;
-import com.thinkingandlooking.utils.EnumConsultas;
 
 
 public class TablaBaseModeloArmaTerreno extends Tabla {

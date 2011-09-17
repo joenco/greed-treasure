@@ -13,8 +13,6 @@ import com.minotauro.echo.table.base.TableColumn;
 import com.minotauro.echo.table.renderer.BaseCellRenderer;
 import com.minotauro.echo.table.renderer.LabelCellRenderer;
 import com.minotauro.echo.table.renderer.NestedCellRenderer;
-import com.thinkingandlooking.database.ModeloArmaTerreno;
-import com.thinkingandlooking.paneles.tablaenemigos.TestTableModel;
 import com.thinkingandlooking.utils.GUIStyles;
 
 public class TablaArmasTerreno  extends TablaBaseModeloArmaTerreno{
@@ -45,30 +43,7 @@ public class TablaArmasTerreno  extends TablaBaseModeloArmaTerreno{
 
 			tableColumn.setDataCellRenderer(initNestedCellRenderer());
 			tableColModel.getTableColumnList().add(tableColumn);
-			
-			tableColumn = new TableColumn() {
-				@Override
-				public Object getValue(ETable table, Object element) {
-					ModeloArmaTerreno modeloArmasTerreno = (ModeloArmaTerreno) element;
-					
-					return modeloArmasTerreno.getArmaTerrenoList().size();
-				}
-			};
-			tableColumn.setWidth(new Extent(10));
-			tableColumn.setHeadValue("NUM ARMAS");
-
-			lcr = new LabelCellRenderer();
-			lcr.setBackground(Color.BLUE);
-			lcr.setForeground(Color.WHITE);
-			lcr.setAlignment(new Alignment( //
-					Alignment.CENTER, Alignment.DEFAULT));
-			tableColumn.setHeadCellRenderer(lcr);
-
-			lcr = new LabelCellRenderer();
-			lcr.setAlignment(new Alignment( //
-					Alignment.CENTER, Alignment.DEFAULT));
-			tableColumn.setDataCellRenderer(lcr);
-			tableColModel.getTableColumnList().add(tableColumn);
+		
 			return tableColModel;
 }
 	

@@ -77,7 +77,7 @@ public class BufferedImageCache {
 		Session session= SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 
-		BufferedImage ret ;
+		BufferedImage ret=null ;
 		byte[] imagenByte=null;
 		Criteria criteria;
 		String key=null;
@@ -90,14 +90,18 @@ public class BufferedImageCache {
 							Restrictions.eq("nombre", nombreBuscado));
 					ModeloArmaTerreno modeloArmaTerreno = (ModeloArmaTerreno) criteria.uniqueResult();
 					session.close();
-					
+					System.out.println( "BUSQUEMOS A:");
+					System.out.println( nombreBuscado);
 				
 					key = BufferedImage.class.getName() + ":" +modeloArmaTerreno.getNombre();
 					ret= BufferedImageMap.get(key);
 					if (ret != null) 
-					{		System.out.println( "no debe entrar");
+					{		System.out.println( "NO ES NULL LO CONSIGUIO");
+							System.out.println( modeloArmaTerreno.getNombre());
 						return ret;
 					}
+					System.out.println( "ES NULL NO CONSIGUIO");
+					System.out.println( modeloArmaTerreno.getNombre());
 					
 					imagenByte = modeloArmaTerreno.getImagen();
 					break;
