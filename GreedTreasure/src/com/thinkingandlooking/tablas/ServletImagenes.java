@@ -24,7 +24,9 @@ public class ServletImagenes extends HttpServlet{
 	    		(req.getParameter("tipoDeConsulta").equals("CONSULTA_MODELO_ARMA_TERRENO"))? 
 	    				EnumConsultas.CONSULTA_MODELO_ARMA_TERRENO:
 	    				EnumConsultas.CONSULTA_MODELO_ARMA_CABALLERO; 
-	   
+	    System.out.println( "DESDE SERVLET" );
+	    System.out.println( nombreArma );
+	    
 	    byte[] data = pintarArma();
 		
 		

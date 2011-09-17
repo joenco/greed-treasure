@@ -34,21 +34,21 @@ public class EditarCaballeroApp extends Panel {
 		
 		ir = new HttpImageReference("caballerodyn?login="+usuario.getLogin());
 		Label label = new Label(ir);
+
+		ToolTipContainer ttc = new ToolTipContainer();
 		
-		//ToolTipContainer ttc = new ToolTipContainer();
-		/*Column col = new Column();
-		col.add(new Label("AA"));
-		col.add(new Label("BB"));
-		col.setBackground(Color.RED);
-		ttc.add(col);
-		*/
-	  //  ttc.add(label);
+		Column colum = new Column();
+		colum.add(new Label("AA"));
+		colum.add(new Label("BB"));
+		colum.setBackground(Color.RED);
 		
+	
+		ttc.add(colum);
+		ttc.add(label);
 		
 		Row row = new Row();
 		row.setCellSpacing(new Extent(10, Extent.PX));
-		//row.add(ttc);
-		row.add(label);
+		row.add(ttc);
 		row.add(CrearColumna());
 		col.add(row);
 		

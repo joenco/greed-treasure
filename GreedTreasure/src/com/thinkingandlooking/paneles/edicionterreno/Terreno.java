@@ -45,7 +45,7 @@ public class Terreno {
 	public Terreno (String login) 
 	{
 		this.login = login;
-		tamanioTiles=27;
+		tamanioTiles=32;
 		setDimension(16); //ojo consultar en base de datos cual es la dimension del terreno del usuario correspondiente
 		cargarMatrizTerreno();
 		

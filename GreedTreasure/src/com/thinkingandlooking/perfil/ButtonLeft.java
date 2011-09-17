@@ -16,6 +16,7 @@ import nextapp.echo.app.Extent;
 import nextapp.echo.app.Label;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
+import nextapp.echo.extras.app.ToolTipContainer;
 
 public class ButtonLeft  extends Column{
 
@@ -30,13 +31,25 @@ public class ButtonLeft  extends Column{
 		Button btnAtacarCastillo = new Button("Atacar Castillo");
 		btnAtacarCastillo.setBorder(new Border(new Extent(2), Color.BLACK, 1));
 		btnAtacarCastillo.setBackground(new Color(117, 145, 118));
+		
+		ToolTipContainer ttc = new ToolTipContainer();
+		
+		Column col = new Column();
+		col.add(new Label("AA"));
+		col.add(new Label("BB"));
+		col.setBackground(Color.RED);
+		
+		ttc.add(btnAtacarCastillo);
+		ttc.add(col);
+		add(ttc);
+		
 		btnAtacarCastillo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnAtacarCastilloClicked();
 			}
 		});
 
-		add(btnAtacarCastillo);
+		//add(btnAtacarCastillo);
 		
 		Button btnEditionCastillo = new Button("Editar Castillo");
 		btnEditionCastillo.setBorder(new Border(new Extent(2), Color.BLACK, 1));

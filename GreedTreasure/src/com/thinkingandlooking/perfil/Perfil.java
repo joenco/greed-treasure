@@ -3,6 +3,7 @@ package com.thinkingandlooking.perfil;
 
 import nextapp.echo.app.Column;
 import nextapp.echo.app.ContentPane;
+import nextapp.echo.app.Extent;
 import nextapp.echo.app.Grid;
 import nextapp.echo.app.Label;
 import nextapp.echo.app.Panel;
@@ -131,6 +132,7 @@ public class Perfil extends ContentPane {
 	
 		Panel panel=new Panel();
 		panel.add(contentpane);
+		panel.setHeight(new Extent(450));
 		updatePanel(panel);
 		
 	}
