@@ -1,5 +1,7 @@
 package com.thinkingandlooking.tablas;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ import nextapp.echo.app.Extent;
 import nextapp.echo.app.Label;
 import nextapp.echo.app.Row;
 import nextapp.echo.app.SelectField;
+import nextapp.echo.app.TextField;
 import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
@@ -38,12 +41,14 @@ import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.main.MainApp;
 import com.thinkingandlooking.utils.GUIStyles;
 
+
 public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 	int aux;
 	String nombreBoton;
 	Usuario usuario;
 	ArmaTerreno am = new ArmaTerreno();
 	ModeloArmaTerreno modeloArmaTerreno = new ModeloArmaTerreno();
+	TextField Text3 ;
 
 	public TablaArmasTerreno(String nombreBoton, Usuario usuario) {
 		super();
@@ -120,33 +125,51 @@ public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 			windowPane.setModal(true);
 			windowPane.setTitleBackground(new Color(11, 46, 5));
 			windowPane.setTitleForeground(Color.WHITE);
-			windowPane.setBackground(new Color(197, 217, 161));
+			windowPane.setBackground(new Color(50, 217, 11));
 			windowPane.setTitle("Compra Maldito");
 
 			DefaultListModel listModel = new DefaultListModel(new String[] {
 					"1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
 			final SelectField cant = new SelectField(listModel);
 			cant.setSelectedItem("1");
+			//
+			
+			cant.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					
+					
+					Text3.setText("  " + Integer.toString(Integer.parseInt((String) cant.getSelectedItem())
+									* modeloArmaTerreno.getOro()) + "   ");
+				}
+			});
+			 		
+			 //
 
 			Row row2 = new Row();
 			Label paneText = new Label("Desea comprar  ");
 			Label paneText2 = new Label("  " + modeloArmaTerreno.getNombre()
 					+ " por ");
 
-			aux = Integer.parseInt((String) cant.getSelectedItem())
-					* modeloArmaTerreno.getOro();
+			//aux = Integer.parseInt((String) cant.getSelectedItem())
+			//		* modeloArmaTerreno.getOro();
 
 			System.err.println(aux);
 
-			Label paneText3 = new Label("  " + Integer.toString(aux) + "   ");
+			Text3 = new TextField();
+			
+			Text3.setText("  " + Integer.toString(Integer.parseInt((String) cant.getSelectedItem())
+							* modeloArmaTerreno.getOro()) + "   ");
+			Text3.setEditable(false);
 			Label paneText4 = new Label(" monedas de oro");
-			paneText2.setBackground(Color.CYAN);
-			paneText2.setForeground(Color.BLACK);
+			Text3.setBackground(Color.YELLOW);
+			Text3.setForeground(Color.BLACK);
 
 			row2.add(paneText);
 			row2.add(cant);
 			row2.add(paneText2);
-			row2.add(paneText3);
+			row2.add(Text3);
 			row2.add(paneText4);
 
 			Button acceptbtn = new Button("OK");
