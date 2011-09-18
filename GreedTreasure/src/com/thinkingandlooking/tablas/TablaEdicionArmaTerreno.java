@@ -13,7 +13,6 @@ import com.minotauro.echo.table.base.TableColumn;
 import com.minotauro.echo.table.renderer.BaseCellRenderer;
 import com.minotauro.echo.table.renderer.LabelCellRenderer;
 import com.minotauro.echo.table.renderer.NestedCellRenderer;
-import com.thinkingandlooking.paneles.tablaenemigos.TestTableModel;
 import com.thinkingandlooking.utils.GUIStyles;
 
 public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {

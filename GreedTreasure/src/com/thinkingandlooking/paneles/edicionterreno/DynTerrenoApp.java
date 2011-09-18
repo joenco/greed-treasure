@@ -1,18 +1,12 @@
 package com.thinkingandlooking.paneles.edicionterreno;
         
-
-
 import java.util.List;
-
 import com.thinkingandlooking.database.MetodosArmaTerreno;
 import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.main.MainApp;
 import com.thinkingandlooking.tablas.TablaEdicionArmaTerreno;
-
 import nextapp.echo.app.Panel;
-
 import echopoint.ImageMap;
-
 import echopoint.model.RectangleSection;
 import nextapp.echo.app.ApplicationInstance;
 import nextapp.echo.app.Button;

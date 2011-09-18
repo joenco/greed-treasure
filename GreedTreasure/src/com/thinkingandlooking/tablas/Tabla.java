@@ -7,7 +7,7 @@ import com.minotauro.echo.table.base.ETable;
 import com.minotauro.echo.table.base.ETableNavigation;
 import com.minotauro.echo.table.base.TableColModel;
 import com.minotauro.echo.table.base.TableSelModel;
-import com.thinkingandlooking.paneles.tablaenemigos.TestTableModel;
+
 
 public abstract class Tabla  extends ETable{
 
