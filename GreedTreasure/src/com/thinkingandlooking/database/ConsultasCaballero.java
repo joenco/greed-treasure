@@ -14,9 +14,10 @@ public class ConsultasCaballero {
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 		
-		String str = "FROM Caballero WHERE id >= :att_id";
+		String str = "FROM Caballero WHERE id <> :att_id AND nivel >=:att_nivel";
 		Query query = session.createQuery(str);
-		query.setParameter("att_id", usuario.getCaballero().getId()-1);
+		query.setParameter("att_id", usuario.getCaballero().getId());
+		query.setParameter("att_nivel",usuario.getCaballero().getNivel());
 		List<Object> list=new ArrayList<Object>();
 		
 		 for (Object obj : query.list()) {
