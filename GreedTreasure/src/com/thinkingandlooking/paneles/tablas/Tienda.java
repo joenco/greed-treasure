@@ -58,6 +58,7 @@ public class Tienda extends ContentPane {
 		
 		tabla.crearTabla(MetodosArmaTerreno.mostrarArmasInventario());
 		col.add(tabla);
+		col.add(tabla.getPaginacion());
 		tab.add(col);
 		add(ventana);
 
