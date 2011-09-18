@@ -58,7 +58,7 @@ public class Tienda extends ContentPane {
 	    col = new Column();
 	    col.setLayoutData(layout);
 	    
-	    TablaArmasCaballero tablaCaballero = new TablaArmasCaballero();
+	    TablaArmasCaballero tablaCaballero = new TablaArmasCaballero(usuario);
 	    tablaCaballero.crearTabla(MetodosArmaCaballero.modeloArmaCaballero());
 	    col.add(tablaCaballero);
 	    col.add(tablaCaballero.getPaginacion());
