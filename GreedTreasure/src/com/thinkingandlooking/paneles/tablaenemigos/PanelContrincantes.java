@@ -1,10 +1,8 @@
 package com.thinkingandlooking.paneles.tablaenemigos;
 
 
-import java.sql.Time;
-import java.util.List;
-import javax.print.attribute.standard.Severity;
 
+import java.util.List;
 import echopoint.HtmlLayout;
 import echopoint.layout.HtmlLayoutData;
 import com.thinkingandlooking.tablas.TablaContrincantes;
