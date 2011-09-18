@@ -71,9 +71,18 @@ public class DynTerrenoApp extends Panel {
 		 
 		    
 		    List<Object> listaArmas = MetodosArmaTerreno.tablaPrincipal(usuario);
-		    row3.add(mostrar(listaArmas));
+		  
+		   
+		    if(listaArmas.size()>0)
+		    {
+		    	row3.add( mostrar(listaArmas));
+		    
+		    }
+		    else
+		    	crearAviso();
 		    
 		    col.add(row3);
+		   
 		    bandera=true;
 		    
 		    Row row = new Row();
@@ -117,11 +126,7 @@ public class DynTerrenoApp extends Panel {
 	
 		  
 		    
-//		    if(listaArmas.size()>0)
-//		    	col.add(mostrar(listaArmas));
-//		    
-//		    else
-//		    	crearAviso();
+
 		   // ultimaCoodenadaClick=new String("(-1,-1)");
 		   
 
@@ -163,8 +168,10 @@ public class DynTerrenoApp extends Panel {
 		
 	}
 	private TablaEdicionArmaTerreno mostrar(List<Object> listaArmas) {
+		
 		TablaEdicionArmaTerreno tabla=new TablaEdicionArmaTerreno();
 		tabla.crearTabla(listaArmas);
+		
 		return tabla;
 	}
 	// --------------------------------------------------------------------------------

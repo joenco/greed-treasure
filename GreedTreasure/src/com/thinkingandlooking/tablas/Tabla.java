@@ -6,6 +6,7 @@ import nextapp.echo.app.Extent;
 import nextapp.echo.app.Insets;
 import java.util.List;
 import com.minotauro.echo.table.base.ETable;
+import com.minotauro.echo.table.base.ETableNavigation;
 import com.minotauro.echo.table.base.TableColModel;
 import com.minotauro.echo.table.base.TableSelModel;
 import com.thinkingandlooking.paneles.tablaenemigos.TestTableModel;
@@ -13,7 +14,7 @@ import com.thinkingandlooking.paneles.tablaenemigos.TestTableModel;
 public abstract class Tabla  extends ETable{
 
 	protected TestTableModel tableDtaModel;
-	
+	private ETableNavigation tableNavigation;
 
 	public Tabla() {
 		
@@ -46,7 +47,10 @@ public abstract class Tabla  extends ETable{
 		setTableSelModel(tableSelModel);
 
 		setEasyview(true);
-
+		//--------------------------------------------
+		//				NAVEGACION
+		//--------------------------------------------
+		 tableNavigation = new ETableNavigation(tableDtaModel);
 		//setBorder(new Border(5, Color.BLACK, Border.STYLE_GROOVE	));
 		setCellSpacing(new Extent(10));
 		
@@ -55,6 +59,8 @@ public abstract class Tabla  extends ETable{
 	public abstract void crearTabla (List<Object> a);
 
 	public abstract TableColModel initTableColModel() ;
+	
+	public ETableNavigation getPaginacion(){return tableNavigation;}
 	
 	
 }
