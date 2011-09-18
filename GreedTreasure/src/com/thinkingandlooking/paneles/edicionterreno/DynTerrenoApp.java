@@ -23,6 +23,7 @@ import nextapp.echo.app.Extent;
 import nextapp.echo.app.HttpImageReference;
 import nextapp.echo.app.Label;
 import nextapp.echo.app.Row;
+import nextapp.echo.app.SelectField;
 import nextapp.echo.app.TextField;
 import nextapp.echo.app.Window;
 import nextapp.echo.app.WindowPane;
@@ -80,11 +81,11 @@ public class DynTerrenoApp extends Panel {
 		    
 		    row = new Row();
 		    row.setCellSpacing(new Extent(5));
-		    col.add(row);
+		    //col.add(row);
 		    
 		    Row row2 = new Row();
 		    row2.setCellSpacing(new Extent(5));
-		    col.add(row2);
+		  //  col.add(row2);
 
 		    txtId = new TextField();
 		    row.add(txtId);
@@ -111,16 +112,16 @@ public class DynTerrenoApp extends Panel {
 		    row2.add(moverArma);
 
 		    lblSelected = new Label("nothing selected");
-		    col.add(lblSelected);
+		 //   col.add(lblSelected);
 
 	
 		  
 		    
-		    if(listaArmas.size()>0)
-		    	col.add(mostrar(listaArmas));
-		    
-		    else
-		    	crearAviso();
+//		    if(listaArmas.size()>0)
+//		    	col.add(mostrar(listaArmas));
+//		    
+//		    else
+//		    	crearAviso();
 		   // ultimaCoodenadaClick=new String("(-1,-1)");
 		   
 

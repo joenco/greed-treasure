@@ -52,7 +52,7 @@ public class Tienda extends ContentPane {
 		Column col=new Column();
 		col.setLayoutData(layout);
 		
-		TablaArmasTerreno tabla=new TablaArmasTerreno("Comprar");
+		TablaArmasTerreno tabla=new TablaArmasTerreno("Comprar", usuario);
 		if(MetodosArmaTerreno.mostrarArmasInventario().size()==0)
 			System.err.println("LISTA VACIA");
 		
