@@ -116,8 +116,7 @@ public class ButtonTop extends Row {
 		ShowRecord showrecord = new ShowRecord(usuario);
 		modifiedAccount.getActionListenerProxyError().addActionListener(perfil.getListenerError());
 		modifiedAccount.getActionListenerProxyOk().addActionListener(perfil.getListenerOk());
-		
-		perfil.ambos(showrecord,modifiedAccount);
+		perfil.updatePanel(modifiedAccount);
 	}
 	
 	private void btnShowAccountClicked() {
