@@ -30,6 +30,29 @@ public class MetodosArmaCaballero {
 		return list;
 
 	}
+	
+	
+	
+	public static List<Object> modeloArmaCaballero() {
+
+		Session session = SessionHibernate.getInstance().openSession();
+		session.beginTransaction();
+
+		String str = "FROM ModeloArmaCaballero";
+		Query query = session.createQuery(str);
+
+
+		List<Object> list = new ArrayList<Object>();
+		
+		for (Object obj : query.list() )
+			list.add(obj);
+		
+		session.getTransaction().commit();
+		session.close();
+
+		return list;
+	}
+	
 	// Listar todos los modelo armas caballeros para comprar
 	public static List<ModeloArmaCaballero> modeloArma() {
 
