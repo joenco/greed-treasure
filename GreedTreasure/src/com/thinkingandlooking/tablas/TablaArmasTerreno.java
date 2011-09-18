@@ -165,7 +165,6 @@ public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 
 			Button acceptbtn = new Button("OK");
 			acceptbtn.setStyle(GUIStyles.DEFAULT_STYLE);
-
 			acceptbtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Session session = SessionHibernate.getInstance()
