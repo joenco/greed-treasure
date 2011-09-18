@@ -3,11 +3,8 @@ package com.thinkingandlooking.perfil;
 import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.paneles.edicioncaballero.EditarCaballeroApp;
 import com.thinkingandlooking.paneles.edicionterreno.DynTerrenoApp;
-import com.thinkingandlooking.paneles.elegirterreno.Terrenos;
-import com.thinkingandlooking.paneles.tablaenemigos.TablaEnemigo;
+import com.thinkingandlooking.paneles.tablaenemigos.PanelContrincantes;
 import com.thinkingandlooking.paneles.tablas.Tienda;
-import com.thinkingandlooking.utils.GUIStyles;
-
 import nextapp.echo.app.Border;
 import nextapp.echo.app.Button;
 import nextapp.echo.app.Color;
@@ -16,7 +13,6 @@ import nextapp.echo.app.Extent;
 import nextapp.echo.app.Label;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
-import nextapp.echo.extras.app.ToolTipContainer;
 
 public class ButtonLeft  extends Column{
 
@@ -73,7 +69,7 @@ public class ButtonLeft  extends Column{
 
 		add(btnEditionCaballero);
 
-		Button btnComprarArmas = new Button("Comprar armas");
+		Button btnComprarArmas = new Button("Tienda");
 		btnComprarArmas.setBorder(new Border(new Extent(2), Color.BLACK, 1));
 		btnComprarArmas.setBackground(new Color(117, 145, 118));
 		btnComprarArmas.addActionListener(new ActionListener() {
@@ -84,16 +80,7 @@ public class ButtonLeft  extends Column{
 
 		add(btnComprarArmas);
 
-		Button btnVenderArmas = new Button("Vender armas");
-		btnVenderArmas.setBorder(new Border(new Extent(2), Color.BLACK, 1));
-		btnVenderArmas.setBackground(new Color(117, 145, 118));
-		btnVenderArmas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnVenderArmasClicked();
-			}
-		});
-
-		add(btnVenderArmas);
+		
 		
 		Button btnInventarioArmas = new Button("Inventario de armas");
 		btnInventarioArmas.setBorder(new Border(new Extent(2), Color.BLACK, 1));
@@ -112,8 +99,8 @@ public class ButtonLeft  extends Column{
 
 		private void btnAtacarCastilloClicked() {
 						
-				TablaEnemigo tablaEnemigo = new TablaEnemigo(usuario,perfil);
-				perfil.updatePanel(tablaEnemigo);
+		    	PanelContrincantes panelContrincantes = new PanelContrincantes(usuario,perfil);
+				perfil.updatePanel(panelContrincantes);
 		}
 
 		private void btnEditionCastilloClicked() {
@@ -134,18 +121,10 @@ public class ButtonLeft  extends Column{
 			
 		}
 		
-		private void btnVenderArmasClicked() {
-			ShowRecord showrecord = new ShowRecord(usuario);
-			perfil.updatePanel(showrecord);
-			
-		}
 
 		private void btnInventarioArmasClicked() {
 			ShowRecord showrecord = new ShowRecord(usuario);
 			perfil.updatePanel(showrecord);
 			
-		}
-
-		
-
+		}		
 }
