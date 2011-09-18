@@ -1,11 +1,6 @@
 package com.thinkingandlooking.tablas;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.catalina.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import nextapp.echo.app.Column;
@@ -28,14 +23,12 @@ import com.minotauro.echo.table.base.ETable;
 import com.minotauro.echo.table.base.TableColModel;
 import com.minotauro.echo.table.base.TableColumn;
 import com.minotauro.echo.table.base.TableDtaModel;
-import com.minotauro.echo.table.event.TableDtaModelEvent;
 import com.minotauro.echo.table.renderer.BaseCellRenderer;
 import com.minotauro.echo.table.renderer.LabelCellRenderer;
 import com.minotauro.echo.table.renderer.NestedCellRenderer;
 import com.thinkingandlooking.database.ArmaTerreno;
 import com.thinkingandlooking.database.Caballero;
 import com.thinkingandlooking.database.ModeloArmaTerreno;
-import com.thinkingandlooking.database.ModeloCaballero;
 import com.thinkingandlooking.database.SessionHibernate;
 import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.main.MainApp;
@@ -43,7 +36,6 @@ import com.thinkingandlooking.utils.GUIStyles;
 
 
 public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
-	int aux;
 	String nombreBoton;
 	Usuario usuario;
 	ArmaTerreno am = new ArmaTerreno();
@@ -155,7 +147,6 @@ public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 			//aux = Integer.parseInt((String) cant.getSelectedItem())
 			//		* modeloArmaTerreno.getOro();
 
-			System.err.println(aux);
 
 			Text3 = new TextField();
 			
