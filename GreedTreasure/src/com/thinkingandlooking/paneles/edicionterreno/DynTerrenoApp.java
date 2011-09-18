@@ -19,6 +19,7 @@ import nextapp.echo.app.TextField;
 import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
+import nextapp.echo.extras.app.TransitionPane;
 
 
 
@@ -35,6 +36,7 @@ public class DynTerrenoApp extends Panel {
 	  private boolean bandera=false;
 	  private boolean ultimoClickTerreno=false;
 	  private String ultimaCoodenadaClick;
+	  private TransitionPane efectos=new TransitionPane();
 	  Terreno terreno;
 
 	  // --------------------------------------------------------------------------------
@@ -55,9 +57,16 @@ public class DynTerrenoApp extends Panel {
 		   
 		    
 		    terrenoSeccionado= seccionarTerreno(obtenerTerrenoUsuario("(-1,-1)"));	
+		    efectos.add(terrenoSeccionado);
+		    efectos.setDuration(2000);
+		    efectos.setType(TransitionPane.TYPE_IMMEDIATE_REPLACE);
 		    
 		    Row row3=new Row();
-		    row3.add(terrenoSeccionado);
+		    Panel contenedor=new Panel();
+		    contenedor.setHeight(new Extent(400));
+		    contenedor.setWidth (new Extent(400));
+		   	contenedor.add(efectos);
+		    row3.add(contenedor);
 		 
 		    
 		    List<Object> listaArmas = MetodosArmaTerreno.tablaPrincipal(usuario);
@@ -80,11 +89,11 @@ public class DynTerrenoApp extends Panel {
 		    
 		    row = new Row();
 		    row.setCellSpacing(new Extent(5));
-		    //col.add(row);
+		    col.add(row);
 		    
 		    Row row2 = new Row();
 		    row2.setCellSpacing(new Extent(5));
-		  //  col.add(row2);
+		    col.add(row2);
 
 		    txtId = new TextField();
 		    row.add(txtId);
@@ -111,7 +120,7 @@ public class DynTerrenoApp extends Panel {
 		    row2.add(moverArma);
 
 		    lblSelected = new Label("nothing selected");
-		 //   col.add(lblSelected);
+		    col.add(lblSelected);
 
 	
 		  
@@ -208,8 +217,10 @@ public class DynTerrenoApp extends Panel {
 		      if(armaSeleccionada!='0'|| ultimoClickTerreno)
 			      { 	
 			    	  	terrenoSeccionado=seccionarTerreno(obtenerTerrenoUsuario(evt.getActionCommand()));
-			    	    col.remove(0);
-			    	    col.add(terrenoSeccionado, 0);
+			    	  	efectos.removeAll();
+			    	  	efectos.add(terrenoSeccionado);
+			    	   // col.remove(0);
+			    	   // col.add(a, 0);
 			    	    ultimoClickTerreno=false;
 			    	    
 			      }

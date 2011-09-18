@@ -4,15 +4,11 @@ package com.thinkingandlooking.perfil;
 import nextapp.echo.app.Column;
 import nextapp.echo.app.ContentPane;
 import nextapp.echo.app.Extent;
-import nextapp.echo.app.Grid;
-import nextapp.echo.app.Label;
 import nextapp.echo.app.Panel;
-import nextapp.echo.app.Row;
-import nextapp.echo.app.Window;
 import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
-import nextapp.echo.extras.app.TabPane;
+import nextapp.echo.extras.app.TransitionPane;
 
 import com.thinkingandlooking.database.*;
 import com.thinkingandlooking.paneles.mostrarusuario.ShowAccount;
@@ -25,7 +21,7 @@ public class Perfil extends ContentPane {
 
 	private Usuario usuario;
 	private HtmlLayout htmlLayout;
-	
+	private TransitionPane efectos;
 
 	public Perfil(Usuario usuario) {
 		this.usuario = usuario;
@@ -39,9 +35,10 @@ public class Perfil extends ContentPane {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-
-		
-		
+		efectos=new TransitionPane();
+		efectos.setDuration(1000);
+		efectos.setType(TransitionPane.TYPE_CAMERA_PAN_DOWN);
+	
 		HtmlLayoutData hld;
 
 		hld = new HtmlLayoutData("buttons_top");
@@ -111,21 +108,24 @@ public class Perfil extends ContentPane {
 		col.add(panel1);
 		col.add(panel2);
 		ambos.add(col);
-		updatePanel(ambos);
+		
+		Panel contenedor =new Panel();
+		contenedor.setWidth(new Extent(1000));
+		contenedor.setHeight(new Extent(1000));
+		contenedor.setId("panel");
+		contenedor.add(efectos);
+		efectos.add(ambos);
+		HtmlLayoutData hld = new HtmlLayoutData("panel");
+		contenedor.setLayoutData(hld);
+		htmlLayout.add(contenedor);
+		
 	}
 
 	
 	public void updatePanel(Panel panel) {
-		panel.setId("panel");
 
-		HtmlLayoutData hld = new HtmlLayoutData("panel");
-		panel.setLayoutData(hld);
-        
-		
-		htmlLayout.remove(htmlLayout.getComponent("panel"));
-		
-		htmlLayout.add(panel);
-		
+		efectos.removeAll();
+        efectos.add(panel);
 	}
 	
 	public void updatePanel( ContentPane contentpane) {
