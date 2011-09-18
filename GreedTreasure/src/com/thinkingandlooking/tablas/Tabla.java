@@ -1,7 +1,5 @@
 package com.thinkingandlooking.tablas;
 
-import nextapp.echo.app.Border;
-import nextapp.echo.app.Color;
 import nextapp.echo.app.Extent;
 import nextapp.echo.app.Insets;
 import java.util.List;
