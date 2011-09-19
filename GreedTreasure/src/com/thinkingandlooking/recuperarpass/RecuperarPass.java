@@ -26,8 +26,14 @@ public class RecuperarPass extends ContentPane {
 
 	private void initGUI() {
 		// setBackground(new Color(197, 217, 161));
-		
-		loadHtmlTemplate("/com/thinkingandlooking/utils/template.html");
+		try {
+			htmlLayout = new HtmlLayout(
+					//
+					getClass().getResourceAsStream("recuperapass.html"),
+					"UTF-8");
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 		
 		HtmlLayoutData hld;
 

@@ -56,7 +56,7 @@ public class FormLogin extends Panel {
 	private void initGUI() {
 		setBackground(new Color(117, 145, 118));
 		setAlignment(new Alignment(Alignment.CENTER, Alignment.CENTER));
-		setBorder(new Border(new Extent(2), Color.GREEN, 1));
+		setBorder(new Border(new Extent(2), Color.YELLOW, 1));
 		setWidth(new Extent(200));
 		
 		Column col = new Column();

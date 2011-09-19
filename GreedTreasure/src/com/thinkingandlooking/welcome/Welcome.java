@@ -41,7 +41,6 @@ public class Welcome extends ContentPane {
 
 		hld = new HtmlLayoutData("title");
 		Label lblTitle = new Label("Bienvenido al Juego de GREED TREASURE!! Ingrese sus datos o registrese para jugar!");
-		
 		lblTitle.setLayoutData(hld);
 		htmlLayout.add(lblTitle);
 
