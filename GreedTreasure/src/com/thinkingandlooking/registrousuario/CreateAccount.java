@@ -60,7 +60,7 @@ public class CreateAccount extends ContentPane {
 			throw new RuntimeException(e);
 		}
 
-		setBackground(new Color(197, 217, 161));
+	//	setBackground(new Color(197, 217, 161));
 
 		HtmlLayoutData hld;
 		registroExitoso=false;
@@ -120,8 +120,9 @@ public class CreateAccount extends ContentPane {
 		row.setCellSpacing(new Extent(5));
 
 		Button btnCreateAccount = new Button("Crear Cuenta");
-		btnCreateAccount.setBorder(new Border(new Extent(2), Color.BLACK, 1));
-		btnCreateAccount.setBackground(new Color(117, 145, 118));
+		btnCreateAccount.setBorder(new Border(new Extent(2), Color.GREEN, 1));
+		btnCreateAccount.setBackground(Color.BLACK);
+		btnCreateAccount.setForeground(Color.WHITE);
 		btnCreateAccount.setAlignment(new Alignment(Alignment.CENTER,
 				Alignment.CENTER));
 		btnCreateAccount.addActionListener(new ActionListener() {
@@ -131,7 +132,10 @@ public class CreateAccount extends ContentPane {
 		});
 
 		Button btnCancel = new Button("Cancelar");
-		btnCancel.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		btnCancel.setBorder(new Border(new Extent(2), Color.RED, 1));
+		//btnCancel.setBackground(Color.BLACK);
+		btnCancel.setForeground(Color.WHITE);
+		
 		btnCancel.setBackground(new Color(117, 145, 118));
 		btnCancel
 				.setAlignment(new Alignment(Alignment.CENTER, Alignment.CENTER));
