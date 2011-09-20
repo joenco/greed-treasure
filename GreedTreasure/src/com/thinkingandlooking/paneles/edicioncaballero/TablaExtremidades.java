@@ -55,7 +55,6 @@ public class TablaExtremidades extends Tabla {
 			aux.setNombre("ninguna");
 			temp.setRefModel(aux);
 			temp.setExtremidad(i);
-			System.out.println(temp.getExtremidad());
 			tableDtaModel.add(temp);
 		}
 			

@@ -5,17 +5,17 @@ package com.thinkingandlooking.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
-
-import com.thinkingandlooking.database.ArmaCaballero;
 import com.thinkingandlooking.database.MetodosTerreno;
 import com.thinkingandlooking.database.ModeloArmaCaballero;
 import com.thinkingandlooking.database.ModeloArmaTerreno;
@@ -69,11 +69,11 @@ public class BufferedImageCache {
     return ret;
   }
   
- public BufferedImage getBufferedImage(String nombreBuscado,EnumConsultas tipoConsulta)throws IOException  {
+ public BufferedImage getBufferedImage(String nombreBuscado,EnumConsultas tipoConsulta)  {
 	  
-	 if(nombreBuscado.isEmpty()){
+	 if(nombreBuscado.isEmpty())
 		 return null;
-	 }
+	 
 		
 		Session session= SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
@@ -91,18 +91,11 @@ public class BufferedImageCache {
 							Restrictions.eq("nombre", nombreBuscado));
 					ModeloArmaTerreno modeloArmaTerreno = (ModeloArmaTerreno) criteria.uniqueResult();
 					session.close();
-					System.out.println( "BUSQUEMOS A:");
-					System.out.println( nombreBuscado);
 				
 					key = BufferedImage.class.getName() + ":" +modeloArmaTerreno.getNombre();
 					ret= BufferedImageMap.get(key);
 					if (ret != null) 
-					{		System.out.println( "NO ES NULL LO CONSIGUIO");
-							System.out.println( modeloArmaTerreno.getNombre());
 						return ret;
-					}
-					System.out.println( "ES NULL NO CONSIGUIO");
-					System.out.println( modeloArmaTerreno.getNombre());
 					
 					imagenByte = modeloArmaTerreno.getImagen();
 					break;
@@ -118,9 +111,9 @@ public class BufferedImageCache {
 				
 					key = BufferedImage.class.getName() + ":" +modeloArmaCaballero.getNombre();
 					ret= BufferedImageMap.get(key);
-					if (ret != null) {		
+					if (ret != null) 		
 						return ret;
-					}
+					
 					
 					imagenByte = modeloArmaCaballero.getImagen();
 					break;
@@ -147,10 +140,42 @@ public class BufferedImageCache {
 				
 			}
 			
+			if((tipoConsulta!=EnumConsultas.CONSULTA_EDICION_IMAGEN_CABALLERO))
+				imagenByte=convert(imagenByte);
+			
 			InputStream in = new ByteArrayInputStream(imagenByte);
-			ret = ImageIO.read(in);
+			
+								
+				try {
+					ret = ImageIO.read(in);
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					
             BufferedImageMap.put(key, ret);
+          
             return ret;
   }
+ 
+ 		public byte[] convert(byte[] bytes)
+		{
+		     ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
+		     BufferedImage bufferedImage;
+		     ByteArrayOutputStream osByteArray = new ByteArrayOutputStream();
+			try {
+				 bufferedImage = ImageIO.read(inputStream);
+				 ImageOutputStream outputStream = ImageIO.createImageOutputStream(osByteArray);
+			     ImageIO.write(bufferedImage, "jpg", outputStream);
+			     outputStream.flush();
+			     outputStream.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		    
+		     return osByteArray.toByteArray();
+		 }
   
 }

@@ -25,9 +25,7 @@ import nextapp.echo.extras.app.TransitionPane;
 
 public class DynTerrenoApp extends Panel {
 
-	  private Usuario usuario;
-	  
-	
+	  private Usuario usuario;	
 	  private TextField txtId;
 	  private Label lblSelected;
 	  private ImageMap terrenoSeccionado;
@@ -73,9 +71,12 @@ public class DynTerrenoApp extends Panel {
 		  
 		   
 		    if(listaArmas.size()>0)
-		    {
-		    	row3.add( mostrar(listaArmas));
-		    
+		    {	
+		    	Column columnTabla=new Column();
+		    	TablaEdicionArmaTerreno tabla= mostrar(listaArmas);
+		    	columnTabla.add( tabla);
+		    	columnTabla.add(tabla.getPaginacion());
+		    	row3.add(columnTabla);
 		    }
 		    else
 		    	crearAviso();
