@@ -32,21 +32,40 @@ public class MetodosArmaCaballero {
 	}
 	
 	
+	public static List<Object> ArmasDelCaballero(Usuario user) {
+		Session session = SessionHibernate.getInstance().openSession();
+		session.beginTransaction();
+		
+		String str = "FROM ArmaCaballero  WHERE extremidad =:sin_usar AND armaCaballeroRef=:id";
+		Query query = session.createQuery(str);
+		query.setInteger("sin_usar", ConstantesExtremidades.NO_USADA);
+		query.setInteger("id", user.getCaballero().getId());
+		
+
+		List<Object> list = new ArrayList<Object>();
+
+		for (Object obj : query.list())
+			list.add(obj);
+
+		session.getTransaction().commit();
+		session.close();
+		return list;
+
+	}
 	
-	public static List<Object> modeloArmaCaballero() {
+	
+	public static List<Object> modeloArmaCaballero(Usuario user) {
 
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
-
 		String str = "FROM ModeloArmaCaballero";
 		Query query = session.createQuery(str);
-
 
 		List<Object> list = new ArrayList<Object>();
 		
 		for (Object obj : query.list() )
 			list.add(obj);
-		
+				
 		session.getTransaction().commit();
 		session.close();
 

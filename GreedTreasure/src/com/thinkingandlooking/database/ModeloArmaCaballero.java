@@ -30,6 +30,7 @@ public class ModeloArmaCaballero {
 	private int municiones_base;
 	private int oro;
 	private int nivel;
+	private int tipoExtremidad;
 	private byte[] imagen;
 	private List<ArmaCaballero> armaCaballero = new ArrayList<ArmaCaballero>();
 
@@ -42,7 +43,15 @@ public class ModeloArmaCaballero {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public int getTipoExtremidad() {
+		return tipoExtremidad;
+	}
 
+	public void setTipoExtremidad(int tipoExtremidad) {
+		this.tipoExtremidad = tipoExtremidad;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}

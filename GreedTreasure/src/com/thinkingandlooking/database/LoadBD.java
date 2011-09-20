@@ -317,7 +317,7 @@ public class LoadBD {
 	 * 
 	 */
 	
-	public static void insertarModeloArmaCaballero(String nombre, int ataque, int defensa,
+	public static void insertarModeloArmaCaballero(String nombre,int tipoExt, int ataque, int defensa,
 			int alcance, int municiones, int oro, int nivel, String ruta)
 					throws Exception{
 		
@@ -326,6 +326,7 @@ public class LoadBD {
 				
 		ModeloArmaCaballero model = new ModeloArmaCaballero();
 		
+		model.setTipoExtremidad(tipoExt);
 		model.setNombre(nombre);
 		model.setAtaque(ataque);
 		model.setDefensa(defensa);
@@ -502,102 +503,104 @@ public class LoadBD {
 		
 		// Creacion de modelos armas caballero
 
-		insertarModeloArmaCaballero("Armadura de Espinas", 1, 1, 1, 100	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradeespinas.gif");	
-		insertarModeloArmaCaballero("Armadura de Granito", 1, 3, 1, 150	, 30, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradegranito.gif");
-		insertarModeloArmaCaballero("Armadura de Hueso", 2, 4, 1, 200	, 40, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradehueso.gif");
-		insertarModeloArmaCaballero("Armadura del Hombre", 2, 6, 1, 300	, 45, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradelhombre.gif");
-		insertarModeloArmaCaballero("Armadura del Muchacho", 3, 10, 1, 450	, 55, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradelmuchacho.gif");
-		insertarModeloArmaCaballero("Armadura de Piel de Dragon", 4, 14, 1, 600	, 75, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradepieldedragon.gif");
-		insertarModeloArmaCaballero("Armadura de Telaraña", 5, 20, 1, 800	, 95, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradetelaraña.gif");
-		insertarModeloArmaCaballero("Armadura Monsalve", 6, 25, 1, 1000	, 110, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduramonsalve.gif");
+
+		insertarModeloArmaCaballero("Espada del Olvido",1, 2, 2, 1, 1000	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadelolvido.gif");
+		insertarModeloArmaCaballero("Hacha Infinita",1, 3, 1, 2, 1000	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachainfinita.gif");
+		insertarModeloArmaCaballero("Lanza de la Oscuridad",2, 3, 0, 3, 1000	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/lanzadelaoscuridad.gif");
+		insertarModeloArmaCaballero("Martillo de la Luz",3, 4, 2, 2, 1000	, 30, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/martillodelaluz.gif");
+		insertarModeloArmaCaballero("Mazo del Dolor",4, 3, 3, 3, 1000	, 35, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodeldolor.gif");
+
+		insertarModeloArmaCaballero("Armadura de Espinas",2, 1, 1, 1, 100	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradeespinas.gif");	
+		insertarModeloArmaCaballero("Armadura de Granito",2, 1, 3, 1, 150	, 30, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradegranito.gif");
+		insertarModeloArmaCaballero("Armadura de Hueso",2, 2, 4, 1, 200	, 40, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradehueso.gif");
+		insertarModeloArmaCaballero("Armadura del Hombre",2, 2, 6, 1, 300	, 45, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradelhombre.gif");
+		insertarModeloArmaCaballero("Armadura del Muchacho",2, 3, 10, 1, 450	, 55, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradelmuchacho.gif");
+		insertarModeloArmaCaballero("Armadura de Piel de Dragon",2, 4, 14, 1, 600	, 75, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradepieldedragon.gif");
+		insertarModeloArmaCaballero("Armadura de Telaraña", 2,5, 20, 1, 800	, 95, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduradetelaraña.gif");
+		insertarModeloArmaCaballero("Armadura Monsalve",2, 6, 25, 1, 1000	, 110, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/armaduramonsalve.gif");
 		
-		insertarModeloArmaCaballero("Casco de America", 1, 2, 1, 100	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodeamerica.gif");
-		insertarModeloArmaCaballero("Casco de Gaviria", 2, 4, 1, 200	, 30, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodegaviria.gif");
-		insertarModeloArmaCaballero("Casco del Aguila", 3, 6, 1, 300	, 35, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodelaguila.gif");
-		insertarModeloArmaCaballero("Casco de la Trinidad", 4, 8, 1, 400	, 40, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodelatrinidad.gif");
-		insertarModeloArmaCaballero("Casco del Chaman", 5, 10, 1, 500	, 50, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodelchaman.gif");
-		insertarModeloArmaCaballero("Casco del Guerrero", 6, 12, 1, 600	, 55, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodelguerrero.gif");
-		insertarModeloArmaCaballero("Casco del Indio", 7, 14, 1, 700	, 60, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodelindio.gif");
-		insertarModeloArmaCaballero("Casco del Rey", 8, 16, 1, 800	, 70, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodelrey.gif");
-		insertarModeloArmaCaballero("Casco del Transformador", 9, 18, 1, 900	, 75, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodeltranformador.gif");	
-		insertarModeloArmaCaballero("Casco Milenario", 10, 20, 1, 1000	, 80, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascomilenario.gif");
+		insertarModeloArmaCaballero("Casco de America",1, 1, 2, 1, 100	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodeamerica.gif");
+		insertarModeloArmaCaballero("Casco de Gaviria",1, 2, 4, 1, 200	, 30, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodegaviria.gif");
+		insertarModeloArmaCaballero("Casco del Aguila",1, 3, 6, 1, 300	, 35, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodelaguila.gif");
+		insertarModeloArmaCaballero("Casco de la Trinidad",1, 4, 8, 1, 400	, 40, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodelatrinidad.gif");
+		insertarModeloArmaCaballero("Casco del Chaman",1, 5, 10, 1, 500	, 50, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodelchaman.gif");
+		insertarModeloArmaCaballero("Casco del Guerrero",1, 6, 12, 1, 600	, 55, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodelguerrero.gif");
+		insertarModeloArmaCaballero("Casco del Indio",1, 7, 14, 1, 700	, 60, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodelindio.gif");
+		insertarModeloArmaCaballero("Casco del Rey",1, 8, 16, 1, 800	, 70, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodelrey.gif");
+		insertarModeloArmaCaballero("Casco del Transformador",1, 9, 18, 1, 900	, 75, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascodeltranformador.gif");	
+		insertarModeloArmaCaballero("Casco Milenario",1, 10, 20, 1, 1000	, 80, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cascomilenario.gif");
 		
 
 		
-		insertarModeloArmaCaballero("Escudo Basico", 1, 2, 1, 80	, 35, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudobasico.gif");
-		insertarModeloArmaCaballero("Escudo de Acero", 3, 4, 1, 160	, 45, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudodeacero.gif");
-		insertarModeloArmaCaballero("Escudo de Joenco", 5, 6, 1, 240	, 55, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudodejoenco.gif");
-		insertarModeloArmaCaballero("Escudo del Caleta", 7, 8, 1, 310	, 75, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudodelcaleta.gif");
-		insertarModeloArmaCaballero("Escudo del Craneo", 9, 10, 1, 380	, 95, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudodelcraneo.gif");	
-		insertarModeloArmaCaballero("Escudo de Madera", 11, 12, 1, 450	, 115, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudodemadera.gif");
-		insertarModeloArmaCaballero("Escudo de Metal", 13, 14, 1, 550	, 135, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudodemetal.gif");
-		insertarModeloArmaCaballero("Escudo Incompleto", 15, 16, 1, 660	, 155, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudoincompleto.gif");
+		insertarModeloArmaCaballero("Escudo Basico",3, 1, 2, 1, 80	, 35, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudobasico.gif");
+		insertarModeloArmaCaballero("Escudo de Acero",3, 3, 4, 1, 160	, 45, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudodeacero.gif");
+		insertarModeloArmaCaballero("Escudo de Joenco",3, 5, 6, 1, 240	, 55, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudodejoenco.gif");
+		insertarModeloArmaCaballero("Escudo del Caleta",3, 7, 8, 1, 310	, 75, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudodelcaleta.gif");
+		insertarModeloArmaCaballero("Escudo del Craneo",3, 9, 10, 1, 380	, 95, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudodelcraneo.gif");	
+		insertarModeloArmaCaballero("Escudo de Madera",3, 11, 12, 1, 450	, 115, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudodemadera.gif");
+		insertarModeloArmaCaballero("Escudo de Metal",3, 13, 14, 1, 550	, 135, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudodemetal.gif");
+		insertarModeloArmaCaballero("Escudo Incompleto",3, 15, 16, 1, 660	, 155, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/escudoincompleto.gif");
 		
 
-		insertarModeloArmaCaballero("Gorro de Cuero", 1, 2, 1, 90	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/gorrodecuero.gif");
-		insertarModeloArmaCaballero("Traje del Mago", 2, 4, 1, 180	, 35, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/trajedelmago.gif");
-		insertarModeloArmaCaballero("Gorro del Nomuerto", 3, 6, 1, 270	, 55, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/gorrodelnomuerto.gif");
-		insertarModeloArmaCaballero("Capa del Loro", 4, 2, 7, 360	, 70, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/capadelloro.gif");
-		insertarModeloArmaCaballero("Traje de las Monedas", 5, 9, 1, 460	, 95, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/trajedelasmonedas.gif");
-		insertarModeloArmaCaballero("Cetro de la Avaricia", 5, 11, 1, 570	, 110, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cetrodelaavaricia.gif");
-		insertarModeloArmaCaballero("Cetro del Ruby", 6, 2, 14, 700	, 130, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cetrodelruby.gif");
-		insertarModeloArmaCaballero("Catana del Poder", 6, 2, 16, 780	, 145, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/catanadelpoder.gif");
-		insertarModeloArmaCaballero("Chuzo de la Reina", 7, 2, 18, 900	, 165, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/chuzodelareina.gif");
-		insertarModeloArmaCaballero("Cetro de la Lujuria", 7, 2, 21, 1000	, 180, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cetrodelalujuria.gif");
-		insertarModeloArmaCaballero("Mascara del Burlon", 8, 2, 23, 1100	, 195, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mascaradelburlon.gif");
-		insertarModeloArmaCaballero("Traje del Hechicero", 8, 2, 25, 1300	, 215, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/trajedelhechicero.gif");
+		insertarModeloArmaCaballero("Gorro de Cuero",1,1, 2, 1, 90	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/gorrodecuero.gif");
+		insertarModeloArmaCaballero("Traje del Mago",2, 2, 4, 1, 180	, 35, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/trajedelmago.gif");
+		insertarModeloArmaCaballero("Gorro del Nomuerto",1, 3, 6, 1, 270	, 55, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/gorrodelnomuerto.gif");
+		insertarModeloArmaCaballero("Capa del Loro",2, 4, 2, 7, 360	, 70, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/capadelloro.gif");
+		insertarModeloArmaCaballero("Traje de las Monedas",2, 5, 9, 1, 460	, 95, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/trajedelasmonedas.gif");
+		insertarModeloArmaCaballero("Cetro de la Avaricia",3, 5, 11, 1, 570	, 110, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cetrodelaavaricia.gif");
+		insertarModeloArmaCaballero("Cetro del Ruby",3, 6, 2, 14, 700	, 130, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cetrodelruby.gif");
+		insertarModeloArmaCaballero("Catana del Poder",3, 6, 2, 16, 780	, 145, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/catanadelpoder.gif");
+		insertarModeloArmaCaballero("Chuzo de la Reina",3, 7, 2, 18, 900	, 165, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/chuzodelareina.gif");
+		insertarModeloArmaCaballero("Cetro de la Lujuria",3, 7, 2, 21, 1000	, 180, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/cetrodelalujuria.gif");
+		insertarModeloArmaCaballero("Mascara del Burlon",1, 8, 2, 23, 1100	, 195, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mascaradelburlon.gif");
+		insertarModeloArmaCaballero("Traje del Hechicero",2, 8, 2, 25, 1300	, 215, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/trajedelhechicero.gif");
 		
 		
 		
 		
-		insertarModeloArmaCaballero("Espada de Demian", 3, 1, 1, 300	, 15, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadedemian.gif");
-		insertarModeloArmaCaballero("Espada de Fannia", 6, 2, 1, 350	, 35, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadefannia.gif");	
-		insertarModeloArmaCaballero("Espada de Fuego", 9, 3, 1, 400	, 40, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadefuego.gif");
-		insertarModeloArmaCaballero("Espada de la Luz", 12, 4, 1, 440	, 55, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadelaluz.gif");
-		insertarModeloArmaCaballero("Espada del Olvido", 15, 5, 1, 490	, 70, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadelolvido.gif");
-		insertarModeloArmaCaballero("Espada de Oro", 18, 6, 1, 530	, 90, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadeoro.gif");
-		insertarModeloArmaCaballero("Espada Dorada", 21, 7, 1, 600	, 110, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadorada.gif");	
-		insertarModeloArmaCaballero("Espada del Sabio", 24, 8, 1, 630	, 130, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadaldelsabio.gif");
-		insertarModeloArmaCaballero("Espada Luminosa", 27, 9, 1, 680	, 155, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadaluminosa.gif");
-		insertarModeloArmaCaballero("Espada Moughawiche", 30, 10, 1, 720	, 170, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadamoughawiche.gif");
-		insertarModeloArmaCaballero("Espada Siloe", 33, 11, 1, 760	, 190, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadasiloe.gif");
-		insertarModeloArmaCaballero("Espada Simbolica", 36, 12, 1, 800	, 220, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadasimbolica.gif");
+		insertarModeloArmaCaballero("Espada de Demian",1, 3, 1, 1, 300	, 15, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadedemian.gif");
+		insertarModeloArmaCaballero("Espada de Fannia",1, 6, 2, 1, 350	, 35, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadefannia.gif");	
+		insertarModeloArmaCaballero("Espada de Fuego",1,9, 3, 1, 400	, 40, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadefuego.gif");
+		insertarModeloArmaCaballero("Espada de la Luz",1, 12, 4, 1, 440	, 55, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadelaluz.gif");
+		insertarModeloArmaCaballero("Espada del Olvido",1, 15, 5, 1, 490	, 70, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadelolvido.gif");
+		insertarModeloArmaCaballero("Espada de Oro",1, 18, 6, 1, 530	, 90, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadeoro.gif");
+		insertarModeloArmaCaballero("Espada Dorada",1, 21, 7, 1, 600	, 110, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadadorada.gif");	
+		insertarModeloArmaCaballero("Espada del Sabio",1, 24, 8, 1, 630	, 130, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadaldelsabio.gif");
+		insertarModeloArmaCaballero("Espada Luminosa",1, 27, 9, 1, 680	, 155, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadaluminosa.gif");
+		insertarModeloArmaCaballero("Espada Moughawiche",1, 30, 10, 1, 720	, 170, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadamoughawiche.gif");
+		insertarModeloArmaCaballero("Espada Siloe",1, 33, 11, 1, 760	, 190, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadasiloe.gif");
+		insertarModeloArmaCaballero("Espada Simbolica",1, 36, 12, 1, 800	, 220, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/espadasimbolica.gif");
 		
 		
 		
-		insertarModeloArmaCaballero("Hacha", 4, 2, 1, 150	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hacha.gif");
-		insertarModeloArmaCaballero("Hacha del Aprendiz", 8, 4, 1, 300	, 40, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachadelaprendiz.gif");	
-		insertarModeloArmaCaballero("Hacha de Lava", 12, 6, 1, 450	, 60, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachadelava.gif");
-		insertarModeloArmaCaballero("Hacha del Consumo", 16, 8, 1, 600	, 80, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachadelconsumo.gif");
-		insertarModeloArmaCaballero("Hacha Infinita", 20, 10, 2, 750	, 100, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachainfinita.gif");
-		insertarModeloArmaCaballero("Hacha Macabra", 24, 12, 1, 900	, 140, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachamacabra.gif");
-		insertarModeloArmaCaballero("Hacha Redodna", 28, 14, 1, 1050	, 180, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hacharedonda.gif");
-		insertarModeloArmaCaballero("Hacha Violenta", 32, 16, 1, 1300	, 250, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachaviolenta.gif");
+		insertarModeloArmaCaballero("Hacha",3, 4, 2, 1, 150	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hacha.gif");
+		insertarModeloArmaCaballero("Hacha del Aprendiz",3, 8, 4, 1, 300	, 40, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachadelaprendiz.gif");	
+		insertarModeloArmaCaballero("Hacha de Lava",3, 12, 6, 1, 450	, 60, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachadelava.gif");
+		insertarModeloArmaCaballero("Hacha del Consumo",3, 16, 8, 1, 600	, 80, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachadelconsumo.gif");
+		insertarModeloArmaCaballero("Hacha Infinita",3, 20, 10, 2, 750	, 100, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachainfinita.gif");
+		insertarModeloArmaCaballero("Hacha Macabra",3, 24, 12, 1, 900	, 140, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachamacabra.gif");
+		insertarModeloArmaCaballero("Hacha Redodna",3, 28, 14, 1, 1050	, 180, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hacharedonda.gif");
+		insertarModeloArmaCaballero("Hacha Violenta",3, 32, 16, 1, 1300	, 250, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/hachaviolenta.gif");
 		
-		insertarModeloArmaCaballero("Mazo Clasico", 2, 2, 1, 100	, 15, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazoclasico.gif");
-		insertarModeloArmaCaballero("Mazo de Bronce", 5, 5, 1, 200	, 35, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodebronce.gif");
-		insertarModeloArmaCaballero("Mazo de Gabriel", 7, 7, 1, 300	, 55, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodegabriel.gif");
-		insertarModeloArmaCaballero("Mazo de la Miseria", 10, 10, 1, 400	, 75, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodelamiseria.gif");
-		insertarModeloArmaCaballero("Mazo del Dolor", 12, 12, 3, 500	, 95, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodeldolor.gif");
-		insertarModeloArmaCaballero("Mazo del Esqueleto", 15, 15, 1, 600	, 115, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodelesqueleto.gif");
-		insertarModeloArmaCaballero("Mazo del Tormento", 17, 17, 1, 700	, 135, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodeltormento.gif");
-		insertarModeloArmaCaballero("Mazo de Puas", 20, 20, 1, 800	, 155, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodepuas.gif");
-		insertarModeloArmaCaballero("Mazo Gigante", 22, 22, 1, 900	, 175, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazogigante.gif");
-		insertarModeloArmaCaballero("Mazo Punta de Cubo", 25, 25, 1, 1000	, 195, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazopuntadecubo.gif");
+		insertarModeloArmaCaballero("Mazo Clasico",3, 2, 2, 1, 100	, 15, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazoclasico.gif");
+		insertarModeloArmaCaballero("Mazo de Bronce",3, 5, 5, 1, 200	, 35, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodebronce.gif");
+		insertarModeloArmaCaballero("Mazo de Gabriel",3, 7, 7, 1, 300	, 55, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodegabriel.gif");
+		insertarModeloArmaCaballero("Mazo de la Miseria",3, 10, 10, 1, 400	, 75, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodelamiseria.gif");
+		insertarModeloArmaCaballero("Mazo del Dolor",3, 12, 12, 3, 500	, 95, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodeldolor.gif");
+		insertarModeloArmaCaballero("Mazo del Esqueleto",3, 15, 15, 1, 600	, 115, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodelesqueleto.gif");
+		insertarModeloArmaCaballero("Mazo del Tormento",3, 17, 17, 1, 700	, 135, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodeltormento.gif");
+		insertarModeloArmaCaballero("Mazo de Puas", 3,20, 20, 1, 800	, 155, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazodepuas.gif");
+		insertarModeloArmaCaballero("Mazo Gigante",3, 22, 22, 1, 900	, 175, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazogigante.gif");
+		insertarModeloArmaCaballero("Mazo Punta de Cubo", 3,25, 25, 1, 1000	, 195, 7, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/mazopuntadecubo.gif");
 		
-		insertarModeloArmaCaballero("Sable Congelado", 3, 2, 1, 65	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/sablecongelado.gif");
-		insertarModeloArmaCaballero("Lanza de la Oscuridad", 5, 3, 3, 130	, 40, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/lanzadelaoscuridad.gif");
-		insertarModeloArmaCaballero("Sable de Urano", 7, 4, 1, 195	, 60, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/sabledeurano.gif");
-		insertarModeloArmaCaballero("Garras del Gavilan", 9, 5, 1, 260	, 80, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/garrasdelgavilan.gif");
-		insertarModeloArmaCaballero("Sable de la Luz", 11, 6, 1, 325	, 100, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/sabledelaluz.gif");
-		insertarModeloArmaCaballero("Manopla del Oso", 14, 7, 1, 390	, 120, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/manopladeloso.gif");
-		insertarModeloArmaCaballero("Sable del Tiempo", 18, 8, 1, 455	, 140, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/sabledeltiempo.gif");
-		insertarModeloArmaCaballero("Martillo de la Luz", 22, 9, 2, 510	, 160, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/martillodelaluz.gif");
-		
-		
-		
-		
-		
+		insertarModeloArmaCaballero("Sable Congelado",3, 3, 2, 1, 65	, 20, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/sablecongelado.gif");
+		insertarModeloArmaCaballero("Lanza de la Oscuridad",3, 5, 3, 3, 130	, 40, 1, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/lanzadelaoscuridad.gif");
+		insertarModeloArmaCaballero("Sable de Urano",3, 7, 4, 1, 195	, 60, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/sabledeurano.gif");
+		insertarModeloArmaCaballero("Garras del Gavilan",3, 9, 5, 1, 260	, 80, 2, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/garrasdelgavilan.gif");
+		insertarModeloArmaCaballero("Sable de la Luz",3, 11, 6, 1, 325	, 100, 3, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/sabledelaluz.gif");
+		insertarModeloArmaCaballero("Manopla del Oso",3, 14, 7, 1, 390	, 120, 4, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/manopladeloso.gif");
+		insertarModeloArmaCaballero("Sable del Tiempo", 3,18, 8, 1, 455	, 140, 5, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/sabledeltiempo.gif");
+		insertarModeloArmaCaballero("Martillo de la Luz", 3,22, 9, 2, 510	, 160, 6, "src/com/thinkingandlooking/Imagenes/ArmaCaballero/martillodelaluz.gif");
 		
 		
 		

@@ -7,5 +7,4 @@ public class ConstantesExtremidades {
 	public static final int BRAZO_IZQ = 3;
 	public static final int BRAZO_DER = 4;
 
-
 }
