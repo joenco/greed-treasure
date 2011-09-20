@@ -1,7 +1,9 @@
 package com.thinkingandlooking.tablas;
 
+import java.awt.Image;
 import java.util.List;
 import nextapp.echo.app.Alignment;
+import nextapp.echo.app.AwtImageReference;
 import nextapp.echo.app.Color;
 import nextapp.echo.app.Extent;
 import nextapp.echo.app.HttpImageReference;
@@ -10,7 +12,12 @@ import com.minotauro.echo.table.base.TableColModel;
 import com.minotauro.echo.table.base.TableColumn;
 import com.minotauro.echo.table.renderer.ImageCellRenderer;
 import com.minotauro.echo.table.renderer.LabelCellRenderer;
+import com.minotauro.echo.table.renderer.BufferImageCellRender;
 import com.thinkingandlooking.database.ModeloArmaTerreno;
+import com.thinkingandlooking.database.Usuario;
+import com.thinkingandlooking.utils.BufferedImageCache;
+import com.thinkingandlooking.utils.EnumConsultas;
+
 
 
 public class TablaBaseModeloArmaTerreno extends Tabla {
@@ -44,8 +51,8 @@ public class TablaBaseModeloArmaTerreno extends Tabla {
 			public Object getValue(ETable table, Object element) {
 				ModeloArmaTerreno modeloArmasTerreno = (ModeloArmaTerreno) element;
 
-			return new HttpImageReference("imagenes_tabla?nombreArma="+modeloArmasTerreno.getNombre()+"&tipoDeConsulta=CONSULTA_MODELO_ARMA_TERRENO");
-				 
+				return (new AwtImageReference((Image)BufferedImageCache.getInstance().getBufferedImage(modeloArmasTerreno.getNombre(), EnumConsultas.CONSULTA_MODELO_ARMA_TERRENO)));
+
 			}
 		};
 		tableColumn.setWidth(new Extent(10));
@@ -59,7 +66,7 @@ public class TablaBaseModeloArmaTerreno extends Tabla {
 		lcr.setForeground(Color.WHITE);
 		tableColumn.setHeadCellRenderer(lcr);
 
-		ImageCellRenderer icr = new ImageCellRenderer();
+		BufferImageCellRender icr = new BufferImageCellRender();
 		icr.setAlignment(new Alignment( //
 				Alignment.CENTER, Alignment.DEFAULT));
 		
