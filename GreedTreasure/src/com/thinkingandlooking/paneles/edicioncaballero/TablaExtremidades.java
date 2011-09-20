@@ -10,11 +10,11 @@ import nextapp.echo.app.Extent;
 import nextapp.echo.app.HttpImageReference;
 import nextapp.echo.app.ResourceImageReference;
 
-import com.minotauro.echo.table.base.ETable;
-import com.minotauro.echo.table.base.TableColModel;
-import com.minotauro.echo.table.base.TableColumn;
-import com.minotauro.echo.table.renderer.ImageCellRenderer;
-import com.minotauro.echo.table.renderer.LabelCellRenderer;
+import com.thinkingandlooking.cleda3echo.echo.table.base.ETable;
+import com.thinkingandlooking.cleda3echo.echo.table.base.TableColModel;
+import com.thinkingandlooking.cleda3echo.echo.table.base.TableColumn;
+import com.thinkingandlooking.cleda3echo.echo.table.renderer.ImageCellRenderer;
+import com.thinkingandlooking.cleda3echo.echo.table.renderer.LabelCellRenderer;
 import com.thinkingandlooking.database.ArmaCaballero;
 import com.thinkingandlooking.database.ConstantesExtremidades;
 import com.thinkingandlooking.database.ModeloArmaCaballero;
