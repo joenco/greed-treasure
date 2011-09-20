@@ -3,17 +3,14 @@ package com.thinkingandlooking.paneles.tablas;
 
 import com.thinkingandlooking.database.MetodosArmaCaballero;
 import com.thinkingandlooking.database.MetodosArmaTerreno;
-import com.thinkingandlooking.database.ModeloArmaCaballero;
 import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.tablas.TablaArmasCaballero;
 import com.thinkingandlooking.tablas.TablaArmasTerreno;
 import nextapp.echo.app.Column;
 import nextapp.echo.app.ContentPane;
 import nextapp.echo.app.Extent;
-import nextapp.echo.app.Label;
 import nextapp.echo.app.WindowPane;
 import nextapp.echo.extras.app.TabPane;
-import nextapp.echo.extras.app.TransitionPane;
 import nextapp.echo.extras.app.layout.TabPaneLayoutData;
 
 public class Tienda extends ContentPane {
@@ -59,7 +56,7 @@ public class Tienda extends ContentPane {
 	    col.setLayoutData(layout);
 	    
 	    TablaArmasCaballero tablaCaballero = new TablaArmasCaballero(usuario);
-	    tablaCaballero.crearTabla(MetodosArmaCaballero.modeloArmaCaballero());
+	    tablaCaballero.crearTabla(MetodosArmaCaballero.modeloArmaCaballero(usuario));
 	    col.add(tablaCaballero);
 	    col.add(tablaCaballero.getPaginacion());
 	    

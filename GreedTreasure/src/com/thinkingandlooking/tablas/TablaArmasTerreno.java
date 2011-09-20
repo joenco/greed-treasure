@@ -188,17 +188,38 @@ public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 					query2.setInteger("idRef", usuario.getId());
 					Caballero caballero = (Caballero) query2.uniqueResult();
 
+					if(caballero.getOro()
+							- modeloArmaTerreno.getOro()
+							* Integer.parseInt((String) cant.getSelectedItem())<0){
+						
+						final WindowPane windowPaneFallo = new WindowPane();
+						windowPaneFallo.setModal(true);
+						windowPaneFallo.setTitleBackground(new Color(11, 46, 5));
+						windowPaneFallo.setTitleForeground(Color.WHITE);
+						windowPaneFallo.setBackground(new Color(50, 217, 11));
+						windowPaneFallo.setTitle("Eres muy pobre");
+						windowPaneFallo.setClosable(false);
+						Label textFallo = new Label("No tienes oro suficiente para la compra");
+						windowPaneFallo.add(textFallo);
+						Button fallobtn = new Button();
+						fallobtn.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								windowPaneFallo.userClose();
+								windowPane.userClose();
+							}
+						});
+					}
+					caballero.setOro(caballero.getOro()	- modeloArmaTerreno.getOro()
+							* Integer.parseInt((String) cant.getSelectedItem()));
+					
+					
 					am.setCaballeroRef(usuario.getCaballero());
 					caballero.getArmaTerrenoList().add(am);
 					// usuario.getCaballero().getArmaTerrenoList().add(am);//EXPLOTA
 
 					modeloArmaTerreno.getArmaTerrenoList().add(am);
 					am.setModelRef(modeloArmaTerreno);
-
-					caballero.setOro(caballero.getOro()
-							- modeloArmaTerreno.getOro()
-							* Integer.parseInt((String) cant.getSelectedItem()));
-
+					
 					// session.update(usuario);
 					session.update(caballero);
 					session.update(modeloArmaTerreno);

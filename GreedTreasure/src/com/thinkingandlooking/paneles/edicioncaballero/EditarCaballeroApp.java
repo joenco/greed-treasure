@@ -4,16 +4,18 @@ import java.awt.Image;
 import java.util.List;
 import com.thinkingandlooking.database.MetodosArmaCaballero;
 import com.thinkingandlooking.database.Usuario;
+import com.thinkingandlooking.tablas.TablaArmasEdicionCaballero;
+import com.thinkingandlooking.tablas.TablaArmasTerreno;
+import com.thinkingandlooking.tablas.TablaArmasUsarCabB;
 import com.thinkingandlooking.utils.BufferedImageCache;
 import com.thinkingandlooking.utils.EnumConsultas;
-
-
 import nextapp.echo.app.AwtImageReference;
 import nextapp.echo.app.Color;
 import nextapp.echo.app.Column;
 import nextapp.echo.app.Extent;
 import nextapp.echo.app.ImageReference;
-import nextapp.echo.app.Label;import nextapp.echo.app.Panel;
+import nextapp.echo.app.Label;
+import nextapp.echo.app.Panel;
 import nextapp.echo.app.Row;
 
 public class EditarCaballeroApp extends Panel {
@@ -29,26 +31,30 @@ public class EditarCaballeroApp extends Panel {
 	}
 
 	// --------------------------------------------------------------------------------
-	private void initGUI()  {
+	private void initGUI() {
 
 		col = new Column();
 		col.setCellSpacing(new Extent(5));
 		add(col);
-		
-		
-		
+
 		Label label = new Label(new AwtImageReference((Image)BufferedImageCache.getInstance().getBufferedImage(usuario.getLogin(), EnumConsultas.CONSULTA_EDICION_IMAGEN_CABALLERO)));		
 			
+
 		Row row = new Row();
 		row.setCellSpacing(new Extent(10, Extent.PX));
 		row.add(label);
 		row.add(CrearColumna());
 		col.add(row);
 
+		TablaArmasEdicionCaballero tabla = new TablaArmasEdicionCaballero(usuario,col);
+
+		tabla.crearTabla(MetodosArmaCaballero.modeloArmaCaballero(usuario));
+		col.add(tabla);
+		col.add(tabla.getPaginacion());
+
 		lblSelected = new Label("Seleccionar Arma y su extremida");
 		col.add(lblSelected);
 	}
-	
 
 	private Column CrearColumna() {
 		String nombre;
@@ -79,7 +85,7 @@ public class EditarCaballeroApp extends Panel {
 		oro = usuario.getCaballero().getOro();
 		label = new Label("Oro: " + Integer.toString(oro));
 		col.add(label);
-		
+
 		List<Object> listaArmas = MetodosArmaCaballero.tablaPrincipal(usuario);
 		col.add(mostrar(listaArmas));
 
@@ -91,4 +97,6 @@ public class EditarCaballeroApp extends Panel {
 		tabla.crearTabla(listaArmas);
 		return tabla;
 	}
+	
+	
 }
