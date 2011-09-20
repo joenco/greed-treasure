@@ -3,10 +3,10 @@ package com.thinkingandlooking.tablas;
 import nextapp.echo.app.Extent;
 import nextapp.echo.app.Insets;
 import java.util.List;
-import com.minotauro.echo.table.base.ETable;
-import com.minotauro.echo.table.base.ETableNavigation;
-import com.minotauro.echo.table.base.TableColModel;
-import com.minotauro.echo.table.base.TableSelModel;
+import com.thinkingandlooking.cleda3echo.echo.table.base.ETable;
+import com.thinkingandlooking.cleda3echo.echo.table.base.ETableNavigation;
+import com.thinkingandlooking.cleda3echo.echo.table.base.TableColModel;
+import com.thinkingandlooking.cleda3echo.echo.table.base.TableSelModel;
 
 
 public abstract class Tabla  extends ETable{

@@ -5,11 +5,12 @@ import java.util.List;
 
 import nextapp.echo.app.event.EventListenerList;
 
-import com.minotauro.echo.table.base.PageableModel;
-import com.minotauro.echo.table.base.TableDtaModel;
-import com.minotauro.echo.table.event.PageableModelEvent;
-import com.minotauro.echo.table.event.PageableModelEvtProxy;
-import com.minotauro.echo.table.event.TableDtaModelEvent;
+import com.thinkingandlooking.cleda3echo.echo.table.base.PageableModel;
+import com.thinkingandlooking.cleda3echo.echo.table.base.TableDtaModel;
+import com.thinkingandlooking.cleda3echo.echo.table.event.PageableModelEvent;
+import com.thinkingandlooking.cleda3echo.echo.table.event.PageableModelEvtProxy;
+import com.thinkingandlooking.cleda3echo.echo.table.event.TableDtaModelEvent;
+
 
 // DMI: Commented code is from database table model (hibernate / query creator)
 // DMI: this is adapted to be in memory only table model

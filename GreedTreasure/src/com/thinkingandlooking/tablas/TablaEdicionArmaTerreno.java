@@ -7,12 +7,12 @@ import nextapp.echo.app.Component;
 import nextapp.echo.app.Extent;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
-import com.minotauro.echo.table.base.ETable;
-import com.minotauro.echo.table.base.TableColModel;
-import com.minotauro.echo.table.base.TableColumn;
-import com.minotauro.echo.table.renderer.BaseCellRenderer;
-import com.minotauro.echo.table.renderer.LabelCellRenderer;
-import com.minotauro.echo.table.renderer.NestedCellRenderer;
+import com.thinkingandlooking.cleda3echo.echo.table.base.ETable;
+import com.thinkingandlooking.cleda3echo.echo.table.base.TableColModel;
+import com.thinkingandlooking.cleda3echo.echo.table.base.TableColumn;
+import com.thinkingandlooking.cleda3echo.echo.table.renderer.BaseCellRenderer;
+import com.thinkingandlooking.cleda3echo.echo.table.renderer.LabelCellRenderer;
+import com.thinkingandlooking.cleda3echo.echo.table.renderer.NestedCellRenderer;
 import com.thinkingandlooking.utils.GUIStyles;
 
 public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {
