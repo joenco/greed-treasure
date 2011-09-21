@@ -58,22 +58,25 @@ public class MetodosArmaCaballero {
 
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
-		String str = "FROM ModeloArmaCaballero";
+		
+		String str = "SELECT DISTINCT a.modelRef AS c FROM ArmaCaballero AS a WHERE a.armaCaballeroRef.usuario.login = :login";
 		Query query = session.createQuery(str);
-
+		query.setString("login", user.getLogin());
+		
 		List<Object> list = new ArrayList<Object>();
 		
 		for (Object obj : query.list() )
 			list.add(obj);
-				
+			   
+			
+		
 		session.getTransaction().commit();
 		session.close();
-
 		return list;
 	}
 	
 	// Listar todos los modelo armas caballeros para comprar
-	public static List<ModeloArmaCaballero> modeloArma() {
+	public static List<Object> modeloArma() {
 
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
@@ -81,12 +84,10 @@ public class MetodosArmaCaballero {
 		String str = "FROM ModeloArmaCaballero";
 		Query query = session.createQuery(str);
 
-		List<ModeloArmaCaballero> list = new ArrayList<ModeloArmaCaballero>();
+		List<Object> list = new ArrayList<Object>();
 
 		for (Object obj : query.list()) {
-			ModeloArmaCaballero ma = (ModeloArmaCaballero) obj;
-			list.add(ma);
-			System.err.println(ma.getId() + "; " + ma.getNombre());
+			list.add(obj);
 		}
 		session.getTransaction().commit();
 		session.close();
@@ -122,8 +123,8 @@ public class MetodosArmaCaballero {
 		for (Object obj : query.list()) {
 			ArmaCaballero ma = (ArmaCaballero) obj;
 			list.add(ma);
-			System.err.println(ma.getRefModel().getId() + "; "
-					+ ma.getRefModel().getNombre());
+			System.err.println(ma.getModelRef().getId() + "; "
+					+ ma.getModelRef().getNombre());
 
 		}
 
@@ -155,8 +156,8 @@ public class MetodosArmaCaballero {
 		for (Object obj : query.list()) {
 			ArmaCaballero ma = (ArmaCaballero) obj;
 			list.add(ma);
-			System.err.println(ma.getRefModel().getId() + "; "
-					+ ma.getRefModel().getNombre());
+			System.err.println(ma.getModelRef().getId() + "; "
+					+ ma.getModelRef().getNombre());
 
 		}
 

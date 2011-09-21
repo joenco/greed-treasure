@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -51,7 +52,7 @@ public class ModeloArmaCaballero {
 	public void setTipoExtremidad(int tipoExtremidad) {
 		this.tipoExtremidad = tipoExtremidad;
 	}
-	
+	@Column(unique = true)
 	public String getNombre() {
 		return nombre;
 	}
@@ -120,7 +121,7 @@ public class ModeloArmaCaballero {
 		this.imagen = imagen;
 	}
 
-	@OneToMany(mappedBy = "refModel")
+	@OneToMany(mappedBy = "modelRef")
 	@LazyCollection(LazyCollectionOption.TRUE)
 	@Cascade( { CascadeType.ALL, })
 	public List<ArmaCaballero> getArmaCaballero() {

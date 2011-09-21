@@ -69,7 +69,7 @@ public class pruebaLlenado2 {
 	public static void insertarArmaTerreno(Caballero cab, ModeloArmaCaballero model) {
 		ArmaCaballero armaT = new ArmaCaballero();
 		armaT.setArmaCaballeroRef(cab);
-		armaT.setRefModel(model);
+		armaT.setModelRef(model);
 		armaT.setMuniciones_actuales(model.getMuniciones_base());
 		armaT.setExtremidad(ConstantesExtremidades.NO_USADA);
 		Session session = SessionHibernate.getInstance().openSession();
