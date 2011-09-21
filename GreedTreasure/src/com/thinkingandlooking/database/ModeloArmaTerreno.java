@@ -43,7 +43,7 @@ public class ModeloArmaTerreno {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	@Column(unique = true)
 	public String getNombre() {
 		return nombre;
 	}

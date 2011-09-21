@@ -1,5 +1,6 @@
 package com.thinkingandlooking.database;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,13 +17,17 @@ public class ArmaCaballero {
 	private int id;
 	private int municiones_actuales;
 	private int extremidad;
-	private Usuario idUser;
 	private ModeloArmaCaballero modelRef;
 	private Caballero armaCaballeroRef;
 
 	@Id
+	@Column(name= "id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public int getId() {
+		
+		
+		
+		
 		return id;
 	}
 
@@ -46,21 +51,13 @@ public class ArmaCaballero {
 		this.extremidad = extremidad;
 	}
 
+	
 	@ManyToOne
-	public Usuario getIdUser() {
-		return idUser;
-	}
-
-	public void setIdUser(Usuario idUser) {
-		this.idUser = idUser;
-	}
-
-	@ManyToOne
-	public ModeloArmaCaballero getRefModel() {
+	public ModeloArmaCaballero getModelRef() {
 		return modelRef;
 	}
 
-	public void setRefModel(ModeloArmaCaballero modelRef) {
+	public void setModelRef(ModeloArmaCaballero modelRef) {
 		this.modelRef = modelRef;
 	}
 

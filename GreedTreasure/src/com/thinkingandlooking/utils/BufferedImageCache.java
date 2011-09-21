@@ -104,7 +104,7 @@ public class BufferedImageCache {
 				case CONSULTA_MODELO_ARMA_CABALLERO:
 						
 					
-					criteria = session.createCriteria(ModeloArmaTerreno.class).add(
+					criteria = session.createCriteria(ModeloArmaCaballero.class).add(
 							Restrictions.eq("nombre", nombreBuscado));
 					ModeloArmaCaballero modeloArmaCaballero = (ModeloArmaCaballero) criteria.uniqueResult();
 					session.close();

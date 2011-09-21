@@ -32,13 +32,12 @@ import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.main.MainApp;
 import com.thinkingandlooking.utils.GUIStyles;
 
-
 public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 	String nombreBoton;
 	Usuario usuario;
 	ArmaTerreno am = new ArmaTerreno();
 	ModeloArmaTerreno modeloArmaTerreno = new ModeloArmaTerreno();
-	TextField Text3 ;
+	TextField Text3;
 
 	public TablaArmasTerreno(String nombreBoton, Usuario usuario) {
 		super();
@@ -96,7 +95,7 @@ public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 				return button;
 			}
 		});
-		
+
 		return nestedCellRenderer;
 	}
 
@@ -123,33 +122,35 @@ public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 			final SelectField cant = new SelectField(listModel);
 			cant.setSelectedItem("1");
 			//
-			
+
 			cant.addActionListener(new ActionListener() {
-				
+
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					
-					
-					Text3.setText("  " + Integer.toString(Integer.parseInt((String) cant.getSelectedItem())
+
+					Text3.setText("  "
+							+ Integer.toString(Integer.parseInt((String) cant
+									.getSelectedItem())
 									* modeloArmaTerreno.getOro()) + "   ");
 				}
 			});
-			 		
-			 //
+
+			//
 
 			Row row2 = new Row();
 			Label paneText = new Label("Desea comprar  ");
 			Label paneText2 = new Label("  " + modeloArmaTerreno.getNombre()
 					+ " por ");
 
-			//aux = Integer.parseInt((String) cant.getSelectedItem())
-			//		* modeloArmaTerreno.getOro();
-
+			// aux = Integer.parseInt((String) cant.getSelectedItem())
+			// * modeloArmaTerreno.getOro();
 
 			Text3 = new TextField();
-			
-			Text3.setText("  " + Integer.toString(Integer.parseInt((String) cant.getSelectedItem())
-							* modeloArmaTerreno.getOro()) + "   ");
+
+			Text3.setText("  "
+					+ Integer.toString(Integer.parseInt((String) cant
+							.getSelectedItem()) * modeloArmaTerreno.getOro())
+					+ "   ");
 			Text3.setEditable(false);
 			Label paneText4 = new Label(" monedas de oro");
 			Text3.setBackground(Color.YELLOW);
@@ -186,18 +187,19 @@ public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 					query2.setInteger("idRef", usuario.getId());
 					Caballero caballero = (Caballero) query2.uniqueResult();
 
-					if(caballero.getOro()
-							- modeloArmaTerreno.getOro()
-							* Integer.parseInt((String) cant.getSelectedItem())<0){
-						
+					if (caballero.getOro() - modeloArmaTerreno.getOro()
+							* Integer.parseInt((String) cant.getSelectedItem()) < 0) {
+
 						final WindowPane windowPaneFallo = new WindowPane();
 						windowPaneFallo.setModal(true);
-						windowPaneFallo.setTitleBackground(new Color(11, 46, 5));
+						windowPaneFallo
+								.setTitleBackground(new Color(11, 46, 5));
 						windowPaneFallo.setTitleForeground(Color.WHITE);
 						windowPaneFallo.setBackground(new Color(50, 217, 11));
 						windowPaneFallo.setTitle("Eres muy pobre");
 						windowPaneFallo.setClosable(false);
-						Label textFallo = new Label("No tienes oro suficiente para la compra");
+						Label textFallo = new Label(
+								"No tienes oro suficiente para la compra");
 						windowPaneFallo.add(textFallo);
 						Button fallobtn = new Button();
 						fallobtn.addActionListener(new ActionListener() {
@@ -207,17 +209,17 @@ public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 							}
 						});
 					}
-					caballero.setOro(caballero.getOro()	- modeloArmaTerreno.getOro()
+					caballero.setOro(caballero.getOro()
+							- modeloArmaTerreno.getOro()
 							* Integer.parseInt((String) cant.getSelectedItem()));
-					
-					
+
 					am.setCaballeroRef(usuario.getCaballero());
 					caballero.getArmaTerrenoList().add(am);
 					// usuario.getCaballero().getArmaTerrenoList().add(am);//EXPLOTA
 
 					modeloArmaTerreno.getArmaTerrenoList().add(am);
 					am.setModelRef(modeloArmaTerreno);
-					
+
 					// session.update(usuario);
 					session.update(caballero);
 					session.update(modeloArmaTerreno);
@@ -241,6 +243,4 @@ public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 		}
 
 	}
-
-
 }

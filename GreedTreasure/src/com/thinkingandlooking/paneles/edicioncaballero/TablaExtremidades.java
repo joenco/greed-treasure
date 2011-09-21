@@ -53,7 +53,7 @@ public class TablaExtremidades extends Tabla {
 			ArmaCaballero temp= new ArmaCaballero();
 			ModeloArmaCaballero aux=new ModeloArmaCaballero();
 			aux.setNombre("ninguna");
-			temp.setRefModel(aux);
+			temp.setModelRef(aux);
 			temp.setExtremidad(i);
 			tableDtaModel.add(temp);
 		}
@@ -97,9 +97,9 @@ public class TablaExtremidades extends Tabla {
 			public Object getValue(ETable table, Object element) {
 				ArmaCaballero armaEnExtremidad = (ArmaCaballero) element;
 				
-				if(!armaEnExtremidad.getRefModel().getNombre().equals("ninguna"))
+				if(!armaEnExtremidad.getModelRef().getNombre().equals("ninguna"))
 					return new HttpImageReference("imagenes_tabla?arma="
-						+ armaEnExtremidad.getRefModel().getNombre()
+						+ armaEnExtremidad.getModelRef().getNombre()
 						+ "&tipoDeConsulta=CONSULTA_MODELO_ARMA_TERRENO");
 				
 

@@ -1,5 +1,6 @@
 package com.thinkingandlooking.tablas;
 
+import java.awt.Image;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -7,6 +8,7 @@ import org.hibernate.Session;
 
 import nextapp.echo.app.Alignment;
 import nextapp.echo.app.ApplicationInstance;
+import nextapp.echo.app.AwtImageReference;
 import nextapp.echo.app.Button;
 import nextapp.echo.app.Color;
 import nextapp.echo.app.Column;
@@ -26,6 +28,7 @@ import com.thinkingandlooking.cleda3echo.echo.table.base.TableColModel;
 import com.thinkingandlooking.cleda3echo.echo.table.base.TableColumn;
 import com.thinkingandlooking.cleda3echo.echo.table.base.TableDtaModel;
 import com.thinkingandlooking.cleda3echo.echo.table.renderer.BaseCellRenderer;
+import com.thinkingandlooking.cleda3echo.echo.table.renderer.BufferImageCellRender;
 import com.thinkingandlooking.cleda3echo.echo.table.renderer.LabelCellRenderer;
 import com.thinkingandlooking.cleda3echo.echo.table.renderer.NestedCellRenderer;
 import com.thinkingandlooking.database.ArmaCaballero;
@@ -34,6 +37,8 @@ import com.thinkingandlooking.database.ModeloArmaCaballero;
 import com.thinkingandlooking.database.SessionHibernate;
 import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.main.MainApp;
+import com.thinkingandlooking.utils.BufferedImageCache;
+import com.thinkingandlooking.utils.EnumConsultas;
 import com.thinkingandlooking.utils.GUIStyles;
 
 public class TablaArmasCaballero extends Tabla {
@@ -43,6 +48,7 @@ public class TablaArmasCaballero extends Tabla {
 	ModeloArmaCaballero modeloArmaCaballero = new ModeloArmaCaballero();
 	SelectField cant;
 	WindowPane windowPane;
+
 	public TablaArmasCaballero(Usuario usuario) {
 		super();
 		this.usuario = usuario;
@@ -63,32 +69,36 @@ public class TablaArmasCaballero extends Tabla {
 		TableColumn tableColumn;
 		LabelCellRenderer lcr;
 		// **********************************************************************************
-		/*
-		 * tableColumn = new TableColumn() {
-		 * 
-		 * @Override public Object getValue(ETable table, Object element) {
-		 * ModeloArmaCaballero modeloArmascaballero = (ModeloArmaCaballero)
-		 * element;
-		 * 
-		 * return new
-		 * HttpImageReference("imagenes_tabla?nombreArma="+modeloArmascaballero
-		 * .getNombre()+"&tipoDeConsulta=CONSULTA_MODELO_ARMA_TERRENO");
-		 * 
-		 * } }; tableColumn.setWidth(new Extent(10));
-		 * tableColumn.setHeadValue("IMAGEN");
-		 * 
-		 * lcr = new LabelCellRenderer(); lcr.setAlignment(new Alignment( //
-		 * Alignment.CENTER, Alignment.DEFAULT));
-		 * 
-		 * lcr.setBackground(Color.BLUE); lcr.setForeground(Color.WHITE);
-		 * tableColumn.setHeadCellRenderer(lcr);
-		 * 
-		 * ImageCellRenderer icr = new ImageCellRenderer(); icr.setAlignment(new
-		 * Alignment( // Alignment.CENTER, Alignment.DEFAULT));
-		 * 
-		 * tableColumn.setDataCellRenderer(icr);
-		 * tableColModel.getTableColumnList().add(tableColumn);
-		 */
+		tableColumn = new TableColumn() {
+			@Override
+			public Object getValue(ETable table, Object element) {
+				ModeloArmaCaballero modeloArmasCaballero = (ModeloArmaCaballero) element;
+
+				return (new AwtImageReference((Image) BufferedImageCache
+						.getInstance().getBufferedImage(
+								modeloArmasCaballero.getNombre(),
+								EnumConsultas.CONSULTA_MODELO_ARMA_CABALLERO)));
+
+			}
+		};
+		tableColumn.setWidth(new Extent(10));
+		tableColumn.setHeadValue("IMAGEN");
+
+		lcr = new LabelCellRenderer();
+		lcr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT));
+
+		lcr.setBackground(Color.BLUE);
+		lcr.setForeground(Color.WHITE);
+		tableColumn.setHeadCellRenderer(lcr);
+
+		BufferImageCellRender icr = new BufferImageCellRender();
+		icr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT));
+
+		tableColumn.setDataCellRenderer(icr);
+		tableColModel.getTableColumnList().add(tableColumn);
+
 		// **********************************************************************************
 		tableColumn = new TableColumn() {
 			@Override
@@ -326,12 +336,10 @@ public class TablaArmasCaballero extends Tabla {
 		Query query2 = session.createQuery(str2);
 		query2.setInteger("idRef", usuario.getId());
 		Caballero caballero = (Caballero) query2.uniqueResult();
-		
-		
-		if(caballero.getOro()
-				- modeloArmaCaballero.getOro()
-				* Integer.parseInt((String) cant.getSelectedItem())<0){
-			
+
+		if (caballero.getOro() - modeloArmaCaballero.getOro()
+				* Integer.parseInt((String) cant.getSelectedItem()) < 0) {
+
 			final WindowPane windowPaneFallo = new WindowPane();
 			windowPaneFallo.setModal(true);
 			windowPaneFallo.setTitleBackground(new Color(11, 46, 5));
@@ -339,7 +347,8 @@ public class TablaArmasCaballero extends Tabla {
 			windowPaneFallo.setBackground(new Color(50, 217, 11));
 			windowPaneFallo.setTitle("Eres muy pobre");
 			windowPaneFallo.setClosable(false);
-			Label textFallo = new Label("No tienes oro suficiente para la compra");
+			Label textFallo = new Label(
+					"No tienes oro suficiente para la compra");
 			windowPaneFallo.add(textFallo);
 			Button fallobtn = new Button();
 			fallobtn.addActionListener(new ActionListener() {
@@ -349,17 +358,15 @@ public class TablaArmasCaballero extends Tabla {
 				}
 			});
 		}
-		
+
 		caballero.setOro(caballero.getOro() - modeloArmaCaballero.getOro()
 				* Integer.parseInt((String) cant.getSelectedItem()));
-		
-		ac.setArmaCaballeroRef(caballero);
+
+		ac.setArmaCaballeroRef(usuario.getCaballero());
 		caballero.getArmaCaballeroList().add(ac);
 
 		modeloArmaCaballero.getArmaCaballero().add(ac);
-		ac.setRefModel(modeloArmaCaballero);
-
-		
+		ac.setModelRef(modeloArmaCaballero);
 
 		session.update(caballero);
 		session.update(modeloArmaCaballero);
