@@ -1,6 +1,5 @@
 package com.thinkingandlooking.tablas;
 
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import nextapp.echo.app.Column;
@@ -18,7 +17,6 @@ import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
 import nextapp.echo.app.list.DefaultListModel;
-
 import com.thinkingandlooking.cleda3echo.echo.table.base.ETable;
 import com.thinkingandlooking.cleda3echo.echo.table.base.TableColModel;
 import com.thinkingandlooking.cleda3echo.echo.table.base.TableColumn;
@@ -98,7 +96,7 @@ public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 				return button;
 			}
 		});
-		System.err.println("ALGOOOOOOOOOOOOO");
+		
 		return nestedCellRenderer;
 	}
 
@@ -244,18 +242,5 @@ public class TablaArmasTerreno extends TablaBaseModeloArmaTerreno {
 
 	}
 
-	/*
-	 * protected void acceptbtnClicked(Usuario usuario2, ArmaTerreno am,
-	 * ModeloArmaTerreno modeloArmaTerreno) {
-	 * 
-	 * Session session = SessionHibernate.getInstance().openSession();
-	 * session.beginTransaction();
-	 * usuario2.getCaballero().getArmaTerrenoList().add(am);
-	 * usuario2.getCaballero() .setOro(usuario2.getCaballero().getOro() -
-	 * am.getModelRef().getOro());
-	 * modeloArmaTerreno.getArmaTerrenoList().add(am); session.update(usuario2);
-	 * session.update(modeloArmaTerreno);
-	 * 
-	 * }
-	 */
+
 }

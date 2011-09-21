@@ -9,6 +9,7 @@ import com.thinkingandlooking.tablas.TablaArmasTerreno;
 import nextapp.echo.app.Column;
 import nextapp.echo.app.ContentPane;
 import nextapp.echo.app.Extent;
+import nextapp.echo.app.Insets;
 import nextapp.echo.app.WindowPane;
 import nextapp.echo.extras.app.TabPane;
 import nextapp.echo.extras.app.layout.TabPaneLayoutData;
@@ -21,9 +22,7 @@ public class Tienda extends ContentPane {
 	
 	public Tienda(Usuario usuario) {
 		ventana=new WindowPane();
-		ventana.setTitle("Armas");
-
-		
+		ventana.setTitle("TIENDA DE ARMAS");		
 		this.usuario=usuario;
 		initGui();
 	}
@@ -33,7 +32,13 @@ public class Tienda extends ContentPane {
 		tab=new TabPane();
 		ventana.add(tab);
 		ventana.setHeight(new Extent(350));
-		ventana.setWidth(new Extent(500));
+		ventana.setWidth(new Extent(600));
+		ventana.setMovable(false);
+		ventana.setClosable(false);
+		ventana.setTitleInsets(new Insets(225, 12));
+		ventana.setPositionX(new Extent(50));
+		ventana.setPositionY(new Extent(50));
+		
 		TabPaneLayoutData layout=new TabPaneLayoutData();
 		layout.setTitle("Armas De Terreno");
 		

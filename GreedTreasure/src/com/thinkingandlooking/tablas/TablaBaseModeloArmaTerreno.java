@@ -151,6 +151,8 @@ public class TablaBaseModeloArmaTerreno extends Tabla {
 				return modeloArmasTerreno.getAlcance();
 			}
 		};
+		
+		
 		tableColumn.setWidth(new Extent(10));
 		tableColumn.setHeadValue("ALCANCE");
 
@@ -167,7 +169,31 @@ public class TablaBaseModeloArmaTerreno extends Tabla {
 		tableColumn.setDataCellRenderer(lcr);
 		tableColModel.getTableColumnList().add(tableColumn);
 		// *******************************************************************
+		tableColumn = new TableColumn() {
+			@Override
+			public Object getValue(ETable table, Object element) {
+				ModeloArmaTerreno modeloArmasTerreno = (ModeloArmaTerreno) element;
+				return modeloArmasTerreno.getNivel();
+			}
+		};
 		
+		
+		tableColumn.setWidth(new Extent(10));
+		tableColumn.setHeadValue("NIVEL");
+
+		lcr = new LabelCellRenderer();
+		lcr.setBackground(Color.BLUE);
+		lcr.setForeground(Color.WHITE);
+		lcr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT));
+		tableColumn.setHeadCellRenderer(lcr);
+
+		lcr = new LabelCellRenderer();
+		lcr.setAlignment(new Alignment( //
+				Alignment.CENTER, Alignment.DEFAULT));
+		tableColumn.setDataCellRenderer(lcr);
+		tableColModel.getTableColumnList().add(tableColumn);
+		// *******************************************************************
 		
 		tableColumn = new TableColumn() {
 			@Override
