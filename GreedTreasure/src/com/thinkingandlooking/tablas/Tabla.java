@@ -1,5 +1,6 @@
 package com.thinkingandlooking.tablas;
 
+import nextapp.echo.app.Alignment;
 import nextapp.echo.app.Extent;
 import nextapp.echo.app.Insets;
 import java.util.List;
@@ -49,6 +50,8 @@ public abstract class Tabla  extends ETable{
 		//				NAVEGACION
 		//--------------------------------------------
 		 tableNavigation = new ETableNavigation(tableDtaModel);
+		 tableNavigation.setAlignment(new Alignment( //
+					Alignment.CENTER, Alignment.DEFAULT));
 		//setBorder(new Border(5, Color.BLACK, Border.STYLE_GROOVE	));
 		setCellSpacing(new Extent(10));
 		

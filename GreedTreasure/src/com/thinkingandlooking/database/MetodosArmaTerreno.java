@@ -190,7 +190,7 @@ public class MetodosArmaTerreno {
 
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
-		String str = "SELECT DISTINCT m FROM ModeloArmaTerreno AS m";
+		String str = "SELECT DISTINCT m FROM ModeloArmaTerreno AS m ORDER BY nivel,oro";
 		Query query = session.createQuery(str);
 		List<Object> list = new ArrayList<Object>();
 		
