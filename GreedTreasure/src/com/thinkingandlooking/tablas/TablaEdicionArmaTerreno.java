@@ -3,22 +3,33 @@ package com.thinkingandlooking.tablas;
 import nextapp.echo.app.Alignment;
 import nextapp.echo.app.Button;
 import nextapp.echo.app.Color;
+import nextapp.echo.app.Column;
 import nextapp.echo.app.Component;
 import nextapp.echo.app.Extent;
+import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
 import com.thinkingandlooking.cleda3echo.echo.table.base.ETable;
 import com.thinkingandlooking.cleda3echo.echo.table.base.TableColModel;
 import com.thinkingandlooking.cleda3echo.echo.table.base.TableColumn;
+import com.thinkingandlooking.cleda3echo.echo.table.base.TableDtaModel;
 import com.thinkingandlooking.cleda3echo.echo.table.renderer.BaseCellRenderer;
 import com.thinkingandlooking.cleda3echo.echo.table.renderer.LabelCellRenderer;
 import com.thinkingandlooking.cleda3echo.echo.table.renderer.NestedCellRenderer;
+import com.thinkingandlooking.database.MetodosArmaTerreno;
+import com.thinkingandlooking.database.ModeloArmaTerreno;
+import com.thinkingandlooking.database.Usuario;
+import com.thinkingandlooking.main.MainApp;
 import com.thinkingandlooking.utils.GUIStyles;
 
 public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {
+	
+	private Usuario usuario;
 
-	public TablaEdicionArmaTerreno() {
+	public TablaEdicionArmaTerreno(Usuario usuario) {
 		super();
+		this.usuario=usuario;
+		
 		}
 
 	public TableColModel initTableColModel() {
@@ -121,11 +132,14 @@ public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {
 
 	private void btnVenderClicked(ETable table, int row) {
 
-	/*	TableDtaModel model = table.getTableDtaModel();
-		ModeloArmaTerreno armaBean = (ModeloArmaTerreno) model.getElementAt(row);
-		inputWindow inputWindow = new inputWindow(armaBean);
-		add(inputWindow);
-	*/
+		TableDtaModel model = table.getTableDtaModel();
+		ModeloArmaTerreno armaTerreno = (ModeloArmaTerreno) model.getElementAt(row);
+		TablaVentaArmaTerreno tablaVenta=new TablaVentaArmaTerreno(usuario);
+		tablaVenta.crearTabla(MetodosArmaTerreno.tablaPorArma(usuario,armaTerreno.getNombre()) );
+//		WindowPane a=new WindowPane();
+//		a.add(tablaVenta);
+//		((MainApp)getApplicationInstance().getActive())a.getco
+//	
 	}
 
 	// --------------------------------------------------------------------------------
