@@ -40,7 +40,7 @@ public class MetodosArmaTerreno {
 	//Recibiendo el usuario y el nombre del modelo, este metodo retorna una lista con todas las
 	//armas terreno que el usuario posee es su inventario para ese modelo que no se encuentre
 	// en uso actualmente ...
-	public static List<ArmaTerreno> tablaPorArma(Usuario user, String nombre) {
+	public static List<Object> tablaPorArma(Usuario user, String nombre) {
 
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
@@ -49,13 +49,12 @@ public class MetodosArmaTerreno {
 		Query query = session.createQuery(str);
 		query.setString("login", user.getLogin());
 		query.setString("nombre", nombre);
-		List<ArmaTerreno> list = new ArrayList<ArmaTerreno>();
+		List<Object> list = new ArrayList<Object>();
 		
 		for (Object obj : query.list()) {
 			ArmaTerreno arma = (ArmaTerreno) obj;
 			if (!armaEnUso(arma)){
-				list.add(arma);
-			    System.out.println(arma.getModelRef().getNombre() + " - " + arma.getId());
+				list.add(obj);
 			}
 		}
 		session.getTransaction().commit();

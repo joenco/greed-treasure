@@ -169,7 +169,7 @@ public class DynTerrenoApp extends Panel {
 	}
 	private TablaEdicionArmaTerreno mostrar(List<Object> listaArmas) {
 		
-		TablaEdicionArmaTerreno tabla=new TablaEdicionArmaTerreno();
+		TablaEdicionArmaTerreno tabla=new TablaEdicionArmaTerreno(usuario);
 		tabla.crearTabla(listaArmas);
 		
 		return tabla;
