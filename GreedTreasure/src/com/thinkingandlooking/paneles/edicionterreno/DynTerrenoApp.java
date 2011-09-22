@@ -1,6 +1,8 @@
 package com.thinkingandlooking.paneles.edicionterreno;
         
 import java.util.List;
+
+import com.thinkingandlooking.database.ArmaTerreno;
 import com.thinkingandlooking.database.MetodosArmaTerreno;
 import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.main.MainApp;
@@ -31,10 +33,7 @@ public class DynTerrenoApp extends Panel {
 	  private Label lblSelected;
 	  private ImageMap terrenoSeccionado;
 	  private Column col;
-	  private char armaSeleccionada='0';
-	  private boolean bandera=false;
-	  private boolean ultimoClickTerreno=false;
-	  private String ultimaCoodenadaClick;
+	  private ArmaTerreno armaSeleccionada=null;
 	  private TransitionPane efectos=new TransitionPane();
 	  private TransitionPane transicionTablas;
 	  private Terreno terreno;
@@ -58,7 +57,7 @@ public class DynTerrenoApp extends Panel {
 	
 		   
 		    
-		    terrenoSeccionado= seccionarTerreno(obtenerTerrenoUsuario("(-1,-1)"));	
+		    seccionarTerreno(obtenerTerrenoUsuario());	
 		    efectos.add(terrenoSeccionado);
 		    efectos.setDuration(1000);
 		    efectos.setType(TransitionPane.TYPE_BLIND_BLACK_IN);
@@ -96,7 +95,6 @@ public class DynTerrenoApp extends Panel {
 		    
 		    col.add(row3);
 		   
-		    bandera=true;
 		    
 		    Row row = new Row();
 		    row.setCellSpacing(new Extent(5));
@@ -109,25 +107,13 @@ public class DynTerrenoApp extends Panel {
 		    row2.setCellSpacing(new Extent(5));
 		    col.add(row2);
 
-		    txtId = new TextField();
-		    row.add(txtId);
-
-		    Button btnGo = new Button("Go...");
-		    btnGo.setToolTipText("Este es el tooltip");
-		    btnGo.addActionListener(new ActionListener() {
-		     public void actionPerformed(ActionEvent arg0) {
-		       btnGoClicked();
-		      }
-		    });
-		    
-		    row.add(btnGo);
-		    
+			    
 		    Button moverArma= new Button("Mover Arma a (x,y)");
 		    moverArma.setToolTipText("Este boton cambia el arma");
 		    moverArma.addActionListener(new ActionListener() {
 		     public void actionPerformed(ActionEvent arg0) {
 		      lblSelected.setText("selecciona el arma A mover luego la nueva coordenada");
-		       armaSeleccionada='0';
+		       armaSeleccionada=null;
 		      }
 		    });
 		    
@@ -136,11 +122,6 @@ public class DynTerrenoApp extends Panel {
 		    lblSelected = new Label("nothing selected");
 		    col.add(lblSelected);
 
-	
-		  
-		    
-
-		   // ultimaCoodenadaClick=new String("(-1,-1)");
 		   
 
 	    }
@@ -190,107 +171,81 @@ public class DynTerrenoApp extends Panel {
 	// --------------------------------------------------------------------------------
 
 
-	  public HttpImageReference obtenerTerrenoUsuario(String coordenadas ){
+	  public HttpImageReference obtenerTerrenoUsuario( ){
 		  
-		  String x=coordenadas.substring(1, coordenadas.indexOf(",",0)	);
-		  String y=coordenadas.substring(coordenadas.indexOf(",",1)+1, coordenadas.length()-1);
-		  if(tabla!=null)
-		  if(tabla.getTablaUsar()!=null)
-		  System.out.println("lo que es"+tabla.getTablaUsar().getArmaActual().getModelRef().getNombre());
-		  if(bandera==false || armaSeleccionada != '0')
-			  return( new  HttpImageReference("terrenodyn?user_login="+usuario.getLogin()+"&caracter_arma="+armaSeleccionada+"&coordenada_x="+x+
-					  							"&coordenada_y="+y+"&nueva_x=-1&nueva_y= -1") );
-		  
-		else if(ultimoClickTerreno)
-		  {    System.out.printf("POCA COSA \n");
-			  String viejaX=ultimaCoodenadaClick.substring(1,ultimaCoodenadaClick.indexOf(",",0));
-			  String viejaY=ultimaCoodenadaClick.substring(ultimaCoodenadaClick.indexOf(",",1)+1, ultimaCoodenadaClick.length()-1);
-			  return( new  HttpImageReference("terrenodyn?user_login="+usuario.getLogin()+"&caracter_arma="+armaSeleccionada+"&coordenada_x="+viejaX+
-					  							"&coordenada_y="+viejaY+"&nueva_x="+x+"&nueva_y="+y) );
-		  } 
-		  return(null);
-		  
-		  /*
-		   *  if(bandera==false || armaSeleccionada != '0')
-			  return( new  HttpImageReference("terrenodyn?user_login="+usuario.getLogin()+"&caracter_arma="+armaSeleccionada+"&coordenada_x="+x+
-					  							"&coordenada_y="+y+"&nueva_x=-1&nueva_y= -1") );
-		  
-		else if(ultimoClickTerreno)
-		  {    System.out.printf("POCA COSA \n");
-			  String viejaX=ultimaCoodenadaClick.substring(1,ultimaCoodenadaClick.indexOf(",",0));
-			  String viejaY=ultimaCoodenadaClick.substring(ultimaCoodenadaClick.indexOf(",",1)+1, ultimaCoodenadaClick.length()-1);
-			  return( new  HttpImageReference("terrenodyn?user_login="+usuario.getLogin()+"&caracter_arma="+armaSeleccionada+"&coordenada_x="+viejaX+
-					  							"&coordenada_y="+viejaY+"&nueva_x="+x+"&nueva_y="+y) );
-		  } 
-		  return(null);
-		   */
+			  return( new  HttpImageReference("terrenodyn?user_login="+usuario.getLogin()));
+		
 	  }
 		    
 	  
-	  public ImageMap  seccionarTerreno( HttpImageReference imagenTerreno)
+	  public void  seccionarTerreno( HttpImageReference imagenTerreno)
 	  {    
 		
 		   
 		   int dimensionImagen=Terreno.getSizeTiles()*terreno.getDimensionmatrizTerreno();
 		   int dimMatriz=terreno.getDimensionmatrizTerreno();
 		   int tamTiles=terreno.getSizeTiles();
-		   ImageMap imageMap = new ImageMap(imagenTerreno);
-           imageMap.setWidth (new Extent(dimensionImagen));
-		   imageMap.setHeight(new Extent(dimensionImagen));
+		   efectos.removeAll();
+    	  
+		   terrenoSeccionado = new ImageMap(imagenTerreno);
+		   terrenoSeccionado.setWidth (new Extent(dimensionImagen));
+		   terrenoSeccionado.setHeight(new Extent(dimensionImagen));
 
-		    //imageMap.setImage(imagenTerreno.getUri());
-		    imageMap.removeAllSections();
+		   terrenoSeccionado.removeAllSections();
 
-		   imageMap.addActionListener(new ActionListener() {
+		   terrenoSeccionado.addActionListener(new ActionListener() {
 		  
 			 public void actionPerformed(ActionEvent evt) {
 		      lblSelected.setText(evt.getActionCommand());
-		      if(armaSeleccionada!='0'|| ultimoClickTerreno)
+		      
+		      if(tabla!=null)
+				  if(tabla.getTablaUsar()!=null)
+				  armaSeleccionada=tabla.getTablaUsar().getArmaActual();
+				  
+				
+			if(armaSeleccionada!=null)//|| ultimoClickTerreno)
 			      { 	
-			    	  	terrenoSeccionado=seccionarTerreno(obtenerTerrenoUsuario(evt.getActionCommand()));
-			    	  	efectos.removeAll();
-			    	  	efectos.add(terrenoSeccionado);
-			    	   // col.remove(0);
-			    	   // col.add(a, 0);
-			    	    ultimoClickTerreno=false;
+						String coordenadas=evt.getActionCommand();
+						String x =getX(coordenadas);
+						String y =getY(coordenadas);
+						MetodosArmaTerreno.usarArmaTerreno(Integer.parseInt(x),Integer.parseInt(y), armaSeleccionada.getId());
+						
+						seccionarTerreno(obtenerTerrenoUsuario());
+						
+			    	  	armaSeleccionada=null;
+			    	  
+			    	  	tabla.getTablaUsar().setArmaActualnula();
+			    	  
 			    	    
 			      }
-		      else
-		      {
-		    	  lblSelected.setText("cupalo");
-		    	  ultimaCoodenadaClick=new String( evt.getActionCommand());	
-		    	  ultimoClickTerreno=true;
-		      }
-		      
-		      }
-		    });
+		     
+		    }});
 
 		   
 		    for (int i=0 ; i < dimMatriz;i++) {
 		    	for (int j=0; j < dimMatriz;j++ ) {
 		    		
 		    	 String coordenada= new String("("+String.valueOf(i)+","+String.valueOf(j)+")");
-		    	 imageMap.addSection(new RectangleSection(tamTiles*j,tamTiles*(i+1),tamTiles*(j+1) ,tamTiles*i , coordenada));
+		    	 terrenoSeccionado.addSection(new RectangleSection(tamTiles*j,tamTiles*(i+1),tamTiles*(j+1) ,tamTiles*i , coordenada));
 		    	 
 		    	}
 		    }
-		    
-		   return (imageMap);
+		   
+		    efectos.add(terrenoSeccionado);
 		}
 	  
-	  private void btnGoClicked() {
+	  private String getX( String coordenadas)
+	  {
+		 
+		return coordenadas.substring(1, coordenadas.indexOf(",",0)	);
 		  
-		  	char car= txtId.getText().isEmpty() ?'0':txtId.getText().charAt(0);
-		  	if( ( car >= 'a' && car <= 'z')||(car >= 'A' && car <= 'Z')||(car >= '1' && car <= '9'))
-		  	{	
-		  		armaSeleccionada=car;
-		  	    ultimoClickTerreno=false;
-		  	}
-		  	else
-		  		armaSeleccionada='0';
-		  	
-		  	
- 	  }
+	  }
+	  private String getY( String coordenadas)
+	  {
+		return coordenadas.substring(coordenadas.indexOf(",",1)+1, coordenadas.length()-1);
+		  
+	  }
+	 
 	  
 	
 	  

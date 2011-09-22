@@ -103,7 +103,7 @@ public class Terreno {
 	        if(Imagen==null)
 	        	continue;
 	      
-	        g2d.drawImage(Imagen,arma.getCoorArmaRef().getY()*tamanioTiles, arma.getCoorArmaRef().getX()*tamanioTiles, tamanioTiles,tamanioTiles, null);
+	        g2d.drawImage(Imagen, arma.getCoorArmaRef().getY()*tamanioTiles,arma.getCoorArmaRef().getX()*tamanioTiles, tamanioTiles,tamanioTiles, null);
 	    }
 	    g2d.dispose();
 	    
@@ -135,85 +135,6 @@ public class Terreno {
 		return tamanioTiles;
 		
 	}
-	
-public void addArmaTerreno(int x, int y, char arm) throws IOException
-	 {
-	    pintarTerreno();
-	/*	System.out.printf("subio \n");
-		 if(listaArmas==null)
-				this.matrizArmas   = new char [getDimensionmatrizTerreno()][getDimensionmatrizTerreno()];
-		 
-		 // matrizArmas[1][1]=arm;
-	     // matrizArmas[1][5]=arm;
- 
-		  if(matrizArmas[x][y]== 0)
-		  {
-			  //descontar arma de lista de armas disponibles para que no se muestre en tabla
-			  matrizArmas[x][y]=arm;
-		  }
-		  else
-		  {
-			  //regresar arma actual en esa posicion a la lista de armas disponibles
-			  //para actualizar tabla
-			  //luego si añadir a terreno y descontar de tabla
-		  }
-			 */
-	}
-	
-	public void sustituirArmaTerreno(int viejaX,int viejaY,int nuevaX,int nuevaY)
-	{
-		
-		/*if (matrizArmas[viejaX][viejaY]==0)
-				return ;
-		if(matrizArmas[nuevaX][nuevaY]!= 0);
-			// devolver esta arma a la tabla equi a inventario
-			
-		
-			  matrizArmas[nuevaX][nuevaY]= matrizArmas[viejaX][viejaY];
-			  matrizArmas[viejaX][viejaY]=0;
-			*/  
-			  
-		
-	}
-	
-	
-	
-	public  String obtenerPathTileArma(char caracter)
-	{
-		return login;/*
-		String imagen=new String();
-		
-		switch (caracter) {
-			case 'a':
-				imagen="./Images/armas/Gallina.gif";
-				break;
-				
-			case 'b':
-				imagen="./Images/armas/Luz.gif";
-				break;
-				
-			case 'c':
-				imagen="./Images/armas/LanzaRocas.jpg";
-				break;
-			case 'd':
-				imagen="./Images/armas/TrampaLava.gif";
-				break;
-			case 'e':
-				imagen="./Images/armas/Superlobo.gif";
-				break;
-			case 'g':
-				imagen="./Images/armas/Dragon.gif";
-				break;
-	
-			default:
-				imagen="nulo";
-				break;
-		}
-		
-		return(imagen);
-	*/
-	}
-	
 		
 }
 	

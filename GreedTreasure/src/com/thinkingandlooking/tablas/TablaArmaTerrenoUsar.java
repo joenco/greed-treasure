@@ -150,5 +150,10 @@ public class TablaArmaTerrenoUsar extends Tabla{
 		return armaActual;
 	}
 	
+	public void setArmaActualnula()
+	{
+		 armaActual=null;
+	}
+	
 
 }
