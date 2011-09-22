@@ -55,7 +55,7 @@ public class Welcome extends ContentPane {
 		hld = new HtmlLayoutData("elemento2");
 		Button btn = new Button("Registrarse");
 		btn.setForeground(Color.WHITE);
-		btn.setBorder(new Border(new Extent(2), Color.RED, 1));
+		btn.setBorder(new Border(new Extent(2), Color.GREEN, 1));
 		btn.setWidth(new Extent(70));
 		btn.setBackground(Color.BLACK);
 		btn.addActionListener(new ActionListener() {
@@ -67,7 +67,7 @@ public class Welcome extends ContentPane {
 		htmlLayout.add(btn);
 
 		Button btn1 = new Button("Recuperar contraseña");
-		btn1.setBorder(new Border(new Extent(2), Color.RED, 1));
+		btn1.setBorder(new Border(new Extent(2), Color.ORANGE, 1));
 		btn1.setForeground(Color.WHITE);
 
 		btn1.setBackground(Color.BLACK);

@@ -2,6 +2,8 @@ package com.thinkingandlooking.recuperarpass;
 
 import com.thinkingandlooking.database.*;
 import com.thinkingandlooking.main.MainApp;
+
+import nextapp.echo.app.Alignment;
 import nextapp.echo.app.ApplicationInstance;
 import nextapp.echo.app.Border;
 import nextapp.echo.app.Button;
@@ -9,6 +11,7 @@ import nextapp.echo.app.Color;
 import nextapp.echo.app.ContentPane;
 import nextapp.echo.app.Extent;
 import nextapp.echo.app.Label;
+import nextapp.echo.app.Row;
 import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
@@ -49,10 +52,15 @@ public class RecuperarPass extends ContentPane {
 				.addActionListener(listenerError);
 		formPasswd.getActionListenerProxyOk().addActionListener(listenerOk);
 		htmlLayout.add(formPasswd);
+		
+		
 
 		hld = new HtmlLayoutData("elemento2");
+		Row row = new Row();
+		row.setCellSpacing(new Extent(5));
+		
 		Button btn = new Button("Registrarse");
-		btn.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		btn.setBorder(new Border(new Extent(2), Color.GREEN, 1));
 		btn.setBackground(new Color(117, 145, 118));
 		btn.setWidth(new Extent(70));
 		btn.addActionListener(new ActionListener() {
@@ -60,11 +68,43 @@ public class RecuperarPass extends ContentPane {
 				btnCreateAccountClicked();
 			}
 		});
-		btn.setLayoutData(hld);
-		htmlLayout.add(btn);
+		
+		Button btnCancel = new Button("Cancelar");
+		btnCancel.setBorder(new Border(new Extent(2), Color.RED, 1));
+		//btnCancel.setBackground(Color.BLACK);
+		btnCancel.setForeground(Color.WHITE);
+		
+		btnCancel.setBackground(new Color(117, 145, 118));
+		btnCancel
+				.setAlignment(new Alignment(Alignment.CENTER, Alignment.CENTER));
+		btnCancel.setWidth(new Extent(60));
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnCancelClicked();
+			}
+		});
+		
+		row.add(btn);
+		row.add(btnCancel);
+		row.setLayoutData(hld);
+		htmlLayout.add(row);
 
 		add(htmlLayout);
+		
+		
+		
+//		btn.setLayoutData(hld);
+//		htmlLayout.add(btn);
+//		htmlLayout.add(btnCancel);
+//
+//		add(htmlLayout);
 	}
+	
+	protected void btnCancelClicked() {
+		
+		((MainApp)ApplicationInstance.getActive()).startWelcome();
+	}
+	
 
 	ActionListener listenerError = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
