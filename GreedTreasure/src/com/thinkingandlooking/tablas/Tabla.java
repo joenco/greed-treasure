@@ -62,6 +62,7 @@ public abstract class Tabla  extends ETable{
 	public abstract TableColModel initTableColModel() ;
 	
 	public ETableNavigation getPaginacion(){return tableNavigation;}
+	public void setPaginacion(int tamPag){tableDtaModel.setPageSize(tamPag);}
 	
 	
 }

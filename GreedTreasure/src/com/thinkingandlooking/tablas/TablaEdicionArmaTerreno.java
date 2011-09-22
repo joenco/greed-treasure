@@ -1,14 +1,23 @@
 package com.thinkingandlooking.tablas;
 
+import java.util.Set;
+
 import nextapp.echo.app.Alignment;
+import nextapp.echo.app.Border;
 import nextapp.echo.app.Button;
 import nextapp.echo.app.Color;
 import nextapp.echo.app.Column;
 import nextapp.echo.app.Component;
 import nextapp.echo.app.Extent;
+import nextapp.echo.app.Insets;
+import nextapp.echo.app.LayoutData;
+import nextapp.echo.app.Panel;
+import nextapp.echo.app.Row;
 import nextapp.echo.app.WindowPane;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
+import nextapp.echo.extras.app.TransitionPane;
+
 import com.thinkingandlooking.cleda3echo.echo.table.base.ETable;
 import com.thinkingandlooking.cleda3echo.echo.table.base.TableColModel;
 import com.thinkingandlooking.cleda3echo.echo.table.base.TableColumn;
@@ -16,19 +25,24 @@ import com.thinkingandlooking.cleda3echo.echo.table.base.TableDtaModel;
 import com.thinkingandlooking.cleda3echo.echo.table.renderer.BaseCellRenderer;
 import com.thinkingandlooking.cleda3echo.echo.table.renderer.LabelCellRenderer;
 import com.thinkingandlooking.cleda3echo.echo.table.renderer.NestedCellRenderer;
+import com.thinkingandlooking.database.ArmaTerreno;
 import com.thinkingandlooking.database.MetodosArmaTerreno;
 import com.thinkingandlooking.database.ModeloArmaTerreno;
 import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.main.MainApp;
+import com.thinkingandlooking.paneles.edicionterreno.DynTerrenoApp;
+import com.thinkingandlooking.perfil.Perfil;
 import com.thinkingandlooking.utils.GUIStyles;
 
 public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {
 	
 	private Usuario usuario;
+	private TransitionPane transicionTablas;
 
-	public TablaEdicionArmaTerreno(Usuario usuario) {
+	public TablaEdicionArmaTerreno(Usuario usuario,TransitionPane transicionTablas) {
 		super();
 		this.usuario=usuario;
+		this.transicionTablas=transicionTablas;
 		
 		}
 
@@ -115,7 +129,7 @@ public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {
 		
 	private void btnUsarClicked(ETable table, int row) {
 			
-	/*		TableDtaModel model = table.getTableDtaModel();
+			/*TableDtaModel model = table.getTableDtaModel();
 
 			ModeloArmaTerreno ModeloArmaTerreno = (ModeloArmaTerreno) model.getElementAt(row);
 
@@ -125,8 +139,8 @@ public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {
 			label.setText("selecciono: "+ModeloArmaTerreno.getNombreArma());
 
 			if (ModeloArmaTerreno.getnumeroArmas() == 0)
-				tableDtaModel.del(tableDtaModel.getElementAt(row));
-		*/}
+				tableDtaModel.del(tableDtaModel.getElementAt(row));*/
+		}
 
 	// --------------------------------------------------------------------------------
 
@@ -134,14 +148,87 @@ public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {
 
 		TableDtaModel model = table.getTableDtaModel();
 		ModeloArmaTerreno armaTerreno = (ModeloArmaTerreno) model.getElementAt(row);
-		TablaVentaArmaTerreno tablaVenta=new TablaVentaArmaTerreno(usuario);
-		tablaVenta.crearTabla(MetodosArmaTerreno.tablaPorArma(usuario,armaTerreno.getNombre()) );
-//		WindowPane a=new WindowPane();
-//		a.add(tablaVenta);
-//		((MainApp)getApplicationInstance().getActive())a.getco
-//	
+		transicionTablas.removeAll();
+		transicionTablas.add(construirPanel(armaTerreno));
+
 	}
 
 	// --------------------------------------------------------------------------------
+	
+	public TablaVentaArmaTerreno construirTablaVentaTerreno(ModeloArmaTerreno armaTerreno)
+	{
+		TablaVentaArmaTerreno tablaVenta=new TablaVentaArmaTerreno(usuario);
+		tablaVenta.setPaginacion(6);
+		tablaVenta.crearTabla(MetodosArmaTerreno.tablaPorArma(usuario,armaTerreno.getNombre()) );
+		
+		return (tablaVenta);
+	}
+	
+	public Panel construirPanel(ModeloArmaTerreno armaTerreno)
+	{
+		Panel panel = new Panel();
+		panel.setWidth(new Extent(560));
+    	panel.setHeight(new Extent(1500));
+		Column col  = new Column();
+		final TablaVentaArmaTerreno tabla= construirTablaVentaTerreno(armaTerreno);
+		col.add(tabla);
+		col.add(tabla.getPaginacion());
+		Row row =new Row();
+		Button buttonVender=new Button("VENDER");
+		buttonVender.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		buttonVender.setWidth(new Extent(100));
+		buttonVender.setTextAlignment(new Alignment(50, 2));
+		buttonVender.setAlignment(new Alignment(Alignment.CENTER, Alignment.DEFAULT));
+		buttonVender.setToolTipText("seleccione Armas para vender");
+		
+		buttonVender.addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent arg0) {
+					venderArmas(tabla.getCarrito());
+				
+			}
 
+			
+		});
+		
+		row.add(buttonVender);
+		
+		Button buttonVolver=new Button("VOLVER");
+		buttonVolver.setBorder(new Border(new Extent(2), Color.BLACK, 1));
+		buttonVolver.setWidth(new Extent(100));
+		buttonVolver.setTextAlignment(new Alignment(50, 2));
+		buttonVender.setAlignment(new Alignment(Alignment.CENTER, Alignment.DEFAULT));
+		buttonVolver.setToolTipText("seleccione para volver a tabla modelo Arma");
+		
+		buttonVolver.addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				transicionTablas.removeAll();
+				TablaEdicionArmaTerreno tabla =new TablaEdicionArmaTerreno(usuario, transicionTablas);
+				tabla.crearTabla(MetodosArmaTerreno.tablaPrincipal(usuario));
+				transicionTablas.add(tabla);
+	
+			}
+
+			
+		});
+		row.add(buttonVolver);
+		col.add(row);
+		panel.add(col);
+		
+		return panel;
+		
+	}
+	
+	private void venderArmas(Set<ArmaTerreno> carrito) {
+		for(ArmaTerreno Arma:carrito)
+		{
+			MetodosArmaTerreno.venderAlaTienda(usuario.getCaballero(), Arma);
+		}
+		
+	}
+	
 }

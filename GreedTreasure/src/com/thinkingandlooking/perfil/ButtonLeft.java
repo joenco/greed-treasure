@@ -31,10 +31,10 @@ public class ButtonLeft  extends Column{
 		
 		//ToolTipContainer ttc = new ToolTipContainer();
 		
-		Column col = new Column();
-		col.add(new Label("AA"));
-		col.add(new Label("BB"));
-		col.setBackground(Color.RED);
+//		Column col = new Column();
+//		col.add(new Label("AA"));
+//		col.add(new Label("BB"));
+//		col.setBackground(Color.RED);
 		
 		//ttc.add(btnAtacarCastillo);
 		//ttc.add(col);
