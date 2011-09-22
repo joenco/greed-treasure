@@ -34,7 +34,7 @@ public class ButtonTop extends Row {
 		btnStart.setBackground(new Color(117, 145, 118));
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				btnStartClicked();
+				//btnStartClicked();
 			}
 		});
 
@@ -45,7 +45,7 @@ public class ButtonTop extends Row {
 		btnShowAccount.setBackground(new Color(117, 145, 118));
 		btnShowAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				btnShowAccountClicked();
+				//btnShowAccountClicked();
 			}
 		});
 
