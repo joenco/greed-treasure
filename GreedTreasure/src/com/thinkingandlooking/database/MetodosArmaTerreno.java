@@ -62,21 +62,21 @@ public class MetodosArmaTerreno {
 		return list;
 	}
 	//retorna la lista de armas que estan en el terreno actualmente
-	public static List<ArmaTerreno> tablaArmaEnUso(Usuario user, String nombre){
+	public static List<ArmaTerreno> tablaArmaEnUso(String loginUser){
 		Session session = SessionHibernate.getInstance().openSession();
 		session.beginTransaction();
 
-		String str = "SELECT a FROM ArmaTerreno AS a WHERE a.caballeroRef.usuario.login = :login AND a.modelRef.nombre = :nombre";
+		String str = "SELECT a FROM ArmaTerreno AS a WHERE a.caballeroRef.usuario.login = :login ";//AND a.modelRef.nombre = :nombre";
 		Query query = session.createQuery(str);
-		query.setString("login", user.getLogin());
-		query.setString("nombre", nombre);
+		query.setString("login", loginUser);
+		//query.setString("nombre", nombre);
 		List<ArmaTerreno> list = new ArrayList<ArmaTerreno>();
-		System.err.println("Nombre id");
+		//System.err.println("Nombre id");
 		for (Object obj : query.list()) {
 			ArmaTerreno arma = (ArmaTerreno) obj;
 			if (armaEnUso(arma)){
 				list.add(arma);
-			    System.out.println(arma.getModelRef().getNombre() + " - " + arma.getId());
+			//    System.out.println(arma.getModelRef().getNombre() + " - " + arma.getId());
 			}
 		}
 		session.getTransaction().commit();

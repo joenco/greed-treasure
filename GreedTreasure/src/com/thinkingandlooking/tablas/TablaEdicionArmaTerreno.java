@@ -37,12 +37,16 @@ import com.thinkingandlooking.utils.GUIStyles;
 public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {
 	
 	private Usuario usuario;
+	private Perfil perfil;
 	private TransitionPane transicionTablas;
+	private TablaArmaTerrenoUsar tablaUsar;
 
-	public TablaEdicionArmaTerreno(Usuario usuario,TransitionPane transicionTablas) {
+	public TablaEdicionArmaTerreno(Usuario usuario,Perfil perfil,TransitionPane transicionTablas) {
 		super();
 		this.usuario=usuario;
 		this.transicionTablas=transicionTablas;
+		this.perfil=perfil;
+		tablaUsar=null;
 		
 		}
 
@@ -126,14 +130,16 @@ public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {
 			return nestedCellRenderer;
 		}
 		// --------------------------------------------------------------------------------
-		
+	
 	private void btnUsarClicked(ETable table, int row) {
 			
-			/*TableDtaModel model = table.getTableDtaModel();
-
-			ModeloArmaTerreno ModeloArmaTerreno = (ModeloArmaTerreno) model.getElementAt(row);
-
-			ModeloArmaTerreno.setnumeroArmas(ModeloArmaTerreno.getArmaTerrenoList().size() - 1);
+			TableDtaModel model = table.getTableDtaModel();
+			ModeloArmaTerreno armaTerreno = (ModeloArmaTerreno) model.getElementAt(row);
+			tablaUsar=new TablaArmaTerrenoUsar();
+			tablaUsar.crearTabla(MetodosArmaTerreno.tablaPorArma(usuario,armaTerreno.getNombre()));
+			transicionTablas.removeAll();
+			transicionTablas.add(tablaUsar);
+		/*	ModeloArmaTerreno.setnumeroArmas(ModeloArmaTerreno.getArmaTerrenoList().size() - 1);
 			model.getTableDtaModelEvtProxy().fireActionEvent(
 					new TableDtaModelEvent(model));
 			label.setText("selecciono: "+ModeloArmaTerreno.getNombreArma());
@@ -207,7 +213,7 @@ public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				transicionTablas.removeAll();
-				TablaEdicionArmaTerreno tabla =new TablaEdicionArmaTerreno(usuario, transicionTablas);
+				TablaEdicionArmaTerreno tabla =new TablaEdicionArmaTerreno(usuario,perfil ,transicionTablas);
 				tabla.crearTabla(MetodosArmaTerreno.tablaPrincipal(usuario));
 				transicionTablas.add(tabla);
 	
@@ -228,6 +234,11 @@ public class TablaEdicionArmaTerreno extends TablaBaseModeloArmaTerreno {
 		{
 			MetodosArmaTerreno.venderAlaTienda(usuario.getCaballero(), Arma);
 		}
+		
+	}
+	
+	public TablaArmaTerrenoUsar getTablaUsar() {
+		return tablaUsar;
 		
 	}
 	

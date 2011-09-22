@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import javax.imageio.ImageIO;
@@ -15,6 +17,7 @@ import org.hibernate.Session;
 
 import com.thinkingandlooking.database.*;
 import com.thinkingandlooking.utils.BufferedImageCache;
+import com.thinkingandlooking.utils.EnumConsultas;
 
 
 
@@ -28,7 +31,7 @@ public class Terreno {
 	
 	private String login;
 	private char [][] matrizTerreno;
-	private char [][] matrizArmas;
+	private List<ArmaTerreno> listaArmas;
 	private static int  tamanioTiles;
 
 	
@@ -37,7 +40,7 @@ public class Terreno {
 	{
 		 login=new String("-1");
 		 matrizTerreno=null;
-		 matrizArmas=null;
+		 listaArmas=null;
 		 tamanioTiles=40;
 	}
 	
@@ -48,18 +51,12 @@ public class Terreno {
 		tamanioTiles=25;
 		setDimension(16); //ojo consultar en base de datos cual es la dimension del terreno del usuario correspondiente
 		cargarMatrizTerreno();
-		
-		//cargarMatrizArmas();
-		this.matrizArmas   = new char [getDimensionmatrizTerreno()][getDimensionmatrizTerreno()];
-		 
-	    matrizArmas[1][1]='a';
-	    matrizArmas[1][5]='b';
-	        
+		cargarMatrizArmas();
+    
 
 	}
 	
 
-	
 	public void setDimension(int dim)
 	{
 		if( dim < 10)
@@ -91,19 +88,25 @@ public class Terreno {
 				    g2d.setColor(Color.BLACK);
 				    // g2d.drawRect(i*tamanioTiles, j*tamanioTiles, tamanioTiles,tamanioTiles);
 			        g2d.drawImage(Imagen,j*tamanioTiles, i*tamanioTiles, tamanioTiles,tamanioTiles, null);
-			      /*  
-			        if(matrizArmas==null)
-			        	continue;
-			        System.out.printf("%c \n",matrizArmas[i][j]);
-			        
-			        Imagen= irc.getBufferedImage(obtenerPathTileArma(matrizArmas[i][j]));
-			        if(Imagen==null)
-			        	continue;
-			        g2d.drawImage(Imagen,j*tamanioTiles, i*tamanioTiles, tamanioTiles,tamanioTiles, null);
-		    	*/
+			  
 		    	}
 	      }
+	    
+	    
+	    for(ArmaTerreno arma:listaArmas)
+	    { 	
+	        if(listaArmas.size()==0)
+	        	continue;
+	        
+	        Imagen= irc.getBufferedImage(arma.getModelRef().getNombre(),EnumConsultas.CONSULTA_MODELO_ARMA_TERRENO);
+	       
+	        if(Imagen==null)
+	        	continue;
+	      
+	        g2d.drawImage(Imagen,arma.getCoorArmaRef().getY()*tamanioTiles, arma.getCoorArmaRef().getX()*tamanioTiles, tamanioTiles,tamanioTiles, null);
+	    }
 	    g2d.dispose();
+	    
 	   // Write to a a byte array instead of a file
 	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
 	    ImageIO.write(bimg, "png", baos);
@@ -115,7 +118,13 @@ public class Terreno {
 		
 		  matrizTerreno=MetodosTerreno.loadData(login); 
 	 }
-
+	
+	private void cargarMatrizArmas() {
+		
+		listaArmas=MetodosArmaTerreno.tablaArmaEnUso(login);
+		
+	}
+	
 	public int getDimensionmatrizTerreno()
 	{
 		return matrizTerreno.length; 
@@ -127,15 +136,16 @@ public class Terreno {
 		
 	}
 	
-	public void addArmaTerreno(int x, int y, char arm)
+public void addArmaTerreno(int x, int y, char arm) throws IOException
 	 {
-		System.out.printf("subio \n");
-		 if(matrizArmas==null)
+	    pintarTerreno();
+	/*	System.out.printf("subio \n");
+		 if(listaArmas==null)
 				this.matrizArmas   = new char [getDimensionmatrizTerreno()][getDimensionmatrizTerreno()];
 		 
 		 // matrizArmas[1][1]=arm;
 	     // matrizArmas[1][5]=arm;
-		 
+ 
 		  if(matrizArmas[x][y]== 0)
 		  {
 			  //descontar arma de lista de armas disponibles para que no se muestre en tabla
@@ -147,13 +157,13 @@ public class Terreno {
 			  //para actualizar tabla
 			  //luego si añadir a terreno y descontar de tabla
 		  }
-			 
+			 */
 	}
 	
 	public void sustituirArmaTerreno(int viejaX,int viejaY,int nuevaX,int nuevaY)
 	{
 		
-		if (matrizArmas[viejaX][viejaY]==0)
+		/*if (matrizArmas[viejaX][viejaY]==0)
 				return ;
 		if(matrizArmas[nuevaX][nuevaY]!= 0);
 			// devolver esta arma a la tabla equi a inventario
@@ -161,49 +171,16 @@ public class Terreno {
 		
 			  matrizArmas[nuevaX][nuevaY]= matrizArmas[viejaX][viejaY];
 			  matrizArmas[viejaX][viejaY]=0;
-			  
+			*/  
 			  
 		
 	}
 	
 	
-	/*public  String obtenerPathTileTerreno (char caracter)
-	{
-		String imagen=new String();
-		
-		switch (caracter) {
-			case 'a':
-				imagen="./Images/agua/arrecife.gif";
-				break;
-				
-			case 'b':
-				imagen="./Images/scarpado/bosqueotono.gif";
-				break;
-				
-			case 'c':
-				imagen="./Images/agua/castilloagua.gif";
-				break;
-			case 'd':
-				imagen="./Images/agua/pantanoagua.gif";
-				break;
-			case 'e':
-				imagen="./Images/agua/puente.gif";
-				break;
-			case 'g':
-				imagen="./Images/agua/grama.gif";
-				break;
-	
-			default:
-				
-				break;
-		}
-		
-		return(imagen);
-	
-	}*/
 	
 	public  String obtenerPathTileArma(char caracter)
 	{
+		return login;/*
 		String imagen=new String();
 		
 		switch (caracter) {
@@ -234,7 +211,7 @@ public class Terreno {
 		}
 		
 		return(imagen);
-	
+	*/
 	}
 	
 		

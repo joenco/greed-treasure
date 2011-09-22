@@ -13,6 +13,7 @@ import nextapp.echo.app.Component;
 import nextapp.echo.app.Extent;
 import nextapp.echo.app.event.ActionEvent;
 import nextapp.echo.app.event.ActionListener;
+import nextapp.echo.extras.app.TransitionPane;
 
 import com.thinkingandlooking.cleda3echo.echo.table.base.ETable;
 import com.thinkingandlooking.cleda3echo.echo.table.base.TableColModel;
@@ -28,9 +29,12 @@ import com.thinkingandlooking.utils.GUIStyles;
 
 public class TablaArmaTerrenoUsar extends Tabla{
 
-	 
-	public TablaArmaTerrenoUsar(Usuario usuario) {
+	 private ArmaTerreno armaActual;
+
+	
+	 public TablaArmaTerrenoUsar() {
 		super();
+		armaActual=null;
 		
 	}
 	
@@ -121,7 +125,7 @@ public class TablaArmaTerrenoUsar extends Tabla{
 
 					usar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							btnUsarClicked(table, row);
+							btnEquiparClicked(table, row);
 						}
 					});
 					return usar;
@@ -134,13 +138,17 @@ public class TablaArmaTerrenoUsar extends Tabla{
 		}
 		// --------------------------------------------------------------------------------
 		
-	private void btnUsarClicked(ETable table, int row) {
+	private void btnEquiparClicked(ETable table, int row) {
 			
 			TableDtaModel model = table.getTableDtaModel();
-
-			ModeloArmaTerreno ModeloArmaTerreno = (ModeloArmaTerreno) model.getElementAt(row);
-
+			armaActual= (ArmaTerreno) model.getElementAt(row);					
 			
 		}
+	
+	public ArmaTerreno getArmaActual()
+	{
+		return armaActual;
+	}
+	
 
 }
