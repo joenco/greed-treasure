@@ -47,7 +47,7 @@ public class FormPasswd extends Panel {
 	private void initGUI() {
 		setBackground(new Color(117, 145, 118));
 		setAlignment(new Alignment(Alignment.CENTER, Alignment.CENTER));
-		setBorder(new Border(new Extent(2), Color.GREEN, 1));
+		setBorder(new Border(new Extent(2), Color.YELLOW, 1));
 		setWidth(new Extent(200));
 
 		Column col = new Column();
@@ -66,10 +66,10 @@ public class FormPasswd extends Panel {
 		txtEmail.setAlignment(new Alignment(Alignment.CENTER, Alignment.DEFAULT));
 		col.add(txtEmail);
 
-		Button btnLogin = new Button("Mostrar contraseña");
+		Button btnLogin = new Button("Mostrar Contraseña");
 		btnLogin.setBorder(new Border(new Extent(2), Color.BLACK, 1));
 		btnLogin.setBackground(new Color(197, 217, 161));
-		btnLogin.setWidth(new Extent(60));
+		btnLogin.setWidth(new Extent(70));
 		btnLogin.setAlignment(new Alignment(Alignment.CENTER, Alignment.DEFAULT));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
