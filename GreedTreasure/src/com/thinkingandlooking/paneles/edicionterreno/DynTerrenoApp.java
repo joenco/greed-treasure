@@ -35,6 +35,7 @@ public class DynTerrenoApp extends Panel {
 	  private boolean ultimoClickTerreno=false;
 	  private String ultimaCoodenadaClick;
 	  private TransitionPane efectos=new TransitionPane();
+	  private TransitionPane transicionTablas;
 	  Terreno terreno;
 
 	  // --------------------------------------------------------------------------------
@@ -72,11 +73,20 @@ public class DynTerrenoApp extends Panel {
 		   
 		    if(listaArmas.size()>0)
 		    {	
-		    	Column columnTabla=new Column();
+		    	Panel panelTransition=new Panel();
+		    	transicionTablas=new TransitionPane();
 		    	TablaEdicionArmaTerreno tabla= mostrar(listaArmas);
+		    	
+		    	Column columnTabla=new Column();
 		    	columnTabla.add( tabla);
 		    	columnTabla.add(tabla.getPaginacion());
-		    	row3.add(columnTabla);
+		    	
+		    	transicionTablas.add(columnTabla);
+		    	panelTransition.add(transicionTablas);
+		    	panelTransition.setWidth(new Extent(560));
+		    	panelTransition.setHeight(new Extent(300));
+		    	
+		    	row3.add(panelTransition);
 		    }
 		    else
 		    	crearAviso();
@@ -169,7 +179,7 @@ public class DynTerrenoApp extends Panel {
 	}
 	private TablaEdicionArmaTerreno mostrar(List<Object> listaArmas) {
 		
-		TablaEdicionArmaTerreno tabla=new TablaEdicionArmaTerreno(usuario);
+		TablaEdicionArmaTerreno tabla=new TablaEdicionArmaTerreno(usuario,transicionTablas);
 		tabla.crearTabla(listaArmas);
 		
 		return tabla;

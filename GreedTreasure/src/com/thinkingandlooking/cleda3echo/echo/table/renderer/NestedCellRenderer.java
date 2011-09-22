@@ -39,12 +39,12 @@ public class NestedCellRenderer extends BaseCellRenderer {
     for (CellRenderer cellRenderer : cellRendererList) {
       Component component = cellRenderer. //
           getCellRenderer(table, value, col, row);
-
+   
       if (component != null) {
         ret.add(component);
       }
     }
-
+    
     return ret;
   }
 
