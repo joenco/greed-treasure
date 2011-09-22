@@ -4,6 +4,7 @@ import java.util.List;
 import com.thinkingandlooking.database.MetodosArmaTerreno;
 import com.thinkingandlooking.database.Usuario;
 import com.thinkingandlooking.main.MainApp;
+import com.thinkingandlooking.perfil.Perfil;
 import com.thinkingandlooking.tablas.TablaEdicionArmaTerreno;
 import nextapp.echo.app.Panel;
 import echopoint.ImageMap;
@@ -36,13 +37,15 @@ public class DynTerrenoApp extends Panel {
 	  private String ultimaCoodenadaClick;
 	  private TransitionPane efectos=new TransitionPane();
 	  private TransitionPane transicionTablas;
-	  Terreno terreno;
-
+	  private Terreno terreno;
+	  private Perfil perfil;
+	  private TablaEdicionArmaTerreno tabla;
 	  // --------------------------------------------------------------------------------
-	  public DynTerrenoApp(Usuario usuario)
+	  public DynTerrenoApp(Usuario usuario,Perfil perfil)
 	  {
 		  terreno = new Terreno(usuario.getLogin());
 		  this.usuario = usuario;
+		  this.perfil=perfil;
 		  initGUI();
 	  }
 	  public void initGUI() {
@@ -57,8 +60,8 @@ public class DynTerrenoApp extends Panel {
 		    
 		    terrenoSeccionado= seccionarTerreno(obtenerTerrenoUsuario("(-1,-1)"));	
 		    efectos.add(terrenoSeccionado);
-		    efectos.setDuration(2000);
-		    efectos.setType(TransitionPane.TYPE_IMMEDIATE_REPLACE);
+		    efectos.setDuration(1000);
+		    efectos.setType(TransitionPane.TYPE_BLIND_BLACK_IN);
 		    
 		    Row row3=new Row();
 		    Panel contenedor=new Panel();
@@ -179,7 +182,7 @@ public class DynTerrenoApp extends Panel {
 	}
 	private TablaEdicionArmaTerreno mostrar(List<Object> listaArmas) {
 		
-		TablaEdicionArmaTerreno tabla=new TablaEdicionArmaTerreno(usuario,transicionTablas);
+		tabla=new TablaEdicionArmaTerreno(usuario,perfil,transicionTablas);
 		tabla.crearTabla(listaArmas);
 		
 		return tabla;
@@ -191,7 +194,9 @@ public class DynTerrenoApp extends Panel {
 		  
 		  String x=coordenadas.substring(1, coordenadas.indexOf(",",0)	);
 		  String y=coordenadas.substring(coordenadas.indexOf(",",1)+1, coordenadas.length()-1);
-		  
+		  if(tabla!=null)
+		  if(tabla.getTablaUsar()!=null)
+		  System.out.println("lo que es"+tabla.getTablaUsar().getArmaActual().getModelRef().getNombre());
 		  if(bandera==false || armaSeleccionada != '0')
 			  return( new  HttpImageReference("terrenodyn?user_login="+usuario.getLogin()+"&caracter_arma="+armaSeleccionada+"&coordenada_x="+x+
 					  							"&coordenada_y="+y+"&nueva_x=-1&nueva_y= -1") );
@@ -204,6 +209,21 @@ public class DynTerrenoApp extends Panel {
 					  							"&coordenada_y="+viejaY+"&nueva_x="+x+"&nueva_y="+y) );
 		  } 
 		  return(null);
+		  
+		  /*
+		   *  if(bandera==false || armaSeleccionada != '0')
+			  return( new  HttpImageReference("terrenodyn?user_login="+usuario.getLogin()+"&caracter_arma="+armaSeleccionada+"&coordenada_x="+x+
+					  							"&coordenada_y="+y+"&nueva_x=-1&nueva_y= -1") );
+		  
+		else if(ultimoClickTerreno)
+		  {    System.out.printf("POCA COSA \n");
+			  String viejaX=ultimaCoodenadaClick.substring(1,ultimaCoodenadaClick.indexOf(",",0));
+			  String viejaY=ultimaCoodenadaClick.substring(ultimaCoodenadaClick.indexOf(",",1)+1, ultimaCoodenadaClick.length()-1);
+			  return( new  HttpImageReference("terrenodyn?user_login="+usuario.getLogin()+"&caracter_arma="+armaSeleccionada+"&coordenada_x="+viejaX+
+					  							"&coordenada_y="+viejaY+"&nueva_x="+x+"&nueva_y="+y) );
+		  } 
+		  return(null);
+		   */
 	  }
 		    
 	  

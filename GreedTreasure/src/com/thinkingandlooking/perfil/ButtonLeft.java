@@ -106,7 +106,7 @@ public class ButtonLeft  extends Column{
 
 		private void btnEditionCastilloClicked() {
 			
-				DynTerrenoApp terreno= new DynTerrenoApp(usuario);
+				DynTerrenoApp terreno= new DynTerrenoApp(usuario,perfil);
 				perfil.updatePanel(terreno);
 		}
 
