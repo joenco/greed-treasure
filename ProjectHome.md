@@ -1,0 +1,1 @@
+El juego consiste en robar el oro que tienen los castillos enemigos y evitar que roben el que nosotros tenemos, para atacar y robar contaremos con un caballero al cual se le podrá comprar armas ofensivas y defensivas, también tendremos un castillo el cual hay que defender colocando armas de defensa/ataque para evitar que nos roben el oro.
